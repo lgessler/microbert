@@ -1,19 +1,25 @@
 # Usage
 
 ## Setup
-1. Create a new environment:
+1. Ensure submodules are initialized:
+
+```
+git submodule update --init --recursive
+```
+
+2. Create a new environment:
 
 ```bash
 conda create --name embur python=3.9
 conda activate embur
 ```
 
-2. Install PyTorch etc. 
+3. Install PyTorch etc. 
 ```bash
-conda install pytorch torchvision cudatoolkit=11.2 -c pytorch
+conda install pytorch torchvision cudatoolkit -c pytorch
 ```
 
-3. Install dependencies:
+4. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
