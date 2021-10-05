@@ -140,14 +140,14 @@
 2	ⲉ	ⲉⲣⲉ	_	CFOC	_	_	_	_	Entity=O
 3	ⲩ	ⲟⲩ	_	ART	_	_	_	_	Entity=B-person
 4	ⲥϩⲓⲙⲉ	ⲥϩⲓⲙⲉ	_	N	_	_	_	_	Entity=I-person
-5	ⲧⲉ	ⲡⲉ	_	COP	_	_	_	_	Entity=I-person
-6	ⲉ	ⲉⲣⲉ	_	CCIRC	_	_	_	_	Entity=I-person
-7	ⲩ	ⲛⲧⲟⲟⲩ	_	PPERS	_	_	_	_	Entity=I-person
-8	ⲃⲱϣ	ⲃⲱϣ	_	V	_	_	_	_	Entity=I-person
-9	ⲙⲙⲟ	ⲛ	_	PREP	_	_	_	_	Entity=I-person
-10	ⲟⲩ	ⲛⲧⲟⲟⲩ	_	PPERO	_	_	_	_	Entity=I-person
-11	ⲙⲁⲩⲁⲁ	ⲙⲁⲩⲁⲁ	_	IMOD	_	_	_	_	Entity=I-person
-12	ⲩ	ⲛⲧⲟⲟⲩ	_	PPERO	_	_	_	_	Entity=I-person
+5	ⲧⲉ	ⲡⲉ	_	COP	_	_	_	_	Entity=O
+6	ⲉ	ⲉⲣⲉ	_	CCIRC	_	_	_	_	Entity=O
+7	ⲩ	ⲛⲧⲟⲟⲩ	_	PPERS	_	_	_	_	Entity=O
+8	ⲃⲱϣ	ⲃⲱϣ	_	V	_	_	_	_	Entity=O
+9	ⲙⲙⲟ	ⲛ	_	PREP	_	_	_	_	Entity=O
+10	ⲟⲩ	ⲛⲧⲟⲟⲩ	_	PPERO	_	_	_	_	Entity=O
+11	ⲙⲁⲩⲁⲁ	ⲙⲁⲩⲁⲁ	_	IMOD	_	_	_	_	Entity=O
+12	ⲩ	ⲛⲧⲟⲟⲩ	_	PPERO	_	_	_	_	Entity=O
 13	·	·	_	PUNCT	_	_	_	_	Entity=O
 
 
@@ -2339,9 +2339,9 @@
 22	ⲙⲛ	ⲙⲛ	_	PREP	_	_	_	_	Entity=O
 23	ϩⲱⲃ	ϩⲱⲃ	_	N	_	_	_	_	Entity=B-abstract
 24	ⲛⲓⲙ	ⲛⲓⲙ	_	PINT	_	_	_	_	Entity=I-abstract
-25	ⲉ	ⲉⲣⲉ	_	CCIRC	_	_	_	_	Entity=O
-26	ϥ	ⲛⲧⲟϥ	_	PPERS	_	_	_	_	Entity=O
-27	ϩⲟⲟⲩ	ϩⲟⲟⲩ	_	VSTAT	_	_	_	_	Entity=O
+25	ⲉ	ⲉⲣⲉ	_	CCIRC	_	_	_	_	Entity=I-abstract
+26	ϥ	ⲛⲧⲟϥ	_	PPERS	_	_	_	_	Entity=I-abstract
+27	ϩⲟⲟⲩ	ϩⲟⲟⲩ	_	VSTAT	_	_	_	_	Entity=I-abstract
 28	·	·	_	PUNCT	_	_	_	_	Entity=O
 
 
@@ -2356,9 +2356,9 @@
 3	ⲛ	ⲡ	_	ART	_	_	_	_	Entity=B-person
 4	ϣⲉⲉⲣⲉ	ϣⲉⲉⲣⲉ	_	N	_	_	_	_	Entity=I-person
 5	ϣⲏⲙ	ϣⲏⲙ	_	N	_	_	_	_	Entity=I-person
-6	ⲉⲧ	ⲉⲧⲉⲣⲉ	_	CREL	_	_	_	_	Entity=O
-7	ⲛϩⲏⲧ	ϩⲛ	_	PREP	_	_	_	_	Entity=O
-8	ⲧⲏⲩⲧⲛ	ⲛⲧⲱⲧⲛ	_	PPERO	_	_	_	_	Entity=O
+6	ⲉⲧ	ⲉⲧⲉⲣⲉ	_	CREL	_	_	_	_	Entity=I-person
+7	ⲛϩⲏⲧ	ϩⲛ	_	PREP	_	_	_	_	Entity=I-person
+8	ⲧⲏⲩⲧⲛ	ⲛⲧⲱⲧⲛ	_	PPERO	_	_	_	_	Entity=I-person
 9	ϯⲥⲃⲱ	ϯⲥⲃⲱ	_	V	_	_	_	_	Entity=O
 10	ⲛⲁ	ⲛⲁ	_	PREP	_	_	_	_	Entity=O
 11	ⲩ	ⲛⲧⲟⲟⲩ	_	PPERO	_	_	_	_	Entity=O
@@ -2434,12 +2434,12 @@
 # tagging = checked
 # parsing = automatic
 # entities = automatic
-1	ϩⲉⲛ	ⲟⲩ	_	ART	_	_	_	_	Entity=O
-2	ⲛⲟϭ	ⲛⲟϭ	_	N	_	_	_	_	Entity=O
-3	ⲛ	ⲛ	_	PREP	_	_	_	_	Entity=O
-4	ⲥϩⲓⲙⲉ	ⲥϩⲓⲙⲉ	_	N	_	_	_	_	Entity=B-person
-5	ϩⲁⲧⲛ	ϩⲁⲧⲛ	_	PREP	_	_	_	_	Entity=O
-6	ⲧⲏⲩⲧⲛ	ⲛⲧⲱⲧⲛ	_	PPERO	_	_	_	_	Entity=O
+1	ϩⲉⲛ	ⲟⲩ	_	ART	_	_	_	_	Entity=B-person
+2	ⲛⲟϭ	ⲛⲟϭ	_	N	_	_	_	_	Entity=I-person
+3	ⲛ	ⲛ	_	PREP	_	_	_	_	Entity=I-person
+4	ⲥϩⲓⲙⲉ	ⲥϩⲓⲙⲉ	_	N	_	_	_	_	Entity=I-person
+5	ϩⲁⲧⲛ	ϩⲁⲧⲛ	_	PREP	_	_	_	_	Entity=I-person
+6	ⲧⲏⲩⲧⲛ	ⲛⲧⲱⲧⲛ	_	PPERO	_	_	_	_	Entity=I-person
 7	·	·	_	PUNCT	_	_	_	_	Entity=O
 8	ⲏ	ⲏ	_	CONJ	_	_	_	_	Entity=O
 9	ϩⲉⲛ	ⲟⲩ	_	ART	_	_	_	_	Entity=B-person

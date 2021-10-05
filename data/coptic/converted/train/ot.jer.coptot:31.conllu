@@ -3,29 +3,21 @@
 # segmentation = automatic
 # tagging = automatic
 # parsing = automatic
-# entities = none
+# entities = automatic
 1	ϥ	ⲛⲧⲟϥ	_	PPERS	_	_	_	_	Entity=O
-
-
-# sent_id = ot.jer.coptot:31-2
-# doc_id = urn:cts:copticLit:ot.jer.coptot:31
-# segmentation = automatic
-# tagging = automatic
-# parsing = automatic
-# entities = none
-1	ⲥϩⲟⲩⲟⲣⲧ	ⲥⲁϩⲟⲩ	_	VSTAT	_	_	_	_	Entity=O
-2	ⲛϭⲓ	ⲛϭⲓ	_	PTC	_	_	_	_	Entity=O
-3	ⲡ	ⲡ	_	ART	_	_	_	_	Entity=O
-4	ⲉⲧ	ⲉⲧⲉⲣⲉ	_	CREL	_	_	_	_	Entity=O
-5	ⲉⲓⲣⲉ	ⲉⲓⲣⲉ	_	V	_	_	_	_	Entity=O
-6	ⲛ	ⲛ	_	PREP	_	_	_	_	Entity=O
-7	ⲛⲉ	ⲡ	_	ART	_	_	_	_	Entity=O
-8	ϩⲃⲏⲩⲉ	ϩⲱⲃ	_	N	_	_	_	_	Entity=O
-9	ⲙ	ⲛ	_	PREP	_	_	_	_	Entity=O
-10	ⲡ	ⲡ	_	ART	_	_	_	_	Entity=O
-11	ϫⲟⲉⲓⲥ	ϫⲟⲉⲓⲥ	_	N	_	_	_	_	Entity=O
-12	ϩⲛ	ϩⲛ	_	PREP	_	_	_	_	Entity=O
-13	ⲟⲩ	ⲟⲩ	_	ART	_	_	_	_	Entity=O
-14	ⲁⲙⲉⲗⲓⲁ	ⲁⲙⲉⲗⲓⲁ	_	N	_	_	_	_	Entity=O
-15	[…]	UNKNOWN	_	UNKNOWN	_	_	_	_	Entity=O
+2	ⲥϩⲟⲩⲟⲣⲧ	ⲥⲁϩⲟⲩ	_	VSTAT	_	_	_	_	Entity=O
+3	ⲛϭⲓ	ⲛϭⲓ	_	PTC	_	_	_	_	Entity=O
+4	ⲡ	ⲡ	_	ART	_	_	_	_	Entity=O
+5	ⲉⲧ	ⲉⲧⲉⲣⲉ	_	CREL	_	_	_	_	Entity=O
+6	ⲉⲓⲣⲉ	ⲉⲓⲣⲉ	_	V	_	_	_	_	Entity=O
+7	ⲛ	ⲛ	_	PREP	_	_	_	_	Entity=O
+8	ⲛⲉ	ⲡ	_	ART	_	_	_	_	Entity=O
+9	ϩⲃⲏⲩⲉ	ϩⲱⲃ	_	N	_	_	_	_	Entity=O
+10	ⲙ	ⲛ	_	PREP	_	_	_	_	Entity=O
+11	ⲡ	ⲡ	_	ART	_	_	_	_	Entity=B-person
+12	ϫⲟⲉⲓⲥ	ϫⲟⲉⲓⲥ	_	N	_	_	_	_	Entity=I-person
+13	ϩⲛ	ϩⲛ	_	PREP	_	_	_	_	Entity=O
+14	ⲟⲩ	ⲟⲩ	_	ART	_	_	_	_	Entity=B-abstract
+15	ⲁⲙⲉⲗⲓⲁ	ⲁⲙⲉⲗⲓⲁ	_	N	_	_	_	_	Entity=I-abstract
+16	…	UNKNOWN	_	UNKNOWN	_	_	_	_	Entity=O
 
