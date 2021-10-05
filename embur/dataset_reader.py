@@ -68,7 +68,7 @@ class CopticConllu(DatasetReader):
     def __init__(
         self,
         token_indexers: Dict[str, TokenIndexer] = None,
-        seg_threshold: bool = True,
+        seg_threshold: bool = False,
         tokenizer: Tokenizer = None,
         read_entities: bool = False,
         **kwargs,
