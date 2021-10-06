@@ -6,34 +6,75 @@ local embedding_dim = token_embedding_dim; //+ char_embedding_dim;
 local pos_embedding_dim = 10;
 local tokenizer_path = std.extVar("TOKENIZER_PATH");
 
+// --------------------------------------------------------------------------------
+// Reader setup
+// --------------------------------------------------------------------------------
+local readers = std.parseJson(std.extVar("readers"));
 
-local mismatched_reader = {
-    "type": "coptic_conllu",
-    "token_indexers": {
-        "tokens": {
-            "type": "pretrained_transformer_mismatched",
-            "model_name": tokenizer_path
-        },
+// --------------------------------------------------------------------------------
+// Data path setup
+// --------------------------------------------------------------------------------
+local train_data_paths = std.parseJson(std.extVar("train_data_paths"));
+local dev_data_paths = std.parseJson(std.extVar("dev_data_paths"));
+
+// --------------------------------------------------------------------------------
+// Head setup
+// --------------------------------------------------------------------------------
+local xpos_head = {
+    "type": "xpos",
+    "embedding_dim": embedding_dim,
+    "use_crf": true
+};
+local mlm_head = {
+  "type": "mlm",
+  "embedding_dim": embedding_dim
+};
+local parser_head = {
+    "type": "biaffine_parser",
+    "embedding_dim": embedding_dim,
+    "encoder": {
+        "type": "stacked_bidirectional_lstm",
+        "input_size": embedding_dim + pos_embedding_dim,
+        "hidden_size": (embedding_dim + pos_embedding_dim) / 2,
+        "num_layers": 1,
+        "recurrent_dropout_probability": 0.3,
+        "use_highway": true
+    },
+    "pos_tag_embedding": {
+        "embedding_dim": pos_embedding_dim,
+        "vocab_namespace": "xpos_tags",
+        "sparse": false
+    },
+    "use_mst_decoding_for_validation": true,
+    "arc_representation_dim": embedding_dim * 5,
+    "tag_representation_dim": pos_embedding_dim,
+    "dropout": 0.3,
+    "input_dropout": 0.3,
+    "initializer": {
+        "regexes": [
+            [".*projection.*weight", {"type": "xavier_uniform"}],
+            [".*projection.*bias", {"type": "zero"}],
+            [".*tag_bilinear.*weight", {"type": "xavier_uniform"}],
+            [".*tag_bilinear.*bias", {"type": "zero"}],
+            [".*weight_ih.*", {"type": "xavier_uniform"}],
+            [".*weight_hh.*", {"type": "orthogonal"}],
+            [".*bias_ih.*", {"type": "zero"}],
+            [".*bias_hh.*", {"type": "lstm_hidden_bias"}]
+        ]
     }
 };
+
+local heads = (
+  (if std.parseJson(std.extVar("XPOS")) then {"xpos": xpos_head} else {})
+  + (if std.parseJson(std.extVar("MLM")) then {"mlm": xpos_head} else {})
+  + (if std.parseJson(std.extVar("PARSER")) then {"parser": xpos_head} else {})
+);
+
 
 {
     "dataset_reader" : {
         "type": "multitask",
-        "readers": {
-            "xpos": mismatched_reader,
-            "mlm": {
-                "type": "coptic_conllu",
-                "token_indexers": {
-                    "tokens": {
-                        "type": "pretrained_transformer_mismatched",
-                        "model_name": tokenizer_path
-                    },
-                },
-                "seg_threshold": false
-            },
-            "biaffine_parser": mismatched_reader
-        }
+        "readers": readers
     },
     "data_loader": {
         "type": "multitask",
@@ -43,16 +84,8 @@ local mismatched_reader = {
         },
         "shuffle": true
     },
-    "train_data_path": {
-        "xpos": "data/coptic/converted/train",
-        "mlm": "data/coptic/converted/train",
-        "biaffine_parser": "data/coptic/UD_Coptic-Scriptorium/cop_scriptorium-ud-train.conllu"
-    },
-    "validation_data_path": {
-        "xpos": "data/coptic/converted/dev",
-        "mlm": "data/coptic/converted/dev",
-        "biaffine_parser": "data/coptic/UD_Coptic-Scriptorium/cop_scriptorium-ud-dev.conllu"
-    },
+    "train_data_path": train_data_paths,
+    "validation_data_path": dev_data_paths,
     "model": {
         "type": "multitask",
         "backbone": {
@@ -61,55 +94,12 @@ local mismatched_reader = {
             "feedforward_dim": embedding_dim * 4,
             "num_layers": num_layers,
             "num_attention_heads": num_attention_heads,
+            // TODO: we should replace this with ALiBi
             "position_embedding_dim": 24,
             "position_embedding_type": "sinusoidal",
             "tokenizer_path": tokenizer_path
         },
-        "heads": {
-            "xpos": {
-                "type": "xpos",
-                "embedding_dim": embedding_dim,
-                "use_crf": true
-            },
-            "mlm": {
-                "type": "mlm",
-                "embedding_dim": embedding_dim
-            },
-            "biaffine_parser": {
-                "type": "biaffine_parser",
-                "embedding_dim": embedding_dim, // 100,
-                "encoder": {
-                    "type": "stacked_bidirectional_lstm",
-                    "input_size": embedding_dim + pos_embedding_dim,
-                    "hidden_size": (embedding_dim + pos_embedding_dim) / 2,
-                    "num_layers": 1,
-                    "recurrent_dropout_probability": 0.3,
-                    "use_highway": true
-                },
-                "pos_tag_embedding": {
-                    "embedding_dim": pos_embedding_dim,
-                    "vocab_namespace": "xpos_tags",
-                    "sparse": false
-                },
-                "use_mst_decoding_for_validation": true,
-                "arc_representation_dim": embedding_dim * 5, // 500
-                "tag_representation_dim": pos_embedding_dim,
-                "dropout": 0.3,
-                "input_dropout": 0.3,
-                "initializer": {
-                    "regexes": [
-                        [".*projection.*weight", {"type": "xavier_uniform"}],
-                        [".*projection.*bias", {"type": "zero"}],
-                        [".*tag_bilinear.*weight", {"type": "xavier_uniform"}],
-                        [".*tag_bilinear.*bias", {"type": "zero"}],
-                        [".*weight_ih.*", {"type": "xavier_uniform"}],
-                        [".*weight_hh.*", {"type": "orthogonal"}],
-                        [".*bias_ih.*", {"type": "zero"}],
-                        [".*bias_hh.*", {"type": "lstm_hidden_bias"}]
-                    ]
-                },
-            }
-        }
+        "heads": heads
     },
     "trainer": {
         "optimizer": {

@@ -19,7 +19,7 @@ from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer
 logger = logging.getLogger(__name__)
 
 
-def read_conllu_file(file_path: str, seg_threshold: bool = True) -> List[TokenList]:
+def read_conllu_file(file_path: str, seg_threshold: bool = False) -> List[TokenList]:
     document = []
     with open(file_path, "r") as file:
         contents = file.read()
@@ -46,7 +46,7 @@ def read_conllu_file(file_path: str, seg_threshold: bool = True) -> List[TokenLi
     return document
 
 
-def read_conllu_files(file_path: str, seg_threshold: bool = True) -> List[List[TokenList]]:
+def read_conllu_files(file_path: str, seg_threshold: bool = False) -> List[List[TokenList]]:
     if file_path.endswith('.conllu'):
         file_paths = [file_path]
     else:
