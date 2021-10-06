@@ -42,3 +42,4 @@ For each new language to be added, you'll want to follow these conventions:
 
 1. Invoke your data preprocessing script: `python -m embur.scripts.coptic_data_prep`
 2. Run pretraining: `python main.py pretrain` (invoke with `--help` to see options)
+3. Run the evaluation: 

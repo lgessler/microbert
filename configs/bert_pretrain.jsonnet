@@ -66,8 +66,8 @@ local parser_head = {
 
 local heads = (
   (if std.parseJson(std.extVar("XPOS")) then {"xpos": xpos_head} else {})
-  + (if std.parseJson(std.extVar("MLM")) then {"mlm": xpos_head} else {})
-  + (if std.parseJson(std.extVar("PARSER")) then {"parser": xpos_head} else {})
+  + (if std.parseJson(std.extVar("MLM")) then {"mlm": mlm_head} else {})
+  + (if std.parseJson(std.extVar("PARSER")) then {"parser": parser_head} else {})
 );
 
 
@@ -125,7 +125,7 @@ local heads = (
             "min_lr": 5e-6
         },
         "patience": 15,
-        "num_epochs": 200,
+        "num_epochs": 1,
         "validation_metric": "-mlm_perplexity"
     }
 }
