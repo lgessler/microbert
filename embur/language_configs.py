@@ -47,7 +47,7 @@ def get_eval_config(language, model_name):
         "coptic": {
             "training": {
                 "dataset_reader": {
-                    "type": "universal_dependencies",
+                    "type": "allennlp_models.structured_prediction.dataset_readers.universal_dependencies.UniversalDependenciesDatasetReader",
                     "token_indexers": {
                         "tokens": {
                             "type": "pretrained_transformer_mismatched",
