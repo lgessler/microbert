@@ -233,5 +233,6 @@ if __name__ == '__main__':
             path = os.path.join(OUTPUT_DIR, "dev", document_name)
         else:
             path = os.path.join(OUTPUT_DIR, "train", document_name)
+        path = path.replace(":", "__COLON__")
         with open(path, 'w') as f:
             f.write(conllu_string)
