@@ -19,7 +19,7 @@ def top():
     pass
 
 
-@click.command(help="Run an experiment from end to end")
+@click.command(help="Run the pretraining phase of an experiment where a BERT model is trained")
 @click.option("--config", "-c", default="configs/bert_pretrain.jsonnet",
               help="Multitask training config. You probably want to leave this as the default.")
 @click.option("--language", "-l", default="coptic",
