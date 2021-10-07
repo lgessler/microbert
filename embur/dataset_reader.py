@@ -19,7 +19,7 @@ from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer
 logger = logging.getLogger(__name__)
 
 
-def read_conllu_file(file_path: str, seg_threshold: bool = False) -> List[TokenList]:
+def read_conllu_file(file_path: str) -> List[TokenList]:
     document = []
     with open(file_path, "r") as file:
         contents = file.read()
@@ -29,9 +29,6 @@ def read_conllu_file(file_path: str, seg_threshold: bool = False) -> List[TokenL
             return []
         for annotation in tokenlists:
             m = annotation.metadata
-            if seg_threshold and "segmentation" in m and m["segmentation"] not in ["checked", "gold"]:
-                print("Skipping " + file_path + " because its segmentation is not checked or gold.")
-                return []
             if len(annotation) > 200:
                 subannotation = TokenList(annotation[:200])
                 subannotation.metadata = annotation.metadata.copy()
@@ -46,7 +43,7 @@ def read_conllu_file(file_path: str, seg_threshold: bool = False) -> List[TokenL
     return document
 
 
-def read_conllu_files(file_path: str, seg_threshold: bool = False) -> List[List[TokenList]]:
+def read_conllu_files(file_path: str) -> List[List[TokenList]]:
     if file_path.endswith('.conllu'):
         file_paths = [file_path]
     else:
@@ -54,7 +51,7 @@ def read_conllu_files(file_path: str, seg_threshold: bool = False) -> List[List[
 
     documents = []
     for conllu_file_path in file_paths:
-        document = read_conllu_file(conllu_file_path, seg_threshold=seg_threshold)
+        document = read_conllu_file(conllu_file_path)
         doclen = sum(len(sentence) for sentence in document)
         if doclen == 0:
             print(conllu_file_path, "has length", doclen)
@@ -63,26 +60,22 @@ def read_conllu_files(file_path: str, seg_threshold: bool = False) -> List[List[
     return documents
 
 
-@DatasetReader.register("coptic_conllu", exist_ok=True)
-class CopticConllu(DatasetReader):
+@DatasetReader.register("embur_conllu", exist_ok=True)
+class EmburConllu(DatasetReader):
     def __init__(
         self,
         token_indexers: Dict[str, TokenIndexer] = None,
-        seg_threshold: bool = False,
         tokenizer: Tokenizer = None,
-        read_entities: bool = False,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
         self._token_indexers = token_indexers or {"tokens": SingleIdTokenIndexer()}
-        self.seg_threshold = seg_threshold
         self.tokenizer = tokenizer
         self.whitespace_tokenizer = WhitespaceTokenizer()
-        self.read_entities = read_entities
 
     @overrides
     def _read(self, file_path: str):
-        documents = read_conllu_files(file_path, seg_threshold=self.seg_threshold)
+        documents = read_conllu_files(file_path)
         token_count = 0
         for document in documents:
             document_count = 0
@@ -109,17 +102,6 @@ class CopticConllu(DatasetReader):
                     heads = [int(x["head"]) for x in sentence]
                     deprels = [str(x["deprel"]) for x in sentence]
 
-                # non-conllu info: entities, which are hanging out in misc
-                entity_tags = None
-                if self.read_entities and "entities" in m and m['entities'] in ["checked", "gold"]:
-                    entity_tags = [x["misc"]["Entity"] for x in sentence]
-                    lemmas = None
-                    xpos_tags = None
-                    upos_tags = None
-                    heads = None
-                    deprels = None
-                elif self.read_entities:
-                    continue
                 yield self.text_to_instance(
                     forms=forms,
                     xpos_tags=xpos_tags,
@@ -127,22 +109,7 @@ class CopticConllu(DatasetReader):
                     lemmas=lemmas,
                     heads=heads,
                     deprels=deprels,
-                    entity_tags=entity_tags
                 )
-
-    def add_masked_fields(
-        self,
-        tokens: List[Token],
-        fields: Dict[str, Field]
-    ):
-        masked = [True if random() < 0.15 else False for _ in range(len(tokens))]
-        if not any(x for x in masked):
-            masked[randint(0, len(masked) - 1)] = True
-        masked_tokens = [t if not masked[i] else Token("[MASK]") for i, t in enumerate(tokens)]
-        masked_positions = [i for i in range(len(masked)) if masked[i]]
-        fields["masked_text"] = TextField(masked_tokens, self._token_indexers)
-        fields["masked_positions"] = TensorField(torch.tensor(masked_positions))
-        fields["true_masked_ids"] = TextField([t for i, t in enumerate(tokens) if masked[i]], self._token_indexers)
 
     @overrides
     def text_to_instance(
@@ -153,7 +120,6 @@ class CopticConllu(DatasetReader):
         xpos_tags: List[str] = None,
         heads: List[int] = None,
         deprels: List[str] = None,
-        entity_tags: List[str] = None,
     ) -> Instance:
         fields: Dict[str, Field] = {}
 
@@ -180,12 +146,6 @@ class CopticConllu(DatasetReader):
             # )
             fields["heads"] = SequenceLabelField(heads, text_field)
             fields["deprels"] = SequenceLabelField(deprels, text_field, label_namespace="deprel_labels")
-
-        # extra goodness
-        # self.add_masked_fields(tokens, fields)
-        if entity_tags is not None:
-            fields["entity_tags"] = SequenceLabelField(entity_tags, text_field, label_namespace="entity_tags")
-            metadata["entities"] = entity_tags
 
         fields["metadata"] = MetadataField(metadata)
         return Instance(fields)

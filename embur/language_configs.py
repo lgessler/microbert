@@ -6,7 +6,7 @@ def get_pretrain_config(language, tokenizer_path):
     To understand how these variables are used, see configs/bert_pretain.jsonnet.
     """
     mismatched_reader = {
-        "type": "coptic_conllu",
+        "type": "embur_conllu",
         "token_indexers": {
             "tokens": {
                 "type": "pretrained_transformer_mismatched",
@@ -47,7 +47,7 @@ def get_eval_config(language, model_name):
         "coptic": {
             "training": {
                 "dataset_reader": {
-                    "type": "coptic_conllu",
+                    "type": "embur_conllu",
                     "token_indexers": {
                         "tokens": {
                             "type": "pretrained_transformer_mismatched",
