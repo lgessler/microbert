@@ -4,6 +4,8 @@ import os
 import shutil
 
 import click
+import torch
+from allennlp.common.util import import_module_and_submodules
 from transformers import BertModel
 from allennlp.commands.train import train_model_from_file
 from allennlp.commands.evaluate import evaluate_from_args
@@ -105,6 +107,7 @@ def eval_args(serialization_dir, input_file):
 @click.option("--bert-path", "-b", default="bert_out", help="Path to pretrained bert")
 @click.option("--trainable/--no-trainable", default=True, help="If true, embedding layers are adjusted")
 def evaluate(config, serialization_dir, bert_path, trainable):
+    import_module_and_submodules("allennlp_models")
     if os.path.exists(serialization_dir):
         print(f"{serialization_dir} exists, removing...")
         shutil.rmtree(serialization_dir)
@@ -114,12 +117,13 @@ def evaluate(config, serialization_dir, bert_path, trainable):
     print("#" * 40)
     print("# Training")
     print("#" * 40)
-    os.environ["BERT_DIMS"] = str(BertModel.from_pretrained(bert_path).config.hidden_size)
+    bert_model = BertModel.from_pretrained(bert_path)
+    os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)
     os.environ["BERT_PATH"] = bert_path
     os.environ["TRAINABLE"] = str(int(trainable))
     for k, v in language_config['training'].items():
-        os.environ[k] = json.dumps(v)
-    train_model_from_file(config, serialization_dir, include_package="allennlp_models")
+        os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
+    train_model_from_file(config, serialization_dir)
 
     print("#" * 40)
     print("# Evaluating")

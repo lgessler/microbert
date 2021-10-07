@@ -95,7 +95,7 @@ local heads = (
             "num_layers": num_layers,
             "num_attention_heads": num_attention_heads,
             // TODO: we should replace this with ALiBi
-            "position_embedding_dim": 24,
+            "position_embedding_dim": 256,
             "position_embedding_type": "sinusoidal",
             "tokenizer_path": tokenizer_path
         },
@@ -125,7 +125,7 @@ local heads = (
             "min_lr": 5e-6
         },
         "patience": 15,
-        "num_epochs": 1,
+        "num_epochs": 200,
         "validation_metric": "-mlm_perplexity"
     }
 }

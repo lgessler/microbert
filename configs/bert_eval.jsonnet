@@ -4,56 +4,63 @@ local trainable = if std.parseInt(std.extVar("TRAINABLE")) == 1 then true else f
 local train_data_path = std.extVar("train_data_path");
 local validation_data_path = std.extVar("validation_data_path");
 local dataset_reader = std.parseJson(std.extVar("dataset_reader"));
+local pos_embedding_dim = 10;
+
+local parser_head = {
+    "type": "biaffine_parser",
+    "embedding_dim": embedding_dim,
+    "encoder": {
+        "type": "stacked_bidirectional_lstm",
+        "input_size": embedding_dim + pos_embedding_dim,
+        "hidden_size": (embedding_dim + pos_embedding_dim) / 2,
+        "num_layers": 1,
+        "recurrent_dropout_probability": 0.3,
+        "use_highway": true
+    },
+    "pos_tag_embedding": {
+        "embedding_dim": pos_embedding_dim,
+        "vocab_namespace": "xpos_tags",
+        "sparse": false
+    },
+    "use_mst_decoding_for_validation": true,
+    "arc_representation_dim": embedding_dim * 5,
+    "tag_representation_dim": pos_embedding_dim,
+    "dropout": 0.3,
+    "input_dropout": 0.3,
+    "initializer": {
+        "regexes": [
+            [".*projection.*weight", {"type": "xavier_uniform"}],
+            [".*projection.*bias", {"type": "zero"}],
+            [".*tag_bilinear.*weight", {"type": "xavier_uniform"}],
+            [".*tag_bilinear.*bias", {"type": "zero"}],
+            [".*weight_ih.*", {"type": "xavier_uniform"}],
+            [".*weight_hh.*", {"type": "orthogonal"}],
+            [".*bias_ih.*", {"type": "zero"}],
+            [".*bias_hh.*", {"type": "lstm_hidden_bias"}]
+        ]
+    }
+};
 
 {
-    "dataset_reader": dataset_reader,
-    "model": {
-        "type": "allennlp_models.structured_prediction.models.biaffine_dependency_parser.BiaffineDependencyParser",
-        "text_field_embedder": {
-            "token_embedders": {
-                "tokens": {
-                    "type": "pretrained_transformer_mismatched",
-                    "model_name": model_name,
-                    "train_parameters": trainable,
-                    "last_layer_only": trainable
-                },
-            }
-        },
-        "pos_tag_embedding": {
-            "embedding_dim": 100,
-            "vocab_namespace": "xpos",
-            "sparse": true
-        },
-        "encoder": {
-            "type": "stacked_bidirectional_lstm",
-            "input_size": embedding_dim + 100,
-            "hidden_size": 400,
-            "num_layers": 3,
-            "recurrent_dropout_probability": 0.3,
-            "use_highway": true
-        },
-        "use_mst_decoding_for_validation": true,
-        "arc_representation_dim": 500,
-        "tag_representation_dim": 100,
-        "dropout": 0.3,
-        "input_dropout": 0.3,
-        "initializer": {
-            "regexes": [
-                //[".*projection.*weight", {"type": "xavier_uniform"}],
-                //[".*projection.*bias", {"type": "zero"}],
-                //[".*tag_bilinear.*weight", {"type": "xavier_uniform"}],
-                //[".*tag_bilinear.*bias", {"type": "zero"}],
-                //[".*weight_ih.*", {"type": "xavier_uniform"}],
-                //[".*weight_hh.*", {"type": "orthogonal"}],
-                //[".*bias_ih.*", {"type": "zero"}],
-                //[".*bias_hh.*", {"type": "lstm_hidden_bias"}]
-            ]
-        }
+    "dataset_reader": {
+        "type": "multitask",
+        "readers": {"parser": dataset_reader}
     },
-    "train_data_path": train_data_path,
-    "validation_data_path": validation_data_path,
+    "model": {
+        "type": "multitask",
+        "backbone": {
+            "type": "pretrained_bert",
+            "bert_model": model_name
+        },
+        "heads": {"parser": parser_head}
+    },
+    "train_data_path": {"parser": train_data_path},
+    "validation_data_path": {"parser": validation_data_path},
     "data_loader": {
-        "batch_size": 32,
+        "type": "multitask",
+        "scheduler": {
+            "batch_size": 32,
+        },
         "shuffle": true
     },
     "trainer": {

@@ -47,7 +47,7 @@ def get_eval_config(language, model_name):
         "coptic": {
             "training": {
                 "dataset_reader": {
-                    "type": "allennlp_models.structured_prediction.dataset_readers.universal_dependencies.UniversalDependenciesDatasetReader",
+                    "type": "coptic_conllu",
                     "token_indexers": {
                         "tokens": {
                             "type": "pretrained_transformer_mismatched",
@@ -59,7 +59,7 @@ def get_eval_config(language, model_name):
                 "validation_data_path": "data/coptic/UD_Coptic-Scriptorium/cop_scriptorium-ud-dev.conllu"
             },
             "testing": {
-                "input_file": "data/coptic/UD_Coptic-Scriptorium/cop_scriptorium-ud-train.conllu"
+                "input_file": "data/coptic/UD_Coptic-Scriptorium/cop_scriptorium-ud-test.conllu"
             }
         }
     }[language]
