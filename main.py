@@ -26,7 +26,7 @@ def top():
               help="Multitask training config. You probably want to leave this as the default.")
 @click.option("--language", "-l", default="coptic",
               help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
-@click.option("--exclude-tasks", "-x", default=[], multiple=True,
+@click.option("--exclude-task", "-x", default=[], multiple=True,
               help="Specify task(s) to exclude from a run. Possible values: mlm, parser, xpos")
 @click.option("--serialization-dir", "-s", default="models", help="Serialization dir for pretraining")
 @click.option("--bert-dir", "-o", default="bert_out", help="BERT artefacts go here")
@@ -38,7 +38,7 @@ def top():
     default="data/coptic/converted/train",
     help="conllu path used to train the toknizer"
 )
-def pretrain(config, language, exclude_tasks, serialization_dir, bert_dir,
+def pretrain(config, language, exclude_task, serialization_dir, bert_dir,
              num_layers, num_attention_heads, embedding_dim, tokenizer_conllu_path):
     if os.path.exists(serialization_dir):
         print(f"{serialization_dir} exists, removing...")
@@ -61,9 +61,7 @@ def pretrain(config, language, exclude_tasks, serialization_dir, bert_dir,
     os.environ["NUM_ATTENTION_HEADS"] = str(num_attention_heads)
     os.environ["EMBEDDING_DIM"] = str(embedding_dim)
     xpos = mlm = parser = False
-    for k, v in get_pretrain_config(language, bert_dir).items():
-        if isinstance(v, dict):
-            v = {k2: v2 for k2, v2 in v.items() if k2 not in exclude_tasks}
+    for k, v in get_pretrain_config(language, bert_dir, exclude_task).items():
         os.environ[k] = json.dumps(v)
         if k == "train_data_paths":
             xpos = "xpos" in v

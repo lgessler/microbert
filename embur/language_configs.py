@@ -1,5 +1,13 @@
+"""
+Some functions to help build configurations for different parts of the experiments.
+We don't put these into .libsonnet files in part because configuration overrides can
+significantly modify e.g. the structure of the pretraining config (-x removes a key
+from all dicts). Be smart in this file and do as much as possible to only write
+data, not code!
+"""
 
-def get_pretrain_config(language, tokenizer_path):
+
+def get_pretrain_config(language, tokenizer_path, excluded_tasks):
     """
     Contains language-specific config for pretraining, which mostly has to do with dataset paths.
 
@@ -14,7 +22,8 @@ def get_pretrain_config(language, tokenizer_path):
             },
         }
     }
-    return {
+
+    language_config = {
         "coptic": {
             "train_data_paths": {
                 "xpos": "data/coptic/converted/train",
@@ -33,6 +42,12 @@ def get_pretrain_config(language, tokenizer_path):
             }
         }
     }[language]
+
+    for subconfig_name, subconfig in language_config.items():
+        for excluded_key in excluded_tasks:
+            language_config[subconfig_name] = {k: v for k, v in subconfig.items() if k != excluded_key}
+
+    return language_config
 
 
 def get_eval_config(language, model_name):
