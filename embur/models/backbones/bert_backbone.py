@@ -124,7 +124,11 @@ class BertBackbone(Backbone):
             wwms.append(wwm)
         wwms = torch.cat(wwms, dim=0)
 
-        masked_ids, labels = self.masking_collator.mask_tokens(input_ids.to('cpu'), wwms.to('cpu'))
+        # TODO: remove this once allennlp depends on a transformers version that has torch_mask_tokens
+        try:
+            masked_ids, labels = self.masking_collator.torch_mask_tokens(input_ids.to('cpu'), wwms.to('cpu'))
+        except AttributeError:
+            masked_ids, labels = self.masking_collator.mask_tokens(input_ids.to('cpu'), wwms.to('cpu'))
         masked_ids = masked_ids.to(input_ids.device)
         labels = labels.to(input_ids.device)
         bert_output = self.bert(
