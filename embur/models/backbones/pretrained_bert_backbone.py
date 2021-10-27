@@ -28,8 +28,14 @@ class PretrainedBertBackbone(Backbone):
         tokenizer = BertTokenizer.from_pretrained(bert_model)
         vocab.add_transformer_vocab(tokenizer, "tokens")
         # "tokens" is padded by default--undo that
-        del vocab._token_to_index["tokens"]["@@PADDING@@"]
-        del vocab._token_to_index["tokens"]["@@UNKNOWN@@"]
+        try:
+            del vocab._token_to_index["tokens"]["@@PADDING@@"]
+        except KeyError:
+            pass
+        try:
+            del vocab._token_to_index["tokens"]["@@UNKNOWN@@"]
+        except KeyError:
+            pass
         assert len(vocab._token_to_index["tokens"]) == len(vocab._index_to_token["tokens"])
 
         self._vocab = vocab
@@ -102,7 +108,10 @@ class PretrainedBertBackbone(Backbone):
             wwms.append(wwm)
         wwms = torch.cat(wwms, dim=0)
 
-        masked_ids, labels = self.masking_collator.mask_tokens(input_ids.to('cpu'), wwms.to('cpu'))
+        try:
+            masked_ids, labels = self.masking_collator.mask_tokens(input_ids.to('cpu'), wwms.to('cpu'))
+        except AttributeError:
+            masked_ids, labels = self.masking_collator.torch_mask_tokens(input_ids.to('cpu'), wwms.to('cpu'))
         masked_ids = masked_ids.to(input_ids.device)
         labels = labels.to(input_ids.device)
         bert_output = self.bert(
