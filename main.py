@@ -103,6 +103,8 @@ def pretrain(config, language, exclude_task, num_layers, num_attention_heads, em
     # Write out
     bert_serialization: BertModel = model._backbone.bert
     bert_serialization.save_pretrained(bert_dir)
+    with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
+        return json.load(f)
 
 
 def eval_args(serialization_dir, input_file):
@@ -166,6 +168,8 @@ def evaluate(config, language, exclude_task, num_layers, num_attention_heads, em
     print("#" * 40)
     args = eval_args(serialization_dir, {"parser": language_config['testing']['input_file']})
     evaluate_from_args(args)
+    with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
+        return json.load(f)
 
 
 @click.command(help="Baseline evaluate on UD parsing task")
@@ -222,21 +226,42 @@ def baseline_evaluate(config, language, num_layers, num_attention_heads, embeddi
     print("# Baseline evaluating")
     print("#" * 40)
     args = eval_args(serialization_dir, {"parser": eval_config['testing']['input_file']})
-    evaluate_from_args(args)
+    eval_metrics = evaluate_from_args(args)
+    with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
+        return json.load(f), eval_metrics
 
 
 @click.command(help="Run a full eval for a given language")
 @click.argument('language', type=click.Choice(LANGUAGES))
 @click.pass_context
 def language_trial(ctx, language):
-    ctx.forward(baseline_evaluate)
-    ctx.invoke(baseline_evaluate, language=language)
-
-    ctx.forward(pretrain)
-    ctx.invoke(pretrain, exclude_task=['parser', 'xpos'], language=language)
-
-    ctx.forward(pretrain)
-    ctx.invoke(pretrain, language=language)
+    baseline_metrics_train, baseline_metrics_eval = ctx.invoke(baseline_evaluate, language=language)
+    mlm_only_metrics_train = ctx.invoke(pretrain, exclude_task=['parser', 'xpos'], language=language)
+    mlm_only_metrics_eval = ctx.invoke(evaluate, exclude_task=['parser', 'xpos'], language=language)
+    mtl_metrics_train = ctx.invoke(pretrain, language=language)
+    mtl_metrics_eval = ctx.invoke(evaluate, language=language)
+    with open('metrics.tsv', 'a') as f:
+        print("\t".join([
+            language,
+            "baseline",
+            str(baseline_metrics_train["training_parser_LAS"]),
+            str(baseline_metrics_train["validation_parser_LAS"]),
+            str(baseline_metrics_eval["parser_LAS"]),
+        ]), file=f)
+        print("\t".join([
+            language,
+            "mlm_only",
+            str(mlm_only_metrics_train["training_parser_LAS"]),
+            str(mlm_only_metrics_train["validation_parser_LAS"]),
+            str(mlm_only_metrics_eval["parser_LAS"]),
+        ]), file=f)
+        print("\t".join([
+            language,
+            "mtl",
+            str(mtl_metrics_train["training_parser_LAS"]),
+            str(mtl_metrics_train["validation_parser_LAS"]),
+            str(mtl_metrics_eval["parser_LAS"]),
+        ]), file=f)
 
 
 top.add_command(pretrain)
