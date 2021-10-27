@@ -131,9 +131,9 @@ class BertBackbone(Backbone):
         wwms = torch.cat(wwms, dim=0)
 
         # TODO: remove this once allennlp depends on a transformers version that has torch_mask_tokens
-        try:
+        if hasattr(self.masking_collator, 'torch_mask_tokens'):
             masked_ids, labels = self.masking_collator.torch_mask_tokens(input_ids.to('cpu'), wwms.to('cpu'))
-        except AttributeError:
+        else:
             masked_ids, labels = self.masking_collator.mask_tokens(input_ids.to('cpu'), wwms.to('cpu'))
         masked_ids = masked_ids.to(input_ids.device)
         labels = labels.to(input_ids.device)
