@@ -37,14 +37,10 @@ class BertBackbone(Backbone):
         tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
         vocab.add_transformer_vocab(tokenizer, "tokens")
         # "tokens" is padded by default--undo that
-        try:
+        if "@@PADDING@@" in vocab._token_to_index["tokens"]:
             del vocab._token_to_index["tokens"]["@@PADDING@@"]
-        except KeyError:
-            pass
-        try:
+        if "@@UNKNOWN@@" in vocab._token_to_index["tokens"]:
             del vocab._token_to_index["tokens"]["@@UNKNOWN@@"]
-        except KeyError:
-            pass
         assert len(vocab._token_to_index["tokens"]) == len(vocab._index_to_token["tokens"])
 
         cfg = BertConfig(
