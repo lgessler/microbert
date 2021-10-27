@@ -6,6 +6,7 @@ from all dicts). Be smart in this file and do as much as possible to only write
 data, not code!
 """
 
+LANGUAGES = ["coptic"]
 
 def get_pretrain_config(language, tokenizer_path, excluded_tasks):
     """
@@ -39,13 +40,15 @@ def get_pretrain_config(language, tokenizer_path, excluded_tasks):
                 "xpos": mismatched_reader,
                 "mlm": mismatched_reader,
                 "parser": mismatched_reader
-            }
+            },
+            "tokenizer_conllu_path": "data/coptic/converted/train"
         }
     }[language]
 
     for subconfig_name, subconfig in language_config.items():
-        for excluded_key in excluded_tasks:
-            language_config[subconfig_name] = {k: v for k, v in subconfig.items() if k != excluded_key}
+        if subconfig_name in ["train_data_paths", "dev_data_paths", "readers"]:
+            for excluded_key in excluded_tasks:
+                language_config[subconfig_name] = {k: v for k, v in subconfig.items() if k != excluded_key}
 
     return language_config
 
