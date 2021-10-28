@@ -143,7 +143,7 @@ def evaluate(config, language, exclude_task, num_layers, num_attention_heads, em
         num_attention_heads,
         embedding_dim
     )
-    serialization_dir = _model_dir("pretrain", language, tasks, num_layers, num_attention_heads, embedding_dim)
+    serialization_dir = _model_dir("evaluation", language, tasks, num_layers, num_attention_heads, embedding_dim)
 
     if os.path.exists(serialization_dir):
         print(f"{serialization_dir} exists, removing...")
@@ -152,7 +152,7 @@ def evaluate(config, language, exclude_task, num_layers, num_attention_heads, em
     language_config = get_eval_config(language, bert_dir)
 
     print("#" * 40)
-    print("# Training")
+    print("# Training for evaluation")
     print("#" * 40)
     bert_model = BertModel.from_pretrained(bert_dir)
 
@@ -167,9 +167,8 @@ def evaluate(config, language, exclude_task, num_layers, num_attention_heads, em
     print("# Evaluating")
     print("#" * 40)
     args = eval_args(serialization_dir, {"parser": language_config['testing']['input_file']})
-    evaluate_from_args(args)
-    with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
-        return json.load(f)
+    metrics = evaluate_from_args(args)
+    return metrics
 
 
 @click.command(help="Baseline evaluate on UD parsing task")
@@ -188,7 +187,7 @@ def baseline_evaluate(config, language, num_layers, num_attention_heads, embeddi
         num_attention_heads,
         embedding_dim
     )
-    serialization_dir = _model_dir("pretrain", language, tasks, num_layers, num_attention_heads, embedding_dim)
+    serialization_dir = _model_dir("evaluation", language, tasks, num_layers, num_attention_heads, embedding_dim)
     if os.path.exists(bert_dir):
         print(f"{bert_dir} exists, removing...")
         shutil.rmtree(bert_dir)
