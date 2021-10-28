@@ -5,7 +5,7 @@ import shutil
 
 import click
 from allennlp.common.util import import_module_and_submodules
-from transformers import BertModel
+from transformers import BertModel, AutoModel
 from allennlp.commands.train import train_model_from_file
 from allennlp.commands.evaluate import evaluate_from_args
 
@@ -19,21 +19,26 @@ import_module_and_submodules("allennlp_models")
 TASKS = ['mlm', 'xpos', 'parser']
 
 
-def _bert_dir(language, tasks, num_layers, num_heads, embedding_dim):
-    return f"berts/{language}/" \
-           f"{'-'.join(tasks)}" \
-           f"_layers-{num_layers}" \
-           f"_heads-{num_heads}" \
-           f"_hidden-{embedding_dim}"
+def _bert_dir(language, tasks, num_layers=None, num_heads=None, embedding_dim=None):
+    return (
+        f"berts/{language}/"
+        + f"{'-'.join(tasks)}"
+        + (f"_layers-{num_layers}" if num_layers is not None else "")
+        + (f"_heads-{num_heads}" if num_heads is not None else "")
+        + (f"_hidden-{embedding_dim}" if embedding_dim is not None else "")
+    )
 
 
-def _model_dir(step, language, tasks, num_layers, num_heads, embedding_dim):
-    return f"models/{language}/" \
-           f"{'-'.join(tasks)}" \
-           f"_layers-{num_layers}" \
-           f"_heads-{num_heads}" \
-           f"_hidden-{embedding_dim}" \
-           f"_{step}"
+def _model_dir(step, language, tasks, num_layers=None, num_heads=None, embedding_dim=None, model_name=None):
+    return (
+        f"models/{language}/"
+        + f"{'-'.join(tasks)}"
+        + (f"_layers-{num_layers}" if num_layers is not None else "")
+        + (f"_heads-{num_heads}" if num_heads is not None else "")
+        + (f"_hidden-{embedding_dim}" if embedding_dim is not None else "")
+        + (f"_{model_name}" if model_name is not None else "")
+        + f"_{step}"
+    )
 
 
 @click.group()
@@ -230,23 +235,64 @@ def baseline_evaluate(config, language, num_layers, num_attention_heads, embeddi
         return json.load(f), eval_metrics
 
 
+@click.command(help="pretrained BERT (xlm-roberta-large) baseline evaluate on UD parsing task")
+@click.option("--config", "-c", default="configs/bert_eval.jsonnet")
+@click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
+              help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
+@click.option("--model-name", "-m", default="bert-base-multilingual-cased")
+def pretrained_baseline_evaluate(config, language, model_name):
+    tasks = ["pretrained_baseline"]
+    serialization_dir = _model_dir("evaluation", language, tasks, model_name=model_name)
+    if os.path.exists(serialization_dir):
+        print(f"{serialization_dir} exists, removing...")
+        shutil.rmtree(serialization_dir)
+
+    print("#" * 40)
+    print("# Multilingual BERT baseline training")
+    print("#" * 40)
+    eval_config = get_eval_config(language, model_name)
+    for k, v in eval_config['training'].items():
+        os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
+    os.environ["BERT_PATH"] = model_name
+    os.environ["BERT_DIMS"] = str(AutoModel.from_pretrained(model_name).config.hidden_size)
+    model = train_model_from_file(config, serialization_dir)
+
+    print("#" * 40)
+    print("# Baseline evaluating")
+    print("#" * 40)
+    args = eval_args(serialization_dir, {"parser": eval_config['testing']['input_file']})
+    eval_metrics = evaluate_from_args(args)
+    with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
+        return json.load(f), eval_metrics
+
+
 @click.command(help="Run a full eval for a given language")
 @click.argument('language', type=click.Choice(LANGUAGES))
 @click.pass_context
 def language_trial(ctx, language):
-    baseline_metrics_train, baseline_metrics_eval = ctx.invoke(baseline_evaluate, language=language)
-    mlm_only_metrics_train = ctx.invoke(pretrain, exclude_task=['parser', 'xpos'], language=language)
-    mlm_only_metrics_eval = ctx.invoke(evaluate, exclude_task=['parser', 'xpos'], language=language)
-    mtl_metrics_train = ctx.invoke(pretrain, language=language)
-    mtl_metrics_eval = ctx.invoke(evaluate, language=language)
+    _, baseline_metrics_eval = ctx.invoke(baseline_evaluate, language=language)
     with open('metrics.tsv', 'a') as f:
         print("\t".join([
             language,
             "baseline",
-            str(baseline_metrics_train["training_parser_LAS"]),
-            str(baseline_metrics_train["validation_parser_LAS"]),
+            "",
+            "",
             str(baseline_metrics_eval["parser_LAS"]),
         ]), file=f)
+
+    _, pretrained_metrics_eval = ctx.invoke(pretrained_baseline_evaluate, language=language)
+    with open('metrics.tsv', 'a') as f:
+        print("\t".join([
+            language,
+            "pretrained_baseline",
+            "",
+            "",
+            str(pretrained_metrics_eval["parser_LAS"]),
+        ]), file=f)
+
+    mlm_only_metrics_train = ctx.invoke(pretrain, exclude_task=['parser', 'xpos'], language=language)
+    mlm_only_metrics_eval = ctx.invoke(evaluate, exclude_task=['parser', 'xpos'], language=language)
+    with open('metrics.tsv', 'a') as f:
         print("\t".join([
             language,
             "mlm_only",
@@ -254,6 +300,10 @@ def language_trial(ctx, language):
             str(mlm_only_metrics_train["validation_parser_LAS"]),
             str(mlm_only_metrics_eval["parser_LAS"]),
         ]), file=f)
+
+    mtl_metrics_train = ctx.invoke(pretrain, language=language)
+    mtl_metrics_eval = ctx.invoke(evaluate, language=language)
+    with open('metrics.tsv', 'a') as f:
         print("\t".join([
             language,
             "mtl",
@@ -263,9 +313,12 @@ def language_trial(ctx, language):
         ]), file=f)
 
 
+
+
 top.add_command(pretrain)
 top.add_command(evaluate)
 top.add_command(baseline_evaluate)
+top.add_command(pretrained_baseline_evaluate)
 top.add_command(language_trial)
 
 
