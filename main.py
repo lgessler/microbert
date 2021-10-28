@@ -7,12 +7,12 @@ import click
 from allennlp.common.util import import_module_and_submodules
 from transformers import BertModel, AutoModel
 from allennlp.commands.train import train_model_from_file
-from allennlp.commands.evaluate import evaluate_from_args
 
 import embur
 from embur.dataset_reader import read_conllu_files
 from embur.tokenizers import train_bert_tokenizer
 from embur.language_configs import get_pretrain_config, get_eval_config, LANGUAGES
+from embur.commands import evaluate_from_args
 
 
 import_module_and_submodules("allennlp_models")
