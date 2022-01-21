@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import shutil
+from rich import print
 
 import click
 from allennlp.common.util import import_module_and_submodules
