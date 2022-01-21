@@ -10,6 +10,8 @@ import conllu
 from allennlp_models.structured_prediction import UniversalDependenciesDatasetReader
 from lxml import etree
 from tqdm import tqdm
+from rich import print
+from rich.progress import Progress
 
 ELT_REGEX = re.compile(r'<([a-zA-Z][a-zA-Z0-9_]*)')
 ATTR_REGEX = re.compile(r'(?:[a-zA-Z][a-zA-Z0-9_]*:)?([a-zA-Z][a-zA-Z0-9_]*)="([^"]*)"')
@@ -70,8 +72,10 @@ def conllize(ttsgml):
     sentence = []
     entity_open = []
     meta = None
+    tcount = 0
 
     def finalize_sentence(sentence):
+        nonlocal tcount
         encode_entities(sentence)
         sent_meta = {
             "sent_id": meta['document_cts_urn'][18:] + "-" + str(len(sentences) + 1),
@@ -82,6 +86,7 @@ def conllize(ttsgml):
             "entities": meta.get('entities', 'none'),
         }
         tl = conllu.TokenList(sentence, sent_meta)
+        tcount += len(tl)
         sentences.append(tl.serialize())
 
     for line_num, line in enumerate(ttsgml.replace("\r", "").split("\n")):
@@ -130,8 +135,8 @@ def conllize(ttsgml):
     if len(sentence) > 0:
         finalize_sentence(sentence)
 
-    print(f"Found {sum(len(s) for s in sentences)} tokens in {meta['document_cts_urn']}")
-    return meta, "\n".join(sentences)
+    print(f"Found {tcount} tokens in {meta['document_cts_urn']}")
+    return meta, "\n".join(sentences), tcount
 
 
 def format_tt(tt_dir):
@@ -161,25 +166,25 @@ if __name__ == '__main__':
 
     SPLIT_MAP = {
         "test": [
-            "ap.31.monbeg.conllu",
-            "besa.aphthonia.monbba.conllu",
-            "nt.mark.sahidica:10.conllu",
-            "nt.mark.sahidica:11.conllu",
-            "nt.mark.sahidica:12.conllu",
-            "nt.mark.sahidica:13.conllu",
-            "nt.mark.sahidica:14.conllu",
-            "nt.mark.sahidica:15.conllu",
-            "nt.mark.sahidica:16.conllu",
-            "nt.mark.sahidica:1.conllu",
-            "nt.mark.sahidica:2.conllu",
-            "nt.mark.sahidica:3.conllu",
-            "nt.mark.sahidica:4.conllu",
-            "nt.mark.sahidica:5.conllu",
-            "nt.mark.sahidica:6.conllu",
-            "nt.mark.sahidica:7.conllu",
-            "nt.mark.sahidica:8.conllu",
-            "nt.mark.sahidica:9.conllu",
-            "shenoute.fox.monbxh_204_216.conllu"
+            # "ap.31.monbeg.conllu",
+            # "besa.aphthonia.monbba.conllu",
+            # "nt.mark.sahidica:10.conllu",
+            # "nt.mark.sahidica:11.conllu",
+            # "nt.mark.sahidica:12.conllu",
+            # "nt.mark.sahidica:13.conllu",
+            # "nt.mark.sahidica:14.conllu",
+            # "nt.mark.sahidica:15.conllu",
+            # "nt.mark.sahidica:16.conllu",
+            # "nt.mark.sahidica:1.conllu",
+            # "nt.mark.sahidica:2.conllu",
+            # "nt.mark.sahidica:3.conllu",
+            # "nt.mark.sahidica:4.conllu",
+            # "nt.mark.sahidica:5.conllu",
+            # "nt.mark.sahidica:6.conllu",
+            # "nt.mark.sahidica:7.conllu",
+            # "nt.mark.sahidica:8.conllu",
+            # "nt.mark.sahidica:9.conllu",
+            # "shenoute.fox.monbxh_204_216.conllu"
         ],
         "dev": [
             "besa.exhortations.monbba.conllu",
@@ -224,15 +229,24 @@ if __name__ == '__main__':
                 # with open(conllu_filepath, 'r') as f:
                 #     conllu_data.append((f"{conllu_dir}/{conllu_filepath}", f.read()))
 
-    for filepath, tt_str in tqdm(tt_data):
-        meta, conllu_string = conllize(tt_str)
-        document_name = meta['document_cts_urn'][18:] + ".conllu"
-        if document_name in SPLIT_MAP['test']:
-            path = os.path.join(OUTPUT_DIR, "test", document_name)
-        elif document_name in SPLIT_MAP['dev']:
-            path = os.path.join(OUTPUT_DIR, "dev", document_name)
-        else:
-            path = os.path.join(OUTPUT_DIR, "train", document_name)
-        path = path.replace(":", "__COLON__")
-        with open(path, 'w') as f:
-            f.write(conllu_string)
+    with Progress() as progress:
+        task = progress.add_task("[cyan]Converting...", total=len(tt_data))
+        tc = 0
+
+        for filepath, tt_str in tt_data:
+            meta, conllu_string, tcount = conllize(tt_str)
+            tc += tcount
+            document_name = meta['document_cts_urn'][18:] + ".conllu"
+            if document_name in SPLIT_MAP['test']:
+                path = os.path.join(OUTPUT_DIR, "test", document_name)
+            elif document_name in SPLIT_MAP['dev']:
+                path = os.path.join(OUTPUT_DIR, "dev", document_name)
+            else:
+                path = os.path.join(OUTPUT_DIR, "train", document_name)
+            path = path.replace(":", "__COLON__")
+            with open(path, 'w') as f:
+                f.write(conllu_string)
+
+            progress.update(task, advance=1)
+
+        print("Total tokens:", tc)
