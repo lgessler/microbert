@@ -1,3 +1,9 @@
+# Atlas
+
+- `data`: raw data (processed data will also be here, but not in Git)
+- `embur.scripts`: standalone scripts for taking raw data
+- `embur.models`: bulk of the code for training LMs
+
 # Usage
 
 ## Setup
