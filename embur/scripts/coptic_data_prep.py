@@ -1,5 +1,4 @@
 import os
-import sys
 import re
 import zipfile
 from collections import OrderedDict, defaultdict
@@ -7,9 +6,6 @@ from glob import glob
 from shutil import rmtree, copyfile
 
 import conllu
-from allennlp_models.structured_prediction import UniversalDependenciesDatasetReader
-from lxml import etree
-from tqdm import tqdm
 from rich import print
 from rich.progress import Progress
 
