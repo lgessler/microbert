@@ -8,27 +8,7 @@ from shutil import rmtree, copyfile
 import conllu
 from rich import print
 from rich.progress import Progress
-
-ELT_REGEX = re.compile(r'<([a-zA-Z][a-zA-Z0-9_]*)')
-ATTR_REGEX = re.compile(r'(?:[a-zA-Z][a-zA-Z0-9_]*:)?([a-zA-Z][a-zA-Z0-9_]*)="([^"]*)"')
-EMPTY_TOKEN_DICT = {field_name: "_" for field_name in conllu.parser.DEFAULT_FIELDS}
-
-
-def is_token(ttsgml_line):
-    return not (ttsgml_line.startswith("<") and ttsgml_line.endswith(">"))
-
-
-def parse_open_tag(ttsgml_line):
-    try:
-        element_name = re.search(ELT_REGEX, ttsgml_line).groups()[0]
-    except Exception as e:
-        print("!!!")
-        print(ttsgml_line)
-        raise e
-    attrs = re.findall(ATTR_REGEX, ttsgml_line)
-    unescape = lambda s: s.replace('&lt;', "<").replace("&gt;", ">").replace('&quot;', '"').replace("&apos;", "'").replace("&amp;", "&")
-    attrs = [(k, unescape(v)) for k, v in attrs]
-    return element_name, OrderedDict(attrs)
+import embur.scripts.common as esc
 
 
 def encode_entities(sentence, scheme="BIO"):
@@ -88,30 +68,30 @@ def conllize(ttsgml):
     for line_num, line in enumerate(ttsgml.replace("\r", "").split("\n")):
         # Read the <meta> element at the beginning of the document
         if meta is None:
-            element_name, attrs = parse_open_tag(line)
+            element_name, attrs = esc.ttline_parse_open_tag(line)
             assert line_num == 0 and element_name == 'meta'
             meta = attrs
             continue
 
         # Ignore orig tokens
-        if is_token(line):
+        if esc.ttline_is_token(line):
             pass
 
         # If we're at a closing tag...
-        elif not is_token(line) and line[:2] == '</':
+        elif esc.ttline_is_close_tag(line):
             # ... and it's an entity that's being closed, close the entity
             if line.strip() == '</entity>':
                 entity_open.pop()
 
         # If we're at an opening tag...
-        elif not is_token(line):
-            elt, attrs = parse_open_tag(line)
+        elif esc.ttline_is_open_tag(line):
+            elt, attrs = esc.ttline_parse_open_tag(line)
             # TODO: extract entities
             if " translation=" in line and len(sentence) > 0:
                 finalize_sentence(sentence)
                 sentence = []
             elif elt == 'norm':
-                token = EMPTY_TOKEN_DICT.copy()
+                token = esc.token()
                 token['id'] = len(sentence) + 1
                 token['form'] = attrs['norm']
                 token['xpos'] = attrs['pos']
