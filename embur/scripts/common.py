@@ -1,7 +1,9 @@
+import math
 import re
 from collections import OrderedDict
 
 import conllu
+import random
 
 ELT_REGEX = re.compile(r'<([a-zA-Z][a-zA-Z0-9_]*)')
 ATTR_REGEX = re.compile(r'(?:[a-zA-Z][a-zA-Z0-9_]*:)?([a-zA-Z][a-zA-Z0-9_]*)="([^"]*)"')
@@ -40,6 +42,30 @@ def ttline_parse_open_tag(ttsgml_line):
     unescape = lambda s: s.replace('&lt;', "<").replace("&gt;", ">").replace('&quot;', '"').replace("&apos;", "'").replace("&amp;", "&")
     attrs = [(k, unescape(v)) for k, v in attrs]
     return element_name, OrderedDict(attrs)
+
+
+def get_splits(xs, proportions):
+    """
+    Split a sequence into deterministically randomized splits with size indicated in proportions.
+    Deterministically randomized in the sense that for fixed inputs,
+    the same randomized sequences will always be returned.
+    """
+    random.seed(1337)
+    count = len(xs)
+    indices = list(range(count))
+    random.shuffle(indices)
+
+    splits = []
+    i = 0
+    for p in proportions:
+        split = []
+        j = math.ceil(p*count)
+        for index in indices[i:i+j]:
+            split.append(xs[index])
+        splits.append(split)
+        i = j
+
+    return splits
 
 
 def token():
