@@ -1,0 +1,2660 @@
+<TEI.2>
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Comparison of Timoleon and Aemilius</title>
+        <author>Plutarch</author>
+        <tlgAuthor>0007</tlgAuthor>
+        <tlgId>020</tlgId>
+        <funder>The Alan Turing Institute: EPSRC grant EP/N510129/1; seed funding grant SF042</funder>
+      </titleStmt>
+      <sourceDesc>
+        <ref target="https://github.com/PerseusDL/canonical-greekLit/tree/master/data/tlg0007/tlg020/tlg0007.tlg020.perseus-grc2.xml">Perseus</ref>
+        <biblFull>
+          <titleStmt xmlns="http://www.tei-c.org/ns/1.0">
+            <title n="Comp.Tim.Aem." type="work">Comparison of Timoleon and Aemilius</title>
+            <author n="Plut.">Plutarch</author>
+            <editor n="Perrin" role="editor">Bernadotte Perrin</editor>
+            <sponsor>Perseus Project, Tufts University</sponsor>
+            <principal>Gregory Crane</principal>
+            <respStmt>
+              <resp>Prepared under the supervision of</resp>
+              <name>Lisa Cerrato</name>
+              <name>William Merrill</name>
+              <name>Elli Mylonas</name>
+              <name>David Smith</name>
+            </respStmt>
+            <funder n="org:NEH">The National Endowment for the Humanities</funder>
+          </titleStmt>
+          <extent xmlns="http://www.tei-c.org/ns/1.0"/>
+          <publicationStmt xmlns="http://www.tei-c.org/ns/1.0">
+            <publisher>Trustees of Tufts University</publisher>
+            <pubPlace>Medford, MA</pubPlace>
+            <authority>Perseus Project</authority>
+          </publicationStmt>
+          <sourceDesc xmlns="http://www.tei-c.org/ns/1.0">
+            <biblStruct>
+              <analytic n="Comp.Tim.Aem."/>
+              <monogr>
+                <author>Plutarch</author>
+                <title>Plutarch's Lives</title>
+                <idno type="ISBN">0674991095</idno>
+                <respStmt>
+                  <resp>with an English Translation by</resp>
+                  <name>Bernadotte Perrin</name>
+                </respStmt>
+                <imprint>
+                  <pubPlace>Cambridge, MA</pubPlace>
+                  <publisher>Harvard University Press</publisher>
+                  <pubPlace>London</pubPlace>
+                  <publisher>William Heinemann Ltd.</publisher>
+                  <date>1918</date>
+                </imprint>
+                <biblScope unit="volume">6</biblScope>
+              </monogr>
+            </biblStruct>
+          </sourceDesc>
+        </biblFull>
+      </sourceDesc>
+      <editionStmt>
+        <respStmt>
+          <name>Alessandro Vatri</name>
+          <resp>corpus conversion and automatic annotation</resp>
+          <address>The Alan Turing Institute / University of Oxford</address>
+        </respStmt>
+        <respStmt>
+          <name>Barbara McGillivray</name>
+          <resp>principal investigator</resp>
+          <address>The Alan Turing Institute / University of Cambridge</address>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <date>25/04/18</date>
+        <licence>
+          <ref target="https://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-ShareAlike 3.0 United States License</ref>
+        </licence>
+      </publicationStmt>
+    </fileDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="grc">Greek</language>
+      </langUsage>
+      <creation>
+        <date>95</date>
+      </creation>
+    </profileDesc>
+    <xenoData>
+      <genre>Narrative</genre>
+      <subgenre>Biography</subgenre>
+    </xenoData>
+  </teiHeader>
+  <text>
+    <body>
+      <sentence id="1" location="1.1">
+        <word form="toiou/twn" id="1">
+          <lemma id="104169" entry="τοιοῦτος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc gen pl"/>
+            <analysis morph="neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="de\" id="2">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="tw=n" id="3">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="kata\" id="4">
+          <lemma id="53647" entry="κατά" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="th\n" id="5">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="i(stori/an" id="6">
+          <lemma id="51259" entry="ἱστορία" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="o)/ntwn" id="7">
+          <lemma id="31130" entry="εἰμί" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres imperat act 3rd pl (attic)"/>
+            <analysis morph="pres part act masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="dh=lon" id="8">
+          <lemma id="24340" entry="δῆλος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+            <analysis morph="neut nom/voc/acc sg"/>
+            <analysis morph="masc/fem acc sg"/>
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="w(s" id="9">
+          <lemma id="116401" entry="ὡς" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="ou)k" id="10">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="e)/xei" id="11">
+          <lemma id="45996" entry="ἔχω" POS="verb" disambiguated="0.33" TreeTagger="true">
+            <analysis morph="pres ind mp 2nd sg"/>
+            <analysis morph="pres ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="polla\s" id="12">
+          <lemma id="85306" entry="πολύς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+          </lemma>
+        </word>
+        <word form="diafora\s" id="13">
+          <lemma id="26226" entry="διαφορά" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+          </lemma>
+        </word>
+        <word form="ou)de\" id="14">
+          <lemma id="75764" entry="οὐδέ" POS="particle" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="a)nomoio/thtas" id="15">
+          <lemma id="9236" entry="ἀνομοιότης" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+          </lemma>
+        </word>
+        <word form="h(" id="16">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="su/gkrisis" id="17">
+          <lemma id="97908" entry="σύγκρισις" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem nom sg"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="2" location="1.1">
+        <word form="oi(/" id="1">
+          <lemma id="29856" entry="ἕ" POS="pronoun" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="masc/fem dat sg (epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="te" id="2">
+          <lemma id="102752" entry="τε" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="enclitic indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="ga\r" id="3">
+          <lemma id="21618" entry="γάρ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="po/lemoi" id="4">
+          <lemma id="84434" entry="πόλεμος" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="pro\s" id="5">
+          <lemma id="88443" entry="πρός" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="e)ndo/cous" id="6">
+          <lemma id="35273" entry="ἔνδοξος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem acc pl"/>
+          </lemma>
+        </word>
+        <word form="gego/nasin" id="7">
+          <lemma id="22209" entry="γίγνομαι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf ind act 3rd pl"/>
+          </lemma>
+        </word>
+        <word form="a)mfote/rois" id="8">
+          <lemma id="6174" entry="ἀμφότερος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="a)ntagwnista/s" id="9">
+          <lemma id="9380" entry="ἀνταγωνιστής" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc pl"/>
+            <analysis morph="masc nom sg (epic doric aeolic)"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="tw=|" id="10">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="me\n" id="11">
+          <lemma id="66260" entry="μέν" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="*makedo/nas" id="12">
+          <lemma id="64597" entry="Μακεδών" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem acc pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="tw=|" id="13">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="14">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="*karxhdoni/ous" id="15">
+          <lemma id="nlsj6091" entry="Καρχηδόνιος" POS="proper" disambiguated="0.5" TreeTagger="false">
+            <analysis morph="masc acc pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="ai(/" id="16">
+          <lemma id="75512" entry="ὅς" POS="pronoun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem nom pl"/>
+          </lemma>
+        </word>
+        <word form="te" id="17">
+          <lemma id="102752" entry="τε" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="enclitic indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="ni=kai" id="18">
+          <lemma id="70840" entry="νίκη" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="peribo/htoi" id="19">
+          <lemma id="81154" entry="περιβόητος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem nom/voc pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="tou=" id="20">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <word form="me\n" id="21">
+          <lemma id="66260" entry="μέν" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="e(lo/ntos" id="22">
+          <lemma id="2654" entry="αἱρέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part act masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <word form="*makedoni/an" id="23">
+          <lemma id="64598" entry="Μακεδονία" POS="proper" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="24">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="th\n" id="25">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="a)p'" id="26">
+          <lemma id="12243" entry="ἀπό" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+            <analysis morph="poetic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="*)antigo/nou" id="27">
+          <lemma id="9843" entry="Ἀντίγονος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc gen sg"/>
+          </lemma>
+        </word>
+        <word form="diadoxh\n" id="28">
+          <lemma id="24727" entry="διαδοχή" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="e)n" id="29">
+          <lemma id="34700" entry="ἐν" POS="preposition" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="proclitic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="e(bdo/mw|" id="30">
+          <lemma id="29916" entry="ἕβδομος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="basilei=" id="31">
+          <lemma id="19546" entry="βασιλεύς" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc dat sg"/>
+          </lemma>
+        </word>
+        <word form="katapau/santos" id="32">
+          <lemma id="54744" entry="καταπαύω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part act masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="tou=" id="33">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="34">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="ta\s" id="35">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+          </lemma>
+        </word>
+        <word form="turanni/das" id="36">
+          <lemma id="105964" entry="τυραννίς" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+          </lemma>
+        </word>
+        <word form="pa/sas" id="37">
+          <lemma id="79904" entry="πᾶς" POS="adjective" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem acc pl (doric)"/>
+            <analysis morph="fem gen sg (doric)"/>
+            <analysis morph="fem acc pl (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="a)nelo/ntos" id="38">
+          <lemma id="6616" entry="ἀναιρέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part act masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <word form="e)k" id="39">
+          <lemma id="31575" entry="ἐκ" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="*sikeli/as" id="40">
+          <lemma id="94095" entry="Σικελία" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+            <analysis morph="fem gen sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="41">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="th\n" id="42">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="nh=son" id="43">
+          <lemma id="70768" entry="νῆσος" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem acc sg"/>
+          </lemma>
+        </word>
+        <word form="e)leuqerw/santos" id="44">
+          <lemma id="33623" entry="ἐλευθερόω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part act masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <punct mark=":"/>
+      </sentence>
+      <sentence id="3" location="1.1">
+        <word form="ei)" id="1">
+          <lemma id="30817" entry="εἰ" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="mh\" id="2">
+          <lemma id="67283" entry="μή" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="nh\" id="3">
+          <lemma id="nlsj76626" entry="νή" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="*di/a" id="4">
+          <lemma id="nlsj4709" entry="Δίη" POS="proper" disambiguated="0.5" TreeTagger="false">
+            <analysis morph="fem nom/voc/acc dual"/>
+            <analysis morph="fem nom/voc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="bou/loito/" id="5">
+          <lemma id="20621" entry="βούλομαι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres opt mp 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="tis" id="6">
+          <lemma id="104051" entry="τις" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem nom sg"/>
+          </lemma>
+        </word>
+        <word form="paregxeirei=n" id="7">
+          <lemma id="79195" entry="παρεγχειρέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf act (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="w(s" id="8">
+          <lemma id="116401" entry="ὡς" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="*ai)mi/lios" id="9">
+          <lemma id="nlsj3968" entry="Αἰμίλιος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="me\n" id="10">
+          <lemma id="66260" entry="μέν" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="e)rrwme/nw|" id="11">
+          <lemma id="92930" entry="ῥώννυμι" POS="verb" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="perf part mp masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="*persei=" id="12">
+          <lemma id="82661" entry="Περσεύς" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc dat sg (ionic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="13">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="*(rwmai/ous" id="14">
+          <lemma id="unknown" TreeTagger="false" disambiguated="n/a"/>
+        </word>
+        <word form="nenikhko/ti" id="15">
+          <lemma id="70839" entry="νικάω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part act masc/neut dat sg (attic ionic)"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="*timole/wn" id="16">
+          <lemma id="nlsj10693" entry="Τιμολέων" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="17">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="*dionusi/w|" id="18">
+          <lemma id="27209" entry="Διονύσιον" POS="proper" disambiguated="0.5" TreeTagger="false">
+            <analysis morph="neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="panta/pasin" id="19">
+          <lemma id="77574" entry="παντάπασι" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="a)peirhko/ti" id="20">
+          <lemma id="11711" entry="ἀπεῖπον" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part act masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="21">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="katatetrimme/nw|" id="22">
+          <lemma id="55433" entry="κατατρίβω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part mp masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="sune/pese" id="23">
+          <lemma id="98707" entry="συμπίτνω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="kai\" id="24">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="pa/lin" id="25">
+          <lemma id="76910" entry="πάλιν" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="u(pe\r" id="26">
+          <lemma id="107183" entry="ὑπέρ" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="*timole/ontos" id="27">
+          <lemma id="unknown" TreeTagger="false" disambiguated="n/a"/>
+        </word>
+        <punct mark=","/>
+        <word form="o(/ti" id="28">
+          <lemma id="75598" entry="ὅστις" POS="pronoun" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="neut nom/acc sg"/>
+          </lemma>
+        </word>
+        <word form="pollou\s" id="29">
+          <lemma id="85306" entry="πολύς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc pl"/>
+          </lemma>
+        </word>
+        <word form="me\n" id="30">
+          <lemma id="66260" entry="μέν" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="tura/nnous" id="31">
+          <lemma id="105974" entry="τύραννος" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="mega/lhn" id="32">
+          <lemma id="65552" entry="μέγας" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="de\" id="33">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="th\n" id="34">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="*karxhdoni/wn" id="35">
+          <lemma id="nlsj6091" entry="Καρχηδόνιος" POS="proper" disambiguated="0.5" TreeTagger="false">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="du/namin" id="36">
+          <lemma id="28569" entry="δύναμις" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg"/>
+          </lemma>
+        </word>
+        <word form="a)po\" id="37">
+          <lemma id="12243" entry="ἀπό" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="th=s" id="38">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="tuxou/shs" id="39">
+          <lemma id="105829" entry="τυγχάνω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part act fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="stratia=s" id="40">
+          <lemma id="nlsj100912" entry="στρατία" POS="noun" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="fem gen sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="e)ni/khsen" id="41">
+          <lemma id="70839" entry="νικάω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd sg (attic ionic)"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="ou)x" id="42">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="w(/sper" id="43">
+          <lemma id="116416" entry="ὥσπερ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="*ai)mi/lios" id="44">
+          <lemma id="nlsj3968" entry="Αἰμίλιος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="a)ndra/sin" id="45">
+          <lemma id="8665" entry="ἀνήρ" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc dat pl"/>
+          </lemma>
+        </word>
+        <word form="e)mpeiropole/mois" id="46">
+          <lemma id="34274" entry="ἐμπειροπόλεμος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="47">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="memaqhko/sin" id="48">
+          <lemma id="64914" entry="μανθάνω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part act masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="a)/rxesqai" id="49">
+          <lemma id="16051" entry="ἄρχω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf mp"/>
+          </lemma>
+        </word>
+        <word form="xrw/menos" id="50">
+          <lemma id="114548" entry="χράομαι" POS="verb" disambiguated="0.25" TreeTagger="true">
+            <analysis morph="pres part mp masc nom sg (attic)"/>
+            <analysis morph="pres part mp masc nom sg (ionic)"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="a)lla\" id="51">
+          <lemma id="4357" entry="ἀλλά" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="misqofo/rois" id="52">
+          <lemma id="68018" entry="μισθόφορος" POS="adjective" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="masc/fem/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="ou)=si" id="53">
+          <lemma id="31130" entry="εἰμί" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres part act masc/neut dat pl (attic epic doric ionic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="54">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="stratiw/tais" id="55">
+          <lemma id="97132" entry="στρατιώτης" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc dat pl"/>
+          </lemma>
+        </word>
+        <word form="a)ta/ktois" id="56">
+          <lemma id="16943" entry="ἄτακτος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem/neut dat pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="pro\s" id="57">
+          <lemma id="88443" entry="πρός" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="h(donh\n" id="58">
+          <lemma id="nlsj59172" entry="ἡδονά" POS="noun" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="ei)qisme/nois" id="59">
+          <lemma id="30796" entry="ἐθίζω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part mp masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="strateu/esqai" id="60">
+          <lemma id="97108" entry="στρατεύω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf mp"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="4" location="1.2">
+        <word form="ta\" id="1">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="neut acc pl"/>
+            <analysis morph="neut nom/voc/acc pl"/>
+            <analysis morph="fem acc dual"/>
+            <analysis morph="fem nom/voc/acc dual"/>
+          </lemma>
+        </word>
+        <word form="ga\r" id="2">
+          <lemma id="21618" entry="γάρ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="a)p'" id="3">
+          <lemma id="12243" entry="ἀπό" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+            <analysis morph="poetic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="ou)k" id="4">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="i)/shs" id="5">
+          <lemma id="51148" entry="ἴσος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="paraskeuh=s" id="6">
+          <lemma id="78765" entry="παρασκευή" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="i)/sa" id="7">
+          <lemma id="51148" entry="ἴσος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc pl"/>
+            <analysis morph="fem nom/voc/acc dual"/>
+            <analysis morph="fem nom/voc sg (doric aeolic)"/>
+            <analysis morph="fem nom/voc/acc dual (epic)"/>
+            <analysis morph="fem nom/voc sg (epic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="katorqw/mata" id="8">
+          <lemma id="56090" entry="κατόρθωμα" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc pl"/>
+          </lemma>
+        </word>
+        <word form="tw=|" id="9">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="strathgw=|" id="10">
+          <lemma id="97121" entry="στρατηγός" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc dat sg"/>
+          </lemma>
+        </word>
+        <word form="th\n" id="11">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="ai)ti/an" id="12">
+          <lemma id="2764" entry="αἰτία" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="periti/qhsi" id="13">
+          <lemma id="82367" entry="περιτίθημι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="5" location="2.1">
+        <word form="kaqarw=n" id="1">
+          <lemma id="51701" entry="καθαρός" POS="adjective" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="ou)=n" id="2">
+          <lemma id="75887" entry="οὖν" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="3">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="dikai/wn" id="4">
+          <lemma id="26886" entry="δίκαιος" POS="adjective" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+            <analysis morph="masc/fem/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="e)n" id="5">
+          <lemma id="34700" entry="ἐν" POS="preposition" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="proclitic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="toi=s" id="6">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="pra/gmasin" id="7">
+          <lemma id="86112" entry="πρᾶγμα" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="a)mfote/rwn" id="8">
+          <lemma id="6174" entry="ἀμφότερος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="gegono/twn" id="9">
+          <lemma id="22209" entry="γίγνομαι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part act masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="*ai)mi/lios" id="10">
+          <lemma id="nlsj3968" entry="Αἰμίλιος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="me\n" id="11">
+          <lemma id="66260" entry="μέν" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="u(po\" id="12">
+          <lemma id="108092" entry="ὑπό" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="tw=n" id="13">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="no/mwn" id="14">
+          <lemma id="nlsj76838" entry="νόμος" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc gen pl"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="15">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="th=s" id="16">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="patri/dos" id="17">
+          <lemma id="80043" entry="πατρίς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen sg"/>
+          </lemma>
+        </word>
+        <word form="ou(/tws" id="18">
+          <lemma id="76063" entry="οὕτως" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="e)/oiken" id="19">
+          <lemma id="37776" entry="ἔοικα" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf ind act 3rd sg"/>
+            <analysis morph="plup ind act 3rd pl (epic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="eu)qu\s" id="20">
+          <lemma id="43977" entry="εὐθύς" POS="adverb" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="a)fike/sqai" id="21">
+          <lemma id="18334" entry="ἀφικνέομαι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor inf mid"/>
+          </lemma>
+        </word>
+        <word form="pareskeuasme/nos" id="22">
+          <lemma id="78757" entry="παρασκευάζω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part mp masc nom sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="*timole/wn" id="23">
+          <lemma id="nlsj10693" entry="Τιμολέων" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="24">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="toiou=ton" id="25">
+          <lemma id="104169" entry="τοιοῦτος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+          </lemma>
+        </word>
+        <word form="au)to\s" id="26">
+          <lemma id="17907" entry="αὐτός" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="e(auto\n" id="27">
+          <lemma id="29881" entry="ἑαυτοῦ" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+          </lemma>
+        </word>
+        <word form="pare/sxe" id="28">
+          <lemma id="79526" entry="παρέχω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="tou/tou" id="29">
+          <lemma id="76062" entry="οὗτος" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <word form="tekmh/rion" id="30">
+          <lemma id="102847" entry="τεκμήριον" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="o(/ti" id="31">
+          <lemma id="75598" entry="ὅστις" POS="pronoun" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="neut nom/acc sg"/>
+          </lemma>
+        </word>
+        <word form="*(rwmai=oi" id="32">
+          <lemma id="unknown" TreeTagger="false" disambiguated="n/a"/>
+        </word>
+        <word form="me\n" id="33">
+          <lemma id="66260" entry="μέν" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="o(malw=s" id="34">
+          <lemma id="73402" entry="ὁμαλός" POS="adjective" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="adverbial"/>
+          </lemma>
+        </word>
+        <word form="e)n" id="35">
+          <lemma id="34700" entry="ἐν" POS="preposition" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="proclitic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="tw=|" id="36">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="to/te" id="37">
+          <lemma id="104429" entry="τότε" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="xro/nw|" id="38">
+          <lemma id="114753" entry="χρόνος" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc dat sg"/>
+          </lemma>
+        </word>
+        <word form="pa/ntes" id="39">
+          <lemma id="79904" entry="πᾶς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="h)=san" id="40">
+          <lemma id="31130" entry="εἰμί" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="imperf ind act 3rd pl"/>
+          </lemma>
+        </word>
+        <word form="eu)/taktoi" id="41">
+          <lemma id="45268" entry="εὔτακτος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="42">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="u(poxei/rioi" id="43">
+          <lemma id="109562" entry="ὑποχείριος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc pl"/>
+            <analysis morph="masc/fem nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="toi=s" id="44">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="e)qismoi=s" id="45">
+          <lemma id="30800" entry="ἐθισμός" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc dat pl"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="46">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="tou\s" id="47">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc pl"/>
+          </lemma>
+        </word>
+        <word form="no/mous" id="48">
+          <lemma id="nlsj76838" entry="νόμος" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc pl"/>
+          </lemma>
+        </word>
+        <word form="dedio/tes" id="49">
+          <lemma id="nlsj32167" entry="δείδω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part act masc nom/voc pl"/>
+            <analysis morph="perf part act masc nom pl (epic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="50">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="tou\s" id="51">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc pl"/>
+          </lemma>
+        </word>
+        <word form="poli/tas" id="52">
+          <lemma id="84511" entry="πολίτης" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc pl"/>
+            <analysis morph="masc nom sg (epic doric aeolic)"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="*(ellh/nwn" id="53">
+          <lemma id="33819" entry="Ἕλλην" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem gen pl"/>
+          </lemma>
+        </word>
+        <word form="de\" id="54">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="ou)dei\s" id="55">
+          <lemma id="75765" entry="οὐδείς" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="h(gemw/n" id="56">
+          <lemma id="46612" entry="ἡγεμών" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="e)stin" id="57">
+          <lemma id="31130" entry="εἰμί" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="ou)de\" id="58">
+          <lemma id="75764" entry="οὐδέ" POS="particle" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="strathgo/s" id="59">
+          <lemma id="97121" entry="στρατηγός" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="o(\s" id="60">
+          <lemma id="75512" entry="ὅς" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="ou)" id="61">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="diefqa/rh" id="62">
+          <lemma id="26207" entry="διαφθείρω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind pass 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="to/te" id="63">
+          <lemma id="104429" entry="τότε" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="*sikeli/as" id="64">
+          <lemma id="94095" entry="Σικελία" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+            <analysis morph="fem gen sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="a(ya/menos" id="65">
+          <lemma id="14568" entry="ἅπτω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part mid masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="e)/cw" id="66">
+          <lemma id="37720" entry="ἔξω" POS="adverb" disambiguated="0.5" TreeTagger="false">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="*di/wnos" id="67">
+          <lemma id="nlsj4743" entry="Δίων" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc gen sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="kai/toi" id="68">
+          <lemma id="nlsj61636" entry="καίτοι" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="*di/wna" id="69">
+          <lemma id="nlsj4743" entry="Δίων" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+          </lemma>
+        </word>
+        <word form="polloi\" id="70">
+          <lemma id="85306" entry="πολύς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="monarxi/as" id="71">
+          <lemma id="68445" entry="μοναρχία" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+            <analysis morph="fem gen sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="o)re/gesqai" id="72">
+          <lemma id="74797" entry="ὀρέγω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf mp"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="73">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="basilei/an" id="74">
+          <lemma id="nlsj29289" entry="βασιλεία" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="tina\" id="75">
+          <lemma id="104051" entry="τις" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem acc sg"/>
+            <analysis morph="neut nom/voc/acc pl"/>
+          </lemma>
+        </word>
+        <word form="*lakwnikh\n" id="76">
+          <lemma id="61754" entry="Λακωνικός" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="o)neiropolei=n" id="77">
+          <lemma id="74042" entry="ὀνειροπολέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf act (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="u(peno/oun" id="78">
+          <lemma id="108850" entry="ὑπονοέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="imperf ind act 3rd pl (attic epic doric)"/>
+            <analysis morph="imperf ind act 1st sg (attic epic doric)"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="6" location="2.2">
+        <word form="*ti/maios" id="1">
+          <lemma id="nlsj10635" entry="Τίμαιος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="2">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="3">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="*gu/lippon" id="4">
+          <lemma id="nlsj5827" entry="Γύλιππος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+          </lemma>
+        </word>
+        <word form="a)klew=s" id="5">
+          <lemma id="3202" entry="ἀκλεής" POS="adverb" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="adverbial (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="fhsi" id="6">
+          <lemma id="110639" entry="φημί" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="7">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="a)ti/mws" id="8">
+          <lemma id="17088" entry="ἄτιμος" POS="adjective" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="adverbial"/>
+            <analysis morph="masc/fem acc pl (doric)"/>
+          </lemma>
+        </word>
+        <word form="a)pope/myai" id="9">
+          <lemma id="13394" entry="ἀποπέμπω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor inf act"/>
+            <analysis morph="aor opt act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="*surakousi/ous" id="10">
+          <lemma id="nlsj10345" entry="Συρακούσιος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="filoplouti/an" id="11">
+          <lemma id="111399" entry="φιλοπλουτία" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="au(tou=" id="12">
+          <lemma id="29881" entry="ἑαυτοῦ" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut gen sg"/>
+            <analysis morph="masc gen sg"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="13">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="a)plhsti/an" id="14">
+          <lemma id="12192" entry="ἀπληστία" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="e)n" id="15">
+          <lemma id="34700" entry="ἐν" POS="preposition" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="proclitic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="th=|" id="16">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem dat sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="strathgi/a|" id="17">
+          <lemma id="97115" entry="στρατηγία" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem nom/voc pl"/>
+            <analysis morph="fem dat sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="kategnwko/tas" id="18">
+          <lemma id="53784" entry="καταγιγνώσκω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part act masc acc pl"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="7" location="2.2">
+        <word form="a(\" id="1">
+          <lemma id="75512" entry="ὅς" POS="pronoun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="neut acc pl"/>
+            <analysis morph="neut nom pl"/>
+            <analysis morph="fem acc dual"/>
+            <analysis morph="fem nom dual"/>
+            <analysis morph="fem nom sg (doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="de\" id="2">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="*fa/rac" id="3">
+          <lemma id="nlsj5263" entry="Φάραξ" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="o(" id="4">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="*spartia/ths" id="5">
+          <lemma id="nlsj10192" entry="Σπαρτιάτης" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="6">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="*ka/llippos" id="7">
+          <lemma id="nlsj5859" entry="Κάλλιππος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="8" location="2.2">
+        <word form="o(" id="1">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="*)aqhnai=os" id="2">
+          <lemma id="nlsj2565" entry="Ἀθηναῖος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="e)lpi/santes" id="3">
+          <lemma id="33902" entry="ἐλπίζω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part act masc nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="a)/rcein" id="4">
+          <lemma id="16051" entry="ἄρχω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fut inf act (attic epic)"/>
+          </lemma>
+        </word>
+        <word form="*sikeli/as" id="5">
+          <lemma id="94095" entry="Σικελία" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+            <analysis morph="fem gen sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="pareno/mhsan" id="6">
+          <lemma id="78496" entry="παρανομέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd pl"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="7">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="parespo/ndhsan" id="8">
+          <lemma id="78788" entry="παρασπονδέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="u(po\" id="9">
+          <lemma id="108092" entry="ὑπό" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="pollw=n" id="10">
+          <lemma id="85306" entry="πολύς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="a)nage/graptai" id="11">
+          <lemma id="6384" entry="ἀναγράφω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf ind mp 3rd sg"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="9" location="2.3">
+        <word form="kai/toi" id="1">
+          <lemma id="nlsj61636" entry="καίτοι" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="ti/nes" id="2">
+          <lemma id="nlsj65910" entry="τίς" POS="pronoun" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="masc/fem nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="h)\" id="3">
+          <lemma id="46568" entry="ἠέ" POS="conjunction" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="phli/kwn" id="4">
+          <lemma id="82933" entry="πηλίκος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="ku/rioi" id="5">
+          <lemma id="61056" entry="κύριος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc pl"/>
+            <analysis morph="masc nom/voc pl"/>
+            <analysis morph="masc/fem nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="pragma/twn" id="6">
+          <lemma id="86112" entry="πρᾶγμα" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="o)/ntes" id="7">
+          <lemma id="31130" entry="εἰμί" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres part act masc nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="ou(=toi" id="8">
+          <lemma id="76062" entry="οὗτος" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="toiau=ta" id="9">
+          <lemma id="104169" entry="τοιοῦτος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc pl"/>
+          </lemma>
+        </word>
+        <word form="h)/lpisan" id="10">
+          <lemma id="33902" entry="ἐλπίζω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd pl"/>
+          </lemma>
+        </word>
+        <punct mark=";"/>
+      </sentence>
+      <sentence id="10" location="2.3">
+        <word form="w(=n" id="1">
+          <lemma id="75512" entry="ὅς" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="o(" id="2">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="me\n" id="3">
+          <lemma id="66260" entry="μέν" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="e)kpeptwko/ta" id="4">
+          <lemma id="32657" entry="ἐκπίτνω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="perf part act neut nom/voc/acc pl"/>
+            <analysis morph="perf part act masc acc sg"/>
+          </lemma>
+        </word>
+        <word form="*surakousw=n" id="5">
+          <lemma id="nlsj10340" entry="Συράκουσα" POS="proper" disambiguated="0.5" TreeTagger="false">
+            <analysis morph="fem gen pl"/>
+          </lemma>
+        </word>
+        <word form="e)qera/peue" id="6">
+          <lemma id="48383" entry="θεραπεύω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="imperf ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="*dionu/sion" id="7">
+          <lemma id="27209" entry="Διονύσιον" POS="proper" disambiguated="0.5" TreeTagger="false">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="*ka/llippos" id="8">
+          <lemma id="nlsj5859" entry="Κάλλιππος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="9">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="ei(=s" id="10">
+          <lemma id="31236" entry="εἷς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="h)=n" id="11">
+          <lemma id="31130" entry="εἰμί" POS="verb" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="imperf ind act 1st sg"/>
+            <analysis morph="imperf ind act 3rd pl (epic doric aeolic)"/>
+            <analysis morph="imperf ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="tw=n" id="12">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="peri\" id="13">
+          <lemma id="81017" entry="περί" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="*di/wna" id="14">
+          <lemma id="nlsj4743" entry="Δίων" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+          </lemma>
+        </word>
+        <word form="cenagw=n" id="15">
+          <lemma id="71482" entry="ξεναγέω" POS="verb" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="pres part act masc nom sg (attic epic doric)"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="11" location="2.3">
+        <word form="a)lla\" id="1">
+          <lemma id="4357" entry="ἀλλά" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="*timole/wn" id="2">
+          <lemma id="nlsj10693" entry="Τιμολέων" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="ai)thsame/nois" id="3">
+          <lemma id="2754" entry="αἰτέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part mid masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="4">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="dehqei=sin" id="5">
+          <lemma id="24293" entry="δέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part pass masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="au)tokra/twr" id="6">
+          <lemma id="17775" entry="αὐτοκράτωρ" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem nom sg"/>
+          </lemma>
+        </word>
+        <word form="pemfqei\s" id="7">
+          <lemma id="80557" entry="πέμπω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part pass masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="*surakousi/ois" id="8">
+          <lemma id="nlsj10345" entry="Συρακούσιος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="kai\" id="9">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="du/namin" id="10">
+          <lemma id="28569" entry="δύναμις" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg"/>
+          </lemma>
+        </word>
+        <word form="ou)" id="11">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="zhtei=n" id="12">
+          <lemma id="46249" entry="ζητέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf act (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="a)ll'" id="13">
+          <lemma id="4357" entry="ἀλλά" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="e)/xein" id="14">
+          <lemma id="45996" entry="ἔχω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf act (attic epic)"/>
+          </lemma>
+        </word>
+        <word form="o)fei/lwn" id="15">
+          <lemma id="76079" entry="ὀφείλω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres part act masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="h(\n" id="16">
+          <lemma id="75512" entry="ὅς" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic homeric ionic)"/>
+          </lemma>
+        </word>
+        <word form="e)/labe" id="17">
+          <lemma id="61791" entry="λαμβάνω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="boulome/nwn" id="18">
+          <lemma id="20621" entry="βούλομαι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres part mp fem gen pl"/>
+            <analysis morph="pres part mp masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="19">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="dido/ntwn" id="20">
+          <lemma id="26447" entry="δίδωμι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres part act masc/neut gen pl"/>
+            <analysis morph="pres imperat act 3rd pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="pe/ras" id="21">
+          <lemma id="80978" entry="πέρας" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="e)poih/sato" id="22">
+          <lemma id="84234" entry="ποιέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind mid 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="th=s" id="23">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="au(tou=" id="24">
+          <lemma id="29881" entry="ἑαυτοῦ" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut gen sg"/>
+            <analysis morph="masc gen sg"/>
+          </lemma>
+        </word>
+        <word form="strathgi/as" id="25">
+          <lemma id="97115" entry="στρατηγία" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem acc pl"/>
+            <analysis morph="fem gen sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="26">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="a)rxh=s" id="27">
+          <lemma id="15893" entry="ἀρχή" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="th\n" id="28">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="tw=n" id="29">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="parano/mwn" id="30">
+          <lemma id="78501" entry="παράνομος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="a)rxo/ntwn" id="31">
+          <lemma id="16052" entry="ἄρχων" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc gen pl"/>
+          </lemma>
+        </word>
+        <word form="kata/lusin" id="32">
+          <lemma id="54446" entry="κατάλυσις" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="12" location="2.4">
+        <word form="e)kei=no" id="1">
+          <lemma id="31951" entry="ἐκεῖνος" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="me/ntoi" id="2">
+          <lemma id="nlsj72443" entry="μέντοι" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="tou=" id="3">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <word form="*ai)mili/ou" id="4">
+          <lemma id="nlsj3968" entry="Αἰμίλιος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc gen sg"/>
+          </lemma>
+        </word>
+        <word form="qaumasto/n" id="5">
+          <lemma id="47931" entry="θαυμαστός" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="o(/ti" id="6">
+          <lemma id="75598" entry="ὅστις" POS="pronoun" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="neut nom/acc sg"/>
+          </lemma>
+        </word>
+        <word form="thlikau/thn" id="7">
+          <lemma id="nlsj106503" entry="τηλικοῦτος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="basilei/an" id="8">
+          <lemma id="nlsj29289" entry="βασιλεία" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="katastreya/menos" id="9">
+          <lemma id="55313" entry="καταστρέφω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part mid masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="ou)de\" id="10">
+          <lemma id="75764" entry="οὐδέ" POS="particle" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="draxmh=|" id="11">
+          <lemma id="28355" entry="δραχμή" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem dat sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="mei/zona" id="12">
+          <lemma id="65552" entry="μέγας" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc comp pl"/>
+            <analysis morph="masc/fem acc comp sg"/>
+          </lemma>
+        </word>
+        <word form="th\n" id="13">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="ou)si/an" id="14">
+          <lemma id="76029" entry="οὐσία" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="e)poi/hsen" id="15">
+          <lemma id="84234" entry="ποιέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="ou)de\" id="16">
+          <lemma id="75764" entry="οὐδέ" POS="particle" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="ei)=den" id="17">
+          <lemma id="nlsj11198" entry="εἶδον" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="ou)de\" id="18">
+          <lemma id="75764" entry="οὐδέ" POS="particle" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="h(/yato" id="19">
+          <lemma id="14568" entry="ἅπτω" POS="verb" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="aor ind mid 3rd sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="tw=n" id="20">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="xrhma/twn" id="21">
+          <lemma id="114624" entry="χρῆμα" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut gen pl"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="kai/toi" id="22">
+          <lemma id="nlsj61636" entry="καίτοι" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="polla\" id="23">
+          <lemma id="85306" entry="πολύς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem nom/voc/acc dual"/>
+            <analysis morph="fem nom/voc sg (doric aeolic)"/>
+            <analysis morph="neut nom/voc/acc pl"/>
+          </lemma>
+        </word>
+        <word form="dou\s" id="24">
+          <lemma id="26447" entry="δίδωμι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part act masc nom/voc sg (epic)"/>
+            <analysis morph="aor part act masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="e(te/rois" id="25">
+          <lemma id="43206" entry="ἕτερος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="26">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="dwrhsa/menos" id="27">
+          <lemma id="nlsj32339" entry="δωρέομαι" POS="verb" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="aor part mp masc nom sg"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="13" location="2.4">
+        <word form="ou)" id="1">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="le/gw" id="2">
+          <lemma id="62204" entry="λέγω" POS="verb" disambiguated="0.33" TreeTagger="true">
+            <analysis morph="pres subj act 1st sg"/>
+            <analysis morph="pres ind act 1st sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="3">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="o(/ti" id="4">
+          <lemma id="75598" entry="ὅστις" POS="pronoun" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="neut nom/acc sg"/>
+          </lemma>
+        </word>
+        <word form="*timole/wn" id="5">
+          <lemma id="nlsj10693" entry="Τιμολέων" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="mempto/s" id="6">
+          <lemma id="66246" entry="μεμπτός" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="e)stin" id="7">
+          <lemma id="31130" entry="εἰμί" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="oi)ki/an" id="8">
+          <lemma id="72287" entry="οἰκία" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="te" id="9">
+          <lemma id="102752" entry="τε" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="enclitic indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="kalh\n" id="10">
+          <lemma id="nlsj61372" entry="καλός" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="labw\n" id="11">
+          <lemma id="61791" entry="λαμβάνω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part act masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="12">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="xwri/on" id="13">
+          <lemma id="115212" entry="χωρίον" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <punct mark=":"/>
+      </sentence>
+      <sentence id="14" location="2.4">
+        <word form="ou)" id="1">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="ga\r" id="2">
+          <lemma id="21618" entry="γάρ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="to\" id="3">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="labei=n" id="4">
+          <lemma id="61791" entry="λαμβάνω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor inf act (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="e)k" id="5">
+          <lemma id="31575" entry="ἐκ" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="toiou/twn" id="6">
+          <lemma id="104169" entry="τοιοῦτος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc gen pl"/>
+            <analysis morph="neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="ai)sxro/n" id="7">
+          <lemma id="2731" entry="αἰσχρός" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+            <analysis morph="neut nom/voc/acc sg"/>
+            <analysis morph="masc/fem acc sg"/>
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="a)lla\" id="8">
+          <lemma id="4357" entry="ἀλλά" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="to\" id="9">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="mh\" id="10">
+          <lemma id="67283" entry="μή" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="labei=n" id="11">
+          <lemma id="61791" entry="λαμβάνω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor inf act (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="krei=tton" id="12">
+          <lemma id="59794" entry="κρείσσων" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem voc comp sg (attic)"/>
+            <analysis morph="neut nom/voc/acc comp sg (attic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="13">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="periousi/a" id="14">
+          <lemma id="81828" entry="περιουσία" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem nom/voc/acc dual"/>
+            <analysis morph="fem nom/voc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="th=s" id="15">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="a)reth=s" id="16">
+          <lemma id="nlsj14967" entry="ἀρετή" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="e)n" id="17">
+          <lemma id="34700" entry="ἐν" POS="preposition" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="proclitic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="oi(=s" id="18">
+          <lemma id="75512" entry="ὅς" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut dat pl"/>
+          </lemma>
+        </word>
+        <word form="e)/cestin" id="19">
+          <lemma id="37210" entry="ἔξεστι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="e)pideiknume/nhs" id="20">
+          <lemma id="39125" entry="ἐπιδείκνυμι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres part mp fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="to\" id="21">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="mh\" id="22">
+          <lemma id="67283" entry="μή" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="deo/menon" id="23">
+          <lemma id="nlsj32160" entry="δέομαι" POS="verb" disambiguated="0.33" TreeTagger="true">
+            <analysis morph="pres part mp masc acc sg (epic doric ionic aeolic)"/>
+            <analysis morph="pres part mp neut nom/voc/acc sg (epic doric ionic aeolic)"/>
+          </lemma>
+        </word>
+        <punct mark=":"/>
+      </sentence>
+      <sentence id="15" location="2.5">
+        <word form="e)pei\" id="1">
+          <lemma id="38466" entry="ἐπεί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="de/" id="2">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="w(s" id="3">
+          <lemma id="116401" entry="ὡς" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="sw/matos" id="4">
+          <lemma id="102000" entry="σῶμα" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut gen sg"/>
+          </lemma>
+        </word>
+        <word form="r(i=gos" id="5">
+          <lemma id="92402" entry="ῥῖγος" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="h)\" id="6">
+          <lemma id="46568" entry="ἠέ" POS="conjunction" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="qa/lpos" id="7">
+          <lemma id="47815" entry="θάλπος" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="fe/rein" id="8">
+          <lemma id="110598" entry="φέρω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf act (attic epic)"/>
+          </lemma>
+        </word>
+        <word form="duname/nou" id="9">
+          <lemma id="28566" entry="δύναμαι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres part mp masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <word form="to\" id="10">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="pro\s" id="11">
+          <lemma id="88443" entry="πρός" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="a)mfote/ras" id="12">
+          <lemma id="6174" entry="ἀμφότερος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+            <analysis morph="fem gen sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="eu)=" id="13">
+          <lemma id="43309" entry="εὖ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="pefuko\s" id="14">
+          <lemma id="112794" entry="φύω" POS="verb" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="perf part act neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="o(mou=" id="15">
+          <lemma id="73881" entry="ὁμοῦ" POS="adverb" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="ta\s" id="16">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+          </lemma>
+        </word>
+        <word form="metabola\s" id="17">
+          <lemma id="66594" entry="μεταβολή" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+          </lemma>
+        </word>
+        <word form="r(wmalew/teron" id="18">
+          <lemma id="92926" entry="ῥωμαλέος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="adverbial comp"/>
+            <analysis morph="masc acc comp sg"/>
+            <analysis morph="neut nom/voc/acc comp sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="ou(/tw" id="19">
+          <lemma id="76063" entry="οὕτως" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="yuxh=s" id="20">
+          <lemma id="115887" entry="ψυχή" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem gen sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="a)/kratos" id="21">
+          <lemma id="3436" entry="ἄκρατος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem nom sg"/>
+          </lemma>
+        </word>
+        <word form="eu)rwsti/a" id="22">
+          <lemma id="45079" entry="εὐρωστία" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem nom/voc/acc dual"/>
+            <analysis morph="fem nom/voc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="23">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="i)sxu/s" id="24">
+          <lemma id="51366" entry="ἰσχύς" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc pl"/>
+            <analysis morph="fem nom sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="h(\n" id="25">
+          <lemma id="75512" entry="ὅς" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic homeric ionic)"/>
+          </lemma>
+        </word>
+        <word form="ou)/te" id="26">
+          <lemma id="76050" entry="οὔτε" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="to\" id="27">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="eu)tuxei=n" id="28">
+          <lemma id="45368" entry="εὐτυχέω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf act (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="u(/brei" id="29">
+          <lemma id="106177" entry="ὕβρις" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem nom/voc/acc dual (attic epic)"/>
+            <analysis morph="fem dat sg (epic)"/>
+            <analysis morph="fem dat sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="qru/ptei" id="30">
+          <lemma id="49241" entry="θρύπτω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres ind mp 2nd sg"/>
+            <analysis morph="pres ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="31">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="a)ni/hsin" id="32">
+          <lemma id="8108" entry="ἄνειμι" POS="verb" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="pres subj act 3rd sg (epic)"/>
+          </lemma>
+        </word>
+        <word form="ou)/te" id="33">
+          <lemma id="76050" entry="οὔτε" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="sumforai\" id="34">
+          <lemma id="98925" entry="συμφορά" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem nom/voc pl"/>
+          </lemma>
+        </word>
+        <word form="tapeinou=si" id="35">
+          <lemma id="102392" entry="ταπεινόω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres part act masc/neut dat pl (attic ionic)"/>
+            <analysis morph="pres ind act 3rd pl (attic ionic)"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="fai/netai" id="36">
+          <lemma id="110114" entry="φαίνω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres ind mp 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="teleio/teros" id="37">
+          <lemma id="102930" entry="τέλειος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom comp sg"/>
+          </lemma>
+        </word>
+        <word form="o(" id="38">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <word form="*ai)mi/lios" id="39">
+          <lemma id="nlsj3968" entry="Αἰμίλιος" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="e)n" id="40">
+          <lemma id="34700" entry="ἐν" POS="preposition" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="proclitic indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="xaleph=|" id="41">
+          <lemma id="112989" entry="χαλεπός" POS="adjective" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem dat sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="tu/xh|" id="42">
+          <lemma id="106094" entry="τύχη" POS="noun" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="fem dat sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="43">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="pa/qei" id="44">
+          <lemma id="76530" entry="πάθος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc dual (attic epic)"/>
+            <analysis morph="neut dat sg (epic ionic)"/>
+            <analysis morph="neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="mega/lw|" id="45">
+          <lemma id="65552" entry="μέγας" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="tw=|" id="46">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="peri\" id="47">
+          <lemma id="81017" entry="περί" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="tou\s" id="48">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc pl"/>
+          </lemma>
+        </word>
+        <word form="pai=das" id="49">
+          <lemma id="76703" entry="παῖς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem acc pl"/>
+          </lemma>
+        </word>
+        <word form="ou)de/n" id="50">
+          <lemma id="75765" entry="οὐδείς" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="ti" id="51">
+          <lemma id="104051" entry="τις" POS="pronoun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="mikro/teros" id="52">
+          <lemma id="67762" entry="μικρός" POS="adjective" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="masc nom comp sg"/>
+          </lemma>
+        </word>
+        <word form="ou)de\" id="53">
+          <lemma id="75764" entry="οὐδέ" POS="particle" disambiguated="0.33" TreeTagger="false">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="a)semno/teros" id="54">
+          <lemma id="16150" entry="ἄσεμνος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom comp sg"/>
+          </lemma>
+        </word>
+        <word form="h)\" id="55">
+          <lemma id="46568" entry="ἠέ" POS="conjunction" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="dia\" id="56">
+          <lemma id="24517" entry="διά" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="tw=n" id="57">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem gen pl"/>
+            <analysis morph="masc/neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="eu)tuxhma/twn" id="58">
+          <lemma id="45369" entry="εὐτύχημα" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut gen pl"/>
+          </lemma>
+        </word>
+        <word form="o(raqei/s" id="59">
+          <lemma id="unknown" TreeTagger="false" disambiguated="n/a"/>
+        </word>
+        <punct mark=":"/>
+      </sentence>
+      <sentence id="16" location="2.6">
+        <word form="*timole/wn" id="1">
+          <lemma id="nlsj10693" entry="Τιμολέων" POS="proper" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="2">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="gennai=a" id="3">
+          <lemma id="21899" entry="γενναῖος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc pl"/>
+            <analysis morph="neut nom/voc/acc pl"/>
+          </lemma>
+        </word>
+        <word form="pra/cas" id="4">
+          <lemma id="86219" entry="πράσσω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part act masc nom/voc sg (attic epic ionic)"/>
+            <analysis morph="aor part act masc nom/voc sg (attic epic ionic)"/>
+            <analysis morph="aor ind act 2nd sg (homeric ionic)"/>
+          </lemma>
+        </word>
+        <word form="peri\" id="5">
+          <lemma id="81017" entry="περί" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="to\n" id="6">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+          </lemma>
+        </word>
+        <word form="a)delfo\n" id="7">
+          <lemma id="1211" entry="ἀδελφός" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc acc sg"/>
+          </lemma>
+        </word>
+        <word form="ou)k" id="8">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="a)nte/sxe" id="9">
+          <lemma id="9757" entry="ἀντέχω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <word form="tw=|" id="10">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="masc/neut dat sg"/>
+          </lemma>
+        </word>
+        <word form="logismw=|" id="11">
+          <lemma id="63724" entry="λογισμός" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc dat sg"/>
+          </lemma>
+        </word>
+        <word form="pro\s" id="12">
+          <lemma id="88443" entry="πρός" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="to\" id="13">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="pa/qos" id="14">
+          <lemma id="76530" entry="πάθος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="a)lla\" id="15">
+          <lemma id="4357" entry="ἀλλά" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="metanoi/a|" id="16">
+          <lemma id="66831" entry="μετάνοια" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem dat sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="17">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="lu/ph|" id="18">
+          <lemma id="64152" entry="λύπη" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem dat sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="tapeinwqei\s" id="19">
+          <lemma id="102392" entry="ταπεινόω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor part pass masc nom/voc sg"/>
+          </lemma>
+        </word>
+        <word form="e)tw=n" id="20">
+          <lemma id="nlsj744" entry="ἔται" POS="noun" disambiguated="0.33" TreeTagger="true">
+            <analysis morph="masc gen pl"/>
+          </lemma>
+        </word>
+        <word form="ei)/kosi" id="21">
+          <lemma id="30989" entry="εἴκοσι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (numeral)"/>
+          </lemma>
+        </word>
+        <word form="to\" id="22">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="bh=ma" id="23">
+          <lemma id="19841" entry="βῆμα" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="24">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="th\n" id="25">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="a)gora\n" id="26">
+          <lemma id="761" entry="ἀγορά" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="i)dei=n" id="27">
+          <lemma id="nlsj11198" entry="εἶδον" POS="verb" disambiguated="0.5" TreeTagger="true">
+            <analysis morph="aor inf act (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="ou)x" id="28">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="u(pe/meine" id="29">
+          <lemma id="108780" entry="ὑπομένω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="aor ind act 3rd sg"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+      <sentence id="17" location="2.6">
+        <word form="dei=" id="1">
+          <lemma id="nlsj32160" entry="δέομαι" POS="verb" disambiguated="0.25" TreeTagger="true">
+            <analysis morph="pres ind mp 2nd sg (attic epic doric ionic)"/>
+          </lemma>
+        </word>
+        <word form="de\" id="2">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="ta\" id="3">
+          <lemma id="71882" entry="ὁ" POS="article" disambiguated="1.0" TreeTagger="true">
+            <analysis morph="neut acc pl"/>
+            <analysis morph="neut nom/voc/acc pl"/>
+            <analysis morph="fem acc dual"/>
+            <analysis morph="fem nom/voc/acc dual"/>
+          </lemma>
+        </word>
+        <word form="ai)sxra\" id="4">
+          <lemma id="2731" entry="αἰσχρός" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc pl"/>
+            <analysis morph="fem nom/voc/acc dual"/>
+            <analysis morph="fem nom/voc sg (attic doric aeolic)"/>
+            <analysis morph="neut nom/voc/acc pl"/>
+          </lemma>
+        </word>
+        <word form="feu/gein" id="5">
+          <lemma id="110606" entry="φεύγω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf act (attic epic)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="6">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="ai)dei=sqai" id="7">
+          <lemma id="2234" entry="αἰδέομαι" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres inf mp (attic epic)"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="to\" id="8">
+          <lemma id="71882" entry="ὁ" POS="article" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="9">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="pro\s" id="10">
+          <lemma id="88443" entry="πρός" POS="preposition" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (prep)"/>
+          </lemma>
+        </word>
+        <word form="pa=san" id="11">
+          <lemma id="79904" entry="πᾶς" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic epic ionic)"/>
+          </lemma>
+        </word>
+        <word form="a)doci/an" id="12">
+          <lemma id="1454" entry="ἀδοξία" POS="noun" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="fem acc sg (attic doric aeolic)"/>
+          </lemma>
+        </word>
+        <word form="eu)labe\s" id="13">
+          <lemma id="44353" entry="εὐλαβής" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem voc sg"/>
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="e)pieikou=s" id="14">
+          <lemma id="39331" entry="ἐπιεικής" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/fem/neut gen sg (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="me\n" id="15">
+          <lemma id="66260" entry="μέν" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="h)/qous" id="16">
+          <lemma id="46782" entry="ἦθος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut gen sg (attic epic doric)"/>
+          </lemma>
+        </word>
+        <word form="kai\" id="17">
+          <lemma id="51951" entry="καί" POS="conjunction" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (conj)"/>
+          </lemma>
+        </word>
+        <word form="a(palou=" id="18">
+          <lemma id="11325" entry="ἁπαλός" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <punct mark=","/>
+        <word form="me/geqos" id="19">
+          <lemma id="65565" entry="μέγεθος" POS="adjective" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="neut nom/voc/acc sg"/>
+          </lemma>
+        </word>
+        <word form="de\" id="20">
+          <lemma id="23596" entry="δέ" POS="particle" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="indeclform (particle)"/>
+          </lemma>
+        </word>
+        <word form="ou)k" id="21">
+          <lemma id="75730" entry="οὐ" POS="adverb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="proclitic indeclform (adverb)"/>
+          </lemma>
+        </word>
+        <word form="e)/xontos" id="22">
+          <lemma id="45996" entry="ἔχω" POS="verb" TreeTagger="false" disambiguated="n/a">
+            <analysis morph="pres part act masc/neut gen sg"/>
+          </lemma>
+        </word>
+        <punct mark="."/>
+      </sentence>
+    </body>
+  </text>
+</TEI.2>

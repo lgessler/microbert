@@ -44,6 +44,15 @@ def ttline_parse_open_tag(ttsgml_line):
     return element_name, OrderedDict(attrs)
 
 
+def number(doc_tls):
+    for tls in doc_tls:
+        for tl in tls:
+            i = 1
+            for token in tl:
+                token['id'] = i
+                i += 1
+
+
 def get_splits(xs, proportions):
     """
     Split a sequence into deterministically randomized splits with size indicated in proportions.

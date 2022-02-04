@@ -159,15 +159,6 @@ def parse_tts():
     return web_tls + gospels_tls + wiki_tls
 
 
-def number(doc_tls):
-    for tls in doc_tls:
-        for tl in tls:
-            i = 1
-            for token in tl:
-                token['id'] = i
-                i += 1
-
-
 def main():
     wowiki_tls = parse_wowiki()
     tt_tls = parse_tts()
@@ -175,8 +166,8 @@ def main():
     train_tls, dev_tls = eso.get_splits(doc_tls, proportions=[0.9, 0.1])
     train_tc = sum(sum(len(tl) for tl in tls) for tls in train_tls)
     dev_tc = sum(sum(len(tl) for tl in tls) for tls in dev_tls)
-    number(train_tls)
-    number(dev_tls)
+    eso.number(train_tls)
+    eso.number(dev_tls)
 
     print(f"Split: train {train_tc}, dev {dev_tc}")
 
