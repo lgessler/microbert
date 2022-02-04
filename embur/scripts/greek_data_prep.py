@@ -24,7 +24,7 @@ def file_to_tokenlists(filepath):
         sentence_id = sentence["id"]
         words = sentence.findAll("word")
         tokens = [eso.token() for _ in range(len(words))]
-        meta = {"sent_id": sentence_id}
+        meta = {"sent_id": title_id + " - " + title + " - " + sentence_id}
         if sent_num == 0:
             meta["newdoc id"] = f"{title_id} - {title}"
         for i, (word, token) in enumerate(zip(words, tokens)):
