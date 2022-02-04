@@ -1,0 +1,1874 @@
+<html><body><text id="wikipedia_mt_wikipedia_org__11257.html" ns="0" revid="257560" sourceurl="https://mt.wikipedia.org/wiki/Teorija_tal-grafi" title="Teorija tal-grafi" type="wikipedia">Teorija tal-grafi<figure><caption>Fig. 1: Graf mhux orjentat b'6 vertiċi u b'7t ixfar.</caption></figure>
+<p>Fil-matematika t-terminu <hi rend="bold">graf</hi> (li m'għandniex inħalltuh ma' <hi rend="italic"><ref target="https://mt.wikipedia.org/wiki/Grafiku_ta'_funzjoni">grafiku ta' funzjoni</ref></hi>) ifisser oġġett li jiġġeneralizza l-kunċett ta' relazzjoni binarja u ta' poliedru. Dan l-oġġett li niddeskrivu hawn huwa utli ħafna fl-immudellar ta' bosta problemi fil-"ħajja ta' kuljum" (jiġifieri li niltaqgħu magħhom barra l-matematika, bħal dawk li għandhom x’jaqsmu mal-idea ta' <ref target="https://mt.wikipedia.org/wiki/Xibka">xibka</ref> fl-informatika, xjenzi soċjali, problemi tat-traffiku u oħrajn).</p>
+Definizzjoni
+Definizzjoni ta' Berge
+<p>Nistgħu ngħidu li t-teorija tal-grafi bdiet fis-snin 60, bix-xogħol tal-matematiku Franċiż, Claude Berge (1926 - 2002), <hi rend="italic">Graphe et Hypergraphes</hi> (Grafi u ipergrafi)<ref target="https://mt.wikipedia.org/wiki/Il-Paġna_prinċipali#cite_note-1">[1]</ref>, allavolja l-kunċett hu ħafna iżjed antik. Li għamel Berge kien li ġabar f'din it-teorija bosta riżultati tal-kombinatorja li kienu diġà magħrufin, u mmotiva l-istudju tal-grafi b'applikazzjonijiet, rabtiet mat-<ref target="https://mt.wikipedia.org/wiki/Teorija_tal-logħob">teorija tal-logħob</ref> u b’konġetturi.</p>
+<p>Daż-żmien nagħtu definizzjoni intwittiva tal-grafi (ara iżjed l-isfel) li tidher differenti min dik li ta' Berge, però infatti hija ekwivalenti: Berge iddefinixxa graf bħala tern<ref target="https://mt.wikipedia.org/wiki/Il-Paġna_prinċipali#cite_note-2">[2]</ref> 
+
+
+
+
+
+(
+V
+,
+E
+,
+ϕ
+)
+
+
+
+
+{\displaystyle \displaystyle {(V,E,\phi )}}
+
+ fejn 
+
+
+
+
+
+ϕ
+
+
+
+
+{\displaystyle \displaystyle {\phi }}
+
+ hi funzjoni 
+
+
+
+
+
+ϕ
+:
+E
+→
+V
+×
+V
+
+
+
+
+{\displaystyle \displaystyle {\phi :E\rightarrow V\times V}}
+
+.
+Il-vokabularju tat-teorija ssellef mill-ġeometrija tal-poliedri. Dawn jikkorrispondu ma' każ partikulari ta' graf fejn fit-tern 
+
+
+
+
+
+(
+V
+,
+E
+,
+ϕ
+)
+
+
+
+
+{\displaystyle \displaystyle {(V,E,\phi )}}
+
+, 
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+ hu s-sett tal-vertiċi tal-poliedru, 
+
+
+
+
+
+E
+
+
+
+
+{\displaystyle \displaystyle {E}}
+
+ ix-xfar tal-poliedru u 
+
+
+
+
+
+ϕ
+(
+e
+)
+=
+(
+u
+,
+v
+)
+
+
+
+
+{\displaystyle \displaystyle {\phi (e)=(u,v)}}
+
+ jekk ix-xifer 
+
+
+
+
+
+e
+
+
+
+
+{\displaystyle \displaystyle {e}}
+
+ jgħaqqad iż-żewġ vertiċi 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle \displaystyle {u}}
+
+ u 
+
+
+
+
+
+v
+
+
+
+
+{\displaystyle \displaystyle {v}}
+
+. Dan il-vokabularju baqa' jintuża u għal graf ġenerali, 
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+ ngħidulu s-sett tal-"vertiċi" tiegħu, 
+
+
+
+
+
+E
+
+
+
+
+{\displaystyle \displaystyle {E}}
+
+ is-sett tax-"xfar" tiegħu ("arki" jekk il-ġraf ikun orjentat) u 
+
+
+
+
+
+ϕ
+
+
+
+
+{\displaystyle \displaystyle {\phi }}
+
+ hi l-<hi rend="italic">funzjoni tal-inċidenza</hi> tiegħu li ma' kull xifer (ark) tassoċja par vertiċi.</p>
+Definizzjoni intwittiva
+Grafi
+<p>Hawn nagħtu definizzjoni iżjed intwittiva (b’formaliżmu inqas tqil minn dak tas-snin 60). Il-grafi mhux orjentati nistgħu niddefinuhom hekk:</p>
+<hi rend="bold">Graf mhux orjentat</hi> 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ hu par 
+
+
+
+
+
+(
+V
+,
+A
+)
+
+
+
+
+{\displaystyle \displaystyle {(V,A)}}
+
+, fejn:
+<list type="unordered"><item>
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+ hu sett li l-elementi tiegħu ngħidulhom <hi rend="bold">vertiċi</hi>;</item>
+<item>
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle \displaystyle {A}}
+
+ hu sett ta' <hi rend="italic">pari</hi> (mhux ordnati) ta' vertiċi, msejħin <hi rend="bold">xfar</hi>.</item></list>
+<p>Għall-graf fil-figura 1 murija iżjed 'il fuq, għandna 
+
+
+
+
+V
+=
+
+{
+
+1
+,
+2
+,
+3
+,
+4
+,
+5
+,
+6
+
+}
+
+
+
+{\displaystyle V=\left\{1,2,3,4,5,6\right\}}
+
+ 
+u 
+
+
+
+A
+=
+
+{
+
+(
+1
+,
+2
+)
+,
+(
+2
+,
+3
+)
+,
+(
+2
+,
+5
+)
+,
+(
+4
+,
+5
+)
+,
+(
+1
+,
+5
+)
+,
+(
+4
+,
+3
+)
+,
+(
+4
+,
+6
+)
+
+}
+
+
+
+{\displaystyle A=\left\{(1,2),(2,3),(2,5),(4,5),(1,5),(4,3),(4,6)\right\}}
+
+.</p>
+<figure><caption>Fig. 2: Graf orjentat b'5 vertiċi u 6 arki li fosthom hemm ħolqa waħda.</caption></figure>
+<p>Bl-istess mod nistgħu niddefinixxu l-grafi orjentati:</p>
+<hi rend="bold">Graf orjentat</hi> 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ hu par 
+
+
+
+
+
+(
+V
+,
+A
+)
+
+
+
+
+{\displaystyle \displaystyle {(V,A)}}
+
+, fejn:
+<list type="unordered"><item>
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+ hu sett li l-elementi tiegħu ngħidulhom <hi rend="bold">vertiċi</hi>;</item>
+<item>
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle \displaystyle {A}}
+
+ hu sett ta' <hi rend="italic">pari ordnati</hi> ta' vertiċi, msejħin <hi rend="bold">arki</hi>.</item></list>
+<p>Għall-graf fil-figura 2 murija hawn, għandna 
+
+
+
+
+V
+=
+
+{
+
+1
+,
+2
+,
+3
+,
+4
+,
+5
+
+}
+
+
+
+{\displaystyle V=\left\{1,2,3,4,5\right\}}
+
+ 
+u 
+
+
+
+A
+=
+
+{
+
+(
+1
+,
+2
+)
+,
+(
+2
+,
+3
+)
+,
+(
+3
+,
+1
+)
+,
+(
+2
+,
+5
+)
+,
+(
+4
+,
+5
+)
+,
+(
+5
+,
+5
+)
+
+}
+
+
+
+{\displaystyle A=\left\{(1,2),(2,3),(3,1),(2,5),(4,5),(5,5)\right\}}
+
+.</p>
+<p>Meta 
+
+
+
+
+
+e
+=
+(
+u
+,
+v
+)
+∈
+A
+
+
+
+
+{\displaystyle \displaystyle {e=(u,v)\in A}}
+
+, ngħidu li 
+
+
+
+
+
+e
+
+
+
+
+{\displaystyle \displaystyle {e}}
+
+ u 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle \displaystyle {u}}
+
+ huma <hi rend="bold">inċidenti</hi> (l-istess għal 
+
+
+
+
+
+e
+
+
+
+
+{\displaystyle \displaystyle {e}}
+
+ u 
+
+
+
+
+
+v
+
+
+
+
+{\displaystyle \displaystyle {v}}
+
+), li 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle \displaystyle {u}}
+
+ u 
+
+
+
+
+
+v
+
+
+
+
+{\displaystyle \displaystyle {v}}
+
+ huma <hi rend="bold">ġirien</hi> u li ż-żewġ vertiċi huma t-<hi rend="bold">truf</hi> ta' 
+
+
+
+
+
+e
+
+
+
+
+{\displaystyle \displaystyle {e}}
+
+. Żewġ xfar ngħidulhom ġirien jekk hemm vertiċi li t-tnejn huma inċidenti miegħu. Jekk il-graf ikun orjentat, 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle \displaystyle {u}}
+
+ ngħidulu t-<hi rend="bold">tarf tal-bidu</hi> jew <hi rend="bold">ras</hi> ta' 
+
+
+
+
+
+e
+
+
+
+
+{\displaystyle \displaystyle {e}}
+
+ u 
+
+
+
+
+
+v
+
+
+
+
+{\displaystyle \displaystyle {v}}
+
+ t-<hi rend="bold">tarf tal-aħħar</hi> jew <hi rend="bold">denb</hi> (fil-każ li mhux orjentat il-vertiċi ngħidulhom sempliċiment truf u m'hemmx bżonn inkunu iżjed eżatti). Fil-grafi orjentati, żewġ xfar ngħidulhom <hi rend="bold">konsekuttivi</hi> jekk huma ġirien u t-tarf komuni tagħhom huwa r-ras għal wieħed mill-arki u d-denb għall-ieħor. Xifer (ark) ngħidulu <hi rend="bold">ħolqa</hi> jekk iż-żewġ truf tiegħu huma l-istess. Graf ngħidulu <hi rend="bold">sempliċi</hi> jekk m'għandu l-ebda ħolqa u l-ebda żewġ xfar bl-istess truf. </p>
+<p>Minn hawn l-isfel f'dan l-artiklu nassumu li l-grafi huma sempliċi.</p>
+<p>L-ikbar numru ta' xfar ta' graf sempliċi allura hu 
+
+
+
+
+
+n
+(
+n
+−
+1
+)
+
+/
+
+2
+
+
+
+
+{\displaystyle \displaystyle {n(n-1)/2}}
+
+ jekk mhux orjentat u 
+
+
+
+
+
+n
+(
+n
+−
+1
+)
+
+
+
+
+{\displaystyle \displaystyle {n(n-1)}}
+
+ jekk hu orjentat, fejn 
+
+
+
+
+
+n
+
+
+
+
+{\displaystyle \displaystyle {n}}
+
+ hu n-numru ta' vertiċi. Dawn il-grafi jikkorrispondu mar-relazzjonijiet binarji mhux riflessivi.
+Il-grafi sempliċi orjentati mingħajr pari t'arki tal-forma 
+
+
+
+
+
+(
+u
+,
+v
+)
+
+
+
+
+{\displaystyle \displaystyle {(u,v)}}
+
+ u 
+
+
+
+
+
+(
+v
+,
+u
+)
+
+
+
+
+{\displaystyle \displaystyle {(v,u)}}
+
+ jikkorrispondu mar-relazzjonijiet binarji mhux riflessivi
+u antisimmetriċi.</p>
+Iżjed definizzjonijet
+<list type="unordered"><item>L-<hi rend="bold">ordni</hi> ta' graf huwa numru ta' vertiċi u d-<hi rend="bold">daqs</hi> tiegħu huwa n-numru ta' xfar (jew arki) fih. Il-<hi rend="bold">grad</hi> ta' vertiċi huwa n-numru ta' xfar (arki) mqabbdin miegħu.</item></list>
+Per eżempju, il-graf fil-figura 1 għandu ordni 7 u daqs 6; il-vertiċi 2, 4 u 5 għandhom grad 3, il-vertiċi 1 u 3 għandhom grad 2 u l-vertiċi 6 għandha 1 bħala grad.
+<list type="unordered"><item>Il-<hi rend="bold">kumplament</hi> 
+
+
+
+
+
+
+G
+¯
+
+
+
+
+
+{\displaystyle {\bar {G}}}
+
+ ta' graf 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ huwa graf bl-istess sett ta' vertiċi bħal 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+, però s-sett ta' xfar tiegħu fih ix-xfar kollha possibbli (fuq dawn il-vertiċi) li mhumiex xfar ta' 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+.</item></list>
+Per eżempju, il-kumplament tal-graf fl-ewwel figura għandu xfar 
+
+
+
+
+{
+
+(
+1
+,
+3
+)
+,
+(
+1
+,
+4
+)
+,
+(
+1
+,
+6
+)
+,
+(
+2
+,
+4
+)
+,
+(
+2
+,
+6
+)
+,
+(
+3
+,
+5
+)
+,
+(
+3
+,
+6
+)
+,
+(
+6
+,
+5
+)
+
+}
+
+
+
+{\displaystyle \left\{(1,3),(1,4),(1,6),(2,4),(2,6),(3,5),(3,6),(6,5)\right\}}
+
+.
+<list type="unordered"><item><hi rend="bold">Sottograf</hi> ta' 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ hu graf li s-sett ta' vertiċi tiegħu hu sottosett tas-sett ta' vertiċi ta' <hi rend="italic">G</hi>, u li s-sett ta' xfar (arki) tiegħu hu sottosett tax-xfar (arki) ta' 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+. Jekk is-sottosett ta' xfar (arki) fih ix-xfar (arki) kollha ta' 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ li jgħaqqdu s-sottosett ta' vertiċi bejniethom, is-sottograf ngħidu li hu <hi rend="bold">mnissel</hi> minn 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+.</item></list>
+Per eżempju, jekk 
+
+
+
+
+V
+′
+
+=
+
+{
+
+2
+,
+3
+,
+4
+,
+5
+
+}
+
+
+
+{\displaystyle V'=\left\{2,3,4,5\right\}}
+
+ u 
+
+
+
+
+A
+′
+
+=
+
+{
+
+(
+2
+,
+3
+)
+,
+(
+4
+,
+5
+)
+,
+(
+4
+,
+3
+)
+
+}
+
+
+
+{\displaystyle A'=\left\{(2,3),(4,5),(4,3)\right\}}
+
+, il-graf 
+
+
+
+
+
+
+G
+′
+
+=
+(
+
+V
+′
+
+,
+
+A
+′
+
+)
+
+
+
+
+{\displaystyle \displaystyle {G'=(V',A')}}
+
+ hu sottograf tal-graf fil-figura 1. però mhux imissel, waqt li jekk 
+
+
+
+
+V
+″
+
+=
+
+{
+
+2
+,
+3
+,
+4
+,
+5
+
+}
+
+
+
+{\displaystyle V''=\left\{2,3,4,5\right\}}
+
+ u 
+
+
+
+
+A
+″
+
+=
+
+{
+
+(
+2
+,
+3
+)
+,
+(
+4
+,
+5
+)
+,
+(
+4
+,
+3
+)
+,
+(
+5
+,
+2
+)
+
+}
+
+
+
+{\displaystyle A''=\left\{(2,3),(4,5),(4,3),(5,2)\right\}}
+
+, il-graf 
+
+
+
+
+
+
+G
+″
+
+=
+(
+
+V
+″
+
+,
+
+A
+″
+
+)
+
+
+
+
+{\displaystyle \displaystyle {G''=(V'',A'')}}
+
+ hu sottograf imnissel tal-graf fil-figura 1.
+Jekk is-sett ta' vertiċi tas-sottograf hu l-istess bħas-sett ta' vertiċi ta' 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+, ngħidu li s-sottograf <hi rend="bold">jgħatti</hi> 'l 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+' jew li hu graf <hi rend="bold">għattej</hi> ta' 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+.
+<list type="unordered"><item><hi rend="bold">Mogħdija</hi> fi graf hi sekwenza ta' vertiċi li għal kull vertiċi fiha hemm xifer minn din il-vertiċi għall-vertiċi li jmiss. Fi graf mhux orjentat 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+, żewġ vertiċi 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle \displaystyle {u}}
+
+ and 
+
+
+
+
+
+v
+
+
+
+
+{\displaystyle \displaystyle {v}}
+
+ ngħidulhom <hi rend="bold">konnessi</hi> jekk 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ fih mogħdija minn 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle \displaystyle {u}}
+
+ għal 
+
+
+
+
+
+v
+
+
+
+
+{\displaystyle \displaystyle {v}}
+
+. Inkella ngħidulhom <hi rend="bold">skonnessi</hi>. Graf insejħulu <hi rend="bold">konness</hi> jekk kull par ta' vertiċi distinti fil-graf hu konness. Mogħdija hi <hi rend="bold">mnissla</hi> jekk hi sottograf imnissel. <hi rend="bold">Ċiklu</hi> hu mogħdija magħluqa. Bl-istess mod ċiklu hu <hi rend="bold">mnissel</hi> jekk hu sottograf imnissel.</item>
+<item>Graf insejħulu <hi rend="bold">Eulerjan</hi> jekk hu konness u kull vertiċi għandha grad 2.</item></list>
+<figure><caption>Fig. 3: Siġra b'6 vertiċi u 5 xfar</caption></figure>
+<list type="unordered"><item><hi rend="bold">Siġra</hi> hi graf konness li ma fih l-ebda ċiklu magħluq li ma jaqsamx lilu nfisu.</item>
+<item>Graf <hi rend="bold">bipartit</hi> hu graf mhux orjentat li l-vertiċi tiegħu nistgħu naqsmuhom f’żewġ sottosettijiet b'mod li kull vertiċi f'sett wieħed hi mqabbda biss ma' vertiċi tas-sett l-ieħor.</item>
+<item>Graf ngħidulu <hi rend="bold">regolari</hi> jekk il-vertiċi kollha għandhom l-istess numru ta' ġirien.</item>
+<item>Fi graf 
+
+
+
+
+
+G
+=
+(
+V
+,
+A
+)
+
+
+
+
+{\displaystyle \displaystyle {G=(V,A)}}
+
+, <hi rend="bold">qbil</hi> 
+
+
+
+
+
+Q
+
+
+
+
+{\displaystyle \displaystyle {Q}}
+
+ f'
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ hu sett ta' xfar li l-ebda tnejn minnhom m'huma ġirien, jiġifieri l-ebda żewġ truf m'għandhom l-istess vertiċi. <hi rend="bold">Qbil massimu</hi> hu qbil li fih l-ikbar numru ta' xfar possibbli. Jista' jkun hemm ħafna qbilijiet massimi. Graf ikollu <hi rend="bold">qbil perfett</hi> jekk 
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle \displaystyle {A}}
+
+ stess hu qbil, jiġifieri jekk għall-kull par ta' vertiċi jkun hemm xifer bihom bħala truf u dan ix-xifer ma jkun inċidenti mal-ebda vertiċi ieħor.</item>
+<item><hi rend="bold">Għatja tal-vertiċi</hi> tal-graf 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ hu sottosett ta' vertiċi minn 
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+, 
+
+
+
+
+
+K
+
+
+
+
+{\displaystyle \displaystyle {K}}
+
+, bil-propjetà li kull xifer ta' 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ hu inċidenti mill-inqas ma' vertiċi wieħed minn 
+
+
+
+
+
+K
+
+
+
+
+{\displaystyle \displaystyle {K}}
+
+. Għatja tal-vertiċi hija <hi rend="bold">minima</hi> jekk m'hemm l-ebda għatja tal-vertiċi b'inqas vertiċi.</item>
+<item><hi rend="bold">Kulurazzjoni ta' graf</hi> jew <hi rend="bold">tilwin ta' graf</hi> hu tqassim ta' tikketti, tradizzjonalment imsejħin "kuluri" jew "lwien", fuq il-vertiċi tal-graf b'mod li l-ebda żewġ ġirien ma jingħataw l-istess kulur. L-iżgħar numru ta' lwien meħtieġa biex niżbgħu graf 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ jgħidulu n-<hi rend="bold">numru kromatiku</hi> tiegħu, 
+
+
+
+
+
+χ
+(
+G
+)
+
+
+
+
+{\displaystyle \displaystyle {\chi (G)}}
+
+.</item>
+<item><hi rend="bold">Klikka</hi> fi graf hu sett ta' vertiċi fih, li kull tnejn minnhom huma ġirien ta' xulxin. In-<hi rend="bold">numru tal-klikka</hi> 
+
+
+
+
+
+ω
+(
+G
+)
+
+
+
+
+{\displaystyle \displaystyle {\omega (G)}}
+
+ ta' graf 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ hu n-numru ta' vertiċi fl-ikbar klikka f' 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+.</item>
+<item><hi rend="bold">Graf perfett</hi> hu graf li għal kull sottograf imnissel minnu, in-numru kromatiku hu daqs in-numru tal-klikka ta' dak is-sottograf.</item></list>
+<p>Għal grafi iżjed ġenerali (mhux bilfors sempliċi) nissostitwixxu l-arki jew xfar b’familji ta’ arki jew xfar, jiġifieri 
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle \displaystyle {A}}
+
+ hu sett ta' familji ta' <hi rend="italic">pari</hi> ta' vertiċi (ordnati jew mhux ordnati skont il-każ).</p>
+Ipergrafi
+
+<p><hi rend="bold">Ipergraf</hi> hu ġeneralizzazzjoni ta' graf fis-sens li l-ixfar jistgħu jgħaqqdu kwalunkwe għadd ta' vertiċi mhux tnejn biss. Formalment, ipergraf mhux orjentat 
+
+
+
+
+
+H
+
+
+
+
+{\displaystyle \displaystyle {H}}
+
+ hu par 
+
+
+
+
+
+H
+=
+(
+V
+,
+A
+)
+
+
+
+
+{\displaystyle \displaystyle {H=(V,A)}}
+
+ fejn 
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+ hu sett ta' vertiċi u 
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle \displaystyle {A}}
+
+ hu sett ta' sottosettijiet ta' 
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+ mhux vojta li nsejħulhom <hi rend="bold">iperxfar</hi>. Waqt li l-ixfar ta' graf huma pari ta' vertiċi, l-iperxfar hu sett arbitrarju ta' vertiċi u għalhekk jista' jkun hemm fih numru arbitraru ta' vertiċi. Ċerti kunċetti (bħal konnettività) ma jintrasferrux tajjeb għall-ipergrafi u agħar għall-ipergrafi orjentati.</p>
+Rappreżentazzjoni informali
+<p>Il-grafi orjentati nistgħu nirrappreżentawhom b’disinn, kif turi l-figura 2.
+Fid-disinn nuru l-vertiċi b’tikek (jew ċrieki) u l-arki bi vleġeġ li jmorru mir-ras tal-ark għad-denb. Fil-grafi mhux orjentati, minflok vleġeg inpinġu linji bħal ma turi l-figura 1.</p>
+Storja fil-qosor
+<p>1736: L-iżjed riżultat antik kif ukoll l-iżjed magħruf li nistgħu ninkludu fit-teorija tal-grafi huwa l-karatterizzazzjoni tal-grafi Eulerjani minn <ref target="https://mt.wikipedia.org/wiki/Leonhard_Euler">Euler</ref> fl-1736, li bħala motivazzjoni kellha l-<hi rend="bold">Problema tas-seba' pontijiet ta' Königsberg</hi><ref target="https://mt.wikipedia.org/wiki/Il-Paġna_prinċipali#cite_note-3">[3]</ref>.</p>
+<p>1852: Francis Guthrie ippropona l-famuż <hi rend="bold">problema ta' erba' kuluri</hi><ref target="https://mt.wikipedia.org/wiki/Il-Paġna_prinċipali#cite_note-4">[4]</ref> li s-soluzzjoni tiegħu nstabet iżjed minn seklu wara. Dan ir-riżultat tant importanti, taha lit-teorija tal-grafi ċertu prestiġju. Il-vokabularju stess tat-teorija tal-grafi ġej mir-riżoluzzjoni ta' din il-problema fejn jintużaw grafi mnisslin minn poliedri biss.</p>
+<p>1914: "Kull graf bipartit regolari għandu qbil perfett" (mħabbra minn König (ippublikata 1916)).</p>
+<p>1927: <hi rend="bold">It-teorema ta' Menger</hi>, l-ewwel riżultat fuq il-konnettività fi graf, u, a posteriori, l-ewwel teorema min-mass:</p>
+<hi rend="italic">Ħalli 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle \displaystyle {G}}
+
+ jkun graf mhux orjentat finit u 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle \displaystyle {u}}
+
+ u 
+
+
+
+
+
+v
+
+
+
+
+{\displaystyle \displaystyle {v}}
+
+ żewġ vertiċi mhux ġirien. It-teorema tgħid li l-iżgħar numru ta' vertiċi li rridu nneħħu biex niskonnettjaw 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle \displaystyle {u}}
+
+ u 
+
+
+
+
+
+v
+
+
+
+
+{\displaystyle \displaystyle {v}}
+
+ huwa daqs l-ikbar numru ta' mgħodijiet minn 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle \displaystyle {u}}
+
+ għal 
+
+
+
+
+
+v
+
+
+
+
+{\displaystyle \displaystyle {v}}
+
+ li m'għandhomx vertiċi komuni bejniethom.</hi>
+<p>1931: <hi rend="bold">It-teorema ta' König</hi>:</p>
+<hi rend="italic">Fi graf bipartit, in-numru ta' xfar fi qbil massimu hu daqs in-numru ta' vertiċi f'għatja minima tal-vertiċi.</hi>
+<p>1935: <hi rend="bold">It-teorema ta' Hall</hi> (iġġeneralizzat minn Tutte u wara minn Tutte-Berge) fuq il-qbilijiet perfetti fil-grafi bipartiti. Dan ir-riżultat kien il-bidu tal-klassi "co-NP", u wara flimkien mal-algoritmu tal-qbil perfett ta' Edmonds kien il-bidu tal-konġettura 
+
+
+
+
+
+P
+
+
+=
+
+
+NP
+
+
+∩
+
+
+co-NP
+
+
+
+
+{\displaystyle {\textrm {P}}={\textrm {NP}}\cap {\textrm {co-NP}}}
+
+ fit- <ref target="https://mt.wikipedia.org/wiki/Teorija_tal-komplessità">Teorija tal-komplessità</ref>. It-teorema jgħid hekk:</p>
+<hi rend="italic">Graf bipartit 
+
+
+
+
+
+G
+=
+(
+U
+,
+V
+;
+A
+)
+
+
+
+
+{\displaystyle \displaystyle {G=(U,V;A)}}
+
+, masqum f' 
+
+
+
+
+
+U
+
+
+
+
+{\displaystyle \displaystyle {U}}
+
+ u 
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+, għandu qbil perfett jekk u biss jekk għal kull sottosett 
+
+
+
+
+
+X
+
+
+
+
+{\displaystyle \displaystyle {X}}
+
+ ta' 
+
+
+
+
+
+U
+
+
+
+
+{\displaystyle \displaystyle {U}}
+
+ (rispettivament ta' 
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+), in-numru ta' vertiċi f' 
+
+
+
+
+
+V
+
+
+
+
+{\displaystyle \displaystyle {V}}
+
+ (rispettivament f' 
+
+
+
+
+
+U
+
+
+
+
+{\displaystyle \displaystyle {U}}
+
+) li huma ġirien ma' xi vertiċi f'
+
+
+
+
+
+X
+
+
+
+
+{\displaystyle \displaystyle {X}}
+
+ hu ikbar jew daqs il-kardinalità ta' 
+
+
+
+
+
+X
+
+
+
+
+{\displaystyle \displaystyle {X}}
+
+.</hi>
+<p>1956: Din kienet sena imporanti ħafna. Kienet is-sena tat-<hi rend="bold">Teorema kurrent-massimu/qtugħ-minimu</hi> li ġġeneralizzat it-teoremi ta' Menger, ta' König u ta' Hall, u kienet il-bidu tal-<ref target="https://mt.wikipedia.org/wiki/Programmazzjoni_linjari">programmazzjoni linjari</ref>. Kienet ukoll is-sena tal-algoritmu ta' Kruskal, l-ewwel <hi rend="bold">algoritmu żaqqieq</hi> għall-grafi. Dan ir-riżultat welled mill-ġdid it-teorija tal-matrojdi li Tutte rabat mat-teorija tal-grafi.</p>
+<p>1960: <hi rend="bold">Il-konġetturi ta' Berge</hi>
+Berge ippropona żewġ konġetturi li jikkaratterizzaw il-grafi perfetti,
+élevées au rang de théorèmes depuis leur démonstration: </p>
+<list type="unordered"><item><hi rend="bold">Teorema dagħjef tal-grafi pefetti</hi>:</item></list>
+<hi rend="italic">Graph hu perfett jekk u biss jekk il-kumplament tiegħu hu perfett.</hi>
+<list type="unordered"><item><hi rend="bold">Teorema qawwi tal-grafi pefetti</hi>:</item></list>
+<hi rend="italic">Graph hu perfett jekk u biss jekk la hu u lanqas il-kumplament tiegħu ma fih ċiklu mnissel ta' tul <hi rend="bold">fard</hi> inqas minn ħamsa.</hi>
+<p>1972: László Lovász ipprova t-Teorema dgħajjef tal-grafi pefetti ta' Berge. </p>
+<p>1976: <hi rend="bold">It-teorema tal-erba' kuluri</hi> (riżoluzzjoni tal-problema li kien ippropona Guthrie miż-żewġ matematiċi Kenneth Appel u Wolfgang Haken).</p>
+<p>2002: Maria Chudnovsky, Neil Robertson, Paul D. Seymour u Robin Thomas ipprovaw it-Teorema qawwija tal-grafi pefetti ta' Berge.</p>
+<p>Fit-tieni nofs tas-seklu XX, it-teorija tal-grafi bdiet tinteraġixxi ma’ bosta oqsma oħra.
+Wara l-gwerra, il-problemi tal-kurrenti fil-grafi wasslu għall-programmazzjoni linjari u l-algoritmu tas-simpless. Il-problemi tas-<hi rend="bold">siġar għattejja</hi> wasslu għall-ġeneralizzazzjoni tal-kunċett ta' graf għall-dak tal-matrojdi u għall-ħafna analoġiji bejn iż-żewġ teoriji, l-iżjed fil-qasam algoritmiku (dan influwenza l-vokabularju taż-żewġ teoriji).</p>
+Rappreżentazzjonijiet tal-grafi fl-informatika
+
+<p>Nistgħu naħżnu graf fuq il-kompjuter bl-għajnuna ta' bosta strutturi differenti.</p>
+<list type="unordered"><item>Nistgħu ninnumeraw il-vertiċi, imbagħad nagħtu l-arki taħt forma ta' lista ta' koppji.</item>
+<item>Nistgħu nużaw il-<hi rend="bold">matriċi tal-ġirien</hi>, li fil-post 
+
+
+
+
+
+(
+i
+,
+j
+)
+
+
+
+
+{\displaystyle \displaystyle {(i,j)}}
+
+) tiegħu npoġġu 1 jekk u biss jekk hemm ark mill-vertiċi 
+
+
+
+
+
+i
+
+
+
+
+{\displaystyle \displaystyle {i}}
+
+ għall-vertiċi 
+
+
+
+
+
+j
+
+
+
+
+{\displaystyle \displaystyle {j}}
+
+, inkella npoġġu 0. Fil-każ ta' graf mhux orjentat il-matriċi hu simmetriku. Dan il-metodu hu iżjed mgħaġel imma jieħu iżjed spazju fil-memorja.</item>
+<item>Ma' kull vertiċi nistgħu nassoċjaw <hi rend="bold">lista tal-ġirien</hi>, jiġifieri lista li fiha l-vertiċi kollha li jippuntaw lejhom ix-xfar li jibdew minnha.</item></list>
+Interess fid-"dinja ta' kuljum"
+<p>Il-grafi jintużaw għall-mudellar, fost oħrajn, ta': </p>
+<list type="unordered"><item>Xibka stradali ta' pajjiż: kull belt hi vertiċi, kull triq bejn xewġt ibliet (jekk ma tgħaddix minn belt oħra), hija inġenerali żewġ arki, waħda f’kull direzzjoni jekk ma tkunx f’direzzjoni waħda biss li f'dak il-każ tkun ark wieħed.</item>
+<item>Xibka stradali ta' belt: kull fejn jiltaqgħu t-toroq huma vertikali, u kull sezzjoni tat-triq bejniethom hi żewġ arki jew ark wieħed skont tkunx f'żewġ direzzjonijiet jew f'waħda.</item>
+<item>Xibka tar-rotot tal-karozzi ta-linja, ferroviji, …</item>
+<item>Fl-analiżi tax-xbieki soċjali, il-grafi jippermettu d-deskrizzjoni tal-aspetti formali tagħhom biex wara ssir l-analiżi soċjoloġika<ref target="https://mt.wikipedia.org/wiki/Il-Paġna_prinċipali#cite_note-5">[5]</ref>.</item>
+<item>Sit tal-<ref target="https://mt.wikipedia.org/wiki/Internet">Internet</ref>: kull paġna hi vertiċi, kull ħolqa ta' <ref target="https://mt.wikipedia.org/wiki/Ipertest">ipertest</ref> hu ark (mill-paġna li qiegħda fih għall-paġna li tqabbad magħha).</item>
+<item>Ix-xibka tal-<ref target="https://mt.wikipedia.org/wiki/Internet">Internet</ref> stess hi graf fejn il-vertiċi huma s-servers u l-utenti, u x-xfar huma l-interkonnessjonijiet differenti.</item>
+<item>Ħafna sistemi diskreti :li minn ħin għall-ieħor jaqbżu minn stat għall-ieħor b'mod diskontinwu, per eżempju, <ref target="https://mt.wikipedia.org/wiki/Awtomi_bi_stati_finiti">Awtomi bi stati finiti</ref> u <ref target="https://mt.wikipedia.org/wiki/Sistemi_tat-tranżizzjoni_tal-istati">Sistemi tat-tranżizzjoni tal-istati</ref>.</item>
+<item>Fil-mekkanika tas-solidi, il-graf tal-fluss tal-enerġija hija għodda utli għall-immudellar ċinetiku tal-mekkaniżmi. Il-proprjetajiet tal-graf jista' jkollhom tifsira (numru ta' ċikli, klassi, etc.).</item>
+<item>Fl-elettronika, jirrapreżentaw iċ-ċirkwiti integrati.</item>
+<item>Xibka <ref target="https://mt.wikipedia.org/wiki/Newronu">newrali</ref> nistgħu nirrappreżentawha bi graf orjentat fejn kull ark jkollu "valur" u kull vertiċi jkollu bħala valur, l-"għadba ta' aktivazzjoni" tiegħu.</item></list>
+<p>Il-grafi jintużaw ħafna fl-informatika. Minħabba l-effiċjenza tagħhom fil-mudellar programmatiku ta' strutturi ta' data komplessa, niltaqgħu magħhom per eżempju fi: </p>
+<list type="unordered"><item>Il-<ref target="https://mt.wikipedia.org/wiki/Baż_ta'_data">bażi ta' data</ref>: mudell relazzjonali ta' data nistgħu nirrappreżentawh bi graf orjentat, fejn ir-relazzjonijiet huma vertiċi tal-graf u d-dipendenzi huma l-arki. Insemmu speċjalment il-grafi semantiċi normalizzati għad-disinn ta’ skemi ta' data relazzjonali li tirriżulta mill-proċedura tan-normalizzazzjoni;</item>
+<item>il-<ref target="https://mt.wikipedia.org/wiki/Web_semantiku">Web semantiku</ref>: ontoloġija hi sett ta' kunċetti (vertiċi ta' graf) u relazzjonijiet bejniethom (arki tal-graf);</item>
+<item>Il-<ref target="https://mt.wikipedia.org/wiki/Kalkulu_parallel">kalkulu parallel</ref>: It-teniki tal-ottimazzjoni tal-algoritmi jew id-determinazzjoni tal-ordni tat-twettieq koerenti f'dan il-qasam (xi kmandi jridu jitwettqu wara l-oħrajn; xi data tirid tiġi kalkulata wara oħra) sikwit jużaw grafi tad-dipendenza tal-fluss tal-kmandi fejn il-vertiċi huma respettivament kmandi (il-kodiċi tat-twettieq) u data (inizjali jew kalkulata) u l-arki huma relazzjonijiet ta' dipendenza temporali.</item></list>
+
+
+Biblijografija
+<list type="unordered"><item>K. Thulasiraman, M. N. S. Swamy (1992): <hi rend="italic">Graphs: Theory and Algorithms</hi>, J.Wiley</item>
+<item>Bêla Bollobás (1998): <hi rend="italic">Modern Graph Theory</hi>, Springer, <ref target="https://mt.wikipedia.org/wiki/Speċjali:SorsiKotba/0-387-98841-7">ISBN0-387-98841-7</ref>[ISBN invalidu]</item>
+<item>Lowell W. Beineke, Robin J. Wilson, Peter J. Cameron, eds (2004): <hi rend="italic">Topics in Algebraic Graph Theory</hi>, Cambridge University Press</item>
+<item>D. Cvetković, P. Rowlison, S. Simic' (1997): <hi rend="italic">Eigenspaces of Graphs</hi>, Cambridge University Press</item>
+<item>S. Fiorini u R. J. Wilson (1977): <hi rend="italic">Edge-colourings of graphs</hi> (Research notes in mathematics  16), Pitman</item></list>
+Ħoloq esterni
+
+
+<list type="unordered"><item>(EN)  <ref target="http://www.ecp6.jussieu.fr/pageperso/bondy/books/gtwa/gtwa.html">Graph Theory with Applications</ref> (1976) ta' Bondy and Murty</item>
+<item>(FR)  <ref target="http://www.graphes.fr">Kors tat-teorija tal-grafi ta' Marc Beveraggi (INSA Rouen)</ref></item>
+<item>(FR)  <ref target="http://www.apprendre-en-ligne.net/graphes/">Théorie des Graphes</ref> Kors tat-teorija tal-grafi</item>
+<item>(FR)  <ref target="http://cours.ensem.inpl-nancy.fr/cours-dm/">Kors interattiv tal-Ensem fuq it-teorija tal-grafi</ref></item>
+<item>(FR)  <ref target="http://www.enseignement.polytechnique.fr/profs/informatique/Jean-Jacques.Levy/poly/main5/node2.html#SECTION00200000000000000000">Kors tal-Polytechnique</ref></item>
+<item>(FR)  <ref target="http://www.esiee.fr/~info/a2si/TC-ESIEE/Ggraph/ggraph.html">Kors tal-ESIEE</ref></item>
+<item>(EN)  <ref target="http://www.math.uni-hamburg.de/home/diestel/books/graph.theory/">Diestel - Graph Theory, Electronic Edition</ref></item>
+<item>(IT)  <ref target="http://teoriadeigrafi.altervista.org">Teorija tal-Grafi 1.0 - Desmatron</ref></item>
+<item>(IT)  <ref target="http://simonesgariglia.it/grafi/">Teorija tal-Grafi - Appunti</ref></item>
+<item>(EN)  <ref target="http://graphtheorysoftware.com/">Graph Theory Software</ref></item></list>
+</text></body></html>

@@ -1,0 +1,22 @@
+<html><body><text id="wikipedia_mt_wikipedia_org__5446.html" ns="0" revid="248296" sourceurl="https://mt.wikipedia.org/wiki/Dipendenza_(Informatika)" title="Dipendenza (Informatika)" type="wikipedia">Dipendenza (Informatika)<p>Fl-informatika <hi rend="bold">dipendenza</hi> jew <hi rend="bold">coupling</hi> hija l-kejl ta' kemm il-moduli ġo programm huma relatati. Iktar ma jkunu relatati, iktar ħa jkun hemm possibiltà li żball f'modulu minnhom jaffetwa l-bqija. Jiġri wkoll li jkun iktar diffiċli li taqbad modulu wieħed u tieħdu ġo programm ieħor jew tbiddel modulu ma' ieħor ġdid. Għalhekk hu mixtieq li l-livell ta' dipendenza jkun baxx ħafna b'hekk il-moduli jkunu indipendenti ħafna.</p>
+<p>Hemm kuntrast bejn Dipendenza u <ref target="https://mt.wikipedia.org/wiki/Cohesion">Cohesion</ref> minħabba li dawn imorru kontra xulxin.</p>
+<p>Meta moduli jkollhom ftit Dipendenza, xorta jkunu jistgħu jgħajtu lil xulxin. L-importanti huwa li moduliDi ħdejn jew ġo xulxin jkunu jiddependu minn l-inqas fuq xulxin.</p>
+Tipi ta' Dipendenza
+<p><hi rend="bold">Content</hi> jew <hi rend="bold">Context (l-iktar dipendena u l-agħar)</hi>
+Meta modulu jtbiddel modulu ieħor (hemm lingwi bħall-Lisp li tista' tbiddel il-kodiċi ta' moduli oħra) billi tbiddel jew taqra memorja riżervata għal modulu ieħor jew inkella taqbeż għal ġo modulu ieħor permezz ta' goto.</p>
+<p><hi rend="italic">Eżempju</hi>: Tagħmel goto statement bil-Pascal għal label li qiegħda ġo procedure oħra.</p>
+Common
+<p>Meta modulu jaqsam riżors komuni ma' moduli oħra.</p>
+<p><hi rend="italic">Eżempju</hi>: Meta żewġ moduli jużaw l-istess global variables.</p>
+Control
+<p>Meta modulu jibgħat flag variable lil modulu ieħor biex jgħidlu x'għandu jagħmel.</p>
+<p><hi rend="italic">Eżempju</hi>: Modulu jirritorna jekk ġarax żball fih lil modulu ieħor biex fil-każ jieħu ħsieb l-iżball f'dak il-modulu.</p>
+Stamp
+<p>Meta modulu jirċievi iktar informazzjoni milli għandu bżonn.</p>
+<p><hi rend="italic">Eżempju</hi>: Modulu li jirċievi record sħiħ ta' informazzjoni meta jkollu bżonn biss field waħda.</p>
+Data
+<p>Meta modulu jirċievi u jibgħat l-informazzjoni kollha neċessarja permezz ta' parameters. L-inputs tal-modulu jintużaw biss biex tiproduċi output minnhom.</p>
+<p><hi rend="italic">Eżempju</hi>: Modulu A li jikkalkula medja u li juża modulu B biex issib it-total. Module A jibgħat in-numri li ħa jiġu proċessati lil modulu B, u B jirritorna t-total biss.</p>
+Referenzi
+<p><ref target="http://www.cs.unc.edu/~stotts/COMP145/coupling.html">www.cs.unc.edu</ref></p>
+</text></body></html>

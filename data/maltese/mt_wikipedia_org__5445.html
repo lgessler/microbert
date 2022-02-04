@@ -1,0 +1,28 @@
+<html><body><text id="wikipedia_mt_wikipedia_org__5445.html" ns="0" revid="215071" sourceurl="https://mt.wikipedia.org/wiki/Cohesion" title="Cohesion" type="wikipedia">Cohesion<p>Fix-xjenza tal-komputer, <hi rend="bold">cohesion</hi> huwa l-kejl ta' kemm il-kontenut ta' module ġo programm huwa relatat. Inqas ma jkun relatat, iktar ħa jkun hemm cans li jkollok bzonn tuża parti minn dik il-module bħala biċċa indipendenti fil-programm. Għalhekk hu mixtieq li l-livell ta' cohesion jkun għoli ħafna b'hekk il-kontenut jkun relatat ħafna.</p>
+<p>Hemm kuntrast bejn Cohesion u <ref target="https://mt.wikipedia.org/wiki/Coupling">Coupling</ref> minħabba li jmorru kontra xulxin.</p>
+<p>Meta module jkollha ħafna cohesion, tkun tista tintuża ġo modules oħra, l-importanti li kull module bażika (mhix magħmula minn modules oħra) jkollha ħafna cohesion. B'hekk kull module tkun tista tużaha għal funzjonalita bażika biss u mhux jkollok tuża varjeta ta' funzjonalitajiet oħra li mhux mixtieqa.</p>
+Tipi ta' Cohesion
+Coincidental (Ftit cohesion u l-agħar)
+<p>Meta l-kontenut ta' module jkun hemm b'kumbinazzjoni u m'hemm l-ebda raġuni għalfejn qiegħed hemm u mhux ġo module oħra.</p>
+<p><hi rend="italic">Eżempju</hi>: Taqbad programm mingħajr modules u kull ammont ta' linji tiġborhom f'module.</p>
+Logical
+<p>Meta l-kontenut ta' module jkun magħmul minn affarijit relatati kategorikament jew loġikament imma ma jkunux relatati funzjonalment. Meta tgħajjat lill-module ħafna drabi trid tispeċifika liem parti tal-module trid tuża.</p>
+<p><hi rend="italic">Eżempju</hi>: Tagħmel module magħmula minn messaġġi ta' errors differenti u tagħżel liem error trid turi jew module li tagħmel initialisations kollha.</p>
+Temporal
+<p>Meta l-kontenut ta' module jkun magħmul minn affarijiet li għandhom jsiru flimkien imma fejn l-ordni ta' kif jsiru mhux importanti.</p>
+<p><hi rend="italic">Eżempju</hi>: Tagħmel module li tieħu ħsieb ir-reazzjoni għal error, fosthom li tibgħat messaġġ lill-user, terġa tibda l-programm li ġralu l-error, iżżom nota tal-error ġo database u/jew tibgħatu lid-developers tal-programm.</p>
+Procedural
+<p>Meta l-kontenut ta' module jkun magħmul minn affarijit li għandhom jsiru wara xulxin.</p>
+<p><hi rend="italic">Eżempju</hi>: Tagħmel module li tiftaħ fajl minn diska u li trid l-ewwel tara li d-diska qiegħda hemm, imbagħad tara li l-fajl qiegħed hemm, tara wkoll b'liema format huwa miktub il-fajl u fl-aħħar tiftaħ il-file bil-metodu neċessarju.</p>
+Communicational
+<p>Meta l-kontenut ta' module jkun magħmul minn affarijiet li jaċċettaw l-istess input jew jirritornaw l-istess output.</p>
+<p><hi rend="italic">Eżempju</hi>: Tagħmel module li taċċetta record minn database u tirritorna l-fields kollha li fih (ma tistax tieħu field waħda biss).</p>
+Sequential
+<p>Meta l-output li tiproduċi xi ħaġa ġo module tintuża bħala input minn parti oħra ġo l-istess module. Ovvjament it-tieni parti ma tagħmilx sens li toqgħod waħedha peress li għandha bżonn l-input ta' dik ta' qabilha.</p>
+<p><hi rend="italic">Eżempju</hi>: Tagħmel module li tikkalkula l-persentaġġ lest minn proċess wara li ssib fejn wasal il-proċess. Ma tagħmilx sens li tikkalkula persentaġġ lest minn proċess mingħajr ma tkun taf fhiex wasal.</p>
+Functional (Ħafna cohesion u l-aħjar)
+<p>Meta module tkun tagħmel ħaġa waħda, sempliċi u bażika u ma tagħmilx sens li tifred il-kontenut ta' din il-module għal ġo module oħra.</p>
+<p><hi rend="italic">Eżempju</hi>: Module li tikkalkula s-sine ta' numru.</p>
+Referenzi
+<p><ref target="http://www.cs.unc.edu/~stotts/COMP145/cohesion.html">www.cs.unc.edu</ref></p>
+</text></body></html>
