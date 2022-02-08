@@ -3,11 +3,12 @@ import re
 import zipfile
 from collections import OrderedDict, defaultdict
 from glob import glob
-from shutil import rmtree, copyfile
+from shutil import copyfile, rmtree
 
 import conllu
 from rich import print
 from rich.progress import Progress
+
 import embur.scripts.common as esc
 
 

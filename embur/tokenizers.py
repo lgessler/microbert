@@ -1,16 +1,15 @@
 import os
 from typing import List
+
 from tokenizers import Tokenizer
 from tokenizers.implementations import BertWordPieceTokenizer
 from tokenizers.models import WordPiece
-from tokenizers.normalizers import NFD, Lowercase, StripAccents, Sequence
+from tokenizers.normalizers import NFD, Lowercase, Sequence, StripAccents
 from tokenizers.pre_tokenizers import Whitespace
 from tokenizers.processors import TemplateProcessing
-from transformers import BertTokenizer
-
-
 # https://huggingface.co/docs/tokenizers/python/latest/pipeline.html
 from tokenizers.trainers import WordPieceTrainer
+from transformers import BertTokenizer
 
 
 def train_tokenizer(sentences: List[str], serialize_path: str = "", vocab_size: int = 6000) -> Tokenizer:

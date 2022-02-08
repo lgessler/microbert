@@ -1,17 +1,15 @@
-from typing import Dict, Optional, Any
+from typing import Any, Dict, Optional
 
-from allennlp.modules import TextFieldEmbedder, Seq2SeqEncoder
-from allennlp.modules.seq2seq_encoders import PytorchTransformer
-from allennlp.modules.token_embedders import PretrainedTransformerMismatchedEmbedder
-from overrides import overrides
 import torch
-
 from allennlp.data.fields.text_field import TextFieldTensors
 from allennlp.data.vocabulary import Vocabulary
+from allennlp.modules import Seq2SeqEncoder, TextFieldEmbedder
 from allennlp.modules.backbones.backbone import Backbone
+from allennlp.modules.seq2seq_encoders import PytorchTransformer
+from allennlp.modules.token_embedders import PretrainedTransformerMismatchedEmbedder
 from allennlp.nn import util
+from overrides import overrides
 from transformers import BertTokenizer, DataCollatorForWholeWordMask
-
 from transformers.models.bert.modeling_bert import BertConfig, BertModel
 
 

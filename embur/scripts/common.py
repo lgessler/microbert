@@ -1,9 +1,9 @@
 import math
+import random
 import re
 from collections import OrderedDict
 
 import conllu
-import random
 
 ELT_REGEX = re.compile(r'<([a-zA-Z][a-zA-Z0-9_]*)')
 ATTR_REGEX = re.compile(r'(?:[a-zA-Z][a-zA-Z0-9_]*:)?([a-zA-Z][a-zA-Z0-9_]*)="([^"]*)"')

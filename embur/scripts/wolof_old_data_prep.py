@@ -1,11 +1,12 @@
 import os
 from glob import glob
-from shutil import rmtree, copyfile
+from shutil import copyfile, rmtree
 
 from conllu import TokenList
-from rich import print
-import embur.scripts.common as eso
 from nltk.tokenize import wordpunct_tokenize
+from rich import print
+
+import embur.scripts.common as eso
 
 
 def postprocess_docs(docs):

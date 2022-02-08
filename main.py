@@ -2,19 +2,18 @@ import argparse
 import json
 import os
 import shutil
-from rich import print
 
 import click
-from allennlp.common.util import import_module_and_submodules
-from transformers import BertModel, AutoModel
 from allennlp.commands.train import train_model_from_file
+from allennlp.common.util import import_module_and_submodules
+from rich import print
+from transformers import AutoModel, BertModel
 
 import embur
-from embur.dataset_reader import read_conllu_files
-from embur.tokenizers import train_bert_tokenizer
-from embur.language_configs import get_pretrain_config, get_eval_config, LANGUAGES
 from embur.commands import evaluate_from_args
-
+from embur.dataset_reader import read_conllu_files
+from embur.language_configs import LANGUAGES, get_eval_config, get_pretrain_config
+from embur.tokenizers import train_bert_tokenizer
 
 import_module_and_submodules("allennlp_models")
 TASKS = ['mlm', 'xpos', 'parser']

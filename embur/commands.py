@@ -1,7 +1,7 @@
 import argparse
 import json
 import logging
-from typing import Dict, Any
+from typing import Any, Dict
 
 from allennlp.common import logging as common_logging
 from allennlp.common.util import prepare_environment

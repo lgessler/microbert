@@ -1,13 +1,12 @@
-from typing import Dict, Optional, Any
+from typing import Any, Dict, Optional
 
 import torch
 import torch.nn.functional as F
-from allennlp.nn import Activation
-from allennlp.training.metrics import Perplexity, CategoricalAccuracy
-from overrides import overrides
-
 from allennlp.data.vocabulary import Vocabulary
 from allennlp.models.heads.head import Head
+from allennlp.nn import Activation
+from allennlp.training.metrics import CategoricalAccuracy, Perplexity
+from overrides import overrides
 
 
 @Head.register("mlm")

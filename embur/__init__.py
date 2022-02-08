@@ -7,15 +7,15 @@
 # from embur.rel.baseline_model import *
 # from embur.rel.dataset_reader import *
 
-# https://stackoverflow.com/questions/3365740/how-to-import-all-submodules
-from embur.schedulers import HomogeneousRepeatedRoundRobinScheduler
 import embur.dataset_reader
-import embur.schedulers
+import embur.models.backbones.bert_backbone
+import embur.models.backbones.contextualized_backbone
+import embur.models.backbones.pretrained_bert_backbone
+import embur.models.backbones.static_backbone
 import embur.models.entities.entity_crf
 import embur.models.heads.mlm
 import embur.models.heads.ud
 import embur.models.heads.xpos
-import embur.models.backbones.contextualized_backbone
-import embur.models.backbones.static_backbone
-import embur.models.backbones.bert_backbone
-import embur.models.backbones.pretrained_bert_backbone
+import embur.schedulers
+# https://stackoverflow.com/questions/3365740/how-to-import-all-submodules
+from embur.schedulers import HomogeneousRepeatedRoundRobinScheduler

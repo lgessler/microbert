@@ -1,15 +1,14 @@
-from typing import Dict, Optional, Any
+from typing import Any, Dict, Optional
 
 import torch
 import torch.nn.functional as F
 from allennlp.data import TextFieldTensors
-from allennlp.modules import TimeDistributed, ConditionalRandomField
+from allennlp.data.vocabulary import Vocabulary
+from allennlp.models.heads.head import Head
+from allennlp.modules import ConditionalRandomField, TimeDistributed
 from allennlp.modules.seq2seq_encoders import GruSeq2SeqEncoder
 from allennlp.nn.util import sequence_cross_entropy_with_logits
 from overrides import overrides
-
-from allennlp.data.vocabulary import Vocabulary
-from allennlp.models.heads.head import Head
 
 
 @Head.register("xpos")

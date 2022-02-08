@@ -1,8 +1,8 @@
-from typing import Union, Dict, Mapping, Iterable, List
-
 import itertools
-import more_itertools
 from collections import defaultdict
+from typing import Dict, Iterable, List, Mapping, Union
+
+import more_itertools
 from allennlp.data import Instance
 from allennlp.data.data_loaders.multitask_scheduler import MultiTaskScheduler, _chunked_iterator
 

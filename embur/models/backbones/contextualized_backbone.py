@@ -1,13 +1,12 @@
 from typing import Dict, Optional
 
-from allennlp.modules import TextFieldEmbedder, Seq2SeqEncoder
-from overrides import overrides
 import torch
-
 from allennlp.data.fields.text_field import TextFieldTensors
 from allennlp.data.vocabulary import Vocabulary
+from allennlp.modules import Seq2SeqEncoder, TextFieldEmbedder
 from allennlp.modules.backbones.backbone import Backbone
 from allennlp.nn import util
+from overrides import overrides
 
 
 @Backbone.register("contextualized_embedding")

@@ -6,10 +6,14 @@ It will output plain text data approximating basic tokenization in one 'sentence
 _perseus_out/ called greek/ and latin/, one document per input XML file.
 """
 
-import io, os, sys, re
-from glob import glob
-import betacode.conv
 import html
+import io
+import os
+import re
+import sys
+from glob import glob
+
+import betacode.conv
 
 ent_dict = html.entities.html5
 ent_dict = {k:v for k, v in ent_dict.items() if ";" in k}

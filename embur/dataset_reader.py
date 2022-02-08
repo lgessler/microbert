@@ -1,20 +1,18 @@
+import logging
 import os
 import time
 from glob import glob
-from random import random, randint
+from random import randint, random
 from typing import Dict, List
-import logging
 
 import torch
-from overrides import overrides
-from conllu import parse, TokenList
-
 from allennlp.data.dataset_readers.dataset_reader import DatasetReader
-from allennlp.data.fields import Field, TextField, SequenceLabelField, MetadataField, TensorField
+from allennlp.data.fields import Field, MetadataField, SequenceLabelField, TensorField, TextField
 from allennlp.data.instance import Instance
 from allennlp.data.token_indexers import SingleIdTokenIndexer, TokenIndexer
 from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer
-
+from conllu import TokenList, parse
+from overrides import overrides
 
 logger = logging.getLogger(__name__)
 

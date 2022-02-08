@@ -1,13 +1,12 @@
-from typing import Dict, Optional, Any
+from typing import Any, Dict, Optional
 
-from allennlp.models import Model
-from allennlp.modules import TextFieldEmbedder, ConditionalRandomField, TimeDistributed, Seq2SeqEncoder
-from allennlp.training.metrics import SpanBasedF1Measure, CategoricalAccuracy
 import torch
-
 from allennlp.data.fields.text_field import TextFieldTensors
 from allennlp.data.vocabulary import Vocabulary
+from allennlp.models import Model
+from allennlp.modules import ConditionalRandomField, Seq2SeqEncoder, TextFieldEmbedder, TimeDistributed
 from allennlp.nn import util
+from allennlp.training.metrics import CategoricalAccuracy, SpanBasedF1Measure
 from torch.nn import Dropout
 
 

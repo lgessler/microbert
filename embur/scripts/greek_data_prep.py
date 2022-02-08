@@ -2,9 +2,9 @@ import os
 from glob import glob
 from shutil import rmtree
 
+from betacode.conv import beta_to_uni
 from bs4 import BeautifulSoup
 from conllu import TokenList
-from betacode.conv import beta_to_uni
 from rich.progress import track
 
 import embur.scripts.common as eso
