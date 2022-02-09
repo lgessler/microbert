@@ -6,7 +6,7 @@ from conllu import TokenList
 from nltk.tokenize import wordpunct_tokenize
 from rich import print
 
-import embur.scripts.common as eso
+import embur.scripts.common as esc
 
 
 def postprocess_docs(docs):
@@ -28,7 +28,7 @@ def make_tokenlists(docs):
         sent_id = lambda i: f"{id}_{title}-{str(i).zfill(3)}"
         tls = []
         for line_num, line in enumerate(doc):
-            tokens = [eso.token() for _ in line]
+            tokens = [esc.token() for _ in line]
             for i, t in enumerate(line):
                 tokens[i]['form'] = t
             if line_num == 0:
@@ -47,19 +47,19 @@ def parse_wowiki():
     docs = []
     doc = None
     for line in lines:
-        if eso.ttline_is_open_tag(line):
-            _, attrs = eso.ttline_parse_open_tag(line)
+        if esc.ttline_is_open_tag(line):
+            _, attrs = esc.ttline_parse_open_tag(line)
             id = attrs["id"]
             url = attrs["url"]
             title = attrs["title"]
             doc = [{"id": id, "url": url, "title": title}, []]
-        elif eso.ttline_is_close_tag(line):
+        elif esc.ttline_is_close_tag(line):
             if doc is not None:
                 docs.append(doc)
             doc = None
         elif doc is not None:
             if line != "" and not line.isspace():
-                doc[1].append(eso.unescape_xml(line))
+                doc[1].append(esc.unescape_xml(line))
     docs = postprocess_docs(docs)
     doc_tls = make_tokenlists(docs)
     return doc_tls
@@ -75,13 +75,13 @@ def parse_tt(filepath):
     for i, line in enumerate(lines):
         if line[:5] == "<?xml":
             continue
-        elif eso.ttline_is_open_tag(line):
-            ename, attrs = eso.ttline_parse_open_tag(line)
+        elif esc.ttline_is_open_tag(line):
+            ename, attrs = esc.ttline_parse_open_tag(line)
             if ename == "s":
                 sentence = []
             elif ename == "article":
                 doc = [{"title": attrs["article_id"] if "article_id" in attrs else attrs["title"]}, []]
-        elif eso.ttline_is_close_tag(line):
+        elif esc.ttline_is_close_tag(line):
             if line[:5] == "</art":
                 docs.append(doc)
                 sentence = None
@@ -91,7 +91,7 @@ def parse_tt(filepath):
                 sentence = None
         elif line != "":
             form, xpos = line.split("\t")
-            token = eso.token()
+            token = esc.token()
             token['form'] = form
             token['xpos'] = xpos
             sentence.append(token)
@@ -119,13 +119,13 @@ def parse_tt_bible(filepath):
     for i, line in enumerate(lines):
         if line[:5] == "<?xml":
             continue
-        elif eso.ttline_is_open_tag(line):
-            ename, attrs = eso.ttline_parse_open_tag(line)
+        elif esc.ttline_is_open_tag(line):
+            ename, attrs = esc.ttline_parse_open_tag(line)
             if ename == "verse":
                 sentence = []
             elif ename == "chapter":
                 doc = [{"title": attrs["chapter_id"]}, []]
-        elif eso.ttline_is_close_tag(line):
+        elif esc.ttline_is_close_tag(line):
             if line[:5] == "</cha":
                 docs.append(doc)
                 sentence = None
@@ -135,7 +135,7 @@ def parse_tt_bible(filepath):
                 sentence = None
         elif line != "":
             form, xpos = line.split("\t")
-            token = eso.token()
+            token = esc.token()
             token['form'] = form
             token['xpos'] = xpos
             sentence.append(token)
@@ -164,11 +164,11 @@ def main():
     wowiki_tls = parse_wowiki()
     tt_tls = parse_tts()
     doc_tls = wowiki_tls + tt_tls
-    train_tls, dev_tls = eso.get_splits(doc_tls, proportions=[0.9, 0.1])
+    train_tls, dev_tls = esc.get_splits(doc_tls, proportions=[0.9, 0.1])
     train_tc = sum(sum(len(tl) for tl in tls) for tls in train_tls)
     dev_tc = sum(sum(len(tl) for tl in tls) for tls in dev_tls)
-    eso.number(train_tls)
-    eso.number(dev_tls)
+    esc.number(train_tls)
+    esc.number(dev_tls)
 
     print(f"Split: train {train_tc}, dev {dev_tc}")
 

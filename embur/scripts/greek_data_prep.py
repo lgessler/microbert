@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from conllu import TokenList
 from rich.progress import track
 
-import embur.scripts.common as eso
+import embur.scripts.common as esc
 
 
 def file_to_tokenlists(filepath):
@@ -23,7 +23,7 @@ def file_to_tokenlists(filepath):
     for sent_num, sentence in enumerate(sentences):
         sentence_id = sentence["id"]
         words = sentence.findAll("word")
-        tokens = [eso.token() for _ in range(len(words))]
+        tokens = [esc.token() for _ in range(len(words))]
         meta = {"sent_id": title_id + " - " + title + " - " + sentence_id}
         if sent_num == 0:
             meta["newdoc id"] = f"{title_id} - {title}"
@@ -44,11 +44,11 @@ def main():
         tls = file_to_tokenlists(filepath)
         doc_tls.append(tls)
 
-    train_tls, dev_tls = eso.get_splits(doc_tls, proportions=[0.9, 0.1])
+    train_tls, dev_tls = esc.get_splits(doc_tls, proportions=[0.9, 0.1])
     train_tc = sum(sum(len(tl) for tl in tls) for tls in train_tls)
     dev_tc = sum(sum(len(tl) for tl in tls) for tls in dev_tls)
-    eso.number(train_tls)
-    eso.number(dev_tls)
+    esc.number(train_tls)
+    esc.number(dev_tls)
 
     print(f"Split: train {train_tc}, dev {dev_tc}")
 
