@@ -1,7 +1,7 @@
 from typing import Tuple
 
 import torch
-from allennlp.data import Vocabulary, Instance, Token
+from allennlp.data import Instance, Token, Vocabulary
 from allennlp.data.fields import TextField
 from allennlp.data.token_indexers import PretrainedTransformerMismatchedIndexer
 from allennlp.nn.util import get_token_ids_from_text_field_tensors
@@ -51,6 +51,7 @@ tensors[0]
 
 
 import torch
+
 labels = torch.tensor([[-100, 1, -100, -100], [-100, -100, 2, 0]])
 not_modified_mask = (labels == -100)
 padding_mask = (labels == 0)

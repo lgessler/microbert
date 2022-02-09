@@ -2,7 +2,9 @@ from typing import List
 
 from tokenizers.implementations import BertWordPieceTokenizer
 from transformers import AutoTokenizer
+
 from embur.dataset_reader import read_conllu_files
+
 documents = read_conllu_files('../data/coptic/converted/train')
 
 sentences = []
@@ -11,14 +13,12 @@ for document in documents:
         sentences.append(" ".join([t['form'] for t in sentence]))
 
 
-from tokenizers.pre_tokenizers import Whitespace
-from tokenizers import Tokenizer, pre_tokenizers
+from tokenizers import Tokenizer, normalizers, pre_tokenizers
 from tokenizers.models import WordPiece
-from tokenizers import normalizers
-from tokenizers.normalizers import Lowercase, NFD, StripAccents
+from tokenizers.normalizers import NFD, Lowercase, StripAccents
+from tokenizers.pre_tokenizers import Whitespace
 from tokenizers.processors import TemplateProcessing
 from tokenizers.trainers import WordPieceTrainer
-
 
 
 # https://huggingface.co/docs/tokenizers/python/latest/pipeline.html
@@ -49,7 +49,7 @@ ids = bert_tokenizer.encode(sentences[10]).ids
 bert_tokenizer.decode(ids)
 
 
-from tokenizers import Tokenizer, models, normalizers, pre_tokenizers, decoders, trainers
+from tokenizers import Tokenizer, decoders, models, normalizers, pre_tokenizers, trainers
 
 tokenizer = Tokenizer(models.Unigram())
 tokenizer.normalizer = normalizers.NFKC()
