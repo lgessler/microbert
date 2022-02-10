@@ -6,7 +6,7 @@ from all dicts). Be smart in this file and do as much as possible to only write
 data, not code!
 """
 
-LANGUAGES = ["coptic"]
+LANGUAGES = ["coptic", "maltese"]
 
 def get_pretrain_config(language, tokenizer_path, excluded_tasks):
     """
@@ -42,6 +42,24 @@ def get_pretrain_config(language, tokenizer_path, excluded_tasks):
                 "parser": mismatched_reader
             },
             "tokenizer_conllu_path": "data/coptic/converted/train"
+        },
+        "maltese": {
+            "train_data_paths": {
+                "xpos": "data/maltese/UD_Maltese-MUDT/mt_mudt-ud-train.conllu",
+                "mlm": "data/maltese/converted_punct/train",
+                "parser": "data/maltese/UD_Maltese-MUDT/mt_mudt-ud-train.conllu"
+            },
+            "dev_data_paths": {
+                "xpos": "data/maltese/UD_Maltese-MUDT/mt_mudt-ud-dev.conllu",
+                "mlm": "data/maltese/converted_punct/dev",
+                "parser": "data/maltese/UD_Maltese-MUDT/mt_mudt-ud-dev.conllu"
+            },
+            "readers": {
+                "xpos": mismatched_reader,
+                "mlm": mismatched_reader,
+                "parser": mismatched_reader
+            },
+            "tokenizer_conllu_path": "data/maltese/converted_punct/train"
         }
     }[language]
 
@@ -78,6 +96,24 @@ def get_eval_config(language, model_name):
             },
             "testing": {
                 "input_file": "data/coptic/UD_Coptic-Scriptorium/cop_scriptorium-ud-test.conllu"
+            }
+        },
+        "maltese": {
+            "training": {
+                "dataset_reader": {
+                    "type": "embur_conllu",
+                    "token_indexers": {
+                        "tokens": {
+                            "type": "pretrained_transformer_mismatched",
+                            "model_name": model_name
+                        }
+                    }
+                },
+                "train_data_path": "data/maltese/UD_Maltese-MUDT/mt_mudt-ud-train.conllu",
+                "validation_data_path": "data/maltese/UD_Maltese-MUDT/mt_mudt-ud-dev.conllu"
+            },
+            "testing": {
+                "input_file": "data/maltese/UD_Maltese-MUDT/mt_mudt-ud-test.conllu"
             }
         }
     }[language]
