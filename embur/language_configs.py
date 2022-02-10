@@ -85,10 +85,10 @@ def get_pretrain_config(language, tokenizer_path, excluded_tasks):
             },
             "tokenizer_conllu_path": "data/coptic/converted/train"
         },
-        "maltese": _std_pretrain_config(mismatched_reader, "maltese", "UD_Maltese-MUDT", "mt_mudt-ud", ssplit_type="punct"),
-        "wolof": _std_pretrain_config(mismatched_reader, "wolof", "UD_Wolof-WTB", "wo_wtb-ud", ssplit_type="punct"),
-        "uyghur": _std_pretrain_config(mismatched_reader, "uyghur", "UD_Uyghur-UDT", "ug_udt-ud", ssplit_type="punct"),
-        "greek": _std_pretrain_config(mismatched_reader, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud", ssplit_type="punct")
+        "maltese": _std_pretrain_config(mismatched_reader, "maltese", "UD_Maltese-MUDT", "mt_mudt-ud", ssplit_type="_punct"),
+        "wolof": _std_pretrain_config(mismatched_reader, "wolof", "UD_Wolof-WTB", "wo_wtb-ud", ssplit_type="_punct"),
+        "uyghur": _std_pretrain_config(mismatched_reader, "uyghur", "UD_Uyghur-UDT", "ug_udt-ud", ssplit_type="_punct"),
+        "greek": _std_pretrain_config(mismatched_reader, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud", ssplit_type="_punct")
     }[language]
 
     for subconfig_name, subconfig in language_config.items():
@@ -128,6 +128,6 @@ def get_eval_config(language, model_name):
         },
         "maltese": _std_eval_config(model_name, "maltese", "UD_Maltese-MUDT", "mt_mudt-ud"),
         "wolof": _std_eval_config(model_name, "wolof", "UD_Wolof-WTB", "wo_wtb-ud"),
-        "uyghur": _std_pretrain_config(model_name, "uyghur", "UD_Uyghur-UDT", "ug_udt-ud"),
-        "greek": _std_pretrain_config(model_name, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud")
+        "uyghur": _std_eval_config(model_name, "uyghur", "UD_Uyghur-UDT", "ug_udt-ud"),
+        "greek": _std_eval_config(model_name, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud")
     }[language]
