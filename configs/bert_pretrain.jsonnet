@@ -80,7 +80,7 @@ local heads = (
         "type": "multitask",
         "scheduler": {
             "type": "homogeneous_repeated_roundrobin",
-            "batch_size": 32,
+            "batch_size": 16,
         },
         "shuffle": true
     },
