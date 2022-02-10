@@ -70,7 +70,7 @@ local parser_head = {
     "data_loader": {
         "type": "multitask",
         "scheduler": {
-            "batch_size": 32,
+            "batch_size": 16,
         },
         "shuffle": true
     },
