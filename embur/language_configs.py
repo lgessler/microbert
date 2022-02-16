@@ -88,7 +88,7 @@ def get_pretrain_config(language, tokenizer_path, excluded_tasks):
         "maltese": _std_pretrain_config(mismatched_reader, "maltese", "UD_Maltese-MUDT", "mt_mudt-ud", ssplit_type="_punct"),
         "wolof": _std_pretrain_config(mismatched_reader, "wolof", "UD_Wolof-WTB", "wo_wtb-ud", ssplit_type="_punct"),
         "uyghur": _std_pretrain_config(mismatched_reader, "uyghur", "UD_Uyghur-UDT", "ug_udt-ud", ssplit_type="_punct"),
-        "greek": _std_pretrain_config(mismatched_reader, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud", ssplit_type="_punct")
+        "greek": _std_pretrain_config(mismatched_reader, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud", ssplit_type="")
     }[language]
 
     for subconfig_name, subconfig in language_config.items():
