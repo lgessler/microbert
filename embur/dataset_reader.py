@@ -81,8 +81,14 @@ class EmburConllu(DatasetReader):
                 document_count += len(sentence)
             token_count += document_count
         print(f"\n\nTotal token count for {file_path} split: {token_count}\n\n")
+
+        sample_printed = False
+        yielded = 0
+
         for document in documents:
             for sentence in document:
+                if 'TOY_DATA' in os.environ and yielded >= 100:
+                    continue
                 m = sentence.metadata
                 # Only accept plain tokens
                 sentence = [a for a in sentence if isinstance(a['id'], int)]
@@ -100,7 +106,7 @@ class EmburConllu(DatasetReader):
                     heads = [int(x["head"]) for x in sentence]
                     deprels = [str(x["deprel"]) for x in sentence]
 
-                yield self.text_to_instance(
+                instance = self.text_to_instance(
                     forms=forms,
                     xpos_tags=xpos_tags,
                     upos_tags=upos_tags,
@@ -108,6 +114,13 @@ class EmburConllu(DatasetReader):
                     heads=heads,
                     deprels=deprels,
                 )
+                if not sample_printed:
+                    print(f"Sample instance from {file_path}:", instance)
+                    sample_printed = True
+
+                yielded += 1
+
+                yield instance
 
     @overrides
     def text_to_instance(
