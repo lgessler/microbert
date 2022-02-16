@@ -4,8 +4,8 @@ from shutil import rmtree
 
 from betacode.conv import beta_to_uni
 from bs4 import BeautifulSoup
-from conllu import TokenList
-from rich.progress import track
+from conllu import TokenList, parse
+from joblib import Parallel, delayed
 
 import embur.scripts.common as esc
 
@@ -37,12 +37,27 @@ def file_to_tokenlists(filepath):
     return tls
 
 
+# It's a long story--see PretrainedTransformerTokenizer._reverse_engineer_special_tokens
+BOGUS_DOC = """# newdoc id = BOGUS
+# sent_id = BOGUS - 1
+1       a       _       _       _       _       _       _       _       _
+2       b       _       _       _       _       _       _       _       _
+
+"""
+
+
 def main():
     filepaths = sorted(glob(f"{CORPORA_DIR}/*.xml"))
-    doc_tls = []
-    for filepath in track(filepaths):
-        tls = file_to_tokenlists(filepath)
-        doc_tls.append(tls)
+
+    def process_doc(filepath):
+        print("Processed", filepath)
+        return "".join(tl.serialize() for tl in file_to_tokenlists(filepath))
+
+    doc_strs = Parallel(n_jobs=-1, prefer="processes", verbose=6)(
+        delayed(process_doc)(filepath)
+        for filepath in filepaths
+    )
+    doc_tls = [parse(s) for s in doc_strs]
 
     train_tls, dev_tls = esc.get_splits(doc_tls, proportions=[0.9, 0.1])
     train_tc = sum(sum(len(tl) for tl in tls) for tls in train_tls)
@@ -53,9 +68,9 @@ def main():
     print(f"Split: train {train_tc}, dev {dev_tc}")
 
     with open(f"{OUTPUT_DIR}/train/train.conllu", 'w') as f:
-        f.write("".join(tl.serialize() for doc in train_tls for tl in doc))
+        f.write("".join(tl.serialize() for doc in train_tls for tl in doc) + BOGUS_DOC)
     with open(f"{OUTPUT_DIR}/dev/dev.conllu", 'w') as f:
-        f.write("".join(tl.serialize() for doc in dev_tls for tl in doc))
+        f.write("".join(tl.serialize() for doc in dev_tls for tl in doc) + BOGUS_DOC)
 
 
 if __name__ == '__main__':
