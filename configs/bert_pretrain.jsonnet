@@ -80,7 +80,7 @@ local heads = (
         "type": "multitask",
         "scheduler": {
             "type": "homogeneous_repeated_roundrobin",
-            "batch_size": 16,
+            "batch_size": 8,
         },
         "shuffle": true
     },
@@ -128,6 +128,7 @@ local heads = (
         },
         "patience": 15,
         "num_epochs": 200,
-        "validation_metric": "-mlm_perplexity"
+        "validation_metric": "-mlm_perplexity",
+        "grad_norm": 1.0
     }
 }
