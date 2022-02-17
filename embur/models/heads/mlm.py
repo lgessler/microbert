@@ -42,17 +42,28 @@ class MlmHead(Head):
 
         if masked_text_labels is not None:
             # Gather all masked tokens, i.e. all tokens that aren't -100 (= not masked) or padding
+            # First find the mask for tokens that are not masked
             not_modified_mask = (masked_text_labels == -100)
+            # Now find the padding mask
             padding_mask = (masked_text_labels == self.pad_token_index)
+            # Combine them and take the inverse mask to find the masked positions
             loss_mask = (~(padding_mask | not_modified_mask))
-
             mask_predictions = prediction_scores[loss_mask]
-            mask_labels = masked_text_labels[loss_mask]
 
-            loss = F.cross_entropy(mask_predictions, mask_labels)
-            self._perplexity(loss)
-            output_dict["loss"] = loss
-            output_dict["masked_text_labels"] = masked_text_labels
+            # For each instance in the batch, only proceed if it turns out that at least one token was masked,
+            # else we get no signal
+            if len(mask_predictions) > 0:
+                mask_labels = masked_text_labels[loss_mask]
+
+                loss = F.cross_entropy(mask_predictions, mask_labels)
+                self._perplexity(loss)
+
+                output_dict["loss"] = loss
+                output_dict["masked_text_labels"] = masked_text_labels
+            else:
+                # AllenNLP's trainer will refuse to proceed if it's expecting loss and doesn't get it--give it 0
+                output_dict["loss"] = torch.tensor(0.0, requires_grad=True)
+                output_dict["masked_text_labels"] = masked_text_labels
 
         return output_dict
 
