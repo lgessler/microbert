@@ -79,10 +79,12 @@ local heads = (
     "data_loader": {
         "type": "multitask",
         "scheduler": {
-            "type": "homogeneous_repeated_roundrobin",
+            "type": "homogeneous_roundrobin",
             "batch_size": 8,
         },
-        "shuffle": true
+        "shuffle": true,
+        "instances_per_epoch": 2400,
+        "sampler": "uniform"
     },
     "train_data_path": train_data_paths,
     "validation_data_path": dev_data_paths,
@@ -129,6 +131,7 @@ local heads = (
         "patience": 15,
         "num_epochs": 200,
         "validation_metric": "-mlm_perplexity",
-        "grad_norm": 1.0
+        "grad_norm": 1.0,
+        "grad_clipping": 5.0
     }
 }

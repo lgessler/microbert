@@ -67,12 +67,22 @@ local parser_head = {
     },
     "train_data_path": {"parser": train_data_path},
     "validation_data_path": {"parser": validation_data_path},
+    //"data_loader": {
+    //    "type": "multitask",
+    //    "scheduler": {
+    //        "batch_size": 8,
+    //    },
+    //    "shuffle": true
+    //},
     "data_loader": {
         "type": "multitask",
         "scheduler": {
+            "type": "homogeneous_roundrobin",
             "batch_size": 8,
         },
-        "shuffle": true
+        "shuffle": true,
+        "instances_per_epoch": 2400,
+        "sampler": "uniform"
     },
     "trainer": {
         "optimizer": {
@@ -84,6 +94,7 @@ local parser_head = {
         },
         "patience": 5,
         "num_epochs": 40,
-        "grad_norm": 1.0
+        "grad_norm": 1.0,
+        "grad_clipping": 5.0
     }
 }
