@@ -271,46 +271,38 @@ def pretrained_baseline_evaluate(config, language, model_name):
 @click.pass_context
 def language_trial(ctx, language):
     _, baseline_metrics_eval = ctx.invoke(baseline_evaluate, language=language)
+    output = "\t".join([language, "baseline", "", "", str(baseline_metrics_eval["parser_LAS"])])
     with open('metrics.tsv', 'a') as f:
-        print("\t".join([
-            language,
-            "baseline",
-            "",
-            "",
-            str(baseline_metrics_eval["parser_LAS"]),
-        ]), file=f)
+        f.write(output + "\n")
 
     _, pretrained_metrics_eval = ctx.invoke(pretrained_baseline_evaluate, language=language)
+    output = "\t".join([language, "pretrained_baseline", "", "", str(pretrained_metrics_eval["parser_LAS"])])
     with open('metrics.tsv', 'a') as f:
-        print("\t".join([
-            language,
-            "pretrained_baseline",
-            "",
-            "",
-            str(pretrained_metrics_eval["parser_LAS"]),
-        ]), file=f)
+        f.write(output + "\n")
 
     mlm_only_metrics_train = ctx.invoke(pretrain, exclude_task=['parser', 'xpos'], language=language)
     mlm_only_metrics_eval = ctx.invoke(evaluate, exclude_task=['parser', 'xpos'], language=language)
+    output = "\t".join([
+        language,
+        "mlm_only",
+        str(mlm_only_metrics_train["training_parser_LAS"]),
+        str(mlm_only_metrics_train["validation_parser_LAS"]),
+        str(mlm_only_metrics_eval["parser_LAS"]),
+    ])
     with open('metrics.tsv', 'a') as f:
-        print("\t".join([
-            language,
-            "mlm_only",
-            str(mlm_only_metrics_train["training_parser_LAS"]),
-            str(mlm_only_metrics_train["validation_parser_LAS"]),
-            str(mlm_only_metrics_eval["parser_LAS"]),
-        ]), file=f)
+        f.write(output + "\n")
 
     mtl_metrics_train = ctx.invoke(pretrain, language=language)
     mtl_metrics_eval = ctx.invoke(evaluate, language=language)
+    output = "\t".join([
+        language,
+        "mtl",
+        str(mtl_metrics_train["training_parser_LAS"]),
+        str(mtl_metrics_train["validation_parser_LAS"]),
+        str(mtl_metrics_eval["parser_LAS"]),
+    ])
     with open('metrics.tsv', 'a') as f:
-        print("\t".join([
-            language,
-            "mtl",
-            str(mtl_metrics_train["training_parser_LAS"]),
-            str(mtl_metrics_train["validation_parser_LAS"]),
-            str(mtl_metrics_eval["parser_LAS"]),
-        ]), file=f)
+        f.write(output + "\n")
 
 
 
