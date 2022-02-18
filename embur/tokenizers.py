@@ -53,10 +53,10 @@ def train_bert_tokenizer(sentences: List[str], serialize_path: str, vocab_size: 
 
     # Save the files--first write out the vocab, then use BertTokenizer's save_pretrained
     tokenizer.save_model(serialize_path)
-    bert_tokenizer = BertTokenizer.from_pretrained(serialize_path + os.sep + "vocab.txt")
+    bert_tokenizer = BertTokenizer.from_pretrained(serialize_path)
     bert_tokenizer.save_pretrained(serialize_path)
-    os.rename(
-        serialize_path + os.sep + "tokenizer_config.json",
-        serialize_path + os.sep + "config.json"
-    )
+    #os.rename(
+    #    serialize_path + os.sep + "tokenizer_config.json",
+    #    serialize_path + os.sep + "config.json"
+    #)
     return bert_tokenizer
