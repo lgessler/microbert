@@ -14,7 +14,7 @@ import embur
 from embur.commands import evaluate_from_args
 from embur.dataset_reader import read_conllu_files
 from embur.language_configs import LANGUAGES, get_eval_config, get_pretrain_config
-from embur.tokenizers import train_bert_tokenizer
+from embur.tokenizers import train_tokenizer
 
 import_module_and_submodules("allennlp_models")
 TASKS = ['mlm', 'xpos', 'parser']
@@ -85,7 +85,7 @@ def pretrain(config, language, exclude_task, num_layers, num_attention_heads, em
     print("Training tokenizer...")
     documents = read_conllu_files(language_config["tokenizer_conllu_path"])
     sentences = [" ".join([t['form'] for t in sentence]) for document in documents for sentence in document]
-    train_bert_tokenizer(sentences, serialize_path=bert_dir, vocab_size=6000)
+    train_tokenizer(sentences, serialize_path=bert_dir, vocab_size=6000)
 
     # these are needed by bert_pretrain.jsonnet
     os.environ["TOKENIZER_PATH"] = bert_dir
