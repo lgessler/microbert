@@ -3,8 +3,8 @@ Some wrapper functions for Diaparser.
 For an explanation of params, see diaparser.cmds.biaffine_dependency
 """
 import torch
-from diaparser.utils import Config
 from diaparser.parsers.biaffine_dependency import BiaffineDependencyParser as Parser
+from diaparser.utils import Config
 
 
 def train(

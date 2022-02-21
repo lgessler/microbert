@@ -1,4 +1,3 @@
-import argparse
 import json
 import os
 import shutil
@@ -8,11 +7,13 @@ from allennlp.commands.train import train_model_from_file
 from allennlp.common.util import import_module_and_submodules
 from filelock import FileLock
 from rich import print
-from transformers import AutoModel, BertModel
+from torch.serialization import mkdtemp
+from transformers import BertModel
 
 import embur
-from embur.commands import evaluate_from_args
 from embur.dataset_reader import read_conllu_files
+from embur.diaparser import evaluate as dp_evaluate
+from embur.diaparser import train as dp_train
 from embur.language_configs import LANGUAGES, get_eval_config, get_pretrain_config
 from embur.tokenizers import train_tokenizer
 
@@ -47,20 +48,39 @@ def top():
     pass
 
 
-@click.command(help="Run the pretraining phase of an experiment where a BERT model is trained")
-@click.option("--config", "-c", default="configs/bert_pretrain.jsonnet",
-              help="Multitask training config. You probably want to leave this as the default.")
+def evaluate(language, bert):
+    language_config = get_eval_config(language, bert)
+    print("#" * 40)
+    print("# Training for evaluation")
+    print("#" * 40)
+    with mkdtemp() as eval_dir:
+        eval_model_path = os.path.join(eval_dir, "parser.pt")
+        dp_train(
+            eval_model_path,
+            language_config["training"]["train_data_path"],
+            language_config["training"]["validation_data_path"],
+            build=True,
+            feat="bert",
+            bert=bert,
+            epochs=5000
+        )
+        metrics = dp_evaluate(
+            eval_model_path,
+            language_config["testing"]["input_file"]
+        )
+    print(metrics)
+    return metrics
+
+
+@click.command(help="pretrained BERT (bert-base-multilingual-cased) baseline evaluate on UD parsing task")
 @click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
               help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
-@click.option("--exclude-task", "-x", default=[], multiple=True, type=click.Choice(["mlm", "parser", "xpos"]),
-              help="Specify task(s) to exclude from a run. Possible values: mlm, parser, xpos")
-@click.option("--num-layers", default=2, type=int, help="Number of BERT encoder block layers")
-@click.option("--num-attention-heads", default=10, type=int, help="Number of BERT attention heads")
-@click.option("--embedding-dim", default=50, type=int, help="BERT hidden dimension")
-def pretrain(config, language, exclude_task, num_layers, num_attention_heads, embedding_dim):
-    tasks = [x for x in TASKS if x not in exclude_task]
+@click.option("--model-name", "-m", default="bert-base-multilingual-cased")
+def pretrained_baseline_evaluate(language, model_name):
+    return evaluate(language, model_name)
 
-    # Prepare directories that will be used for the AllenNLP model and the extracted BERT model
+
+def _prepare_dirs(language, tasks, num_layers, num_attention_heads, embedding_dim):
     bert_dir = _bert_dir(
         language,
         tasks,
@@ -68,7 +88,7 @@ def pretrain(config, language, exclude_task, num_layers, num_attention_heads, em
         num_attention_heads,
         embedding_dim
     )
-    serialization_dir = _model_dir("pretrain", language, tasks, num_layers, num_attention_heads, embedding_dim)
+    serialization_dir = _model_dir("random_baseline", language, tasks, num_layers, num_attention_heads, embedding_dim)
     if os.path.exists(bert_dir):
         print(f"{bert_dir} exists, removing...")
         shutil.rmtree(bert_dir)
@@ -77,17 +97,10 @@ def pretrain(config, language, exclude_task, num_layers, num_attention_heads, em
         shutil.rmtree(serialization_dir)
     os.makedirs(bert_dir, exist_ok=True)
 
-    # construct the config
-    language_config = get_pretrain_config(language, bert_dir, exclude_task)
+    return bert_dir, serialization_dir
 
-    # Prepare tokenizer and save to dir
-    # Read data, flatten List[List[TokenList]] into List[List[str]] for tokenizer training
-    print("Training tokenizer...")
-    documents = read_conllu_files(language_config["tokenizer_conllu_path"])
-    sentences = [" ".join([t['form'] for t in sentence]) for document in documents for sentence in document]
-    train_tokenizer(sentences, serialize_path=bert_dir, vocab_size=6000)
 
-    # these are needed by bert_pretrain.jsonnet
+def _prepare_bert_pretrain_env_vars(bert_dir, language_config, num_layers, num_attention_heads, embedding_dim):
     os.environ["TOKENIZER_PATH"] = bert_dir
     os.environ["NUM_LAYERS"] = str(num_layers)
     os.environ["NUM_ATTENTION_HEADS"] = str(num_attention_heads)
@@ -103,172 +116,80 @@ def pretrain(config, language, exclude_task, num_layers, num_attention_heads, em
     os.environ["XPOS"] = json.dumps(xpos)
     os.environ["MLM"] = json.dumps(mlm)
     os.environ["PARSER"] = json.dumps(parser)
-    # TODO: check pretrained tokenizer for behavior
-
-    # Train the LM
-    print("Beginning pretraining...")
-    model = train_model_from_file(config, serialization_dir)
-
-    # Write out
-    bert_serialization: BertModel = model._backbone.bert
-    bert_serialization.save_pretrained(bert_dir)
-    with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
-        return json.load(f)
 
 
-def eval_args(serialization_dir, input_file):
-    args = argparse.Namespace()
-    args.file_friendly_logging = False
-    args.weights_file = None
-    args.overrides = None
-    args.embedding_sources_mapping = None
-    args.extend_vocab = False
-    args.batch_weight_key = None
-    args.batch_size = None
-    args.archive_file = f"{serialization_dir}/model.tar.gz"
-    args.input_file = input_file
-    args.output_file = serialization_dir + "/metrics"
-    args.predictions_output_file = serialization_dir + "/predictions"
-    args.cuda_device = 0
-    return args
+def _train_tokenizer(language_config, bert_dir):
+    # Prepare tokenizer and save to dir
+    # Read data, flatten List[List[TokenList]] into List[List[str]] for tokenizer training
+    print("Training tokenizer...")
+    documents = read_conllu_files(language_config["tokenizer_conllu_path"])
+    sentences = [" ".join([t['form'] for t in sentence]) for document in documents for sentence in document]
+    train_tokenizer(sentences, serialize_path=bert_dir, vocab_size=6000)
 
 
-@click.command(help="Evaluate on UD parsing task")
-@click.option("--config", "-c", default="configs/bert_eval.jsonnet", help="Entity eval training config")
+@click.command(help="Use a randomly initialized BERT on the UD parsing task")
 @click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
               help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
-@click.option("--exclude-task", "-x", default=[], multiple=True,
+@click.option("--num-layers", default=2, type=int, help="Number of BERT encoder block layers")
+@click.option("--num-attention-heads", default=10, type=int, help="Number of BERT attention heads")
+@click.option("--embedding-dim", default=50, type=int, help="BERT hidden dimension")
+def random_baseline_evaluate(language, num_layers, num_attention_heads, embedding_dim):
+    # Prepare directories that will be used for the AllenNLP model and the extracted BERT model
+    tasks = ["random_baseline"]
+    bert_dir, serialization_dir = _prepare_dirs(language, tasks, num_layers, num_attention_heads, embedding_dim)
+
+    # Get config and train tokenizer
+    language_config = get_pretrain_config(language, bert_dir, [])
+    _train_tokenizer(language_config, bert_dir)
+
+    # these are needed by bert_pretrain.jsonnet
+    _prepare_bert_pretrain_env_vars(bert_dir, language_config, num_layers, num_attention_heads, embedding_dim)
+
+    # Train for 1 epoch with low LR and write out the BERT model
+    print("Creating model")
+    model = train_model_from_file(
+        "configs/bert_pretrain.jsonnet",
+        serialization_dir,
+        overrides='{"trainer.num_epochs": 1, "trainer.optimizer.lr": 1e-6}'
+    )
+    bert_serialization: BertModel = model._backbone.bert
+    bert_serialization.save_pretrained(bert_dir)
+
+    return evaluate(language, bert_dir)
+
+
+@click.command(help="Run the pretraining phase of an experiment where a BERT model is trained")
+@click.option("--config", "-c", default="configs/bert_pretrain.jsonnet",
+              help="Multitask training config. You probably want to leave this as the default.")
+@click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
+              help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
+@click.option("--exclude-task", "-x", default=[], multiple=True, type=click.Choice(["mlm", "parser", "xpos"]),
               help="Specify task(s) to exclude from a run. Possible values: mlm, parser, xpos")
 @click.option("--num-layers", default=2, type=int, help="Number of BERT encoder block layers")
 @click.option("--num-attention-heads", default=10, type=int, help="Number of BERT attention heads")
 @click.option("--embedding-dim", default=50, type=int, help="BERT hidden dimension")
-@click.option("--trainable/--no-trainable", default=True, help="If true, embedding layers are adjusted")
-def evaluate(config, language, exclude_task, num_layers, num_attention_heads, embedding_dim, trainable):
+def pretrain_evaluate(config, language, exclude_task, num_layers, num_attention_heads, embedding_dim):
+    # Prepare directories that will be used for the AllenNLP model and the extracted BERT model
     tasks = [x for x in TASKS if x not in exclude_task]
-    bert_dir = _bert_dir(
-        language,
-        tasks,
-        num_layers,
-        num_attention_heads,
-        embedding_dim
-    )
-    serialization_dir = _model_dir("evaluation", language, tasks, num_layers, num_attention_heads, embedding_dim)
+    bert_dir, serialization_dir = _prepare_dirs(language, tasks, num_layers, num_attention_heads, embedding_dim)
 
-    if os.path.exists(serialization_dir):
-        print(f"{serialization_dir} exists, removing...")
-        shutil.rmtree(serialization_dir)
+    # Get config and train tokenizer
+    language_config = get_pretrain_config(language, bert_dir, exclude_task)
+    _train_tokenizer(language_config, bert_dir)
 
-    language_config = get_eval_config(language, bert_dir)
+    # these are needed by bert_pretrain.jsonnet
+    _prepare_bert_pretrain_env_vars(bert_dir, language_config, num_layers, num_attention_heads, embedding_dim)
 
-    print("#" * 40)
-    print("# Training for evaluation")
-    print("#" * 40)
-    bert_model = BertModel.from_pretrained(bert_dir)
-
-    os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)
-    os.environ["BERT_PATH"] = bert_dir
-    os.environ["TRAINABLE"] = str(int(trainable))
-    for k, v in language_config['training'].items():
-        os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
-    train_model_from_file(config, serialization_dir)
-
-    print("#" * 40)
-    print("# Evaluating")
-    print("#" * 40)
-    args = eval_args(serialization_dir, {"parser": language_config['testing']['input_file']})
-    metrics = evaluate_from_args(args)
-    return metrics
-
-
-@click.command(help="Baseline evaluate on UD parsing task")
-@click.option("--config", "-c", default="configs/bert_baseline_eval.jsonnet")
-@click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
-              help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
-@click.option("--num-layers", default=2, type=int, help="Number of BERT encoder block layers")
-@click.option("--num-attention-heads", default=10, type=int, help="Number of BERT attention heads")
-@click.option("--embedding-dim", default=50, type=int, help="BERT hidden dimension")
-def baseline_evaluate(config, language, num_layers, num_attention_heads, embedding_dim):
-    tasks = ["baseline"]
-    bert_dir = _bert_dir(
-        language,
-        tasks,
-        num_layers,
-        num_attention_heads,
-        embedding_dim
-    )
-    serialization_dir = _model_dir("evaluation", language, tasks, num_layers, num_attention_heads, embedding_dim)
-    if os.path.exists(bert_dir):
-        print(f"{bert_dir} exists, removing...")
-        shutil.rmtree(bert_dir)
-    if os.path.exists(serialization_dir):
-        print(f"{serialization_dir} exists, removing...")
-        shutil.rmtree(serialization_dir)
-
-    os.makedirs(bert_dir, exist_ok=True)
-
-    training_config = get_pretrain_config(language, bert_dir, [])
-    documents = read_conllu_files(training_config["tokenizer_conllu_path"])
-    sentences = []
-    for document in documents:
-        for sentence in document:
-            sentences.append(" ".join([t['form'] for t in sentence]))
-    print("Training tokenizer...")
-    os.environ["TOKENIZER_PATH"] = bert_dir
-    train_bert_tokenizer(sentences, serialize_path=bert_dir, vocab_size=6000)
-
-    print("#" * 40)
-    print("# Baseline training")
-    print("#" * 40)
-    os.environ["BERT_DIMS"] = str(embedding_dim)
-    os.environ["BERT_LAYERS"] = str(num_layers)
-    os.environ["BERT_HEADS"] = str(num_attention_heads)
-    os.environ["BERT_PATH"] = bert_dir
-    eval_config = get_eval_config(language, bert_dir)
-    for k, v in eval_config['training'].items():
-        os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
+    # Train the LM
+    print("Beginning pretraining...")
     model = train_model_from_file(config, serialization_dir)
     bert_serialization: BertModel = model._backbone.bert
     bert_serialization.save_pretrained(bert_dir)
-
-    print("#" * 40)
-    print("# Baseline evaluating")
-    print("#" * 40)
-    # TODO: there should actually be a separate train step now where the BERT model is ripped out and used on its own for a parser
-    args = eval_args(serialization_dir, {"parser": eval_config['testing']['input_file']})
-    eval_metrics = evaluate_from_args(args)
     with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
-        return json.load(f), eval_metrics
+        train_metrics = json.load(f)
 
-
-@click.command(help="pretrained BERT (bert-base-multilingual-cased) baseline evaluate on UD parsing task")
-@click.option("--config", "-c", default="configs/bert_eval.jsonnet")
-@click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
-              help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
-@click.option("--model-name", "-m", default="bert-base-multilingual-cased")
-def pretrained_baseline_evaluate(config, language, model_name):
-    tasks = ["pretrained_baseline"]
-    serialization_dir = _model_dir("evaluation", language, tasks, model_name=model_name)
-    if os.path.exists(serialization_dir):
-        print(f"{serialization_dir} exists, removing...")
-        shutil.rmtree(serialization_dir)
-
-    print("#" * 40)
-    print("# Multilingual BERT baseline training")
-    print("#" * 40)
-    eval_config = get_eval_config(language, model_name)
-    for k, v in eval_config['training'].items():
-        os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
-    os.environ["BERT_PATH"] = model_name
-    os.environ["BERT_DIMS"] = str(AutoModel.from_pretrained(model_name).config.hidden_size)
-    model = train_model_from_file(config, serialization_dir)
-
-    print("#" * 40)
-    print("# Multilingual BERT Bbseline evaluating")
-    print("#" * 40)
-    args = eval_args(serialization_dir, {"parser": eval_config['testing']['input_file']})
-    eval_metrics = evaluate_from_args(args)
-    with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
-        return json.load(f), eval_metrics
+    eval_metrics = evaluate(language, bert_dir)
+    return train_metrics, eval_metrics
 
 
 def _locked_write(filepath, s):
@@ -281,40 +202,44 @@ def _locked_write(filepath, s):
 @click.argument('language', type=click.Choice(LANGUAGES))
 @click.pass_context
 def language_trial(ctx, language):
-    _, baseline_metrics_eval = ctx.invoke(baseline_evaluate, language=language)
-    output = "\t".join([language, "baseline", "", "", str(baseline_metrics_eval["parser_LAS"])])
+    # metrics is a `diaparser.utils.metric.AttachmentMetric` object
+    _, metrics = ctx.invoke(random_baseline_evaluate, language=language)
+    output = "\t".join([language, "baseline", "", "", str(metrics.las)])
     _locked_write("metrics.tsv", output + "\n")
 
-    _, pretrained_metrics_eval = ctx.invoke(pretrained_baseline_evaluate, language=language)
-    output = "\t".join([language, "pretrained_baseline", "", "", str(pretrained_metrics_eval["parser_LAS"])])
+    _, metrics = ctx.invoke(pretrained_baseline_evaluate, language=language)
+    output = "\t".join([language, "pretrained_baseline", "", "", str(metrics.las)])
     _locked_write("metrics.tsv", output + "\n")
 
-    mlm_only_metrics_train = ctx.invoke(pretrain, exclude_task=['parser', 'xpos'], language=language)
-    mlm_only_metrics_eval = ctx.invoke(evaluate, exclude_task=['parser', 'xpos'], language=language)
+    mlm_only_metrics_train, mlm_only_metrics_eval = ctx.invoke(
+        pretrain_evaluate,
+        language=language,
+        exclude_task=['parser', 'xpos']
+    )
+    _, metrics = mlm_only_metrics_eval
     output = "\t".join([
         language,
         "mlm_only",
         str(mlm_only_metrics_train["training_parser_LAS"]),
         str(mlm_only_metrics_train["validation_parser_LAS"]),
-        str(mlm_only_metrics_eval["parser_LAS"]),
+        str(metrics.las),
     ])
     _locked_write("metrics.tsv", output + "\n")
 
-    mtl_metrics_train = ctx.invoke(pretrain, language=language)
-    mtl_metrics_eval = ctx.invoke(evaluate, language=language)
+    mtl_metrics_train, mtl_metrics_eval = ctx.invoke(pretrain_evaluate, language=language)
+    _, metrics = mtl_metrics_eval
     output = "\t".join([
         language,
         "mtl",
         str(mtl_metrics_train["training_parser_LAS"]),
         str(mtl_metrics_train["validation_parser_LAS"]),
-        str(mtl_metrics_eval["parser_LAS"]),
+        str(metrics.las),
     ])
     _locked_write("metrics.tsv", output + "\n")
 
 
-top.add_command(pretrain)
-top.add_command(evaluate)
-top.add_command(baseline_evaluate)
+top.add_command(pretrain_evaluate)
+top.add_command(random_baseline_evaluate)
 top.add_command(pretrained_baseline_evaluate)
 top.add_command(language_trial)
 
