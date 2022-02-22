@@ -27,7 +27,7 @@ def train_tokenizer(sentences: List[str], serialize_path: str = "", vocab_size: 
     unk_token = "[UNK]"
     pad_token = "[PAD]"
     mask_token = "[MASK]"
-    special_tokens = [cls_token, sep_token, unk_token, pad_token, mask_token]
+    special_tokens = [pad_token, cls_token, sep_token, unk_token, mask_token]
 
     tokenizer = Tokenizer(WordPiece(unk_token="[UNK]"))
     tokenizer.normalizer = Sequence([NFD(), Lowercase(), StripAccents()])
