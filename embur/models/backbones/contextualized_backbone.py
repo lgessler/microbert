@@ -6,7 +6,6 @@ from allennlp.data.vocabulary import Vocabulary
 from allennlp.modules import Seq2SeqEncoder, TextFieldEmbedder
 from allennlp.modules.backbones.backbone import Backbone
 from allennlp.nn import util
-from overrides import overrides
 
 
 @Backbone.register("contextualized_embedding")
@@ -49,7 +48,6 @@ class ContextualizedEmbedding(Backbone):
             outputs["encoded_masked_text_mask"] = masked_text_mask
         return outputs
 
-    @overrides
     def make_output_human_readable(self, output_dict: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
         tokens = []
         for instance_tokens in output_dict["token_ids"]:

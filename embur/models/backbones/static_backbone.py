@@ -7,7 +7,6 @@ from allennlp.modules import TextFieldEmbedder
 from allennlp.modules.backbones.backbone import Backbone
 from allennlp.modules.token_embedders.embedding import Embedding
 from allennlp.nn import util
-from overrides import overrides
 
 
 @Backbone.register("static_embedding")
@@ -47,7 +46,6 @@ class StaticEmbedding(Backbone):
             outputs["encoded_masked_text_mask"] = masked_text_mask
         return outputs
 
-    @overrides
     def make_output_human_readable(self, output_dict: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
         tokens = []
         for instance_tokens in output_dict["token_ids"]:
