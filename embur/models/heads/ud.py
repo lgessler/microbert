@@ -16,7 +16,6 @@ from allennlp.nn.chu_liu_edmonds import decode_mst
 from allennlp.nn.util import (get_device_of, get_lengths_from_binary_sequence_mask, get_range_vector,
                               get_text_field_mask, masked_log_softmax)
 from allennlp.training.metrics import AttachmentScores
-from overrides import overrides
 from torch.nn.modules import Dropout
 
 logger = logging.getLogger(__name__)
@@ -121,7 +120,6 @@ class BiaffineDependencyParser(Head):
         self._attachment_scores = AttachmentScores()
         initializer(self)
 
-    @overrides
     def forward(
         self,  # type: ignore
         encoded_text: torch.Tensor,
@@ -173,7 +171,6 @@ class BiaffineDependencyParser(Head):
 
         return output_dict
 
-    @overrides
     def make_output_human_readable(
         self, output_dict: Dict[str, torch.Tensor]
     ) -> Dict[str, torch.Tensor]:
@@ -584,7 +581,6 @@ class BiaffineDependencyParser(Head):
             new_mask = new_mask & ~label_mask
         return new_mask
 
-    @overrides
     def get_metrics(self, reset: bool = False) -> Dict[str, float]:
         metrics = self._attachment_scores.get_metric(reset)
         del metrics['LEM']

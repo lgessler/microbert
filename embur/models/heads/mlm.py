@@ -6,7 +6,6 @@ from allennlp.data.vocabulary import Vocabulary
 from allennlp.models.heads.head import Head
 from allennlp.nn import Activation
 from allennlp.training.metrics import CategoricalAccuracy, Perplexity
-from overrides import overrides
 
 
 @Head.register("mlm")
@@ -26,7 +25,6 @@ class MlmHead(Head):
         self._accuracy = CategoricalAccuracy()
         self._perplexity = Perplexity()
 
-    @overrides
     def forward(
         self,  # type: ignore
         encoded_masked_text: torch.Tensor,
@@ -70,7 +68,6 @@ class MlmHead(Head):
     def get_metrics(self, reset: bool = False):
         return {"perplexity": self._perplexity.get_metric(reset=reset)}
 
-    @overrides
     def make_output_human_readable(self, output_dict: Dict[str, Any]) -> Dict[str, Any]:
         top_words = []
         for instance_indices in output_dict["top_indices"]:

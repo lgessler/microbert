@@ -8,7 +8,6 @@ from allennlp.models.heads.head import Head
 from allennlp.modules import ConditionalRandomField, TimeDistributed
 from allennlp.modules.seq2seq_encoders import GruSeq2SeqEncoder
 from allennlp.nn.util import sequence_cross_entropy_with_logits
-from overrides import overrides
 
 
 @Head.register("xpos")
@@ -37,7 +36,6 @@ class XposHead(Head):
 
         self.metrics = {"accuracy": CategoricalAccuracy()}
 
-    @overrides
     def forward(
         self,  # type: ignore
         encoded_text: torch.Tensor,
@@ -78,7 +76,6 @@ class XposHead(Head):
 
         return output
 
-    @overrides
     def get_metrics(self, reset: bool = False) -> Dict[str, float]:
         metrics = {"tag_accuracy": self.metrics["accuracy"].get_metric(reset)}
         return metrics

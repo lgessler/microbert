@@ -12,7 +12,6 @@ from allennlp.data.instance import Instance
 from allennlp.data.token_indexers import SingleIdTokenIndexer, TokenIndexer
 from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer
 from conllu import TokenList, parse
-from overrides import overrides
 
 logger = logging.getLogger(__name__)
 
@@ -71,7 +70,6 @@ class EmburConllu(DatasetReader):
         self.tokenizer = tokenizer
         self.whitespace_tokenizer = WhitespaceTokenizer()
 
-    @overrides
     def _read(self, file_path: str):
         documents = read_conllu_files(file_path)
         token_count = 0
@@ -122,7 +120,6 @@ class EmburConllu(DatasetReader):
 
                 yield instance
 
-    @overrides
     def text_to_instance(
         self,  # type: ignore
         forms: List[str],
