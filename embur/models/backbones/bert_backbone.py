@@ -8,7 +8,6 @@ from allennlp.modules.backbones.backbone import Backbone
 from allennlp.modules.seq2seq_encoders import PytorchTransformer
 from allennlp.modules.token_embedders import PretrainedTransformerMismatchedEmbedder
 from allennlp.nn import util
-from overrides import overrides
 from transformers import BertTokenizer, DataCollatorForWholeWordMask
 from transformers.models.bert.modeling_bert import BertConfig, BertModel
 
@@ -135,7 +134,6 @@ class BertBackbone(Backbone):
         outputs["encoded_masked_text"] = bert_output.last_hidden_state
         outputs["masked_text_labels"] = labels
 
-    @overrides
     def make_output_human_readable(self, output_dict: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
         tokens = []
         for instance_tokens in output_dict["token_ids"]:
