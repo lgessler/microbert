@@ -32,7 +32,10 @@ def file_to_tokenlists(filepath):
             lemma = word.find("lemma")
             token["lemma"] = lemma["entry"] if "entry" in lemma else "_"
             token["xpos"] = lemma["pos"] if "pos" in lemma else "_"
-        tls.append(TokenList(tokens, meta))
+        if len(tokens) > 0:
+            tls.append(TokenList(tokens, meta))
+        else:
+            print(f"Skipping empty sentence at {title} - {sent_num}")
 
     return tls
 
