@@ -70,6 +70,12 @@ local heads = (
   + (if std.parseJson(std.extVar("PARSER")) then {"parser": parser_head} else {})
 );
 
+local weights = (
+  (if std.parseJson(std.extVar("XPOS")) then {"xpos": 0.1} else {})
+  + (if std.parseJson(std.extVar("MLM")) then {"mlm": 0.8} else {})
+  + (if std.parseJson(std.extVar("PARSER")) then {"parser": 0.1} else {})
+);
+
 
 {
     "dataset_reader" : {
@@ -83,8 +89,11 @@ local heads = (
             "batch_size": 8,
         },
         "shuffle": true,
-        "instances_per_epoch": 2400,
-        "sampler": "uniform"
+        "instances_per_epoch": 9600,
+        "sampler": {
+            "type": "weighted",
+            "weights": weights
+        }
     },
     "train_data_path": train_data_paths,
     "validation_data_path": dev_data_paths,
@@ -128,10 +137,8 @@ local heads = (
             "verbose": true,
             "min_lr": 5e-6
         },
-        "patience": 15,
-        "num_epochs": 200,
-        "validation_metric": "-mlm_perplexity",
-        "grad_norm": 1.0,
-        "grad_clipping": 5.0
+        "patience": 20,
+        "num_epochs": 400,
+        "validation_metric": "-mlm_perplexity"
     }
 }
