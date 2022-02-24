@@ -21,7 +21,24 @@ def write_vocab(tokenizer: Tokenizer, serialization_dir: str):
         f.write(words)
 
 
+def count_word_types(sentences: List[str]):
+    vocab = set()
+    for sentence in sentences:
+        for token in sentence.split(" "):
+            vocab.add(token)
+    return len(vocab)
+
+
 def train_tokenizer(sentences: List[str], serialize_path: str = "", vocab_size: int = 6000) -> Tokenizer:
+    # Some reference points for train splits:
+    # - Greek: 9_058_227 words, 478_376 types
+    # - Wolof: 517_237 words, 59_137 types
+    # - Coptic: 970_642 words, 14_457 types
+    # - Uyghur: 2_401_445 words, 368_585 types
+    # - Maltese: 2_113_223 words, 319_083 types
+    word_type_count = count_word_types(sentences)
+    vocab_size = 8000 + max(0, int((word_type_count-15000)*(12000/450000)))
+
     cls_token = "[CLS]"
     sep_token = "[SEP]"
     unk_token = "[UNK]"

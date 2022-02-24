@@ -124,7 +124,7 @@ def _train_tokenizer(language_config, bert_dir):
     print("Training tokenizer...")
     documents = read_conllu_files(language_config["tokenizer_conllu_path"])
     sentences = [" ".join([t['form'] for t in sentence]) for document in documents for sentence in document]
-    train_tokenizer(sentences, serialize_path=bert_dir, vocab_size=6000)
+    train_tokenizer(sentences, serialize_path=bert_dir)
 
 
 @click.command(help="Use a randomly initialized BERT on the UD parsing task")
