@@ -137,7 +137,7 @@ local weights = (
             "verbose": true,
             "min_lr": 5e-6
         },
-        "patience": 20,
+        "patience": 50,
         "num_epochs": 400,
         "validation_metric": "-mlm_perplexity"
     }
