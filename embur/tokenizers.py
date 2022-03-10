@@ -3,12 +3,12 @@ from typing import List
 
 from tokenizers import Tokenizer
 from tokenizers.implementations import BertWordPieceTokenizer
-from tokenizers.models import WordPiece
+from tokenizers.models import WordPiece, BPE
 from tokenizers.normalizers import NFD, Lowercase, Sequence, StripAccents
 from tokenizers.pre_tokenizers import Whitespace
 from tokenizers.processors import TemplateProcessing
 # https://huggingface.co/docs/tokenizers/python/latest/pipeline.html
-from tokenizers.trainers import WordPieceTrainer
+from tokenizers.trainers import WordPieceTrainer, BpeTrainer
 from transformers import BertTokenizer, PreTrainedTokenizerFast
 
 
@@ -29,7 +29,7 @@ def count_word_types(sentences: List[str]):
     return len(vocab)
 
 
-def train_tokenizer(sentences: List[str], serialize_path: str = "", vocab_size: int = 6000) -> Tokenizer:
+def train_tokenizer(sentences: List[str], serialize_path: str = "", model_type="wordpiece") -> Tokenizer:
     # Some reference points for train splits:
     # - Greek: 9_058_227 words, 478_376 types
     # - Wolof: 517_237 words, 59_137 types
@@ -37,7 +37,7 @@ def train_tokenizer(sentences: List[str], serialize_path: str = "", vocab_size: 
     # - Uyghur: 2_401_445 words, 368_585 types
     # - Maltese: 2_113_223 words, 319_083 types
     word_type_count = count_word_types(sentences)
-    vocab_size = 8000 + max(0, int((word_type_count-15000)*(12000/450000)))
+    vocab_size = 8_000 + max(0, int((word_type_count-15000)*(6_000/450_000)))
 
     cls_token = "[CLS]"
     sep_token = "[SEP]"
@@ -46,7 +46,14 @@ def train_tokenizer(sentences: List[str], serialize_path: str = "", vocab_size: 
     mask_token = "[MASK]"
     special_tokens = [pad_token, cls_token, sep_token, unk_token, mask_token]
 
-    tokenizer = Tokenizer(WordPiece(unk_token="[UNK]"))
+    models = {
+        "wordpiece": WordPiece,
+        "bpe": BPE
+    }
+    if model_type not in models:
+        raise Exception(f"Unknown model type {model_type}. Valid models: {list(models.keys())}")
+
+    tokenizer = Tokenizer(models[model_type](unk_token="[UNK]"))
     tokenizer.normalizer = Sequence([NFD(), Lowercase(), StripAccents()])
     tokenizer.pre_tokenizer = Whitespace()
     tokenizer.post_processor = TemplateProcessing(
@@ -57,7 +64,15 @@ def train_tokenizer(sentences: List[str], serialize_path: str = "", vocab_size: 
             (sep_token, 2),
         ],
     )
-    trainer = WordPieceTrainer(
+
+    trainers = {
+        "wordpiece": WordPieceTrainer,
+        "bpe": BpeTrainer
+    }
+    if model_type not in trainers:
+        raise Exception(f"Unknown model type {model_type}. Valid models: {list(trainers.keys())}")
+
+    trainer = trainers[model_type](
         vocab_size=vocab_size,
         special_tokens=special_tokens
     )
