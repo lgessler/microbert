@@ -93,8 +93,7 @@ def get_pretrain_config(language, tokenizer_path, excluded_tasks):
 
     for subconfig_name, subconfig in language_config.items():
         if subconfig_name in ["train_data_paths", "dev_data_paths", "readers"]:
-            for excluded_key in excluded_tasks:
-                language_config[subconfig_name] = {k: v for k, v in subconfig.items() if k != excluded_key}
+            language_config[subconfig_name] = {k: v for k, v in subconfig.items() if k not in excluded_tasks}
 
     return language_config
 
