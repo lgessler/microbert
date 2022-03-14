@@ -194,8 +194,8 @@ def language_trial(ctx, language, tokenization_type):
     output = "\t".join([
         language,
         "mlm_only",
-        str(mlm_only_metrics_train["training_parser_LAS"]),
-        str(mlm_only_metrics_train["validation_parser_LAS"]),
+        "",
+        "",
         str(metrics.las),
     ])
     _locked_write("metrics.tsv", output + "\n")
