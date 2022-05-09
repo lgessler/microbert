@@ -145,7 +145,7 @@ def _train_tokenizer(language_config, bert_dir, model_type):
               help="Specify task(s) to exclude from a run. Possible values: mlm, parser, xpos")
 @click.option("--tokenization-type", "-t", type=click.Choice(["wordpiece", "bpe"]), default="wordpiece")
 @click.option("--num-layers", default=2, type=int, help="Number of BERT encoder block layers")
-@click.option("--num-attention-heads", default=10, type=int, help="Number of BERT attention heads")
+@click.option("--num-attention-heads", default=5, type=int, help="Number of BERT attention heads")
 @click.option("--embedding-dim", default=50, type=int, help="BERT hidden dimension")
 def pretrain_evaluate(config, language, exclude_task, tokenization_type, num_layers, num_attention_heads, embedding_dim):
     # Prepare directories that will be used for the AllenNLP model and the extracted BERT model
