@@ -22,6 +22,9 @@ TASKS = ['mlm', 'xpos', 'parser']
 
 
 def _bert_dir(language, tasks, num_layers=None, num_heads=None, embedding_dim=None):
+    """
+    Returns a dirname for a CWE model output constructed from the params.
+    """
     return (
         f"berts/{language}/"
         + f"{'-'.join(tasks)}"
@@ -32,6 +35,9 @@ def _bert_dir(language, tasks, num_layers=None, num_heads=None, embedding_dim=No
 
 
 def _model_dir(step, language, tasks, num_layers=None, num_heads=None, embedding_dim=None, model_name=None):
+    """
+    Returns a dirname for a model (i.e., the MTL model used for pretraining) constructed from the params.
+    """
     return (
         f"models/{language}/"
         + f"{'-'.join(tasks)}"
@@ -49,6 +55,9 @@ def top():
 
 
 def evaluate(language, bert):
+    """
+    Given a language and a pretrained BERT model (or something API compatible with it),
+    """
     language_config = get_eval_config(language, bert)
     print("#" * 40)
     print("# Training for evaluation")

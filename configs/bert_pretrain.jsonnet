@@ -76,6 +76,26 @@ local weights = (
   + (if std.parseJson(std.extVar("PARSER")) then {"parser": 0.1} else {})
 );
 
+// scheduling
+local batch_size = 8;
+local num_epochs = 500;
+local instances_per_epoch = 9600;
+local steps_per_epoch = instances_per_epoch / batch_size;
+local plateau = {
+    "type": "reduce_on_plateau",
+    "factor": 0.5,
+    "mode": "max",
+    "patience": 2,
+    "verbose": true,
+    "min_lr": 5e-6
+};
+
+local slanted_triangular = {
+    "type": "slanted_triangular",
+    "num_epochs": num_epochs,
+    "num_steps_per_epoch": steps_per_epoch
+};
+
 
 {
     "dataset_reader" : {
@@ -86,10 +106,10 @@ local weights = (
         "type": "multitask",
         "scheduler": {
             "type": "homogeneous_roundrobin",
-            "batch_size": 8,
+            "batch_size": batch_size,
         },
         "shuffle": true,
-        "instances_per_epoch": 9600,
+        "instances_per_epoch": instances_per_epoch,
         "sampler": {
             "type": "weighted",
             "weights": weights
@@ -129,16 +149,9 @@ local weights = (
             //    [[".*biaffine_parser.*"], {"optimizer_name": "biaffine_parser"}]
             //]
         },
-        "learning_rate_scheduler": {
-            "type": "reduce_on_plateau",
-            "factor": 0.5,
-            "mode": "max",
-            "patience": 2,
-            "verbose": true,
-            "min_lr": 5e-6
-        },
-        "patience": 50,
-        "num_epochs": 400,
+        "learning_rate_scheduler": slanted_triangular,
+        //"patience": 50,
+        "num_epochs": num_epochs,
         "validation_metric": "-mlm_perplexity"
     }
 }
