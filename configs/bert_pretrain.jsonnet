@@ -78,7 +78,7 @@ local weights = (
 
 // scheduling
 local batch_size = 8;
-local num_epochs = 500;
+local num_epochs = 1000;
 local instances_per_epoch = 9600;
 local steps_per_epoch = instances_per_epoch / batch_size;
 local plateau = {
