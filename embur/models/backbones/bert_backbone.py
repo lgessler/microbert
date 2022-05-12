@@ -21,7 +21,6 @@ class BertBackbone(Backbone):
         feedforward_dim: int,
         num_layers: int,
         num_attention_heads: int,
-        position_embedding_dim: int,
         tokenizer_path: str,
         position_embedding_type: str = "absolute",
         activation: str = "gelu",
@@ -48,7 +47,6 @@ class BertBackbone(Backbone):
             intermediate_size=feedforward_dim,
             hidden_act=activation,
             hidden_dropout_prob=hidden_dropout,
-            max_position_embeddings=position_embedding_dim,
             position_embedding_type=position_embedding_type,
             use_cache=True,
         )

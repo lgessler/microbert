@@ -125,11 +125,7 @@ local slanted_triangular = {
             "feedforward_dim": embedding_dim * 4,
             "num_layers": num_layers,
             "num_attention_heads": num_attention_heads,
-            // Actually, we use ALiBi (https://github.com/ofirpress/attention_with_linear_biases)
-            // (note that we are using a custom version of the transformers package with alibi hacked onto BERT)
-            // So, the position embedding type is ignored and the position_embedding_dim is actually a max seq length
-            "position_embedding_dim": 512,
-            "position_embedding_type": "sinusoidal",
+            "position_embedding_type": "relative_key",
             "tokenizer_path": tokenizer_path
         },
         "heads": heads
