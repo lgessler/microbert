@@ -14,7 +14,7 @@ from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer
 from conllu import TokenList, parse
 
 logger = logging.getLogger(__name__)
-MAX_LENGTH = 178
+MAX_LENGTH = 170
 
 
 def read_conllu_file(file_path: str) -> List[TokenList]:
@@ -34,7 +34,7 @@ def read_conllu_file(file_path: str) -> List[TokenList]:
                             f"into chunks of {MAX_LENGTH} tokens")
                 while len(subannotation) > 0:
                     document.append(subannotation)
-                    subannotation = TokenList(subannotation[200:])
+                    subannotation = TokenList(subannotation[MAX_LENGTH:])
                     subannotation.metadata = annotation.metadata.copy()
             else:
                 document.append(annotation)
