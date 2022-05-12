@@ -133,7 +133,7 @@ local slanted_triangular = {
     "trainer": {
         "type": "mtl",
         "optimizer": {
-            "type": "huggingface_adamw",
+            "type": "adamw",
             "lr": 3e-3,
             "betas": [0.9, 0.9],
             "weight_decay": 0.05
