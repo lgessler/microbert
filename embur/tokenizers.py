@@ -9,7 +9,7 @@ from tokenizers.pre_tokenizers import Whitespace
 from tokenizers.processors import TemplateProcessing
 # https://huggingface.co/docs/tokenizers/python/latest/pipeline.html
 from tokenizers.trainers import WordPieceTrainer, BpeTrainer
-from transformers import BertTokenizer, PreTrainedTokenizerFast
+from transformers import BertTokenizer, PreTrainedTokenizerFast, BertTokenizerFast
 
 
 def write_vocab(tokenizer: Tokenizer, serialization_dir: str):
@@ -78,7 +78,7 @@ def train_tokenizer(sentences: List[str], serialize_path: str = "", model_type="
     )
     tokenizer.train_from_iterator(sentences, trainer=trainer)
     if serialize_path:
-        full_tokenizer = PreTrainedTokenizerFast(
+        full_tokenizer = BertTokenizerFast(
             tokenizer_object=tokenizer,
             cls_token=cls_token,
             sep_token=sep_token,
