@@ -14,6 +14,7 @@ from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer
 from conllu import TokenList, parse
 
 logger = logging.getLogger(__name__)
+MAX_LENGTH = 178
 
 
 def read_conllu_file(file_path: str) -> List[TokenList]:
@@ -26,11 +27,11 @@ def read_conllu_file(file_path: str) -> List[TokenList]:
             return []
         for annotation in tokenlists:
             m = annotation.metadata
-            if len(annotation) > 200:
-                subannotation = TokenList(annotation[:200])
+            if len(annotation) > MAX_LENGTH:
+                subannotation = TokenList(annotation[:MAX_LENGTH])
                 subannotation.metadata = annotation.metadata.copy()
                 logger.info(f"Breaking up huge sentence in {file_path} with length {len(annotation)} "
-                            f"into chunks of 200 norms")
+                            f"into chunks of {MAX_LENGTH} tokens")
                 while len(subannotation) > 0:
                     document.append(subannotation)
                     subannotation = TokenList(subannotation[200:])
