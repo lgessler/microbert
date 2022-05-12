@@ -135,6 +135,7 @@ local slanted_triangular = {
         "heads": heads
     },
     "trainer": {
+        "type": "mtl",
         "optimizer": {
             "type": "huggingface_adamw",
             "lr": 3e-3,
