@@ -17,7 +17,7 @@ from transformers import BertTokenizer
 
 logger = logging.getLogger(__name__)
 MAX_TOKEN_LENGTH = 200
-MAX_WORDPIECE_LENGTH = 400
+MAX_WORDPIECE_LENGTH = 350
 
 
 def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[TokenList]:
