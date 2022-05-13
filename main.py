@@ -71,7 +71,8 @@ def evaluate(language, bert):
             build=True,
             feat="bert",
             bert=bert,
-            epochs=5000
+            epochs=5000,
+            max_len=512
         )
         metrics = dp_evaluate(
             eval_model_path,
