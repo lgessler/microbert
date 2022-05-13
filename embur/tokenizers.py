@@ -54,7 +54,11 @@ def train_tokenizer(sentences: List[str], serialize_path: str = "", model_type="
         raise Exception(f"Unknown model type {model_type}. Valid models: {list(models.keys())}")
 
     tokenizer = Tokenizer(models[model_type](unk_token="[UNK]"))
-    tokenizer.normalizer = Sequence([NFD(), Lowercase(), StripAccents()])
+    tokenizer.normalizer = Sequence([
+        NFD(),
+        Lowercase(),
+        #StripAccents()
+    ])
     tokenizer.pre_tokenizer = Whitespace()
     tokenizer.post_processor = TemplateProcessing(
         single=f"{cls_token} $A {sep_token}",
