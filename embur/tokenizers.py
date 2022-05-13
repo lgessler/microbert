@@ -84,7 +84,9 @@ def train_tokenizer(sentences: List[str], serialize_path: str = "", model_type="
             sep_token=sep_token,
             unk_token=unk_token,
             pad_token=pad_token,
-            mask_token=mask_token
+            mask_token=mask_token,
+            bos_token=cls_token,
+            eos_token=sep_token
         )
         full_tokenizer.save_pretrained(serialize_path)
         write_vocab(tokenizer, serialize_path)
