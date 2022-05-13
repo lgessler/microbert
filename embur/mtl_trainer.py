@@ -675,7 +675,8 @@ class MtlTrainer(Trainer):
                     done = torch.tensor(0, device=self.cuda_device)
                     torch.distributed.all_reduce(done, torch.distributed.ReduceOp.SUM)
                     if done.item() > 0:
-                        done_early = True
+                        # LDG
+                        # done_early = True
                         logger.warning(
                             f"Worker {torch.distributed.get_rank()} finishing validation early! "
                             "This implies that there is an imbalance in your validation "

@@ -78,7 +78,7 @@ local weights = (
 
 // scheduling
 local batch_size = 8;
-local num_epochs = 1000;
+local num_epochs = 500;
 local instances_per_epoch = 9600;
 local steps_per_epoch = instances_per_epoch / batch_size;
 local plateau = {
@@ -149,6 +149,19 @@ local slanted_triangular = {
         "learning_rate_scheduler": slanted_triangular,
         //"patience": 50,
         "num_epochs": num_epochs,
-        "validation_metric": "-mlm_perplexity"
+        "validation_metric": "-mlm_perplexity",
+        "callbacks": [
+            {
+                "type": "console_logger"
+            },
+            {
+                "type": "tensorboard"
+            },
+            {
+                "type": "should_validate_callback",
+                "validation_start": 100,
+                "validation_interval": 5
+            }
+        ]
     }
 }
