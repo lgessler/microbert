@@ -1,3 +1,4 @@
+import logging
 from typing import Any, Dict, Optional
 
 import torch
@@ -11,6 +12,7 @@ from allennlp.nn import util
 from transformers import BertTokenizer, DataCollatorForWholeWordMask
 from transformers.models.bert.modeling_bert import BertConfig, BertModel
 
+logger = logging.getLogger(__name__)
 
 @Backbone.register("bert")
 class BertBackbone(Backbone):
@@ -71,6 +73,9 @@ class BertBackbone(Backbone):
         )
         wordpiece_embeddings = output.last_hidden_state
         offsets = text['tokens']['offsets']
+
+        if wordpiece_embeddings.shape[1] > 512:
+            logger.warning(f"Sequence has length exceeding 512, {wordpiece_embeddings.shape[1]}! {text}")
 
         # Assemble wordpiece embeddings into embeddings for each word using average pooling
         span_embeddings, span_mask = util.batched_span_select(wordpiece_embeddings.contiguous(), offsets)  # type: ignore

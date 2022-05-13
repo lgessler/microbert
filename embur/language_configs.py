@@ -58,6 +58,7 @@ def get_pretrain_config(language, tokenizer_path, excluded_tasks):
     """
     mismatched_reader = {
         "type": "embur_conllu",
+        "huggingface_tokenizer_path": tokenizer_path,
         "token_indexers": {
             "tokens": {
                 "type": "pretrained_transformer_mismatched",
