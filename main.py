@@ -1,8 +1,10 @@
+import argparse
 import json
 import os
 import shutil
 
 import click
+from allennlp.commands.evaluate import evaluate_from_args
 from allennlp.commands.train import train_model_from_file
 from allennlp.common.util import import_module_and_submodules
 from filelock import FileLock
@@ -21,6 +23,9 @@ import_module_and_submodules("allennlp_models")
 TASKS = ['mlm', 'xpos', 'parser']
 
 
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Utils
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 def _bert_dir(language, tasks, num_layers=None, num_heads=None, embedding_dim=None):
     """
     Returns a dirname for a CWE model output constructed from the params.
@@ -47,47 +52,6 @@ def _model_dir(step, language, tasks, num_layers=None, num_heads=None, embedding
         + (f"_{model_name}" if model_name is not None else "")
         + f"_{step}"
     )
-
-
-@click.group()
-def top():
-    pass
-
-
-def evaluate(language, bert):
-    """
-    Given a language and a pretrained BERT model (or something API compatible with it),
-    """
-    language_config = get_eval_config(language, bert)
-    print("#" * 40)
-    print("# Training for evaluation")
-    print("#" * 40)
-    with mkdtemp() as eval_dir:
-        eval_model_path = os.path.join(eval_dir, "parser.pt")
-        dp_train(
-            eval_model_path,
-            language_config["training"]["train_data_path"],
-            language_config["training"]["validation_data_path"],
-            build=True,
-            feat="bert",
-            bert=bert,
-            epochs=5000,
-            max_len=512
-        )
-        metrics = dp_evaluate(
-            eval_model_path,
-            language_config["testing"]["input_file"]
-        )
-    print(metrics)
-    return metrics
-
-
-@click.command(help="pretrained BERT (bert-base-multilingual-cased) baseline evaluate on UD parsing task")
-@click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
-              help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
-@click.option("--model-name", "-m", default="bert-base-multilingual-cased")
-def pretrained_baseline_evaluate(language, model_name):
-    return evaluate(language, model_name)
 
 
 def _prepare_dirs(language, tasks, num_layers, num_attention_heads, embedding_dim):
@@ -128,6 +92,98 @@ def _prepare_bert_pretrain_env_vars(bert_dir, language_config, num_layers, num_a
     os.environ["PARSER"] = json.dumps(parser)
 
 
+@click.group()
+def top():
+    pass
+
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Evaluation
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+def evaluate_diaparser(language, bert):
+    """
+    Given a language and a pretrained BERT model (or something API compatible with it),
+    """
+    language_config = get_eval_config(language, bert)
+    print("#" * 40)
+    print("# Training for evaluation")
+    print("#" * 40)
+    with mkdtemp() as eval_dir:
+        eval_model_path = os.path.join(eval_dir, "parser.pt")
+        dp_train(
+            eval_model_path,
+            language_config["training"]["train_data_path"],
+            language_config["training"]["validation_data_path"],
+            build=True,
+            feat="bert",
+            bert=bert,
+            epochs=5000,
+            max_len=512
+        )
+        metrics = dp_evaluate(
+            eval_model_path,
+            language_config["testing"]["input_file"]
+        )
+    print(metrics)
+    return metrics
+
+
+def eval_args(serialization_dir, input_file):
+    args = argparse.Namespace()
+    args.file_friendly_logging = False
+    args.weights_file = None
+    args.overrides = None
+    args.embedding_sources_mapping = None
+    args.extend_vocab = False
+    args.batch_weight_key = None
+    args.batch_size = None
+    args.archive_file = f"{serialization_dir}/model.tar.gz"
+    args.input_file = input_file
+    args.output_file = serialization_dir + "/metrics"
+    args.predictions_output_file = serialization_dir + "/predictions"
+    args.cuda_device = 0
+    args.auto_names = "NONE"
+    return args
+
+
+def evaluate_allennlp(language, bert):
+    """
+    Given a language and a pretrained BERT model (or something API compatible with it),
+    """
+    language_config = get_eval_config(language, bert)
+    with mkdtemp() as eval_dir:
+        print("#" * 40)
+        print("# Training for evaluation")
+        print("#" * 40)
+        bert_model = BertModel.from_pretrained(bert)
+
+        os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)
+        os.environ["BERT_PATH"] = bert
+        os.environ["TRAINABLE"] = "0"
+        for k, v in language_config['training'].items():
+            os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
+        train_model_from_file("configs/parser_eval.jsonnet", eval_dir)
+
+        print("#" * 40)
+        print("# Evaluating")
+        print("#" * 40)
+        args = eval_args(eval_dir, language_config['testing']['input_file'])
+        metrics = evaluate_from_args(args)
+    print(metrics)
+    return metrics
+
+
+@click.command(help="pretrained BERT (bert-base-multilingual-cased) baseline evaluate on UD parsing task")
+@click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
+              help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
+@click.option("--model-name", "-m", default="bert-base-multilingual-cased")
+def pretrained_baseline_evaluate(language, model_name):
+    return evaluate_allennlp(language, model_name)
+
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Training
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 def _train_tokenizer(language_config, bert_dir, model_type):
     # Prepare tokenizer and save to dir
     # Read data, flatten List[List[TokenList]] into List[List[str]] for tokenizer training
@@ -173,7 +229,7 @@ def pretrain_evaluate(config, language, exclude_task, tokenization_type, num_lay
     with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
         train_metrics = json.load(f)
 
-    eval_metrics = evaluate(language, bert_dir)
+    eval_metrics = evaluate_allennlp(language, bert_dir)
     return train_metrics, eval_metrics
 
 
