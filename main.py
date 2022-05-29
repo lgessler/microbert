@@ -170,7 +170,7 @@ def evaluate_allennlp(language, bert):
         args = eval_args(eval_dir, language_config['testing']['input_file'])
         metrics = evaluate_from_args(args)
     print(metrics)
-    return metrics
+    return _, metrics
 
 
 @click.command(help="pretrained BERT (bert-base-multilingual-cased) baseline evaluate on UD parsing task")
