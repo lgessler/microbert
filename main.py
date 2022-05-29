@@ -262,7 +262,7 @@ def language_trial(ctx, language, tokenization_type):
         "mlm_only",
         "",
         "",
-        str(metrics.las),
+        str(metrics["LAS"]),
     ])
     _locked_write("metrics.tsv", output + "\n")
 
@@ -278,7 +278,7 @@ def language_trial(ctx, language, tokenization_type):
         "mtl",
         str(mtl_metrics_train["training_parser_LAS"]),
         str(mtl_metrics_train["validation_parser_LAS"]),
-        str(metrics.las),
+        str(metrics["LAS"]),
     ])
     _locked_write("metrics.tsv", output + "\n")
 
