@@ -67,7 +67,7 @@ local pos_embedding_dim = 50;
       }
     },
     "trainer": {
-      "num_epochs": 50,
+      "num_epochs": 1000,
       "grad_norm": 5.0,
       "patience": 50,
       "validation_metric": "+LAS",
