@@ -4,7 +4,7 @@ local trainable = if std.parseInt(std.extVar("TRAINABLE")) == 1 then true else f
 local train_data_path = std.extVar("train_data_path");
 local validation_data_path = std.extVar("validation_data_path");
 local dataset_reader = std.parseJson(std.extVar("dataset_reader"));
-local pos_embedding_dim = 50;
+local pos_embedding_dim = 0;
 
 {
     "dataset_reader": {
@@ -29,11 +29,11 @@ local pos_embedding_dim = 50;
           }
         }
       },
-      "pos_tag_embedding":{
-        "embedding_dim": pos_embedding_dim,
-        "vocab_namespace": "pos",
-        "sparse": true
-      },
+      //"pos_tag_embedding":{
+      //  "embedding_dim": pos_embedding_dim,
+      //  "vocab_namespace": "pos",
+      //  "sparse": true
+      //},
       "encoder": {
         "type": "stacked_bidirectional_lstm",
         "input_size": embedding_dim + pos_embedding_dim,
@@ -63,7 +63,7 @@ local pos_embedding_dim = 50;
     "data_loader": {
       "batch_sampler": {
         "type": "bucket",
-        "batch_size" : 128
+        "batch_size": 128
       }
     },
     "trainer": {
