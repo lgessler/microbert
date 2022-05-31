@@ -277,7 +277,7 @@ def language_trial(ctx, language, tokenization_type):
         language,
         "mtl",
         str(mtl_metrics_train["training_parser_LAS"]),
-        str(mtl_metrics_train["validation_parser_LAS"]),
+        "_",
         str(metrics["LAS"]),
     ])
     _locked_write("metrics.tsv", output + "\n")
