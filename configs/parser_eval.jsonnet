@@ -38,7 +38,7 @@ local pos_embedding_dim = 0;
         "type": "stacked_bidirectional_lstm",
         "input_size": embedding_dim + pos_embedding_dim,
         "hidden_size": 400,
-        "num_layers": 1,
+        "num_layers": 3,
         "recurrent_dropout_probability": 0.3,
         "use_highway": true
       },
