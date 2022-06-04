@@ -63,7 +63,7 @@ local pos_embedding_dim = 0;
     "data_loader": {
       "batch_sampler": {
         "type": "bucket",
-        "batch_size": 128
+        "batch_size": 16
       }
     },
     "trainer": {
