@@ -26,6 +26,8 @@ local pos_embedding_dim = 0;
           "tokens": {
             "type": "pretrained_transformer_mismatched",
             "model_name": model_name,
+            "train_parameters": false,
+            "last_layer_only": false
           }
         }
       },
