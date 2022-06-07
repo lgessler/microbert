@@ -244,9 +244,8 @@ def _locked_write(filepath, s):
 @click.option("--tokenization-type", "-t", type=click.Choice(["wordpiece", "bpe"]), default="wordpiece")
 @click.pass_context
 def language_trial(ctx, language, tokenization_type):
-    # metrics is a `diaparser.utils.metric.AttachmentMetric` object
     #_, metrics = ctx.invoke(pretrained_baseline_evaluate, language=language)
-    #output = "\t".join([language, "pretrained_baseline", "", "", str(metrics.las)])
+    #output = "\t".join([language, "pretrained_baseline", "", "", str(metrics["LAS"])])
     #_locked_write("metrics.tsv", output + "\n")
 
     # MLM only
