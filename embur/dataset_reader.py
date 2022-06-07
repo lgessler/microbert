@@ -1,11 +1,8 @@
 import logging
 import os
-import time
 from glob import glob
-from random import randint, random
 from typing import Dict, List
 
-import torch
 import tokenizers as T
 from allennlp.data.dataset_readers.dataset_reader import DatasetReader
 from allennlp.data.fields import Field, MetadataField, SequenceLabelField, TensorField, TextField
@@ -18,6 +15,15 @@ from transformers import BertTokenizer
 logger = logging.getLogger(__name__)
 MAX_TOKEN_LENGTH = 200
 MAX_WORDPIECE_LENGTH = 350
+MAX_PIECES_IN_TOKEN = 100
+
+
+def remove_huge_tokens(document, tokenizer):
+    for sentence in document:
+        for i in range(len(sentence)):
+            if len(tokenizer.tokenize(sentence[i]['form'])) > MAX_PIECES_IN_TOKEN:
+                logger.info(f"[UNK]ing out huge token: `{sentence[i]['form']}`")
+                sentence[i]['form'] = "[UNK]"
 
 
 def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[TokenList]:
@@ -25,6 +31,7 @@ def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[Toke
     with open(file_path, "r") as file:
         contents = file.read()
         sentences = parse(contents)
+        remove_huge_tokens(sentences, tokenizer)
         if len(sentences) == 0:
             print(f"WARNING: {file_path} is empty--likely conversion error.")
             return []
@@ -161,6 +168,11 @@ class EmburConllu(DatasetReader):
                 ):
                     heads = [int(x["head"]) for x in sentence]
                     deprels = [str(x["deprel"]) for x in sentence]
+
+                wp_len = len(self.huggingface_tokenizer.tokenize(" ".join(forms)))
+                tok_len = len(forms)
+                assert tok_len <= MAX_TOKEN_LENGTH, (tok_len, MAX_TOKEN_LENGTH, m)
+                assert wp_len <= MAX_WORDPIECE_LENGTH, (wp_len, MAX_WORDPIECE_LENGTH, m)
 
                 instance = self.text_to_instance(
                     forms=forms,
