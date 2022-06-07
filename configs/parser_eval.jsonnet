@@ -26,7 +26,7 @@ local pos_embedding_dim = 0;
           "tokens": {
             "type": "pretrained_transformer_mismatched",
             "model_name": model_name,
-            "train_parameters": false,
+            "train_parameters": true,
             "last_layer_only": false
           }
         }
@@ -71,6 +71,7 @@ local pos_embedding_dim = 0;
     "trainer": {
       "num_epochs": 1000,
       "grad_norm": 5.0,
+      "grad_clipping": 5.0,
       "patience": 50,
       "validation_metric": "+LAS",
       "optimizer": {
