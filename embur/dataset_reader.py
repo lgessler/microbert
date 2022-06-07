@@ -172,7 +172,6 @@ class EmburConllu(DatasetReader):
 
                 wp_len = len(self.huggingface_tokenizer.tokenize(" ".join(forms)))
                 tok_len = len(forms)
-                assert tok_len <= MAX_TOKEN_LENGTH, (tok_len, MAX_TOKEN_LENGTH, m)
                 assert wp_len <= MAX_WORDPIECE_LENGTH, (wp_len, MAX_WORDPIECE_LENGTH, m)
 
                 instance = self.text_to_instance(
