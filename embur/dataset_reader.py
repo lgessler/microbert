@@ -78,12 +78,14 @@ def get_chunks(document, sentence, tokenizer):
             sentence_chunk.append(sentence[i])
             i += 1
             j = accum
+    # Add any leftover chunk we haven't finished yet
     if len(sentence_chunk) > 0:
         sentence_chunks.append(sentence_chunk)
+
     if len(sentence_chunks) > 1:
         msg = "Split sentence into chunks:\n"
         for chunk in sentence_chunks:
-            msg += f"\t{len(chunk)}, {' '.join([t['form'] for t in chunk])}"
+            msg += f"\t{len(chunk)}, {' '.join([t['form'] for t in chunk[:5]])} ...\n"
         logger.info(msg)
     for chunk in sentence_chunks:
         chunk = TokenList(chunk, metadata=metadata)
