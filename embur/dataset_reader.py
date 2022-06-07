@@ -31,7 +31,8 @@ def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[Toke
     with open(file_path, "r") as file:
         contents = file.read()
         sentences = parse(contents)
-        remove_huge_tokens(sentences, tokenizer)
+        if tokenizer is not None:
+            remove_huge_tokens(sentences, tokenizer)
         if len(sentences) == 0:
             print(f"WARNING: {file_path} is empty--likely conversion error.")
             return []
