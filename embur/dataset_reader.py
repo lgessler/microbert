@@ -1,16 +1,20 @@
 import logging
 import os
+from functools import reduce
 from glob import glob
 from typing import Dict, List
+import unicodedata
 
 import tokenizers as T
+from allennlp.data import Vocabulary
 from allennlp.data.dataset_readers.dataset_reader import DatasetReader
 from allennlp.data.fields import Field, MetadataField, SequenceLabelField, TensorField, TextField
 from allennlp.data.instance import Instance
-from allennlp.data.token_indexers import SingleIdTokenIndexer, TokenIndexer
-from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer
+from allennlp.data.token_indexers import SingleIdTokenIndexer, TokenIndexer, PretrainedTransformerMismatchedIndexer
+from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer, PretrainedTransformerTokenizer
 from conllu import TokenList, parse
 from transformers import BertTokenizer
+
 
 logger = logging.getLogger(__name__)
 MAX_TOKEN_LENGTH = 200
@@ -30,71 +34,70 @@ def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[Toke
     document = []
     with open(file_path, "r") as file:
         contents = file.read()
-        sentences = parse(contents)
-        if tokenizer is not None:
-            remove_huge_tokens(sentences, tokenizer)
-        if len(sentences) == 0:
-            print(f"WARNING: {file_path} is empty--likely conversion error.")
-            return []
-        for sentence in sentences:
-            m = sentence.metadata
+    sentences = parse(contents)
+    if tokenizer is not None:
+        remove_huge_tokens(sentences, tokenizer)
+    if len(sentences) == 0:
+        print(f"WARNING: {file_path} is empty--likely conversion error.")
+        return []
 
-            # Need to check that sentences are not too long.
-            # First use a subpiece tokenizer if we have one
-            if tokenizer is not None:
-                get_chunks(document, sentence, tokenizer)
-            # Fall
-            elif len(sentence) > MAX_TOKEN_LENGTH:
-                subannotation = TokenList(sentence[:MAX_TOKEN_LENGTH])
+    vocab = None
+    indexer = None
+    if tokenizer is not None:
+        path = tokenizer.name_or_path
+        indexer = PretrainedTransformerMismatchedIndexer(path, "tokens")
+        vocab = Vocabulary.from_pretrained_transformer(path)
+
+    for sentence in sentences:
+        m = sentence.metadata
+
+        # Need to check that sentences are not too long.
+        # First use a subpiece tokenizer if we have one
+        if indexer is not None and vocab is not None:
+            get_chunks(document, sentence, indexer, vocab)
+        # Fall
+        elif len(sentence) > MAX_TOKEN_LENGTH:
+            subannotation = TokenList(sentence[:MAX_TOKEN_LENGTH])
+            subannotation.metadata = sentence.metadata.copy()
+            logger.info(f"Breaking up huge sentence in {file_path} with length {len(sentence)} "
+                        f"into chunks of {MAX_TOKEN_LENGTH} tokens")
+            while len(subannotation) > 0:
+                document.append(subannotation)
+                subannotation = TokenList(subannotation[MAX_TOKEN_LENGTH:])
                 subannotation.metadata = sentence.metadata.copy()
-                logger.info(f"Breaking up huge sentence in {file_path} with length {len(sentence)} "
-                            f"into chunks of {MAX_TOKEN_LENGTH} tokens")
-                while len(subannotation) > 0:
-                    document.append(subannotation)
-                    subannotation = TokenList(subannotation[MAX_TOKEN_LENGTH:])
-                    subannotation.metadata = sentence.metadata.copy()
-            else:
-                document.append(sentence)
+        else:
+            document.append(sentence)
     return document
 
 
-def get_chunks(document, sentence, tokenizer):
+def get_chunks(document, sentence, indexer, vocab):
     metadata = sentence.metadata
-    pieces = tokenizer.tokenize(" ".join(t["form"] for t in sentence))
+
+    tokens = [Token(token['form']) for token in sentence]
+
     sentence_chunks = []
-    sentence_chunk = []
-    i = 0
-    j = 0
-    while i < len(sentence):
-        assert j >= len(pieces) or len(pieces[j]) < 2 or pieces[j][0:2] != "##"
-
-        # Try to scan a full token, e.g. d ##og
-        accum = j + 1
-        while accum < len(pieces) and len(pieces[accum]) >= 2 and pieces[accum][0:2] == "##":
-            accum += 1
-
-        # If accepting this token in the current sentence would bring us over limit, append our current
-        # chunk and start over
-        if accum > MAX_WORDPIECE_LENGTH:
-            sentence_chunks.append(sentence_chunk)
-            sentence_chunk = []
-            sentence = sentence[i:]
-            pieces = pieces[j:]
-            i = 0
-            j = 0
-        else:
-            sentence_chunk.append(sentence[i])
-            i += 1
-            j = accum
-    # Add any leftover chunk we haven't finished yet
-    if len(sentence_chunk) > 0:
-        sentence_chunks.append(sentence_chunk)
+    d = indexer.tokens_to_indices(tokens, vocab)
+    offsets = d["offsets"]
+    # pieces = [vocab.get_token_from_index(tid) for tid in d["token_ids"]]
+    start, i = 0, 0
+    chunk = []
+    for t_b, t_e in offsets:
+        # note: these are 1-indexed, inclusive indices
+        if t_e - start > MAX_WORDPIECE_LENGTH:
+            sentence_chunks.append(chunk)
+            start = t_b
+            chunk = []
+        chunk.append(sentence[i])
+        i += 1
+    if len(chunk) > 0:
+        sentence_chunks.append(chunk)
 
     if len(sentence_chunks) > 1:
         msg = "Split sentence into chunks:\n"
         for chunk in sentence_chunks:
             msg += f"\t{len(chunk)}, {' '.join([t['form'] for t in chunk[:5]])} ...\n"
         logger.info(msg)
+
     for chunk in sentence_chunks:
         chunk = TokenList(chunk, metadata=metadata)
         document.append(chunk)
@@ -132,9 +135,11 @@ class EmburConllu(DatasetReader):
         self.whitespace_tokenizer = WhitespaceTokenizer()
 
         # Load the HF tokenizer we'll use later in the bert backbone so that we can use it to gauge sentence length
+        self.allennlp_tokenizer = None
         self.huggingface_tokenizer = None
         if huggingface_tokenizer_path is not None:
             self.huggingface_tokenizer = BertTokenizer.from_pretrained(huggingface_tokenizer_path)
+            self.allennlp_tokenizer = PretrainedTransformerTokenizer(huggingface_tokenizer_path)
 
     def _read(self, file_path: str):
         documents = read_conllu_files(file_path, tokenizer=self.huggingface_tokenizer)
@@ -170,8 +175,8 @@ class EmburConllu(DatasetReader):
                     heads = [int(x["head"]) for x in sentence]
                     deprels = [str(x["deprel"]) for x in sentence]
 
-                wp_len = len(self.huggingface_tokenizer.tokenize(" ".join(forms)))
-                tok_len = len(forms)
+
+                wp_len = len(self.allennlp_tokenizer.intra_word_tokenize(forms))
                 assert wp_len <= MAX_WORDPIECE_LENGTH, (wp_len, MAX_WORDPIECE_LENGTH, m)
 
                 instance = self.text_to_instance(
