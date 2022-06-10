@@ -78,13 +78,13 @@ local weights = (
 
 // scheduling
 local batch_size = 8;
-local num_epochs = 500;
-local instances_per_epoch = 9600;
+local num_epochs = 120;
+local instances_per_epoch = 10000;
 local steps_per_epoch = instances_per_epoch / batch_size;
 local plateau = {
     "type": "reduce_on_plateau",
     "factor": 0.5,
-    "mode": "max",
+    "mode": "min",
     "patience": 2,
     "verbose": true,
     "min_lr": 5e-6
@@ -146,8 +146,8 @@ local slanted_triangular = {
             //    [[".*biaffine_parser.*"], {"optimizer_name": "biaffine_parser"}]
             //]
         },
-        "learning_rate_scheduler": slanted_triangular,
-        //"patience": 50,
+        "learning_rate_scheduler": slanted_triangular, //plateau,
+        "patience": 100,
         "num_epochs": num_epochs,
         "validation_metric": "-mlm_perplexity",
         "callbacks": [
@@ -157,11 +157,11 @@ local slanted_triangular = {
             {
                 "type": "tensorboard"
             },
-            {
-                "type": "should_validate_callback",
-                "validation_start": 100,
-                "validation_interval": 5
-            }
+            //{
+            //    "type": "should_validate_callback",
+            //    "validation_start": 100,
+            //    "validation_interval": 5
+            //}
         ]
     }
 }
