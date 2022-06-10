@@ -153,7 +153,7 @@ local slanted_triangular = {
             //    [[".*biaffine_parser.*"], {"optimizer_name": "biaffine_parser"}]
             //]
         },
-        "learning_rate_scheduler": slanted_triangular, //plateau,
+        "learning_rate_scheduler": plateau, //slanted_triangular,
         //"patience": 100,
         "num_epochs": num_epochs,
         "validation_metric": "-mlm_perplexity",
