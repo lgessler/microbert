@@ -71,7 +71,7 @@ local pos_embedding_dim = 0;
     "trainer": {
       "num_epochs": 1000,
       "grad_clipping": 5.0,
-      "patience": 50,
+      "patience": 100,
       "validation_metric": "+LAS",
       "optimizer": {
         "type": "dense_sparse_adam",
