@@ -3,7 +3,7 @@ local num_layers = std.parseInt(std.extVar("NUM_LAYERS"));
 local token_embedding_dim = std.parseInt(std.extVar("EMBEDDING_DIM"));
 local num_attention_heads = std.parseInt(std.extVar("NUM_ATTENTION_HEADS"));
 local embedding_dim = token_embedding_dim; //+ char_embedding_dim;
-local pos_embedding_dim = 10;
+local pos_embedding_dim = 50;
 local tokenizer_path = std.extVar("TOKENIZER_PATH");
 
 // --------------------------------------------------------------------------------
