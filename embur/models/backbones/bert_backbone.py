@@ -60,25 +60,9 @@ class BertBackbone(Backbone):
             tokenizer=tokenizer, mlm=True, mlm_probability=0.15
         )
 
-    def _embed(self, text: TextFieldTensors) -> Dict[str, torch.Tensor]:
-        """
-        This implementation is borrowed from `PretrainedTransformerMismatchedEmbedder` and uses
-        average pooling to yield a de-wordpieced embedding for each original token.
-        Returns both wordpiece embeddings+mask as well as original token embeddings+mask
-        """
-        output = self.bert(
-            input_ids=text['tokens']['token_ids'],
-            attention_mask=text["tokens"]["wordpiece_mask"],
-            token_type_ids=text['tokens']['type_ids'],
-        )
-        wordpiece_embeddings = output.last_hidden_state
-        offsets = text['tokens']['offsets']
-
-        if wordpiece_embeddings.shape[1] > 512:
-            logger.warning(f"Sequence has length exceeding 512, {wordpiece_embeddings.shape[1]}! {text}")
-
+    def _pool_token_embeddings(self, wordpiece_embeddings, offsets):
         # Assemble wordpiece embeddings into embeddings for each word using average pooling
-        span_embeddings, span_mask = util.batched_span_select(wordpiece_embeddings.contiguous(), offsets)  # type: ignore
+        span_embeddings, span_mask = util.batched_span_select(wordpiece_embeddings.contiguous(), offsets)
         span_mask = span_mask.unsqueeze(-1)
         # Shape: (batch_size, num_orig_tokens, max_span_length, embedding_size)
         span_embeddings *= span_mask  # zero out paddings
@@ -93,6 +77,25 @@ class BertBackbone(Backbone):
         orig_embeddings = span_embeddings_sum / torch.clamp_min(span_embeddings_len, 1)
         # All the places where the span length is zero, write in zeros.
         orig_embeddings[(span_embeddings_len == 0).expand(orig_embeddings.shape)] = 0
+        return orig_embeddings
+
+    def _embed(self, text: TextFieldTensors) -> Dict[str, torch.Tensor]:
+        """
+        This implementation is borrowed from `PretrainedTransformerMismatchedEmbedder` and uses
+        average pooling to yield a de-wordpieced embedding for each original token.
+        Returns both wordpiece embeddings+mask as well as original token embeddings+mask
+        """
+        input_ids = text['tokens']['token_ids']
+        attention_mask = text["tokens"]["wordpiece_mask"]
+        token_type_ids = text['tokens']['type_ids']
+        output = self.bert(input_ids=input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids)
+        wordpiece_embeddings = output.last_hidden_state
+        offsets = text['tokens']['offsets']
+
+        if wordpiece_embeddings.shape[1] > 512:
+            logger.warning(f"Sequence has length exceeding 512, {wordpiece_embeddings.shape[1]}! {text}")
+
+        orig_embeddings = self._pool_token_embeddings(wordpiece_embeddings, offsets)
 
         return {
             "wordpiece_mask": text['tokens']['wordpiece_mask'],
