@@ -77,12 +77,12 @@ local weights = (
 );
 
 // scheduling
-local batch_size = 8;
+local batch_size = 16;
 local instances_per_epoch = 200000;
 // BERT base batch size was 256, trained for 1M steps, so try to match this by half
-local BERT_base_total_instances_seen = 256000000 / 2;
-local num_epochs = BERT_base_total_instances_seen / (instances_per_epoch * batch_size);
-local steps_per_epoch = instances_per_epoch / batch_size;
+local BERT_base_total_instances = 256000000 / 2;
+local batches_per_epoch = instances_per_epoch / batch_size;
+local num_epochs = BERT_base_total_instances_seen / instances_per_epoch;
 local plateau = {
     "type": "reduce_on_plateau",
     "factor": 0.5,
@@ -95,7 +95,7 @@ local plateau = {
 local slanted_triangular = {
     "type": "slanted_triangular",
     "num_epochs": num_epochs,
-    "num_steps_per_epoch": steps_per_epoch
+    "num_steps_per_epoch": batches_per_epoch
 };
 
 
