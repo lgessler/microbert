@@ -82,7 +82,7 @@ local instances_per_epoch = 200000;
 // BERT base batch size was 256, trained for 1M steps, so try to match this by half
 local BERT_base_total_instances = 256000000 / 2;
 local batches_per_epoch = instances_per_epoch / batch_size;
-local num_epochs = BERT_base_total_instances_seen / instances_per_epoch;
+local num_epochs = BERT_base_total_instances / instances_per_epoch;
 local plateau = {
     "type": "reduce_on_plateau",
     "factor": 0.5,
