@@ -76,6 +76,7 @@ def get_chunks(document, sentence, indexer, vocab):
     tokens = [Token(token['form']) for token in sentence]
 
     sentence_chunks = []
+    chunk_lens = []
     d = indexer.tokens_to_indices(tokens, vocab)
     offsets = d["offsets"]
     # pieces = [vocab.get_token_from_index(tid) for tid in d["token_ids"]]
@@ -85,17 +86,19 @@ def get_chunks(document, sentence, indexer, vocab):
         # note: these are 1-indexed, inclusive indices
         if t_e - start > MAX_WORDPIECE_LENGTH:
             sentence_chunks.append(chunk)
+            chunk_lens.append(t_b - start)
             start = t_b
             chunk = []
         chunk.append(sentence[i])
         i += 1
     if len(chunk) > 0:
         sentence_chunks.append(chunk)
+        chunk_lens.append(offsets[-1][1] - start)
 
     if len(sentence_chunks) > 1:
         msg = "Split sentence into chunks:\n"
-        for chunk in sentence_chunks:
-            msg += f"\t{len(chunk)}, {' '.join([t['form'] for t in chunk[:5]])} ...\n"
+        for clen, chunk in zip(chunk_lens, sentence_chunks):
+            msg += f"\t{clen}, {' '.join([t['form'] for t in chunk[:5]])} ...\n"
         logger.info(msg)
 
     for chunk in sentence_chunks:
