@@ -147,7 +147,7 @@ local slanted_triangular = {
             //]
         },
         "learning_rate_scheduler": slanted_triangular, //plateau,
-        "patience": 100,
+        //"patience": 100,
         "num_epochs": num_epochs,
         "validation_metric": "-mlm_perplexity",
         "callbacks": [
