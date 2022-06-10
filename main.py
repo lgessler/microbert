@@ -239,15 +239,21 @@ def _locked_write(filepath, s):
         f.write(s)
 
 
+@click.command(help="Run a baseline eval for a given language")
+@click.argument('language', type=click.Choice(LANGUAGES))
+@click.option("--tokenization-type", "-t", type=click.Choice(["wordpiece", "bpe"]), default="wordpiece")
+@click.pass_context
+def language_baseline(ctx, language, tokenization_type):
+    _, metrics = ctx.invoke(pretrained_baseline_evaluate, language=language)
+    output = "\t".join([language, "pretrained_baseline", "", "", str(metrics["LAS"])])
+    _locked_write("metrics.tsv", output + "\n")
+
+
 @click.command(help="Run a full eval for a given language")
 @click.argument('language', type=click.Choice(LANGUAGES))
 @click.option("--tokenization-type", "-t", type=click.Choice(["wordpiece", "bpe"]), default="wordpiece")
 @click.pass_context
 def language_trial(ctx, language, tokenization_type):
-    #_, metrics = ctx.invoke(pretrained_baseline_evaluate, language=language)
-    #output = "\t".join([language, "pretrained_baseline", "", "", str(metrics["LAS"])])
-    #_locked_write("metrics.tsv", output + "\n")
-
     # MLM only
     mlm_only_metrics_train, mlm_only_metrics_eval = ctx.invoke(
         pretrain_evaluate,
@@ -284,6 +290,7 @@ def language_trial(ctx, language, tokenization_type):
 
 top.add_command(pretrain_evaluate)
 top.add_command(pretrained_baseline_evaluate)
+top.add_command(language_baseline)
 top.add_command(language_trial)
 
 
