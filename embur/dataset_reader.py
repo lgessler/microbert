@@ -18,7 +18,7 @@ from transformers import BertTokenizer
 
 logger = logging.getLogger(__name__)
 MAX_TOKEN_LENGTH = 200
-MAX_WORDPIECE_LENGTH = 350
+MAX_WORDPIECE_LENGTH = 500
 MAX_PIECES_IN_TOKEN = 100
 
 

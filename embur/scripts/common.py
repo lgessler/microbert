@@ -2,9 +2,12 @@ import math
 import random
 import re
 from collections import OrderedDict
+from unicodedata import category as unicode_category
 
+from spacy.pipeline.sentencizer import Sentencizer
 import conllu
 
+FULL_STOPS = Sentencizer.default_punct_chars + ["\n", "\r", "\r\n", "\n\r"]
 ELT_REGEX = re.compile(r'<([a-zA-Z][a-zA-Z0-9_]*)')
 ATTR_REGEX = re.compile(r'(?:[a-zA-Z][a-zA-Z0-9_]*:)?([a-zA-Z][a-zA-Z0-9_]*)="([^"]*)"')
 EMPTY_TOKEN_DICT = {field_name: "_" for field_name in conllu.parser.DEFAULT_FIELDS}
@@ -79,3 +82,43 @@ def get_splits(xs, proportions):
 
 def token():
     return EMPTY_TOKEN_DICT.copy()
+
+
+def filter_sents(sents):
+    return [s for s in sents if s.strip() != ""]
+
+
+def ssplit_by_punct(text):
+    if len(text) == 0:
+        return []
+
+    # modified form of https://github.com/explosion/spaCy/blob/3877f78ff9f406a148e27a16ee60a7778bc5a551/spacy/pipeline/sentencizer.pyx#L91L119
+    # iterate char by char and break on punct
+    splits = []
+    seen_full_stop = False
+    start = 0
+    for i, c in enumerate(text):
+        is_punct = unicode_category(c)[0] == "P"
+        is_full_stop = c in FULL_STOPS
+        # Always split on a linebreak
+        if c == "\n":
+            splits.append(start)
+            start = i
+            seen_full_stop = False
+        # If we've seen a full stop, split on the first char that isn't punct
+        elif seen_full_stop and not is_punct and not is_full_stop:
+            splits.append(start)
+            start = i
+            seen_full_stop = False
+        # Notice full stops but hold off for now
+        elif is_full_stop:
+            seen_full_stop = True
+
+    # Construct strings from the break indices
+    sents = []
+    begin = splits[0]
+    for end in (splits + [len(text)]):
+        sents.append(text[begin:end].strip())
+        begin = end
+
+    return filter_sents(sents)
