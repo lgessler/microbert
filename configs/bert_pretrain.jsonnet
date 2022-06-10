@@ -51,7 +51,7 @@ local parser_head = {
         "sparse": false
     },
     "use_mst_decoding_for_validation": true,
-    "arc_representation_dim": embedding_dim * 5,
+    "arc_representation_dim": 500,
     "tag_representation_dim": pos_embedding_dim,
     "dropout": 0.3,
     "input_dropout": 0.3,
