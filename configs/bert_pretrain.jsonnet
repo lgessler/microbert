@@ -23,7 +23,8 @@ local dev_data_paths = std.parseJson(std.extVar("dev_data_paths"));
 local xpos_head = {
     "type": "xpos",
     "embedding_dim": embedding_dim,
-    "use_crf": true
+    "use_crf": false,
+    "use_decoder": false
 };
 local mlm_head = {
   "type": "mlm",
@@ -33,13 +34,17 @@ local parser_head = {
     "type": "biaffine_parser",
     "embedding_dim": embedding_dim,
     "encoder": {
-        "type": "stacked_bidirectional_lstm",
-        "input_size": embedding_dim + pos_embedding_dim,
-        "hidden_size": (embedding_dim + pos_embedding_dim) / 2,
-        "num_layers": 1,
-        "recurrent_dropout_probability": 0.3,
-        "use_highway": true
+        "type": "pass_through",
+        "input_dim": embedding_dim + pos_embedding_dim
     },
+    //"encoder": {
+    //    "type": "stacked_bidirectional_lstm",
+    //    "input_size": embedding_dim + pos_embedding_dim,
+    //    "hidden_size": (embedding_dim + pos_embedding_dim) / 2,
+    //    "num_layers": 1,
+    //    "recurrent_dropout_probability": 0.3,
+    //    "use_highway": true
+    //},
     "pos_tag_embedding": {
         "embedding_dim": pos_embedding_dim,
         "vocab_namespace": "xpos_tags",
