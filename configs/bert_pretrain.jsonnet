@@ -85,9 +85,10 @@ local weights = (
 local batch_size = 32;
 local instances_per_epoch = 256000;
 // BERT base batch size was 256, trained for 1M steps, so try to match this by half
-local BERT_base_total_instances = 256000000 / 2;
+local BERT_base_total_instances = 256000000;
 local batches_per_epoch = instances_per_epoch / batch_size;
-local num_epochs = BERT_base_total_instances / instances_per_epoch;
+// We want to use the full amount, but 200 is a practical limit
+local num_epochs = 200 // BERT_base_total_instances / instances_per_epoch;
 local plateau = {
     "type": "reduce_on_plateau",
     "factor": 0.5,
