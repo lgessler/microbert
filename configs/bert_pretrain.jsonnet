@@ -95,7 +95,7 @@ local plateau = {
     "mode": "min",
     "patience": 2,
     "verbose": true,
-    "min_lr": 5e-6
+    "min_lr": 5e-5
 };
 
 local slanted_triangular = {
@@ -143,7 +143,7 @@ local slanted_triangular = {
         "optimizer": {
             "type": "adamw",
             "lr": 3e-3,
-            "betas": [0.9, 0.9],
+            "betas": [0.9, 0.99],
             "weight_decay": 0.05
             //"type": "multi",
             //"optimizers": {
