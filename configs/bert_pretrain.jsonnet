@@ -88,7 +88,7 @@ local instances_per_epoch = 256000;
 local BERT_base_total_instances = 256000000;
 local batches_per_epoch = instances_per_epoch / batch_size;
 // We want to use the full amount, but 200 is a practical limit
-local num_epochs = 200 // BERT_base_total_instances / instances_per_epoch;
+local num_epochs = 200; // BERT_base_total_instances / instances_per_epoch;
 local plateau = {
     "type": "reduce_on_plateau",
     "factor": 0.5,
