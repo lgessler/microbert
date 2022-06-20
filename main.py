@@ -39,7 +39,7 @@ def _bert_dir(language, tasks, num_layers=None, num_heads=None, embedding_dim=No
     )
 
 
-def _model_dir(step, language, tasks, num_layers=None, num_heads=None, embedding_dim=None, model_name=None):
+def _model_dir(trial_type, language, tasks, num_layers=None, num_heads=None, embedding_dim=None, model_name=None):
     """
     Returns a dirname for a model (i.e., the MTL model used for pretraining) constructed from the params.
     """
@@ -50,11 +50,11 @@ def _model_dir(step, language, tasks, num_layers=None, num_heads=None, embedding
         + (f"_heads-{num_heads}" if num_heads is not None else "")
         + (f"_hidden-{embedding_dim}" if embedding_dim is not None else "")
         + (f"_{model_name}" if model_name is not None else "")
-        + f"_{step}"
+        + f"_{trial_type}"
     )
 
 
-def _prepare_dirs(language, tasks, num_layers, num_attention_heads, embedding_dim):
+def _prepare_dirs(trial_type, language, tasks, num_layers, num_attention_heads, embedding_dim):
     bert_dir = _bert_dir(
         language,
         tasks,
@@ -62,7 +62,7 @@ def _prepare_dirs(language, tasks, num_layers, num_attention_heads, embedding_di
         num_attention_heads,
         embedding_dim
     )
-    serialization_dir = _model_dir("random_baseline", language, tasks, num_layers, num_attention_heads, embedding_dim)
+    serialization_dir = _model_dir(trial_type, language, tasks, num_layers, num_attention_heads, embedding_dim)
     if os.path.exists(bert_dir):
         print(f"{bert_dir} exists, removing...")
         shutil.rmtree(bert_dir)
@@ -146,7 +146,7 @@ def eval_args(serialization_dir, input_file):
     return args
 
 
-def evaluate_allennlp(language, bert):
+def evaluate_allennlp(language, bert, finetune=False):
     """
     Given a language and a pretrained BERT model (or something API compatible with it),
     """
@@ -162,7 +162,8 @@ def evaluate_allennlp(language, bert):
         os.environ["TRAINABLE"] = "0"
         for k, v in language_config['training'].items():
             os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
-        train_model_from_file("configs/parser_eval.jsonnet", eval_dir)
+        overrides = '{"model.text_field_embedder.token_embedders.tokens.train_parameters": true}' if finetune else ""
+        train_model_from_file("configs/parser_eval.jsonnet", eval_dir, overrides=overrides)
 
         print("#" * 40)
         print("# Evaluating")
@@ -177,8 +178,9 @@ def evaluate_allennlp(language, bert):
 @click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
               help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
 @click.option("--model-name", "-m", default="bert-base-multilingual-cased")
-def pretrained_baseline_evaluate(language, model_name):
-    return evaluate_allennlp(language, model_name)
+@click.option("--finetune/--no-finetune", default=False, help="Whether to make BERT params trainable")
+def pretrained_baseline_evaluate(language, model_name, finetune):
+    return evaluate_allennlp(language, model_name, finetune)
 
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -204,10 +206,11 @@ def _train_tokenizer(language_config, bert_dir, model_type):
 @click.option("--num-layers", default=3, type=int, help="Number of BERT encoder block layers")
 @click.option("--num-attention-heads", default=5, type=int, help="Number of BERT attention heads")
 @click.option("--embedding-dim", default=100, type=int, help="BERT hidden dimension")
-def pretrain_evaluate(config, language, exclude_task, tokenization_type, num_layers, num_attention_heads, embedding_dim):
+@click.option("--finetune/--no-finetune", default=False, help="Whether to make BERT params trainable during evaluation")
+def pretrain_evaluate(config, language, exclude_task, tokenization_type, num_layers, num_attention_heads, embedding_dim, finetune):
     # Prepare directories that will be used for the AllenNLP model and the extracted BERT model
     tasks = [x for x in TASKS if x not in exclude_task]
-    bert_dir, serialization_dir = _prepare_dirs(language, tasks, num_layers, num_attention_heads, embedding_dim)
+    bert_dir, serialization_dir = _prepare_dirs("pretrain", language, tasks, num_layers, num_attention_heads, embedding_dim)
 
     # Get config and train tokenizer
     language_config = get_pretrain_config(language, bert_dir, exclude_task)
@@ -229,7 +232,7 @@ def pretrain_evaluate(config, language, exclude_task, tokenization_type, num_lay
     with open(os.path.join(serialization_dir, "metrics.json"), 'r') as f:
         train_metrics = json.load(f)
 
-    eval_metrics = evaluate_allennlp(language, bert_dir)
+    eval_metrics = evaluate_allennlp(language, bert_dir, finetune)
     return train_metrics, eval_metrics
 
 
@@ -239,27 +242,60 @@ def _locked_write(filepath, s):
         f.write(s)
 
 
+@click.command(help="Do only the evaluation half of pretrain_evaluate. "
+                    "Assumes the BERT required has already been trained.")
+@click.option("--language", "-l", type=click.Choice(LANGUAGES), default="coptic",
+              help="A language to train on. Must correspond to an entry in main.py's LANGUAGES")
+@click.option("--exclude-task", "-x", default=[], multiple=True, type=click.Choice(["mlm", "parser", "xpos"]),
+              help="Specify task(s) to exclude from a run. Possible values: mlm, parser, xpos")
+@click.option("--num-layers", default=3, type=int, help="Number of BERT encoder block layers")
+@click.option("--num-attention-heads", default=5, type=int, help="Number of BERT attention heads")
+@click.option("--embedding-dim", default=100, type=int, help="BERT hidden dimension")
+@click.option("--finetune/--no-finetune", default=False, help="Whether to make BERT params trainable during evaluation")
+def evaluate_pretrained_model(language, exclude_task, num_layers, num_attention_heads, embedding_dim, finetune):
+    tasks = [x for x in TASKS if x not in exclude_task]
+    # Get dir paths without deleting them--we're assuming they're already there
+    bert_dir = _bert_dir(language, tasks, num_layers, num_attention_heads, embedding_dim)
+    _, eval_metrics = evaluate_allennlp(language, bert_dir, finetune)
+    name = "mlm_only" if "mlm" in tasks and len(tasks) == 1 else "mtl"
+    name += "_ft" if finetune else ""
+    output = "\t".join([
+        language,
+        name,
+        "_",
+        "_",
+        str(eval_metrics["LAS"]),
+    ])
+    _locked_write("metrics.tsv", output + "\n")
+    return None, eval_metrics
+
+
 @click.command(help="Run a baseline eval for a given language")
 @click.argument('language', type=click.Choice(LANGUAGES))
 @click.option("--tokenization-type", "-t", type=click.Choice(["wordpiece", "bpe"]), default="wordpiece")
+@click.option("--finetune/--no-finetune", default=False, help="Whether to make BERT params trainable during evaluation")
 @click.pass_context
-def language_baseline(ctx, language, tokenization_type):
-    _, metrics = ctx.invoke(pretrained_baseline_evaluate, language=language)
-    output = "\t".join([language, "pretrained_baseline", "", "", str(metrics["LAS"])])
+def language_baseline(ctx, language, tokenization_type, finetune):
+    _, metrics = ctx.invoke(pretrained_baseline_evaluate, language=language, finetune=finetune)
+    name = "pretrained_baseline"
+    name += "_ft" if finetune else ""
+    output = "\t".join([language, name, "", "", str(metrics["LAS"])])
     _locked_write("metrics.tsv", output + "\n")
 
 
 @click.command(help="Run a full eval for a given language")
 @click.argument('language', type=click.Choice(LANGUAGES))
 @click.option("--tokenization-type", "-t", type=click.Choice(["wordpiece", "bpe"]), default="wordpiece")
+@click.option("--finetune/--no-finetune", default=False, help="Whether to make BERT params trainable during evaluation")
 @click.pass_context
-def language_trial(ctx, language, tokenization_type):
+def language_trial(ctx, language, tokenization_type, finetune):
     # MLM only
     mlm_only_metrics_train, mlm_only_metrics_eval = ctx.invoke(
         pretrain_evaluate,
         language=language,
         exclude_task=['parser', 'xpos'],
-        tokenization_type=tokenization_type
+        tokenization_type=tokenization_type,
+        finetune=finetune,
     )
     _, metrics = mlm_only_metrics_eval
     output = "\t".join([
@@ -275,7 +311,8 @@ def language_trial(ctx, language, tokenization_type):
     mtl_metrics_train, mtl_metrics_eval = ctx.invoke(
         pretrain_evaluate,
         language=language,
-        tokenization_type=tokenization_type
+        tokenization_type=tokenization_type,
+        finetune=finetune,
     )
     _, metrics = mtl_metrics_eval
     output = "\t".join([
@@ -290,6 +327,7 @@ def language_trial(ctx, language, tokenization_type):
 
 top.add_command(pretrain_evaluate)
 top.add_command(pretrained_baseline_evaluate)
+top.add_command(evaluate_pretrained_model)
 top.add_command(language_baseline)
 top.add_command(language_trial)
 
