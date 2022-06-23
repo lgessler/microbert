@@ -23,7 +23,7 @@ def write_vocab(tokenizer: Tokenizer, serialization_dir: str):
     words = "\n".join([w for w, _ in vocab]) + "\n"
     with open(os.path.join(serialization_dir, "vocab.txt"), "w") as f:
         f.write(words)
-    logger.info("Wrote vocab to", serialization_dir)
+    logger.info("Wrote vocab to" + serialization_dir)
 
 
 def count_word_types(sentences: List[str]):

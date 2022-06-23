@@ -38,6 +38,10 @@ class Config:
         if self.debug:
             os.environ["TOY_DATA"] = "true"
 
+    def set_tasks(self, tasks):
+        self.tasks = tasks
+        self.pretrain_language_config = get_pretrain_config(self.language, self.bert_dir, self.tasks)
+
     @property
     def bert_dir(self):
         return (

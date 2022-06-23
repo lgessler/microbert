@@ -135,7 +135,7 @@ def language_trial(ctx):
     config = ctx.obj
 
     # MLM only
-    ctx.obj.tasks = ["mlm"]
+    ctx.obj.set_tasks(["mlm"])
     mlm_only_metrics_train, mlm_only_metrics_eval = ctx.invoke(pretrain_evaluate)
     _, metrics = mlm_only_metrics_eval
     output = "\t".join(
@@ -150,7 +150,7 @@ def language_trial(ctx):
     _locked_write("metrics.tsv", output + "\n")
 
     # All MTL tasks
-    ctx.obj.tasks = ["mlm", "xpos", "parser"]
+    ctx.obj.set_tasks(["mlm", "xpos", "parser"])
     mtl_metrics_train, mtl_metrics_eval = ctx.invoke(
         pretrain_evaluate,
     )
