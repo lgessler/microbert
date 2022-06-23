@@ -51,15 +51,27 @@ def _prepare_bert_pretrain_env_vars(config):
     "-l",
     type=click.Choice(LANGUAGES),
     default="coptic",
-    help="A language to train on. Must correspond to an entry in main.py's LANGUAGES"
+    help="A language to train on. Must correspond to an entry in main.py's LANGUAGES",
 )
 @click.option("--bert-model-name", "-m", default="bert-base-multilingual-cased")
-@click.option("--training-config", default="configs/bert_pretrain.jsonnet",
-              help="Multitask training config. You probably want to leave this as the default.")
-@click.option("--parser-eval-config", default="configs/parser_eval.jsonnet",
-              help="Parser evaluation config. You probably want to leave this as the default.")
-@click.option("--task", "-t", default=TASKS, multiple=True, type=click.Choice(TASKS),
-              help="Specify task(s) to exclude from a run. Possible values: mlm, parser, xpos")
+@click.option(
+    "--training-config",
+    default="configs/bert_pretrain.jsonnet",
+    help="Multitask training config. You probably want to leave this as the default.",
+)
+@click.option(
+    "--parser-eval-config",
+    default="configs/parser_eval.jsonnet",
+    help="Parser evaluation config. You probably want to leave this as the default.",
+)
+@click.option(
+    "--task",
+    "-t",
+    default=TASKS,
+    multiple=True,
+    type=click.Choice(TASKS),
+    help="Specify task(s) to exclude from a run. Possible values: mlm, parser, xpos",
+)
 @click.option("--tokenization-type", "-t", type=click.Choice(TOKENIZATION_TYPES), default="wordpiece")
 @click.option("--num-layers", default=3, type=int, help="Number of BERT encoder block layers")
 @click.option("--num-attention-heads", default=5, type=int, help="Number of BERT attention heads")
@@ -94,12 +106,9 @@ def evaluate_diaparser(language, bert):
             feat="bert",
             bert=bert,
             epochs=5000,
-            max_len=512
+            max_len=512,
         )
-        metrics = dp_evaluate(
-            eval_model_path,
-            language_config["testing"]["input_file"]
-        )
+        metrics = dp_evaluate(eval_model_path, language_config["testing"]["input_file"])
     logger.info(metrics)
     return metrics
 
@@ -136,7 +145,7 @@ def evaluate_allennlp(config):
         os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)
         os.environ["BERT_PATH"] = config.bert_model_name
         os.environ["TRAINABLE"] = "0"
-        for k, v in language_config['training'].items():
+        for k, v in language_config["training"].items():
             os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
         overrides = ""
         if config.finetune or config.debug:
@@ -153,7 +162,7 @@ def evaluate_allennlp(config):
         logger.info("#" * 40)
         logger.info("# Evaluating")
         logger.info("#" * 40)
-        args = eval_args(eval_dir, language_config['testing']['input_file'])
+        args = eval_args(eval_dir, language_config["testing"]["input_file"])
         metrics = evaluate_from_args(args)
     logger.info(metrics)
     return None, metrics
@@ -173,7 +182,7 @@ def _train_tokenizer(language_config, bert_dir, model_type):
     # Read data, flatten List[List[TokenList]] into List[List[str]] for tokenizer training
     logger.info("Training tokenizer...")
     documents = read_conllu_files(language_config["tokenizer_conllu_path"])
-    sentences = [" ".join([t['form'] for t in sentence]) for document in documents for sentence in document]
+    sentences = [" ".join([t["form"] for t in sentence]) for document in documents for sentence in document]
     train_tokenizer(sentences, serialize_path=bert_dir, model_type=model_type)
 
 
@@ -200,7 +209,7 @@ def pretrain_evaluate(config):
     model = train_model_from_file(config.pretrain_jsonnet, config.experiment_dir, overrides=overrides)
     bert_serialization: BertModel = model._backbone.bert
     bert_serialization.save_pretrained(config.bert_dir)
-    with open(os.path.join(config.experiment_dir, "metrics.json"), 'r') as f:
+    with open(os.path.join(config.experiment_dir, "metrics.json"), "r") as f:
         train_metrics = json.load(f)
 
     eval_metrics = evaluate_allennlp(config)
@@ -209,25 +218,28 @@ def pretrain_evaluate(config):
 
 def _locked_write(filepath, s):
     lock = FileLock(filepath + ".lock")
-    with lock, open(filepath, 'a') as f:
+    with lock, open(filepath, "a") as f:
         f.write(s)
 
 
-@click.command(help="Do only the evaluation half of pretrain_evaluate. "
-                    "Assumes the BERT required has already been trained.")
+@click.command(
+    help="Do only the evaluation half of pretrain_evaluate. " "Assumes the BERT required has already been trained."
+)
 @click.pass_obj
 def evaluate(config):
     # Get dir paths without deleting them--we're assuming they're already there
     _, eval_metrics = evaluate_allennlp(config)
     name = "mlm_only" if "mlm" in config.tasks and len(config.tasks) == 1 else "mtl"
     name += "_ft" if config.finetune else ""
-    output = "\t".join([
-        config.language,
-        name,
-        "_",
-        "_",
-        str(eval_metrics["LAS"]),
-    ])
+    output = "\t".join(
+        [
+            config.language,
+            name,
+            "_",
+            "_",
+            str(eval_metrics["LAS"]),
+        ]
+    )
     _locked_write("metrics.tsv", output + "\n")
     return None, eval_metrics
 
@@ -252,26 +264,32 @@ def language_trial(ctx):
     ctx.obj.tasks = ["mlm"]
     mlm_only_metrics_train, mlm_only_metrics_eval = ctx.invoke(pretrain_evaluate)
     _, metrics = mlm_only_metrics_eval
-    output = "\t".join([
-        config.language,
-        "mlm_only",
-        "",
-        "",
-        str(metrics["LAS"]),
-    ])
+    output = "\t".join(
+        [
+            config.language,
+            "mlm_only",
+            "",
+            "",
+            str(metrics["LAS"]),
+        ]
+    )
     _locked_write("metrics.tsv", output + "\n")
 
     # All MTL tasks
     ctx.obj.tasks = ["mlm", "xpos", "parser"]
-    mtl_metrics_train, mtl_metrics_eval = ctx.invoke(pretrain_evaluate,)
+    mtl_metrics_train, mtl_metrics_eval = ctx.invoke(
+        pretrain_evaluate,
+    )
     _, metrics = mtl_metrics_eval
-    output = "\t".join([
-        config.language,
-        "mtl",
-        str(mtl_metrics_train["training_parser_LAS"]),
-        "_",
-        str(metrics["LAS"]),
-    ])
+    output = "\t".join(
+        [
+            config.language,
+            "mtl",
+            str(mtl_metrics_train["training_parser_LAS"]),
+            "_",
+            str(metrics["LAS"]),
+        ]
+    )
     _locked_write("metrics.tsv", output + "\n")
 
 
