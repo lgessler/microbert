@@ -44,16 +44,15 @@ def evaluate_allennlp(config):
         for k, v in language_config["training"].items():
             os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
 
-        overrides = ""
-        if config.finetune or config.debug:
-            overrides += "{"
-            if config.debug:
-                overrides += '"trainer.num_epochs": 1'
-                if config.finetune:
-                    overrides += ","
-            if config.finetune:
-                overrides += '"model.text_field_embedder.token_embedders.tokens.train_parameters": true'
-            overrides += "}"
+        overrides = []
+        if config.finetune:
+            overrides.append('"trainer.num_epochs": 1')
+        if config.debug:
+            overrides.append('"model.text_field_embedder.token_embedders.tokens.train_parameters": true')
+        if len(overrides) > 0:
+            overrides = "{" + ", ".join(overrides) + "}"
+        else:
+            overrides = ""
 
         train_model_from_file(config.parser_eval_jsonnet, eval_dir, overrides=overrides)
 
