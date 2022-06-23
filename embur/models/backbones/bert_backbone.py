@@ -14,6 +14,7 @@ from transformers.models.bert.modeling_bert import BertConfig, BertModel
 
 logger = logging.getLogger(__name__)
 
+
 @Backbone.register("bert")
 class BertBackbone(Backbone):
     def __init__(
@@ -56,9 +57,7 @@ class BertBackbone(Backbone):
         self._vocab = vocab
         self._namespace = "tokens"
         self.bert = BertModel(cfg)
-        self.masking_collator = DataCollatorForWholeWordMask(
-            tokenizer=tokenizer, mlm=True, mlm_probability=0.15
-        )
+        self.masking_collator = DataCollatorForWholeWordMask(tokenizer=tokenizer, mlm=True, mlm_probability=0.15)
 
     def _pool_token_embeddings(self, wordpiece_embeddings, offsets):
         # Assemble wordpiece embeddings into embeddings for each word using average pooling
@@ -85,12 +84,12 @@ class BertBackbone(Backbone):
         average pooling to yield a de-wordpieced embedding for each original token.
         Returns both wordpiece embeddings+mask as well as original token embeddings+mask
         """
-        input_ids = text['tokens']['token_ids']
+        input_ids = text["tokens"]["token_ids"]
         attention_mask = text["tokens"]["wordpiece_mask"]
-        token_type_ids = text['tokens']['type_ids']
+        token_type_ids = text["tokens"]["type_ids"]
         output = self.bert(input_ids=input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids)
         wordpiece_embeddings = output.last_hidden_state
-        offsets = text['tokens']['offsets']
+        offsets = text["tokens"]["offsets"]
 
         if wordpiece_embeddings.shape[1] > 512:
             logger.warning(f"Sequence has length exceeding 512, {wordpiece_embeddings.shape[1]}! {text}")
@@ -98,20 +97,20 @@ class BertBackbone(Backbone):
         orig_embeddings = self._pool_token_embeddings(wordpiece_embeddings, offsets)
 
         return {
-            "wordpiece_mask": text['tokens']['wordpiece_mask'],
+            "wordpiece_mask": text["tokens"]["wordpiece_mask"],
             "wordpiece_embeddings": wordpiece_embeddings,
-            "orig_mask": text['tokens']['mask'],
-            "orig_embeddings": orig_embeddings
+            "orig_mask": text["tokens"]["mask"],
+            "orig_embeddings": orig_embeddings,
         }
 
     def forward(self, text: TextFieldTensors) -> Dict[str, torch.Tensor]:  # type: ignore
         bert_output = self._embed(text)
 
         outputs = {
-            "encoded_text": bert_output['orig_embeddings'],
-            "encoded_text_mask": bert_output['orig_mask'],
-            "wordpiece_encoded_text": bert_output['wordpiece_embeddings'],
-            "wordpiece_encoded_text_mask": bert_output['wordpiece_mask'],
+            "encoded_text": bert_output["orig_embeddings"],
+            "encoded_text_mask": bert_output["orig_mask"],
+            "wordpiece_encoded_text": bert_output["wordpiece_embeddings"],
+            "wordpiece_encoded_text_mask": bert_output["wordpiece_mask"],
             "token_ids": util.get_token_ids_from_text_field_tensors(text),
         }
 
@@ -119,7 +118,7 @@ class BertBackbone(Backbone):
         return outputs
 
     def _extend_with_masked_text(self, outputs: Dict[str, Any], text: TextFieldTensors) -> None:
-        input_ids = text['tokens']['token_ids']
+        input_ids = text["tokens"]["token_ids"]
 
         # get the binary mask that'll tell us which parts to mask--this is random and dynamically done
         wwms = []
@@ -129,13 +128,13 @@ class BertBackbone(Backbone):
             wwms.append(wwm)
         wwms = torch.cat(wwms, dim=0)
 
-        masked_ids, labels = self.masking_collator.torch_mask_tokens(input_ids.clone().to('cpu'), wwms.to('cpu'))
+        masked_ids, labels = self.masking_collator.torch_mask_tokens(input_ids.clone().to("cpu"), wwms.to("cpu"))
         masked_ids = masked_ids.to(input_ids.device)
         labels = labels.to(input_ids.device)
         bert_output = self.bert(
             input_ids=masked_ids,
             attention_mask=text["tokens"]["wordpiece_mask"],
-            token_type_ids=text['tokens']['type_ids'],
+            token_type_ids=text["tokens"]["type_ids"],
         )
         outputs["encoded_masked_text"] = bert_output.last_hidden_state
         outputs["masked_text_labels"] = labels

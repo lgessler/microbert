@@ -16,20 +16,20 @@ def encode_entities(sentence, scheme="BIO"):
     entity_spans = defaultdict(list)
     etypes = {}
     for i, token in enumerate(sentence):
-        if 'Entity' in token['misc']:
-            entities = [e for e in token['misc']['Entity']]# if 'abstract' not in e]
+        if "Entity" in token["misc"]:
+            entities = [e for e in token["misc"]["Entity"]]  # if 'abstract' not in e]
             for e in entities:
                 entity_id, entity_type = e.split("_")
                 entity_spans[entity_id].append(i)
                 etypes[entity_id] = entity_type
-        token['misc'] = {"Entity": "O"}
+        token["misc"] = {"Entity": "O"}
 
     # data has nested entities, but we just want simple non-nested entities
     # iteratively take the shortest entities available until you've taken as
     # much as possible without overlapping spans
     covered = []
     accepted = []
-    for entity_id, token_ids in sorted(list(entity_spans.items()), key=lambda x:len(x[1])):
+    for entity_id, token_ids in sorted(list(entity_spans.items()), key=lambda x: len(x[1])):
         if not any(token_id in covered for token_id in token_ids):
             accepted.append(entity_id)
             covered += token_ids
@@ -41,7 +41,7 @@ def encode_entities(sentence, scheme="BIO"):
                 tag = "B-" + etypes[eid]
             else:
                 tag = "I-" + etypes[eid]
-            sentence[tid]['misc'] = {"Entity": tag}
+            sentence[tid]["misc"] = {"Entity": tag}
 
 
 def conllize(ttsgml):
@@ -55,12 +55,12 @@ def conllize(ttsgml):
         nonlocal tcount
         encode_entities(sentence)
         sent_meta = {
-            "sent_id": meta['document_cts_urn'][18:] + "-" + str(len(sentences) + 1),
-            "doc_id": meta['document_cts_urn'],
-            "segmentation": meta['segmentation'],
-            "tagging": meta['tagging'],
-            "parsing": meta.get('parsing', 'none'),
-            "entities": meta.get('entities', 'none'),
+            "sent_id": meta["document_cts_urn"][18:] + "-" + str(len(sentences) + 1),
+            "doc_id": meta["document_cts_urn"],
+            "segmentation": meta["segmentation"],
+            "tagging": meta["tagging"],
+            "parsing": meta.get("parsing", "none"),
+            "entities": meta.get("entities", "none"),
         }
         tl = conllu.TokenList(sentence, sent_meta)
         tcount += len(tl)
@@ -70,7 +70,7 @@ def conllize(ttsgml):
         # Read the <meta> element at the beginning of the document
         if meta is None:
             element_name, attrs = esc.ttline_parse_open_tag(line)
-            assert line_num == 0 and element_name == 'meta'
+            assert line_num == 0 and element_name == "meta"
             meta = attrs
             continue
 
@@ -81,7 +81,7 @@ def conllize(ttsgml):
         # If we're at a closing tag...
         elif esc.ttline_is_close_tag(line):
             # ... and it's an entity that's being closed, close the entity
-            if line.strip() == '</entity>':
+            if line.strip() == "</entity>":
                 entity_open.pop()
 
         # If we're at an opening tag...
@@ -91,20 +91,20 @@ def conllize(ttsgml):
             if " translation=" in line and len(sentence) > 0:
                 finalize_sentence(sentence)
                 sentence = []
-            elif elt == 'norm':
+            elif elt == "norm":
                 token = esc.token()
-                token['id'] = len(sentence) + 1
-                token['form'] = attrs['norm']
-                token['xpos'] = attrs['pos']
-                token['lemma'] = attrs['lemma']
+                token["id"] = len(sentence) + 1
+                token["form"] = attrs["norm"]
+                token["xpos"] = attrs["pos"]
+                token["lemma"] = attrs["lemma"]
                 # if 'head' in attrs:
                 #     token['deprel'] = attrs['func']
                 #     token['head'] = int(attrs['head'][2:])
                 if len(entity_open) > 0:
-                    token['misc'] = {"Entity": entity_open.copy()}
+                    token["misc"] = {"Entity": entity_open.copy()}
                 sentence.append(token)
-            elif elt == 'entity':
-                entity_open.append(str(line_num) + "_" + attrs['entity'])
+            elif elt == "entity":
+                entity_open.append(str(line_num) + "_" + attrs["entity"])
         else:
             raise Exception('Not a tag or a token: "' + line + '"')
 
@@ -118,11 +118,11 @@ def conllize(ttsgml):
 
 def format_tt(tt_dir):
     tt_data = []
-    if tt_dir.endswith('.zip'):
+    if tt_dir.endswith(".zip"):
         with zipfile.ZipFile(tt_dir) as zipf:
-            for tt_filepath in [filepath for filepath in zipf.namelist() if filepath.endswith('tt')]:
+            for tt_filepath in [filepath for filepath in zipf.namelist() if filepath.endswith("tt")]:
                 with zipf.open(tt_filepath) as f:
-                    tt_data.append((f"{tt_dir[:-4]}/{tt_filepath}", f.read().decode('utf8')))
+                    tt_data.append((f"{tt_dir[:-4]}/{tt_filepath}", f.read().decode("utf8")))
     else:
         for tt_filepath in sorted(glob(f"{tt_dir}/*.tt")):
             with open(tt_filepath) as f:
@@ -130,7 +130,7 @@ def format_tt(tt_dir):
     return tt_data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     OUTPUT_DIR = "data/coptic/converted/"
     SYNTAX_DIR = OUTPUT_DIR + "syntax/"
 
@@ -184,13 +184,13 @@ if __name__ == '__main__':
             "shenoute.eagerness.monbxj_77_86.conllu",
             "shenoute.seeks.monbcz:26-36.conllu",
             "shenoute.unknown5_1.monbgf:101-102.conllu",
-            "shenoute.unknown5_1.monbgf:131-139.conllu"
-        ]
+            "shenoute.unknown5_1.monbgf:131-139.conllu",
+        ],
     }
 
     tt_data = []
     # conllu_data = []
-    for corpus_dir in sorted(glob('data/coptic/corpora/*')):
+    for corpus_dir in sorted(glob("data/coptic/corpora/*")):
         tt_dir = list(glob(f"{corpus_dir}/*_TT*"))
         tt_dir = tt_dir[0] if len(tt_dir) > 0 else None
         if tt_dir:
@@ -213,15 +213,15 @@ if __name__ == '__main__':
         for filepath, tt_str in tt_data:
             meta, conllu_string, tcount = conllize(tt_str)
             tc += tcount
-            document_name = meta['document_cts_urn'][18:] + ".conllu"
-            if document_name in SPLIT_MAP['test']:
+            document_name = meta["document_cts_urn"][18:] + ".conllu"
+            if document_name in SPLIT_MAP["test"]:
                 path = os.path.join(OUTPUT_DIR, "test", document_name)
-            elif document_name in SPLIT_MAP['dev']:
+            elif document_name in SPLIT_MAP["dev"]:
                 path = os.path.join(OUTPUT_DIR, "dev", document_name)
             else:
                 path = os.path.join(OUTPUT_DIR, "train", document_name)
             path = path.replace(":", "__COLON__")
-            with open(path, 'w') as f:
+            with open(path, "w") as f:
                 f.write(conllu_string)
 
             progress.update(task, advance=1)

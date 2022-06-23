@@ -50,9 +50,7 @@ def evaluate_from_args(args: argparse.Namespace) -> Dict[str, Any]:
         params=data_loader_params, reader=dataset_reader, data_path=evaluation_data_path
     )
 
-    embedding_sources = (
-        json.loads(args.embedding_sources_mapping) if args.embedding_sources_mapping else {}
-    )
+    embedding_sources = json.loads(args.embedding_sources_mapping) if args.embedding_sources_mapping else {}
 
     if args.extend_vocab:
         logger.info("Vocabulary is being extended with test instances.")

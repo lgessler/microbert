@@ -389,9 +389,7 @@ class MtlTrainer(Trainer):
                 return clip_grad_norm_(parameters_to_clip, self._grad_norm).item()
         elif self._grad_norm:
             parameters_to_clip = [p for p in self.model.parameters() if p.grad is not None]
-            return torch.norm(
-                torch.stack([torch.norm(p.grad.detach()) for p in parameters_to_clip])
-            ).item()
+            return torch.norm(torch.stack([torch.norm(p.grad.detach()) for p in parameters_to_clip])).item()
         else:
             return None
 
@@ -445,27 +443,21 @@ class MtlTrainer(Trainer):
 
         # Get tqdm for the training batches
         batch_generator = iter(self.data_loader)
-        batch_group_generator = common_util.lazy_groups_of(
-            batch_generator, self._num_gradient_accumulation_steps
-        )
+        batch_group_generator = common_util.lazy_groups_of(batch_generator, self._num_gradient_accumulation_steps)
 
         logger.info("Training")
 
         num_training_batches: Union[int, float]
         try:
             len_data_loader = len(self.data_loader)
-            num_training_batches = math.ceil(
-                len_data_loader / self._num_gradient_accumulation_steps
-            )
+            num_training_batches = math.ceil(len_data_loader / self._num_gradient_accumulation_steps)
         except TypeError:
             num_training_batches = float("inf")
 
         # Having multiple tqdm bars in case of distributed training will be a mess. Hence only the primary's
         # progress is shown
         if self._primary:
-            batch_group_generator_tqdm = Tqdm.tqdm(
-                batch_group_generator, total=num_training_batches
-            )
+            batch_group_generator_tqdm = Tqdm.tqdm(batch_group_generator, total=num_training_batches)
         else:
             batch_group_generator_tqdm = batch_group_generator
 
@@ -587,14 +579,10 @@ class MtlTrainer(Trainer):
                 batch_group_generator_tqdm.set_description(description, refresh=False)
 
             if self._checkpointer is not None:
-                self._checkpointer.maybe_save_checkpoint(
-                    self, self._epochs_completed, self._batches_in_epoch_completed
-                )
+                self._checkpointer.maybe_save_checkpoint(self, self._epochs_completed, self._batches_in_epoch_completed)
 
         if self._distributed and not done_early:
-            logger.info(
-                f"Worker {torch.distributed.get_rank()} completed its entire epoch (training)."
-            )
+            logger.info(f"Worker {torch.distributed.get_rank()} completed its entire epoch (training).")
             # Indicate that we're done so that any workers that have remaining data stop the epoch early.
             done = torch.tensor(1, device=self.cuda_device)
             torch.distributed.all_reduce(done, torch.distributed.ReduceOp.SUM)
@@ -647,9 +635,7 @@ class MtlTrainer(Trainer):
             if self._validation_data_loader is not None:
                 validation_data_loader = self._validation_data_loader
             else:
-                raise ConfigurationError(
-                    "Validation results cannot be calculated without a validation_data_loader"
-                )
+                raise ConfigurationError("Validation results cannot be calculated without a validation_data_loader")
 
             regularization_penalty = self.model.get_regularization_penalty()
 
@@ -731,9 +717,7 @@ class MtlTrainer(Trainer):
                     )
 
             if self._distributed and not done_early:
-                logger.warning(
-                    f"Worker {torch.distributed.get_rank()} completed its entire epoch (validation)."
-                )
+                logger.warning(f"Worker {torch.distributed.get_rank()} completed its entire epoch (validation).")
                 # Indicate that we're done so that any workers that have remaining data stop validation early.
                 done = torch.tensor(1, device=self.cuda_device)
                 torch.distributed.all_reduce(done, torch.distributed.ReduceOp.SUM)
@@ -893,21 +877,15 @@ class MtlTrainer(Trainer):
                 if self._distributed:
                     dist.barrier()
 
-            if (
-                self._should_validate_this_epoch
-                and self._serialization_dir
-                and self._metric_tracker.is_best_so_far()
-            ):
+            if self._should_validate_this_epoch and self._serialization_dir and self._metric_tracker.is_best_so_far():
                 should_save_model_state: bool = True
                 if self._ddp_wrapped_model is not None and self._ddp_wrapped_model.is_sharded:
                     # Each worker saves its own shard for now (we combine the shards later).
-                    self._best_model_filename = os.path.join(
-                        self._serialization_dir, f"best_w{self._rank}.th"
-                    )
-                    #should_save_model_state = True
+                    self._best_model_filename = os.path.join(self._serialization_dir, f"best_w{self._rank}.th")
+                    # should_save_model_state = True
                 else:
                     self._best_model_filename = os.path.join(self._serialization_dir, "best.th")
-                    #should_save_model_state = self._primary
+                    # should_save_model_state = self._primary
 
                 if should_save_model_state:
                     logger.info("Saving model...")
@@ -943,14 +921,10 @@ class MtlTrainer(Trainer):
                 break
 
             if epoch < self._num_epochs - 1:
-                time_per_epoch = training_elapsed_time / (
-                    (epoch + 1) - self._start_after_epochs_completed
-                )
+                time_per_epoch = training_elapsed_time / ((epoch + 1) - self._start_after_epochs_completed)
                 # Note: If the first non-skipped epoch is half skipped (because it was checkpointed half-way
                 # through), then this estimate is going to be optimistic.
-                estimated_time_remaining = (
-                    time_per_epoch * self._num_epochs
-                ) - training_elapsed_time
+                estimated_time_remaining = (time_per_epoch * self._num_epochs) - training_elapsed_time
                 formatted_time = str(datetime.timedelta(seconds=int(estimated_time_remaining)))
                 logger.info("Estimated training time remaining: %s", formatted_time)
         else:
@@ -989,18 +963,10 @@ class MtlTrainer(Trainer):
         The best model weights might be saved in sharded files, in which case we gather them
         up and save them to a single 'best.th' file.
         """
-        if (
-            self._serialization_dir
-            and self._ddp_wrapped_model is not None
-            and self._ddp_wrapped_model.is_sharded
-        ):
+        if self._serialization_dir and self._ddp_wrapped_model is not None and self._ddp_wrapped_model.is_sharded:
             logger.info("Consolidating sharded model states")
-            sharded_model_state_files = list(
-                glob.iglob(os.path.join(self._serialization_dir, "best_w*.th"))
-            )
-            full_model_state = self._ddp_wrapped_model.consolidate_sharded_state(
-                sharded_model_state_files
-            )
+            sharded_model_state_files = list(glob.iglob(os.path.join(self._serialization_dir, "best_w*.th")))
+            full_model_state = self._ddp_wrapped_model.consolidate_sharded_state(sharded_model_state_files)
             self._best_model_filename = os.path.join(self._serialization_dir, "best.th")
             torch.save(full_model_state, self._best_model_filename)
 
@@ -1179,9 +1145,7 @@ class MtlTrainer(Trainer):
         except TypeError:
             batches_per_epoch = None
 
-        moving_average_ = (
-            None if moving_average is None else moving_average.construct(parameters=parameters)
-        )
+        moving_average_ = None if moving_average is None else moving_average.construct(parameters=parameters)
         learning_rate_scheduler_ = (
             None
             if learning_rate_scheduler is None
@@ -1189,16 +1153,8 @@ class MtlTrainer(Trainer):
                 optimizer=optimizer_, num_epochs=num_epochs, num_steps_per_epoch=batches_per_epoch
             )
         )
-        momentum_scheduler_ = (
-            None
-            if momentum_scheduler is None
-            else momentum_scheduler.construct(optimizer=optimizer_)
-        )
-        checkpointer_ = (
-            None
-            if checkpointer is None
-            else checkpointer.construct(serialization_dir=serialization_dir)
-        )
+        momentum_scheduler_ = None if momentum_scheduler is None else momentum_scheduler.construct(optimizer=optimizer_)
+        checkpointer_ = None if checkpointer is None else checkpointer.construct(serialization_dir=serialization_dir)
 
         callbacks_: List[TrainerCallback] = []
         for callback_ in callbacks or []:

@@ -8,16 +8,16 @@ from spacy.pipeline.sentencizer import Sentencizer
 import conllu
 
 FULL_STOPS = Sentencizer.default_punct_chars + ["\n", "\r", "\r\n", "\n\r"]
-ELT_REGEX = re.compile(r'<([a-zA-Z][a-zA-Z0-9_]*)')
+ELT_REGEX = re.compile(r"<([a-zA-Z][a-zA-Z0-9_]*)")
 ATTR_REGEX = re.compile(r'(?:[a-zA-Z][a-zA-Z0-9_]*:)?([a-zA-Z][a-zA-Z0-9_]*)="([^"]*)"')
 EMPTY_TOKEN_DICT = {field_name: "_" for field_name in conllu.parser.DEFAULT_FIELDS}
 
 
 def unescape_xml(s):
     s = s.replace("&quot;", '"')
-    s = s.replace("&lt;", '<')
-    s = s.replace("&gt;", '>')
-    s = s.replace("&amp;", '&')
+    s = s.replace("&lt;", "<")
+    s = s.replace("&gt;", ">")
+    s = s.replace("&amp;", "&")
     s = s.replace("&apos;", "'")
     return s
 
@@ -42,7 +42,13 @@ def ttline_parse_open_tag(ttsgml_line):
         print(ttsgml_line)
         raise e
     attrs = re.findall(ATTR_REGEX, ttsgml_line)
-    unescape = lambda s: s.replace('&lt;', "<").replace("&gt;", ">").replace('&quot;', '"').replace("&apos;", "'").replace("&amp;", "&")
+    unescape = (
+        lambda s: s.replace("&lt;", "<")
+        .replace("&gt;", ">")
+        .replace("&quot;", '"')
+        .replace("&apos;", "'")
+        .replace("&amp;", "&")
+    )
     attrs = [(k, unescape(v)) for k, v in attrs]
     return element_name, OrderedDict(attrs)
 
@@ -52,7 +58,7 @@ def number(doc_tls):
         for tl in tls:
             i = 1
             for token in tl:
-                token['id'] = i
+                token["id"] = i
                 i += 1
 
 
@@ -71,8 +77,8 @@ def get_splits(xs, proportions):
     i = 0
     for p in proportions:
         split = []
-        j = math.ceil(p*count)
-        for index in indices[i:i+j]:
+        j = math.ceil(p * count)
+        for index in indices[i : i + j]:
             split.append(xs[index])
         splits.append(split)
         i = j
@@ -117,7 +123,7 @@ def ssplit_by_punct(text):
     # Construct strings from the break indices
     sents = []
     begin = splits[0]
-    for end in (splits + [len(text)]):
+    for end in splits + [len(text)]:
         sents.append(text[begin:end].strip())
         begin = end
 

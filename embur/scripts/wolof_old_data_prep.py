@@ -30,7 +30,7 @@ def make_tokenlists(docs):
         for line_num, line in enumerate(doc):
             tokens = [esc.token() for _ in line]
             for i, t in enumerate(line):
-                tokens[i]['form'] = t
+                tokens[i]["form"] = t
             if line_num == 0:
                 meta = {"sent_id": sent_id(line_num + 1), "newdoc id": f"{id}_{title}", "url": url}
             else:
@@ -41,7 +41,7 @@ def make_tokenlists(docs):
 
 
 def parse_wowiki():
-    with open(f'{CORPORA_DIR}/wowiki_plain.xml') as f:
+    with open(f"{CORPORA_DIR}/wowiki_plain.xml") as f:
         lines = [l.strip() for l in f.read().split("\n")]
 
     docs = []
@@ -66,7 +66,7 @@ def parse_wowiki():
 
 
 def parse_tt(filepath):
-    with open(filepath, 'r') as f:
+    with open(filepath, "r") as f:
         lines = [l.strip() for l in f.read().split("\n")]
 
     sentence = None
@@ -92,8 +92,8 @@ def parse_tt(filepath):
         elif line != "":
             form, xpos = line.split("\t")
             token = esc.token()
-            token['form'] = form
-            token['xpos'] = xpos
+            token["form"] = form
+            token["xpos"] = xpos
             sentence.append(token)
 
     doc_tls = []
@@ -110,7 +110,7 @@ def parse_tt(filepath):
 
 
 def parse_tt_bible(filepath):
-    with open(filepath, 'r') as f:
+    with open(filepath, "r") as f:
         lines = [l.strip() for l in f.read().split("\n")]
 
     sentence = None
@@ -136,8 +136,8 @@ def parse_tt_bible(filepath):
         elif line != "":
             form, xpos = line.split("\t")
             token = esc.token()
-            token['form'] = form
-            token['xpos'] = xpos
+            token["form"] = form
+            token["xpos"] = xpos
             sentence.append(token)
 
     doc_tls = []
@@ -172,13 +172,13 @@ def main():
 
     print(f"Split: train {train_tc}, dev {dev_tc}")
 
-    with open(f"{OUTPUT_DIR}/train/train.conllu", 'w') as f:
+    with open(f"{OUTPUT_DIR}/train/train.conllu", "w") as f:
         f.write("".join(tl.serialize() for doc in train_tls for tl in doc))
-    with open(f"{OUTPUT_DIR}/dev/dev.conllu", 'w') as f:
+    with open(f"{OUTPUT_DIR}/dev/dev.conllu", "w") as f:
         f.write("".join(tl.serialize() for doc in dev_tls for tl in doc))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     CORPORA_DIR = "data/wolof/corpora/"
     OUTPUT_DIR = "data/wolof/converted/"
     rmtree(OUTPUT_DIR, ignore_errors=True)

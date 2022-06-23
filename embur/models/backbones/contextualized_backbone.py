@@ -10,12 +10,7 @@ from allennlp.nn import util
 
 @Backbone.register("contextualized_embedding")
 class ContextualizedEmbedding(Backbone):
-    def __init__(
-        self,
-        vocab: Vocabulary,
-        embedder: TextFieldEmbedder,
-        encoder: Seq2SeqEncoder
-    ) -> None:
+    def __init__(self, vocab: Vocabulary, embedder: TextFieldEmbedder, encoder: Seq2SeqEncoder) -> None:
         super().__init__()
         self._vocab = vocab
         self._namespace = "tokens"
@@ -26,7 +21,7 @@ class ContextualizedEmbedding(Backbone):
         self,
         text: TextFieldTensors,
         masked_text: Optional[TextFieldTensors] = None,
-        masked_positions: Optional[torch.Tensor] = None
+        masked_positions: Optional[torch.Tensor] = None,
     ) -> Dict[str, torch.Tensor]:  # type: ignore
         if len(text) != 1:
             raise ValueError("PretrainedTransformerBackbone is only compatible with using a single TokenIndexer")
@@ -43,7 +38,7 @@ class ContextualizedEmbedding(Backbone):
         if masked_text is not None and masked_positions is not None:
             masked_text_mask = util.get_text_field_mask(masked_text)
             encoded_masked_text = self.embedder(text)
-            outputs["masked_positions"] = masked_positions,
+            outputs["masked_positions"] = (masked_positions,)
             outputs["encoded_masked_text"] = encoded_masked_text
             outputs["encoded_masked_text_mask"] = masked_text_mask
         return outputs

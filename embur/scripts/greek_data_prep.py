@@ -11,7 +11,7 @@ import embur.scripts.common as esc
 
 
 def file_to_tokenlists(filepath):
-    with open(filepath, 'r') as f:
+    with open(filepath, "r") as f:
         contents = f.read()
     soup = BeautifulSoup(contents, features="html.parser")
     title = soup.find("titlestmt").find("title").text
@@ -57,8 +57,7 @@ def main():
         return "".join(tl.serialize() for tl in file_to_tokenlists(filepath))
 
     doc_strs = Parallel(n_jobs=-1, prefer="processes", verbose=6)(
-        delayed(process_doc)(filepath)
-        for filepath in filepaths
+        delayed(process_doc)(filepath) for filepath in filepaths
     )
     doc_tls = [parse(s) for s in doc_strs]
 
@@ -70,13 +69,13 @@ def main():
 
     print(f"Split: train {train_tc}, dev {dev_tc}")
 
-    with open(f"{OUTPUT_DIR}/train/train.conllu", 'w') as f:
+    with open(f"{OUTPUT_DIR}/train/train.conllu", "w") as f:
         f.write("".join(tl.serialize() for doc in train_tls for tl in doc) + BOGUS_DOC)
-    with open(f"{OUTPUT_DIR}/dev/dev.conllu", 'w') as f:
+    with open(f"{OUTPUT_DIR}/dev/dev.conllu", "w") as f:
         f.write("".join(tl.serialize() for doc in dev_tls for tl in doc) + BOGUS_DOC)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     CORPORA_DIR = "data/greek/corpora/"
     OUTPUT_DIR = "data/greek/converted/"
     rmtree(OUTPUT_DIR, ignore_errors=True)

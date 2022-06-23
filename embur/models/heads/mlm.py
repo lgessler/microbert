@@ -17,9 +17,9 @@ class MlmHead(Head):
 
         self.prediction_head = torch.nn.Sequential(
             torch.nn.Linear(embedding_dim, embedding_dim),
-            Activation.by_name('gelu')(),
+            Activation.by_name("gelu")(),
             torch.nn.LayerNorm(embedding_dim, 1e-12),
-            torch.nn.Linear(embedding_dim, self.vocab_size)
+            torch.nn.Linear(embedding_dim, self.vocab_size),
         )
 
         self._accuracy = CategoricalAccuracy()
@@ -30,7 +30,7 @@ class MlmHead(Head):
         encoded_masked_text: torch.Tensor,
         masked_text_labels: Optional[torch.Tensor] = None,
     ) -> Dict[str, torch.Tensor]:
-        
+
         prediction_scores = self.prediction_head(encoded_masked_text)
 
         probs = F.softmax(prediction_scores, dim=-1)
@@ -41,11 +41,11 @@ class MlmHead(Head):
         if masked_text_labels is not None:
             # Gather all masked tokens, i.e. all tokens that aren't -100 (= not masked) or padding
             # First find the mask for tokens that are not masked
-            not_modified_mask = (masked_text_labels == -100)
+            not_modified_mask = masked_text_labels == -100
             # Now find the padding mask
-            padding_mask = (masked_text_labels == self.pad_token_index)
+            padding_mask = masked_text_labels == self.pad_token_index
             # Combine them and take the inverse mask to find the masked positions
-            loss_mask = (~(padding_mask | not_modified_mask))
+            loss_mask = ~(padding_mask | not_modified_mask)
             mask_predictions = prediction_scores[loss_mask]
 
             # For each instance in the batch, only proceed if it turns out that at least one token was masked,

@@ -18,7 +18,7 @@ class XposHead(Head):
         embedding_dim: int,
         use_crf: bool = False,
         use_decoder: bool = False,
-        label_namespace: str = "xpos_tags"
+        label_namespace: str = "xpos_tags",
     ):
         super().__init__(vocab)
         self.label_namespace = label_namespace
@@ -33,10 +33,7 @@ class XposHead(Head):
             self.crf = None
             if use_decoder:
                 self.decoder = GruSeq2SeqEncoder(
-                    input_size=embedding_dim,
-                    hidden_size=embedding_dim,
-                    num_layers=1,
-                    bidirectional=True
+                    input_size=embedding_dim, hidden_size=embedding_dim, num_layers=1, bidirectional=True
                 )
             else:
                 self.decoder = PassThroughEncoder(embedding_dim)
@@ -82,7 +79,6 @@ class XposHead(Head):
                 for metric in self.metrics.values():
                     metric(logits, xpos_tags, encoded_text_mask)
             output["loss"] = loss
-
 
         return output
 

@@ -17,7 +17,7 @@ import embur.scripts.common as esc
 
 def read_file(filepath):
     filename = filepath.split(os.sep)[-1]
-    with open(filepath, 'r') as f:
+    with open(filepath, "r") as f:
         html = f.read()
         # Remove all tags except those in the list, while keeping their contents
         html = bleach.clean(html, tags=["text", "figure", "caption", "p"], strip=True)
@@ -82,7 +82,7 @@ def punct(input_dir, output_dir):
         sents = whitespace_tokenize_sents(sents)
         tls = sents_to_tokenlists(dname, sents)
         doc_tls.append(tls)
-    
+
     train_tls, dev_tls = esc.get_splits(doc_tls, proportions=[0.9, 0.1])
     train_tc = sum(sum(len(tl) for tl in tls) for tls in train_tls)
     dev_tc = sum(sum(len(tl) for tl in tls) for tls in dev_tls)
@@ -93,9 +93,9 @@ def punct(input_dir, output_dir):
 
     os.makedirs(output_dir + "/train", exist_ok=True)
     os.makedirs(output_dir + "/dev", exist_ok=True)
-    with open(f"{output_dir}/train/train.conllu", 'w') as f:
+    with open(f"{output_dir}/train/train.conllu", "w") as f:
         f.write("".join(tl.serialize() for doc in train_tls for tl in doc))
-    with open(f"{output_dir}/dev/dev.conllu", 'w') as f:
+    with open(f"{output_dir}/dev/dev.conllu", "w") as f:
         f.write("".join(tl.serialize() for doc in dev_tls for tl in doc))
 
 
@@ -119,5 +119,5 @@ top.add_command(neural)
 top.add_command(transformer)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     top()

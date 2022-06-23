@@ -35,9 +35,7 @@ class HomogeneousRepeatedRoundRobinScheduler(MultiTaskScheduler):
             self.batch_size = batch_size
         self.drop_last = drop_last
 
-    def batch_instances(
-        self, epoch_instances: Dict[str, Iterable[Instance]]
-    ) -> Iterable[List[Instance]]:
+    def batch_instances(self, epoch_instances: Dict[str, Iterable[Instance]]) -> Iterable[List[Instance]]:
         forced_epoch_instances = {dataset: list(iterator) for dataset, iterator in epoch_instances.items()}
         max_length = max(len(iterator) for iterator in forced_epoch_instances.values())
         even_length_epoch_instances = {}
@@ -47,8 +45,9 @@ class HomogeneousRepeatedRoundRobinScheduler(MultiTaskScheduler):
             for i in range(max_length):
                 even_length_epoch_instances[dataset].append(next(cycled_instances))
 
-        even_length_epoch_instances = {dataset: iter(instances) for dataset, instances
-                                       in even_length_epoch_instances.items()}
+        even_length_epoch_instances = {
+            dataset: iter(instances) for dataset, instances in even_length_epoch_instances.items()
+        }
         chunked_iterators = [
             _chunked_iterator(iterator, self.batch_size[dataset], self.drop_last)
             for dataset, iterator in even_length_epoch_instances.items()

@@ -7,10 +7,10 @@ from embur.language_configs import get_pretrain_config, get_eval_config
 
 
 def get_git_revision_hash(self):
-    return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+    return subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("ascii").strip()
 
 
-TASKS = ('mlm', 'xpos', 'parser')
+TASKS = ("mlm", "xpos", "parser")
 TOKENIZATION_TYPES = ("bpe", "wordpiece")
 
 logger = logging.getLogger(__name__)
@@ -40,22 +40,22 @@ class Config:
     @property
     def bert_dir(self):
         return (
-                f"berts/{self.language}/"
-                + f"{'-'.join(self.tasks)}"
-                + (f"_layers-{self.num_layers}" if self.num_layers is not None else "")
-                + (f"_heads-{self.num_attention_heads}" if self.num_attention_heads is not None else "")
-                + (f"_hidden-{self.embedding_dim}" if self.embedding_dim is not None else "")
+            f"berts/{self.language}/"
+            + f"{'-'.join(self.tasks)}"
+            + (f"_layers-{self.num_layers}" if self.num_layers is not None else "")
+            + (f"_heads-{self.num_attention_heads}" if self.num_attention_heads is not None else "")
+            + (f"_hidden-{self.embedding_dim}" if self.embedding_dim is not None else "")
         )
 
     @property
     def experiment_dir(self):
         return (
-                f"models/{self.language}/"
-                + f"{'-'.join(self.tasks)}"
-                + (f"_layers-{self.num_layers}" if self.num_layers is not None else "")
-                + (f"_heads-{self.num_attention_heads}" if self.num_attention_heads is not None else "")
-                + (f"_hidden-{self.embedding_dim}" if self.embedding_dim is not None else "")
-                + (f"_{self.bert_model_name}" if self.bert_model_name is not None else "")
+            f"models/{self.language}/"
+            + f"{'-'.join(self.tasks)}"
+            + (f"_layers-{self.num_layers}" if self.num_layers is not None else "")
+            + (f"_heads-{self.num_attention_heads}" if self.num_attention_heads is not None else "")
+            + (f"_hidden-{self.embedding_dim}" if self.embedding_dim is not None else "")
+            + (f"_{self.bert_model_name}" if self.bert_model_name is not None else "")
         )
 
     def prepare_dirs(self, delete=False):

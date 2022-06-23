@@ -25,9 +25,9 @@ MAX_PIECES_IN_TOKEN = 100
 def remove_huge_tokens(document, tokenizer):
     for sentence in document:
         for i in range(len(sentence)):
-            if len(tokenizer.tokenize(sentence[i]['form'])) > MAX_PIECES_IN_TOKEN:
+            if len(tokenizer.tokenize(sentence[i]["form"])) > MAX_PIECES_IN_TOKEN:
                 logger.info(f"[UNK]ing out huge token: `{sentence[i]['form']}`")
-                sentence[i]['form'] = "[UNK]"
+                sentence[i]["form"] = "[UNK]"
 
 
 def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[TokenList]:
@@ -59,8 +59,10 @@ def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[Toke
         elif len(sentence) > MAX_TOKEN_LENGTH:
             subannotation = TokenList(sentence[:MAX_TOKEN_LENGTH])
             subannotation.metadata = sentence.metadata.copy()
-            logger.info(f"Breaking up huge sentence in {file_path} with length {len(sentence)} "
-                        f"into chunks of {MAX_TOKEN_LENGTH} tokens")
+            logger.info(
+                f"Breaking up huge sentence in {file_path} with length {len(sentence)} "
+                f"into chunks of {MAX_TOKEN_LENGTH} tokens"
+            )
             while len(subannotation) > 0:
                 document.append(subannotation)
                 subannotation = TokenList(subannotation[MAX_TOKEN_LENGTH:])
@@ -73,7 +75,7 @@ def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[Toke
 def get_chunks(document, sentence, indexer, vocab):
     metadata = sentence.metadata
 
-    tokens = [Token(token['form']) for token in sentence]
+    tokens = [Token(token["form"]) for token in sentence]
 
     sentence_chunks = []
     chunk_lens = []
@@ -107,7 +109,7 @@ def get_chunks(document, sentence, indexer, vocab):
 
 
 def read_conllu_files(file_path: str, tokenizer: T.Tokenizer = None) -> List[List[TokenList]]:
-    if file_path.endswith('.conllu'):
+    if file_path.endswith(".conllu"):
         file_paths = [file_path]
     else:
         file_paths = sorted(glob(os.path.join(file_path, "*.conllu")))
@@ -163,7 +165,7 @@ class EmburConllu(DatasetReader):
             for sentence in document:
                 m = sentence.metadata
                 # Only accept plain tokens
-                sentence = [a for a in sentence if isinstance(a['id'], int)]
+                sentence = [a for a in sentence if isinstance(a["id"], int)]
 
                 # read directly from conllu output
                 # not used: feats, deps
@@ -172,12 +174,9 @@ class EmburConllu(DatasetReader):
                 upos_tags = [x["upos"] for x in sentence]
                 lemmas = [x["lemma"] for x in sentence]
                 heads, deprels = None, None
-                if all(x["head"] is not None for x in sentence) and all(
-                    x["deprel"] is not None for x in sentence
-                ):
+                if all(x["head"] is not None for x in sentence) and all(x["deprel"] is not None for x in sentence):
                     heads = [int(x["head"]) for x in sentence]
                     deprels = [str(x["deprel"]) for x in sentence]
-
 
                 wp_len = len(self.allennlp_tokenizer.intra_word_tokenize(forms))
                 assert wp_len <= MAX_WORDPIECE_LENGTH, (wp_len, MAX_WORDPIECE_LENGTH, m)
