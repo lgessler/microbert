@@ -72,7 +72,7 @@ def pretrain_evaluate(config):
     logger.info("Training tokenizer...")
     documents = read_conllu_files(config.pretrain_language_config["tokenizer_conllu_path"])
     sentences = [" ".join([t["form"] for t in sentence]) for document in documents for sentence in document]
-    train_tokenizer(sentences, serialize_path=config.bert_dir, model_type=config.model_type)
+    train_tokenizer(sentences, serialize_path=config.bert_dir, model_type=config.tokenization_type)
 
     # these are needed by bert_pretrain.jsonnet
     config.prepare_bert_pretrain_env_vars()
