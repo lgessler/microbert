@@ -46,9 +46,9 @@ def evaluate_allennlp(config):
 
         overrides = []
         if config.finetune:
-            overrides.append('"trainer.num_epochs": 1')
-        if config.debug:
             overrides.append('"model.text_field_embedder.token_embedders.tokens.train_parameters": true')
+        if config.debug:
+            overrides.append('"trainer.num_epochs": 1')
         if len(overrides) > 0:
             overrides = "{" + ", ".join(overrides) + "}"
         else:

@@ -116,7 +116,7 @@ def read_conllu_files(file_path: str, tokenizer: T.Tokenizer = None) -> List[Lis
 
     documents = []
     for i, conllu_file_path in enumerate(file_paths):
-        if os.environ["TOY_DATA"] and i > 500:
+        if os.environ["TOY_DATA"] and i > 200:
             break
         document = read_conllu_file(conllu_file_path, tokenizer=tokenizer)
         doclen = sum(len(sentence) for sentence in document)
