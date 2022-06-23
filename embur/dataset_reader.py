@@ -113,7 +113,9 @@ def read_conllu_files(file_path: str, tokenizer: T.Tokenizer = None) -> List[Lis
         file_paths = sorted(glob(os.path.join(file_path, "*.conllu")))
 
     documents = []
-    for conllu_file_path in file_paths:
+    for i, conllu_file_path in enumerate(file_paths):
+        if os.environ["TOY_DATA"] and i > 500:
+            break
         document = read_conllu_file(conllu_file_path, tokenizer=tokenizer)
         doclen = sum(len(sentence) for sentence in document)
         if doclen == 0:
@@ -159,8 +161,6 @@ class EmburConllu(DatasetReader):
 
         for document in documents:
             for sentence in document:
-                if 'TOY_DATA' in os.environ and yielded >= 100:
-                    continue
                 m = sentence.metadata
                 # Only accept plain tokens
                 sentence = [a for a in sentence if isinstance(a['id'], int)]

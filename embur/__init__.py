@@ -18,5 +18,3 @@ import embur.models.heads.ud
 import embur.models.heads.xpos
 import embur.schedulers
 import embur.mtl_trainer
-# https://stackoverflow.com/questions/3365740/how-to-import-all-submodules
-from embur.schedulers import HomogeneousRepeatedRoundRobinScheduler

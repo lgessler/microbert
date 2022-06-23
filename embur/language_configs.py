@@ -50,7 +50,7 @@ def _std_eval_config(model_name, language, treebank_name, conllu_name):
     }
 
 
-def get_pretrain_config(language, tokenizer_path, excluded_tasks):
+def get_pretrain_config(language, tokenizer_path, tasks):
     """
     Contains language-specific config for pretraining, which mostly has to do with dataset paths.
 
@@ -94,7 +94,7 @@ def get_pretrain_config(language, tokenizer_path, excluded_tasks):
 
     for subconfig_name, subconfig in language_config.items():
         if subconfig_name in ["train_data_paths", "dev_data_paths", "readers"]:
-            language_config[subconfig_name] = {k: v for k, v in subconfig.items() if k not in excluded_tasks}
+            language_config[subconfig_name] = {k: v for k, v in subconfig.items() if k in tasks}
 
     return language_config
 
