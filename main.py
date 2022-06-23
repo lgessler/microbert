@@ -1,7 +1,7 @@
 import json
 import os
-from logging import getLogger
 
+from rich import print
 import click
 from allennlp.commands.train import train_model_from_file
 from allennlp.common.util import import_module_and_submodules
@@ -15,9 +15,6 @@ from embur.language_configs import LANGUAGES
 from embur.tokenizers import train_tokenizer
 
 import_module_and_submodules("allennlp_models")
-
-
-logger = getLogger(__name__)
 
 
 @click.group()
@@ -56,7 +53,7 @@ logger = getLogger(__name__)
 @click.pass_context
 def top(ctx, **kwargs):
     ctx.obj = Config(**kwargs)
-    logger.info(f"Parsed experimental config: {ctx.obj.__dict__}")
+    print(f"Parsed experimental config: {ctx.obj.__dict__}")
 
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -69,7 +66,7 @@ def pretrain_evaluate(config):
     config.prepare_dirs(delete=True)
 
     # Get config and train tokenizer
-    logger.info("Training tokenizer...")
+    print("Training tokenizer...")
     documents = read_conllu_files(config.pretrain_language_config["tokenizer_conllu_path"])
     sentences = [" ".join([t["form"] for t in sentence]) for document in documents for sentence in document]
     train_tokenizer(sentences, serialize_path=config.bert_dir, model_type=config.tokenization_type)
@@ -78,10 +75,10 @@ def pretrain_evaluate(config):
     config.prepare_bert_pretrain_env_vars()
 
     # Train the LM
-    logger.info("Beginning pretraining...")
-    logger.info("Config:\n", config.pretrain_language_config)
-    logger.info("Env:\n", os.environ)
-    overrides = '{"trainer.num_epochs": 1}' if config.debug else ""
+    print("Beginning pretraining...")
+    print("Config:\n", config.pretrain_language_config)
+    print("Env:\n", os.environ)
+    overrides = '{"trainer.num_epochs": 1, "data_loader.instances_per_epoch": 256}' if config.debug else ""
     model = train_model_from_file(config.pretrain_jsonnet, config.experiment_dir, overrides=overrides)
     bert_serialization: BertModel = model._backbone.bert
     bert_serialization.save_pretrained(config.bert_dir)
