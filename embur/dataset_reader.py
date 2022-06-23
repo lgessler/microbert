@@ -38,7 +38,7 @@ def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[Toke
     if tokenizer is not None:
         remove_huge_tokens(sentences, tokenizer)
     if len(sentences) == 0:
-        print(f"WARNING: {file_path} is empty--likely conversion error.")
+        logger.warning(f"WARNING: {file_path} is empty--likely conversion error.")
         return []
 
     vocab = None
@@ -121,7 +121,7 @@ def read_conllu_files(file_path: str, tokenizer: T.Tokenizer = None) -> List[Lis
         document = read_conllu_file(conllu_file_path, tokenizer=tokenizer)
         doclen = sum(len(sentence) for sentence in document)
         if doclen == 0:
-            print(conllu_file_path, "has length", doclen)
+            logger.info(f"{conllu_file_path} has length {doclen}")
         else:
             documents.append(document)
     return documents
@@ -156,7 +156,7 @@ class EmburConllu(DatasetReader):
             for sentence in document:
                 document_count += len(sentence)
             token_count += document_count
-        print(f"\n\nTotal token count for {file_path} split: {token_count}\n\n")
+        logger.info(f"\n\nTotal token count for {file_path} split: {token_count}\n\n")
 
         sample_printed = False
         yielded = 0
@@ -190,7 +190,7 @@ class EmburConllu(DatasetReader):
                     deprels=deprels,
                 )
                 if not sample_printed:
-                    print(f"Sample instance from {file_path}:", instance)
+                    logger.info(f"Sample instance from {file_path}:", instance)
                     sample_printed = True
 
                 yielded += 1

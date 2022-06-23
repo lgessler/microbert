@@ -1,4 +1,5 @@
 import os
+from logging import getLogger
 from typing import List
 
 from tokenizers import Tokenizer
@@ -12,6 +13,8 @@ from tokenizers.processors import TemplateProcessing
 from tokenizers.trainers import WordPieceTrainer, BpeTrainer
 from transformers import BertTokenizer, PreTrainedTokenizerFast, BertTokenizerFast
 
+logger = getLogger(__name__)
+
 
 def write_vocab(tokenizer: Tokenizer, serialization_dir: str):
     vocab = [(w, i) for w, i in tokenizer.get_vocab().items()]
@@ -20,7 +23,7 @@ def write_vocab(tokenizer: Tokenizer, serialization_dir: str):
     words = "\n".join([w for w, _ in vocab]) + "\n"
     with open(os.path.join(serialization_dir, "vocab.txt"), "w") as f:
         f.write(words)
-    print("Wrote vocab to", serialization_dir)
+    logger.info("Wrote vocab to", serialization_dir)
 
 
 def count_word_types(sentences: List[str]):

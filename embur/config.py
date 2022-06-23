@@ -1,3 +1,4 @@
+import json
 import os
 import shutil
 import subprocess
@@ -67,3 +68,20 @@ class Config:
                 logger.info(f"{self.experiment_dir} exists, removing...")
                 shutil.rmtree(self.experiment_dir)
         os.makedirs(self.bert_dir, exist_ok=True)
+
+    def prepare_bert_pretrain_env_vars(self):
+        os.environ["TOKENIZER_PATH"] = self.bert_dir
+        os.environ["NUM_LAYERS"] = str(self.num_layers)
+        os.environ["NUM_ATTENTION_HEADS"] = str(self.num_attention_heads)
+        os.environ["EMBEDDING_DIM"] = str(self.embedding_dim)
+        # Discard any pretraining paths we don't need
+        xpos = mlm = parser = False
+        for k, v in self.pretrain_language_config.items():
+            os.environ[k] = json.dumps(v)
+            if k == "train_data_paths":
+                xpos = "xpos" in v
+                mlm = "mlm" in v
+                parser = "parser" in v
+        os.environ["XPOS"] = json.dumps(xpos)
+        os.environ["MLM"] = json.dumps(mlm)
+        os.environ["PARSER"] = json.dumps(parser)
