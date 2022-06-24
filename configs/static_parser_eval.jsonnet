@@ -12,8 +12,8 @@ local pos_embedding_dim = 0;
       "use_language_specific_pos": true,
       "token_indexers": {
         "tokens": {
-          "type": "pretrained_transformer_mismatched",
-          "model_name": model_name,
+          "type": "single_id",
+          "lowercase_tokens": false
         }
       }
     },
@@ -27,7 +27,7 @@ local pos_embedding_dim = 0;
             "type": "embedding",
             "embedding_dim": embedding_dim,
             "pretrained_file": model_name,
-            "trainable": true
+            "trainable": trainable
           }
         }
       },

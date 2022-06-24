@@ -12,7 +12,7 @@ from gensim.models import Word2Vec
 
 from embur.config import Config, TASKS, TOKENIZATION_TYPES
 from embur.dataset_reader import read_conllu_files
-from embur.eval.allennlp import evaluate_allennlp
+from embur.eval.allennlp import evaluate_allennlp, evaluate_allennlp_static
 from embur.language_configs import LANGUAGES
 from embur.tokenizers import train_tokenizer
 
@@ -64,20 +64,22 @@ def top(ctx, **kwargs):
 @click.command(help="Train word2vec embeddings and use to evaluate.")
 @click.pass_obj
 def word2vec_evaluate(config):
+    config.finetune = True  # always finetune
+    config.parser_eval_jsonnet = "configs/static_parser_eval.jsonnet"
+
     documents = read_conllu_files(config.pretrain_language_config["tokenizer_conllu_path"])
     sentences = [[t["form"] for t in sentence] for document in documents for sentence in document]
-    print(sentences[0])
     model = Word2Vec(sentences=sentences, sg=1, negative=5, vector_size=100, window=5, min_count=1, workers=4)
 
     os.makedirs("word2vec", exist_ok=True)
     with open(config.word2vec_file, "w") as f:
-        writer = csv.writer(f, delimiter="\t")
+        f.write(f"{len(model.wv.key_to_index)} {config.embedding_dim}\n")
         for word in model.wv.key_to_index:
             vector = model.wv.get_vector(word).tolist()
-            row = [word] + vector
-            writer.writerow(row)
+            row = [word] + [str(x) for x in vector]
+            f.write(" ".join(row) + "\n")
 
-    train_metrics, eval_metrics = evaluate_allennlp(config)
+    train_metrics, eval_metrics = evaluate_allennlp_static(config)
     output = "\t".join(
         [
             config.language,

@@ -1,5 +1,6 @@
 local embedding_dim = std.parseInt(std.extVar("BERT_DIMS"));
 local model_name = std.extVar("BERT_PATH");
+local trainable = if std.parseInt(std.extVar("TRAINABLE")) == 1 then true else false;
 local train_data_path = std.extVar("train_data_path");
 local validation_data_path = std.extVar("validation_data_path");
 local dataset_reader = std.parseJson(std.extVar("dataset_reader"));
@@ -25,7 +26,7 @@ local pos_embedding_dim = 0;
           "tokens": {
             "type": "pretrained_transformer_mismatched",
             "model_name": model_name,
-            "train_parameters": false,
+            "train_parameters": trainable,
             "last_layer_only": false
           }
         }

@@ -40,12 +40,11 @@ def evaluate_allennlp(config):
 
         os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)
         os.environ["BERT_PATH"] = config.bert_model_name
+        os.environ["TRAINABLE"] = "1" if config.finetune else "0"
         for k, v in language_config["training"].items():
             os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
 
         overrides = []
-        if config.finetune:
-            overrides.append('"model.text_field_embedder.token_embedders.tokens.train_parameters": true')
         if config.debug:
             overrides.append('"trainer.num_epochs": 1')
         if len(overrides) > 0:
@@ -70,12 +69,12 @@ def evaluate_allennlp_static(config):
         logger.info("Training for evaluation")
         os.environ["EMBEDDING_DIMS"] = str(config.embedding_dim)
         os.environ["EMBEDDING_PATH"] = config.word2vec_file
-        for k, v in config.language_config.language_config["training"].items():
+        os.environ["TRAINABLE"] = "1" if config.finetune else "0"
+        language_config = config.parser_eval_language_config
+        for k, v in language_config["training"].items():
             os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
 
         overrides = []
-        if config.finetune:
-            overrides.append('"model.text_field_embedder.token_embedders.tokens.train_parameters": true')
         if config.debug:
             overrides.append('"trainer.num_epochs": 1')
         if len(overrides) > 0:
@@ -86,7 +85,7 @@ def evaluate_allennlp_static(config):
         train_model_from_file(config.parser_eval_jsonnet, eval_dir, overrides=overrides)
 
         logger.info("Evaluating")
-        args = eval_args(eval_dir, config.language_config["testing"]["input_file"])
+        args = eval_args(eval_dir, language_config["testing"]["input_file"])
         metrics = evaluate_from_args(args)
     logger.info(metrics)
     return None, metrics
