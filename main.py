@@ -1,3 +1,4 @@
+import csv
 import json
 import os
 
@@ -7,6 +8,7 @@ from allennlp.commands.train import train_model_from_file
 from allennlp.common.util import import_module_and_submodules
 from filelock import FileLock
 from transformers import BertModel
+from gensim.models import Word2Vec
 
 from embur.config import Config, TASKS, TOKENIZATION_TYPES
 from embur.dataset_reader import read_conllu_files
@@ -59,6 +61,35 @@ def top(ctx, **kwargs):
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Training
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+@click.command(help="Train word2vec embeddings and use to evaluate.")
+@click.pass_obj
+def word2vec_evaluate(config):
+    documents = read_conllu_files(config.pretrain_language_config["tokenizer_conllu_path"])
+    sentences = [[t["form"] for t in sentence] for document in documents for sentence in document]
+    print(sentences[0])
+    model = Word2Vec(sentences=sentences, sg=1, negative=5, vector_size=100, window=5, min_count=1, workers=4)
+
+    os.makedirs("word2vec", exist_ok=True)
+    with open(config.word2vec_file, "w") as f:
+        writer = csv.writer(f, delimiter="\t")
+        for word in model.wv.key_to_index:
+            vector = model.wv.get_vector(word).tolist()
+            row = [word] + vector
+            writer.writerow(row)
+
+    train_metrics, eval_metrics = evaluate_allennlp(config)
+    output = "\t".join(
+        [
+            config.language,
+            "word2vec" + ("_ft" if config.finetune else ""),
+            "_",
+            "_",
+            str(eval_metrics["LAS"]),
+        ]
+    )
+    _locked_write("metrics.tsv", output + "\n")
+
+
 @click.command(help="Run the pretraining phase of an experiment where a BERT model is trained")
 @click.pass_obj
 def pretrain_evaluate(config):
@@ -168,9 +199,9 @@ def language_trial(ctx):
 
 
 top.add_command(pretrain_evaluate)
+top.add_command(word2vec_evaluate)
 top.add_command(baseline_evaluate)
 top.add_command(evaluate)
-top.add_command(baseline_evaluate)
 top.add_command(language_trial)
 
 

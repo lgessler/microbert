@@ -53,6 +53,10 @@ class Config:
         )
 
     @property
+    def word2vec_file(self):
+        return f"word2vec/{self.language}_{self.embedding_dim}.vec"
+
+    @property
     def experiment_dir(self):
         return (
             f"models/{self.language}/"
