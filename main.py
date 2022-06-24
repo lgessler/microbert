@@ -44,7 +44,7 @@ import_module_and_submodules("allennlp_models")
     type=click.Choice(TASKS),
     help="Specify task(s) to exclude from a run. Possible values: mlm, parser, xpos",
 )
-@click.option("--tokenization-type", "-t", type=click.Choice(TOKENIZATION_TYPES), default="wordpiece")
+@click.option("--tokenization-type", type=click.Choice(TOKENIZATION_TYPES), default="wordpiece")
 @click.option("--num-layers", default=3, type=int, help="Number of BERT encoder block layers")
 @click.option("--num-attention-heads", default=5, type=int, help="Number of BERT attention heads")
 @click.option("--embedding-dim", default=100, type=int, help="BERT hidden dimension")
