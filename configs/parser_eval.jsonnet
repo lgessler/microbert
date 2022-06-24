@@ -75,8 +75,8 @@ local pos_embedding_dim = 0;
       "validation_metric": "+LAS",
       "optimizer": {
         "type": "adam",
-        "betas": [0.9, 0.9],
-        "lr": 1e-3
+        "betas": [0.9, 0.999],
+        "lr": 5e-4
       }
     }
 }
