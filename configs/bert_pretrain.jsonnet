@@ -155,7 +155,7 @@ local slanted_triangular = {
             //]
         },
         "learning_rate_scheduler": plateau, //slanted_triangular,
-        "patience": 20,
+        "patience": 40,
         "num_epochs": num_epochs,
         "validation_metric": "-mlm_perplexity",
         "callbacks": [
@@ -168,7 +168,7 @@ local slanted_triangular = {
             //{
             //    "type": "should_validate_callback",
             //    "validation_start": 100,
-            //    "validation_interval": 5
+            //    "validation_interval": 1
             //}
         ]
     }
