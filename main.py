@@ -106,24 +106,16 @@ def word2vec_evaluate(config):
             f.write(" ".join(row) + "\n")
 
     train_metrics, eval_metrics = evaluate_allennlp_static(config)
-    output = "\t".join(
-        [
-            config.language,
-            "word2vec" + ("_ft" if config.finetune else ""),
-            "_",
-            "_",
-            str(eval_metrics["LAS"]),
-        ]
-    )
-    _locked_write("metrics.tsv", output + "\n")
+    _write_to_tsv(config, "word2vec" + ("_ft" if config.finetune else ""), eval_metrics)
 
 
 @click.command(
     help="Run the pretraining phase of an experiment where a BERT model is trained"
 )
-@click.pass_obj
-def pretrain_evaluate(config):
+@click.pass_context
+def pretrain_evaluate(ctx):
     # Prepare directories that will be used for the AllenNLP model and the extracted BERT model
+    config = ctx.obj
     config.prepare_dirs(delete=True)
 
     # Get config and train tokenizer
@@ -160,12 +152,15 @@ def pretrain_evaluate(config):
     with open(os.path.join(config.experiment_dir, "metrics.json"), "r") as f:
         train_metrics = json.load(f)
 
-    eval_metrics = evaluate_allennlp(config)
-    _, metrics = eval_metrics
+    # Evaluation
+    ctx.invoke(evaluate)
+
+
+def _write_to_tsv(config, name, metrics):
     output = "\t".join(
         [
             config.language,
-            "_".join(config.tasks) + ("_ft" if config.finetune else ""),
+            name,
             "_",
             "_",
             str(metrics["LAS"]),
@@ -186,19 +181,9 @@ def _locked_write(filepath, s):
 @click.pass_obj
 def evaluate(config):
     # Get dir paths without deleting them--we're assuming they're already there
+    config.bert_model_name = None
     _, eval_metrics = evaluate_allennlp(config)
-    name = "mlm_only" if "mlm" in config.tasks and len(config.tasks) == 1 else "mtl"
-    name += "_ft" if config.finetune else ""
-    output = "\t".join(
-        [
-            config.language,
-            name,
-            "_",
-            "_",
-            str(eval_metrics["LAS"]),
-        ]
-    )
-    _locked_write("metrics.tsv", output + "\n")
+    _write_to_tsv(config, "-".join(config.tasks) + ("_ft" if config.finetune else ""), eval_metrics)
     return None, eval_metrics
 
 

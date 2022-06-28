@@ -35,7 +35,8 @@ def evaluate_allennlp(config):
     """
     with mkdtemp() as eval_dir:
         logger.info("Training for evaluation")
-        bert_model = BertModel.from_pretrained(config.bert_model_name)
+        bert_model_path = config.bert_model_name or config.bert_dir
+        bert_model = BertModel.from_pretrained(bert_model_path)
         language_config = config.parser_eval_language_config
 
         os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)
