@@ -40,7 +40,7 @@ def evaluate_allennlp(config):
         language_config = config.parser_eval_language_config
 
         os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)
-        os.environ["BERT_PATH"] = config.bert_model_name
+        os.environ["BERT_PATH"] = bert_model_path
         os.environ["TRAINABLE"] = "1" if config.finetune else "0"
         for k, v in language_config["training"].items():
             os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
