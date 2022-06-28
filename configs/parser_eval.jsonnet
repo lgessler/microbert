@@ -76,7 +76,10 @@ local pos_embedding_dim = 0;
       "optimizer": {
         "type": "adam",
         "betas": [0.9, 0.999],
-        "lr": 5e-4
+        "lr": 5e-4,
+        "parameter_groups": [
+          [[".*transformer_model.*"], {"lr": 1e-5}]
+        ]
       }
     }
 }
