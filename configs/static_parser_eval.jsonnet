@@ -74,8 +74,8 @@ local pos_embedding_dim = 0;
       "patience": 100,
       "validation_metric": "+LAS",
       "optimizer": {
-        "type": "adam",
-        "betas": [0.9, 0.9],
+        "type": "adamw",
+        "betas": [0.9, 0.999],
         "lr": 1e-3
       }
     }
