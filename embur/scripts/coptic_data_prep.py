@@ -130,7 +130,7 @@ def format_tt(tt_dir):
     return tt_data
 
 
-if __name__ == "__main__":
+def main():
     OUTPUT_DIR = "data/coptic/converted/"
     SYNTAX_DIR = OUTPUT_DIR + "syntax/"
 
@@ -227,3 +227,7 @@ if __name__ == "__main__":
             progress.update(task, advance=1)
 
         print("Total tokens:", tc)
+
+
+if __name__ == "__main__":
+    main()

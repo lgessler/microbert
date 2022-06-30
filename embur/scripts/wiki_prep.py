@@ -69,10 +69,7 @@ def sents_to_tokenlists(dname, sents):
     return tls
 
 
-@click.command(help="")
-@click.argument("input_dir")
-@click.argument("output_dir")
-def punct(input_dir, output_dir):
+def punct_inner(input_dir, output_dir):
     docs = read_dir(input_dir)
     os.makedirs(output_dir, exist_ok=True)
 
@@ -97,6 +94,13 @@ def punct(input_dir, output_dir):
         f.write("".join(tl.serialize() for doc in train_tls for tl in doc))
     with open(f"{output_dir}/dev/dev.conllu", "w") as f:
         f.write("".join(tl.serialize() for doc in dev_tls for tl in doc))
+
+
+@click.command(help="")
+@click.argument("input_dir")
+@click.argument("output_dir")
+def punct(input_dir, output_dir):
+    punct_inner(input_dir, output_dir)
 
 
 @click.command(help="")

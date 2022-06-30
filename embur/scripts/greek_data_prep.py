@@ -50,6 +50,11 @@ BOGUS_DOC = """# newdoc id = BOGUS
 
 
 def main():
+    CORPORA_DIR = "data/greek/corpora/"
+    OUTPUT_DIR = "data/greek/converted/"
+    rmtree(OUTPUT_DIR, ignore_errors=True)
+    os.makedirs(OUTPUT_DIR + "/train", exist_ok=True)
+    os.makedirs(OUTPUT_DIR + "/dev", exist_ok=True)
     filepaths = sorted(glob(f"{CORPORA_DIR}/*.xml"))
 
     def process_doc(filepath):
@@ -76,9 +81,4 @@ def main():
 
 
 if __name__ == "__main__":
-    CORPORA_DIR = "data/greek/corpora/"
-    OUTPUT_DIR = "data/greek/converted/"
-    rmtree(OUTPUT_DIR, ignore_errors=True)
-    os.makedirs(OUTPUT_DIR + "/train", exist_ok=True)
-    os.makedirs(OUTPUT_DIR + "/dev", exist_ok=True)
     main()

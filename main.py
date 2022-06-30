@@ -177,6 +177,26 @@ def word2vec_evaluate(config):
     _write_to_tsv(config, "word2vec" + ("_ft" if config.finetune else ""), eval_metrics)
 
 
+@click.command(help="Prepare data for a given language")
+@click.pass_obj
+def prepare_data(config):
+    lang = config.language
+    if lang == "coptic":
+        from embur.scripts.coptic_data_prep import main
+
+        main()
+    elif lang == "greek":
+        from embur.scripts.greek_data_prep import main
+
+        main()
+    elif lang in ["wolof", "uyghur", "maltese"]:
+        from embur.scripts.wiki_prep import punct_inner
+
+        punct_inner(f"data/{lang}/corpora", f"data/{lang}/converted_punct")
+    else:
+        raise Exception(f"Unknown language: {lang}")
+
+
 @click.command(help="Run all evals for a given language")
 @click.pass_context
 def evaluate_all(ctx):
@@ -217,6 +237,8 @@ def evaluate_all(ctx):
     config.finetune = True
     ctx.invoke(evaluate)
 
+
+top.add_command(prepare_data)
 
 top.add_command(word2vec_train)
 top.add_command(pretrain)
