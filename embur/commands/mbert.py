@@ -11,7 +11,7 @@ class MbertExperimentConfig:
         combined_kwargs = default_options(mbert)
         combined_kwargs.update(kwargs)
 
-        self.bert_model_name = kwargs.pop("bert_model_name")
+        self.bert_model_name = combined_kwargs.pop("bert_model_name")
         self.parser_eval_language_config = get_eval_config(self.language, self.bert_model_name)
         self.parser_eval_jsonnet = combined_kwargs.pop("parser_eval_config")
 
