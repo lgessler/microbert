@@ -32,7 +32,7 @@ def mbert(ctx, **kwargs):
 @click.pass_context
 def evaluate(ctx):
     config = ctx.obj
-    _, metrics = evaluate_allennlp(config)
+    _, metrics = evaluate_allennlp(config, config.bert_model_name)
     name = config.bert_model_name
     name += "_ft" if config.finetune else ""
     write_to_tsv(config, name, metrics)

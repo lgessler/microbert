@@ -97,13 +97,12 @@ def eval_args(serialization_dir, input_file):
     return args
 
 
-def evaluate_allennlp(config):
+def evaluate_allennlp(config, bert_model_path):
     """
     Given a language and a pretrained BERT model (or something API compatible with it),
     """
     with mkdtemp() as eval_dir:
         logger.info("Training for evaluation")
-        bert_model_path = config.bert_model_name or config.bert_dir
         bert_model = BertModel.from_pretrained(bert_model_path)
         language_config = config.parser_eval_language_config
 

@@ -148,7 +148,7 @@ def train(ctx):
 @click.command(help="Evaluate a monolingual BERT")
 @click.pass_obj
 def evaluate(config):
-    _, eval_metrics = evaluate_allennlp(config)
+    _, eval_metrics = evaluate_allennlp(config, config.bert_dir)
     write_to_tsv(
         config,
         "-".join(config.tasks) + ("_ft" if config.finetune else ""),
