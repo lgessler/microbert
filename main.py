@@ -5,11 +5,11 @@ from allennlp.common.util import import_module_and_submodules
 import_module_and_submodules("allennlp_models")
 
 import embur.commands.mbert as mbert
-from embur.commands.mbert import mbert
+from embur.commands.mbert import mbert as c_mbert
 import embur.commands.word2vec as word2vec
-from embur.commands.word2vec import word2vec
+from embur.commands.word2vec import word2vec as c_word2vec
 import embur.commands.bert as bert
-from embur.commands.bert import bert
+from embur.commands.bert import bert as c_bert
 from embur.config import Config
 from embur.language_configs import LANGUAGES
 
@@ -85,9 +85,9 @@ def evaluate_all(ctx):
         ctx.invoke(bert.evaluate)
 
 
-top.add_command(word2vec)
-top.add_command(mbert)
-top.add_command(bert)
+top.add_command(c_word2vec)
+top.add_command(c_mbert)
+top.add_command(c_bert)
 top.add_command(prepare_data)
 top.add_command(evaluate_all)
 
