@@ -91,8 +91,6 @@ def _locked_write(filepath, s):
 @click.command(help="Train word2vec embeddings")
 @click.pass_obj
 def word2vec_train(config):
-    config.parser_eval_jsonnet = "configs/static_parser_eval.jsonnet"
-
     documents = read_conllu_files(config.pretrain_language_config["tokenizer_conllu_path"])
     sentences = [[t["form"] for t in sentence] for document in documents for sentence in document]
     model = Word2Vec(
@@ -149,6 +147,8 @@ def pretrain(ctx):
 @click.command(help="Evaluate a monolingual BERT")
 @click.pass_obj
 def evaluate(config):
+    tmp = config.bert_model_name
+
     config.bert_model_name = None
     _, eval_metrics = evaluate_allennlp(config)
     _write_to_tsv(
@@ -157,24 +157,34 @@ def evaluate(config):
         eval_metrics,
     )
 
+    config.bert_model_name = tmp
+
 
 @click.command(help="Run a baseline eval for a given language")
 @click.pass_context
 def baseline_evaluate(ctx):
     config = ctx.obj
+    tmp = config.bert_model_name
+
     config.bert_model_name = "bert-base-multilingual-cased"
     _, metrics = evaluate_allennlp(config)
     name = "pretrained_baseline"
     name += "_ft" if config.finetune else ""
     _write_to_tsv(config, name, metrics)
 
+    config.bert_model_name = tmp
+
 
 @click.command(help="Evaluate word2vec embeddings")
 @click.pass_obj
 def word2vec_evaluate(config):
+    tmp = config.parser_eval_jsonnet
+
     config.parser_eval_jsonnet = "configs/static_parser_eval.jsonnet"
     train_metrics, eval_metrics = evaluate_allennlp_static(config)
     _write_to_tsv(config, "word2vec" + ("_ft" if config.finetune else ""), eval_metrics)
+
+    config.parser_eval_jsonnet = tmp
 
 
 @click.command(help="Prepare data for a given language")
@@ -209,12 +219,10 @@ def evaluate_all(ctx):
     ctx.invoke(word2vec_evaluate)
 
     # mBERT baseline
-    model_name = config.bert_model_name
     config.finetune = False
     ctx.invoke(baseline_evaluate)
     config.finetune = True
     ctx.invoke(baseline_evaluate)
-    config.bert_model_name = model_name
 
     # MLM only
     config.set_tasks(["mlm"])
