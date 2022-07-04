@@ -70,9 +70,9 @@ local pos_embedding_dim = 0;
       "batches_per_epoch": 400
     },
     "trainer": {
-      "num_epochs": 5000,
+      "num_epochs": 500,
       "grad_clipping": 5.0,
-      "patience": 200,
+      "patience": 40,
       "validation_metric": "+LAS",
       "optimizer": {
         "type": "adamw",
