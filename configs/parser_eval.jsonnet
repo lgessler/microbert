@@ -66,17 +66,19 @@ local pos_embedding_dim = 0;
       "batch_sampler": {
         "type": "bucket",
         "batch_size": 16
-      }
+      },
+      "batches_per_epoch": 400,
+      "shuffle": true
     },
     "trainer": {
-      "num_epochs": 1000,
+      "num_epochs": 5000,
       "grad_clipping": 5.0,
-      "patience": 100,
+      "patience": 200,
       "validation_metric": "+LAS",
       "optimizer": {
         "type": "adamw",
         "betas": [0.9, 0.999],
-        "lr": 5e-4,
+        "lr": 1e-3,
         "parameter_groups": [
           [[".*transformer_model.*"], {"lr": 1e-5}]
         ]
