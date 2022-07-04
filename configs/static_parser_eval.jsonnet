@@ -67,7 +67,7 @@ local pos_embedding_dim = 0;
         "type": "bucket",
         "batch_size": 16
       },
-      "batches_per_epoch": 400
+      "batches_per_epoch": 200
     },
     "trainer": {
       "num_epochs": 500,
