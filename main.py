@@ -10,6 +10,7 @@ import embur.commands.word2vec as word2vec
 from embur.commands.word2vec import word2vec as c_word2vec
 import embur.commands.bert as bert
 from embur.commands.bert import bert as c_bert
+from embur.commands.stats import stats
 from embur.config import Config
 from embur.language_configs import LANGUAGES
 
@@ -88,6 +89,7 @@ def evaluate_all(ctx):
 top.add_command(c_word2vec)
 top.add_command(c_mbert)
 top.add_command(c_bert)
+top.add_command(stats)
 top.add_command(prepare_data)
 top.add_command(evaluate_all)
 
