@@ -45,7 +45,7 @@ local pos_embedding_dim = 0;
         "use_highway": true
       },
       "use_mst_decoding_for_validation": true,
-      "arc_representation_dim": 500,
+      "arc_representation_dim": 100,
       "tag_representation_dim": 100,
       "dropout": 0.3,
       "input_dropout": 0.3,
@@ -70,16 +70,16 @@ local pos_embedding_dim = 0;
       "batches_per_epoch": 200
     },
     "trainer": {
-      "num_epochs": 500,
+      "num_epochs": 1000,
       "grad_clipping": 5.0,
-      "patience": 40,
+      "patience": 100,
       "validation_metric": "+LAS",
       "optimizer": {
         "type": "adamw",
         "betas": [0.9, 0.999],
         "lr": 1e-3,
         "parameter_groups": [
-          [[".*transformer_model.*"], {"lr": 1e-5}]
+          [[".*transformer_model.*"], {"lr": 5e-5}]
         ]
       }
     }
