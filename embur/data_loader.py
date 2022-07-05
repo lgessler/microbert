@@ -115,8 +115,12 @@ class MultiTaskDataLoaderLdg(DataLoader):
         shuffle: bool = True,
         cuda_device: Optional[Union[int, str, torch.device]] = None,
     ) -> None:
-        is_validation = '/dev' in data_path
-        print(f"Path is {data_path} and I think it", "is" if is_validation else "is NOT", "a validation path.")
+        is_validation = "/dev" in list(data_path.items())[0][0]
+        print(
+            f"Path is {data_path} and I think it",
+            "is" if is_validation else "is NOT",
+            "a validation path. If this is wrong, revise embur.data_loader, line 118",
+        )
         if is_validation:
             instances_per_epoch = None
 
@@ -135,9 +139,7 @@ class MultiTaskDataLoaderLdg(DataLoader):
         self._shuffle = shuffle
 
         if instances_per_epoch is not None and sampler is None:
-            raise ValueError(
-                "You must provide an EpochSampler if you want to not use all instances every epoch."
-            )
+            raise ValueError("You must provide an EpochSampler if you want to not use all instances every epoch.")
 
         self._num_workers = num_workers or {}
         self._max_instances_in_memory = max_instances_in_memory or {}
@@ -147,8 +149,7 @@ class MultiTaskDataLoaderLdg(DataLoader):
 
         if self.readers.keys() != self.data_paths.keys():
             raise ValueError(
-                f"Mismatch between readers ({self.readers.keys()}) and data paths "
-                f"({self.data_paths.keys()})"
+                f"Mismatch between readers ({self.readers.keys()}) and data paths " f"({self.data_paths.keys()})"
             )
         self._loaders = {key: self._make_data_loader(key) for key in self.readers}
 
@@ -179,9 +180,7 @@ class MultiTaskDataLoaderLdg(DataLoader):
         if self._instances_per_epoch is None:
             # This will raise a TypeError if any of the underlying loaders doesn't have a length,
             # which is actually what we want.
-            return self.scheduler.count_batches(
-                {dataset: len(loader) for dataset, loader in self._loaders.items()}
-            )
+            return self.scheduler.count_batches({dataset: len(loader) for dataset, loader in self._loaders.items()})
         else:
             return self.scheduler.count_batches(
                 {dataset: self._instances_per_epoch for dataset in self._loaders.keys()}
@@ -223,16 +222,11 @@ class MultiTaskDataLoaderLdg(DataLoader):
 
     def _get_instances_for_epoch(self) -> Dict[str, Iterable[Instance]]:
         if self._instances_per_epoch is None:
-            return {
-                key: maybe_shuffle_instances(loader, self._shuffle)
-                for key, loader in self._loaders.items()
-            }
+            return {key: maybe_shuffle_instances(loader, self._shuffle) for key, loader in self._loaders.items()}
         if self.sampler is None:
             # We already checked for this in the constructor, so this should never happen unless you
             # modified the object after creation. But mypy is complaining, so here's another check.
-            raise ValueError(
-                "You must specify an EpochSampler if self._instances_per_epoch is not None."
-            )
+            raise ValueError("You must specify an EpochSampler if self._instances_per_epoch is not None.")
         dataset_proportions = self.sampler.get_task_proportions(self._loaders)
         proportion_sum = sum(dataset_proportions.values())
         num_instances_per_dataset = {
