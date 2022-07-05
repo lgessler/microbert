@@ -23,7 +23,7 @@ local heads = {"mlm": mlm_head};
 local weights = {"mlm": 1.0};
 
 // scheduling
-local batch_size = 4;
+local batch_size = 8;
 local instances_per_epoch = 32000;
 local batches_per_epoch = instances_per_epoch / batch_size;
 local num_epochs = 20; // BERT_base_total_instances / instances_per_epoch;
