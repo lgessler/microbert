@@ -63,11 +63,12 @@ local pos_embedding_dim = 0;
       }
     },
     "data_loader": {
+      "type": "multiprocess_ldg",
       "batch_sampler": {
         "type": "bucket",
         "batch_size": 16
       },
-      "batches_per_epoch": 200
+      "batches_per_epoch": 200,
     },
     "trainer": {
       "num_epochs": 1000,
