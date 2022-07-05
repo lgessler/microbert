@@ -111,7 +111,7 @@ local slanted_triangular = {
         "readers": readers
     },
     "data_loader": {
-        "type": "multitask",
+        "type": "multitask_ldg",
         "scheduler": {
             "type": "homogeneous_roundrobin",
             "batch_size": batch_size,

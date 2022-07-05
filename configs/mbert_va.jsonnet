@@ -34,7 +34,7 @@ local num_epochs = 20; // BERT_base_total_instances / instances_per_epoch;
         "readers": readers
     },
     "data_loader": {
-        "type": "multitask",
+        "type": "multitask_ldg",
         "scheduler": {
             "type": "homogeneous_roundrobin",
             "batch_size": batch_size,
