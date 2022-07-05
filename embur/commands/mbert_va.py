@@ -104,7 +104,7 @@ def _augment_vocabulary(base_tokenizer, mono_tokenizer, n):
     # Loop over the mono WPs and try to meet the requested number of new wordpieces
     new_wps = []
     base_wps = list(base_vocab.keys())
-    mono_wps = [x[0] for x in sorted(list(mono_vocab.items()), key=lambda x:x[1])]
+    mono_wps = [x[0] for x in sorted(list(mono_vocab.items()), key=lambda x: x[1])]
     i = 0
     while len(new_wps) < n and i < len(mono_wps):
         mono_wp = mono_wps[i]
