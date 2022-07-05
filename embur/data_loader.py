@@ -255,7 +255,6 @@ class MultiTaskDataLoaderLdg(DataLoader):
         return MultiProcessDataLoader(**kwargs)
 
 
-
 from collections import deque
 import logging
 from multiprocessing.process import BaseProcess
@@ -537,13 +536,9 @@ class MultiProcessDataLoaderLdg(DataLoader):
         # They have to be big enough that is doesn't hurt performance, but small enough
         # that they don't take up too many resources when there is a bottleneck on the
         # consuming end of a queue.
-        effective_batch_size = (
-            self.batch_size if self.batch_sampler is None else self.batch_sampler.get_batch_size()
-        )
+        effective_batch_size = self.batch_size if self.batch_sampler is None else self.batch_sampler.get_batch_size()
         self._max_instance_queue_size = (
-            None
-            if max_instances_in_memory is None
-            else 2 * self.num_workers * max_instances_in_memory
+            None if max_instances_in_memory is None else 2 * self.num_workers * max_instances_in_memory
         )
         self._max_batch_queue_size = (
             None
@@ -624,9 +619,7 @@ class MultiProcessDataLoaderLdg(DataLoader):
 
             if self.num_workers <= 0:
                 # Just read all instances in main process.
-                for instance in self._maybe_tqdm(
-                    self.reader.read(self.data_path), desc="loading instances"
-                ):
+                for instance in self._maybe_tqdm(self.reader.read(self.data_path), desc="loading instances"):
                     self.reader.apply_token_indexers(instance)
                     if self.max_instances_in_memory is None:
                         self._instances.append(instance)  # type: ignore
@@ -643,9 +636,7 @@ class MultiProcessDataLoaderLdg(DataLoader):
                 workers, txs = self._start_instance_workers(queue, ctx)
 
                 try:
-                    for instance in self._maybe_tqdm(
-                        self._gather_instances(queue), desc="loading instances"
-                    ):
+                    for instance in self._maybe_tqdm(self._gather_instances(queue), desc="loading instances"):
                         if self.max_instances_in_memory is None:
                             self._instances.append(instance)  # type: ignore
                         yield instance
@@ -692,9 +683,7 @@ class MultiProcessDataLoaderLdg(DataLoader):
                     queue.close()  # type: ignore[attr-defined]
                 self._join_workers(workers, queue, txs)
 
-    def _start_instance_workers(
-        self, queue: mp.JoinableQueue, ctx
-    ) -> Tuple[List[BaseProcess], List[Connection]]:
+    def _start_instance_workers(self, queue: mp.JoinableQueue, ctx) -> Tuple[List[BaseProcess], List[Connection]]:
         Tqdm.set_lock(mp.RLock())
         workers: List[BaseProcess] = []
         txs: List[Connection] = []
@@ -710,9 +699,7 @@ class MultiProcessDataLoaderLdg(DataLoader):
             txs.append(tx)
         return workers, txs
 
-    def _start_batch_workers(
-        self, queue: mp.JoinableQueue, ctx
-    ) -> Tuple[List[BaseProcess], List[Connection]]:
+    def _start_batch_workers(self, queue: mp.JoinableQueue, ctx) -> Tuple[List[BaseProcess], List[Connection]]:
         Tqdm.set_lock(mp.RLock())
         workers: List[BaseProcess] = []
         txs: List[Connection] = []
@@ -752,9 +739,7 @@ class MultiProcessDataLoaderLdg(DataLoader):
                 logger.warning("terminating worker %s", i)
                 worker.terminate()
 
-    def _safe_queue_put(
-        self, worker_id: int, item: Any, queue: mp.JoinableQueue, rx: Connection
-    ) -> bool:
+    def _safe_queue_put(self, worker_id: int, item: Any, queue: mp.JoinableQueue, rx: Connection) -> bool:
         while True:
             # First we have to check to make sure the parent process is still alive
             # and consuming from the queue because there are circumstances where the
@@ -766,9 +751,7 @@ class MultiProcessDataLoaderLdg(DataLoader):
             # Of course this only works if the parent was able to send out a notification,
             # which may not always be the case. So we have a backup check below.
             if rx.poll():
-                logger.warning(
-                    "worker %d received stop message from parent, exiting now", worker_id
-                )
+                logger.warning("worker %d received stop message from parent, exiting now", worker_id)
                 queue.cancel_join_thread()
                 return False
             # The is the backup check.
@@ -790,9 +773,7 @@ class MultiProcessDataLoaderLdg(DataLoader):
             except Full:
                 continue
 
-    def _instance_worker(
-        self, worker_id: int, queue: mp.JoinableQueue, lock, rx: Connection
-    ) -> None:
+    def _instance_worker(self, worker_id: int, queue: mp.JoinableQueue, lock, rx: Connection) -> None:
         Tqdm.set_lock(lock)
         try:
             self.reader._set_worker_info(WorkerInfo(self.num_workers, worker_id))
@@ -821,9 +802,7 @@ class MultiProcessDataLoaderLdg(DataLoader):
                     # Couldn't put item on queue because parent process has exited.
                     return
         except Exception as e:
-            if not self._safe_queue_put(
-                worker_id, (None, (repr(e), traceback.format_exc())), queue, rx
-            ):
+            if not self._safe_queue_put(worker_id, (None, (repr(e), traceback.format_exc())), queue, rx):
                 return
 
         # Indicate to the consumer that this worker is finished.
@@ -837,18 +816,14 @@ class MultiProcessDataLoaderLdg(DataLoader):
         try:
             self.reader._set_worker_info(WorkerInfo(self.num_workers, worker_id))
             instances = self.reader.read(self.data_path)
-            for batch in self._instances_to_batches(
-                instances, move_to_device=self._worker_cuda_safe
-            ):
+            for batch in self._instances_to_batches(instances, move_to_device=self._worker_cuda_safe):
                 if self._safe_queue_put(worker_id, (batch, None), queue, rx):
                     continue
                 else:
                     # Couldn't put item on queue because parent process has exited.
                     return
         except Exception as e:
-            if not self._safe_queue_put(
-                worker_id, (None, (repr(e), traceback.format_exc())), queue, rx
-            ):
+            if not self._safe_queue_put(worker_id, (None, (repr(e), traceback.format_exc())), queue, rx):
                 return
 
         # Indicate to the consumer (main thread) that this worker is finished.
@@ -878,15 +853,11 @@ class MultiProcessDataLoaderLdg(DataLoader):
         instance.index_fields(self._vocab)
         return instance
 
-    def _instances_to_batches(
-        self, instance_iterator: Iterable[Instance], move_to_device
-    ) -> Iterator[TensorDict]:
+    def _instances_to_batches(self, instance_iterator: Iterable[Instance], move_to_device) -> Iterator[TensorDict]:
         instance_iterator = (self._index_instance(instance) for instance in instance_iterator)
 
         if move_to_device and self.cuda_device is not None:
-            tensorize = lambda batch: nn_util.move_to_device(  # noqa: E731
-                self.collate_fn(batch), self.cuda_device
-            )
+            tensorize = lambda batch: nn_util.move_to_device(self.collate_fn(batch), self.cuda_device)  # noqa: E731
         else:
             tensorize = self.collate_fn
 
