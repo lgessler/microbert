@@ -115,9 +115,9 @@ class MultiTaskDataLoaderLdg(DataLoader):
         shuffle: bool = True,
         cuda_device: Optional[Union[int, str, torch.device]] = None,
     ) -> None:
-        is_validation = "/dev" in list(data_path.items())[0][1]
+        is_validation = "/dev" in data_path["mlm"][1]
         print(
-            f"Path is {data_path} and I think it",
+            f"Data path is {data_path['mlm']} and I think it",
             "IS" if is_validation else "is NOT",
             "a validation path. If this is wrong, revise embur.data_loader, line 118",
         )
