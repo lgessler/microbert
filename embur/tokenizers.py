@@ -34,7 +34,9 @@ def count_word_types(sentences: List[str]):
     return len(vocab)
 
 
-def train_tokenizer(sentences: List[str], serialize_path: str = "", model_type="wordpiece") -> Tokenizer:
+def train_tokenizer(
+    sentences: List[str], serialize_path: str = "", model_type="wordpiece", vocab_size=None
+) -> Tokenizer:
     # Some reference points for train splits:
     # - Greek: 9_058_227 words, 478_376 types
     # - Wolof: 517_237 words, 59_137 types
@@ -42,7 +44,8 @@ def train_tokenizer(sentences: List[str], serialize_path: str = "", model_type="
     # - Uyghur: 2_401_445 words, 368_585 types
     # - Maltese: 2_113_223 words, 319_083 types
     word_type_count = count_word_types(sentences)
-    vocab_size = 8_000 + max(0, int((word_type_count - 15000) * (6_000 / 450_000)))
+    if vocab_size is None:
+        vocab_size = 8_000 + max(0, int((word_type_count - 15000) * (6_000 / 450_000)))
 
     cls_token = "[CLS]"
     sep_token = "[SEP]"
