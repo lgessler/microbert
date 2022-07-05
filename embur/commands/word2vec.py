@@ -7,7 +7,7 @@ from gensim.models import Word2Vec
 from embur.commands.common import write_to_tsv, default_options
 from embur.dataset_reader import read_conllu_files
 from embur.eval.allennlp import evaluate_allennlp_static
-from embur.language_configs import get_eval_config
+from embur.language_configs import get_eval_config, get_pretrain_config
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +42,7 @@ def word2vec(ctx, **kwargs):
 @click.command(help="Train word2vec embeddings")
 @click.pass_obj
 def train(config):
-    documents = read_conllu_files(config.pretrain_language_config["tokenizer_conllu_path"])
+    documents = read_conllu_files(get_pretrain_config(config.language, None, [])["tokenizer_conllu_path"])
     sentences = [[t["form"] for t in sentence] for document in documents for sentence in document]
     model = Word2Vec(
         sentences=sentences,
