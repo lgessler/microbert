@@ -80,7 +80,7 @@ def evaluate_all(ctx):
     ctx.invoke(mbert.evaluate)
 
     # mBERT VA baseline
-    config.experiment_config = mbert.MbertExperimentConfig(language=config.language)
+    config.experiment_config = mbert_va.MbertVaExperimentConfig(language=config.language)
     config.finetune = False
     ctx.invoke(mbert_va.train)
     ctx.invoke(mbert_va.evaluate)
