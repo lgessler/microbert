@@ -143,7 +143,7 @@ local slanted_triangular = {
         "optimizer": {
             "type": "adamw",
             "lr": 3e-3,
-            "betas": [0.9, 0.99],
+            "betas": [0.9, 0.999],
             "weight_decay": 0.05
             //"type": "multi",
             //"optimizers": {
