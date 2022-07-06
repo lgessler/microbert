@@ -32,10 +32,11 @@ def format_metrics(tsv_path, expected_trials):
         scores[language][condition] += float(test_las)
         counts[language][condition] += 1
 
-    all_conditions = set()
+    all_conditions = []
     for language, conditions in scores.items():
         for condition, las in conditions.items():
-            all_conditions.add(condition)
+            if condition not in all_conditions:
+                all_conditions.append(condition)
             count = counts[language][condition]
             if count != expected_trials:
                 logger.warning(f"Expected {expected_trials} trials for {(language, condition)} but found {count}")
