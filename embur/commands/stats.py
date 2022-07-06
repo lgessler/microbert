@@ -32,16 +32,19 @@ def format_metrics(tsv_path, expected_trials):
         scores[language][condition] += float(test_las)
         counts[language][condition] += 1
 
+    all_conditions = set()
     for language, conditions in scores.items():
         for condition, las in conditions.items():
+            all_conditions.add(condition)
             count = counts[language][condition]
             if count != expected_trials:
                 logger.warning(f"Expected {expected_trials} trials for {(language, condition)} but found {count}")
 
     condition_rows = defaultdict(list)
-    for language, conditions in sorted(list(scores.items()), key=lambda x: x[0]):
-        for condition, las in conditions.items():
-            las = las / counts[language][condition]
+    for language in sorted(list(scores.keys())):
+        for condition in all_conditions:
+            count = counts[language][condition]
+            las = "_" if count == 0 else scores[language][condition] / count
             condition_rows[condition].append(las)
 
     print()
