@@ -6,6 +6,15 @@ local validation_data_path = std.extVar("validation_data_path");
 local dataset_reader = std.parseJson(std.extVar("dataset_reader"));
 local pos_embedding_dim = 0;
 
+local validation_data_loader = {
+  "type": "multiprocess",
+  "batch_sampler": {
+    "type": "bucket",
+    "batch_size": 16
+  }
+};
+local data_loader = validation_data_loader + {"batches_per_epoch": 200};
+
 {
     "dataset_reader": {
       "type": "universal_dependencies",
@@ -62,14 +71,8 @@ local pos_embedding_dim = 0;
         ]
       }
     },
-    "data_loader": {
-      "type": "multiprocess_ldg",
-      "batch_sampler": {
-        "type": "bucket",
-        "batch_size": 16
-      },
-      "batches_per_epoch": 200,
-    },
+    "data_loader": data_loader,
+    "validation_data_loader": validation_data_loader,
     "trainer": {
       "num_epochs": 1000,
       "grad_clipping": 5.0,

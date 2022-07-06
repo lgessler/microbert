@@ -8,7 +8,6 @@
 # from embur.rel.dataset_reader import *
 
 import embur.dataset_reader
-import embur.data_loader
 import embur.models.backbones.bert_backbone
 import embur.models.backbones.contextualized_backbone
 import embur.models.backbones.pretrained_bert_backbone

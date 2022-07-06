@@ -104,25 +104,28 @@ local slanted_triangular = {
     "num_steps_per_epoch": batches_per_epoch
 };
 
+local validation_data_loader = {
+    "type": "multitask",
+    "scheduler": {
+        "type": "homogeneous_roundrobin",
+        "batch_size": batch_size,
+    },
+    "shuffle": true,
+    "sampler": {
+        "type": "weighted",
+        "weights": weights
+    }
+};
+local data_loader = validation_data_loader + {"instances_per_epoch": instances_per_epoch};
+
 
 {
     "dataset_reader" : {
         "type": "multitask",
         "readers": readers
     },
-    "data_loader": {
-        "type": "multitask_ldg",
-        "scheduler": {
-            "type": "homogeneous_roundrobin",
-            "batch_size": batch_size,
-        },
-        "shuffle": true,
-        "instances_per_epoch": instances_per_epoch,
-        "sampler": {
-            "type": "weighted",
-            "weights": weights
-        }
-    },
+    "data_loader": data_loader,
+    "validation_data_loader": validation_data_loader,
     "train_data_path": train_data_paths,
     "validation_data_path": dev_data_paths,
     "model": {
