@@ -7,9 +7,9 @@ import click
 from allennlp.commands.train import train_model_from_file
 from transformers import BertModel
 
-from embur.commands.common import write_to_tsv, default_options, write_to_tsv2
+from embur.commands.common import write_to_tsv, default_options
 from embur.dataset_reader import read_conllu_files
-import embur.eval.allennlp as eval
+from embur.eval.allennlp import evaluate_parser
 from embur.language_configs import get_pretrain_config, get_eval_config
 from embur.tokenizers import train_tokenizer
 
@@ -20,7 +20,7 @@ TOKENIZATION_TYPES = ("bpe", "wordpiece")
 logger = logging.getLogger(__name__)
 
 
-@click.group(help="Use a BERT we trained ourselves")
+@click.group(help="Use an Electra we trained ourselves")
 @click.option(
     "--training-config",
     default="configs/bert_pretrain.jsonnet",
@@ -30,11 +30,6 @@ logger = logging.getLogger(__name__)
     "--parser-eval-config",
     default="configs/parser_eval.jsonnet",
     help="Parser evaluation config. You probably want to leave this as the default.",
-)
-@click.option(
-    "--ner-eval-config",
-    default="configs/ner.jsonnet",
-    help="NER evaluation config. You probably want to leave this as the default.",
 )
 @click.option(
     "--task",
@@ -69,7 +64,6 @@ class BertExperimentConfig:
         self.pretrain_jsonnet = combined_kwargs.pop("training_config")
         self.parser_eval_language_config = get_eval_config(self.language, self.bert_dir)
         self.parser_eval_jsonnet = combined_kwargs.pop("parser_eval_config")
-        self.ner_eval_jsonnet = combined_kwargs.pop("ner_eval_config")
 
     def set_tasks(self, tasks):
         self.tasks = tasks
@@ -151,10 +145,10 @@ def train(ctx):
         train_metrics = json.load(f)
 
 
-@click.command(help="Evaluate a monolingual BERT on parsing")
+@click.command(help="Evaluate a monolingual BERT")
 @click.pass_obj
-def evaluate_parser(config):
-    _, eval_metrics = eval.evaluate_parser(config, config.bert_dir)
+def evaluate(config):
+    _, eval_metrics = evaluate_parser(config, config.bert_dir)
     write_to_tsv(
         config,
         "-".join(config.tasks) + ("_ft" if config.finetune else ""),
@@ -162,13 +156,5 @@ def evaluate_parser(config):
     )
 
 
-@click.command(help="Evaluate BERT on NER")
-@click.pass_obj
-def evaluate_ner(config):
-    train_metrics, eval_metrics = eval.evaluate_ner(config, config.bert_dir)
-    write_to_tsv2(config, "-".join(config.tasks) + ("_ft" if config.finetune else ""), eval_metrics)
-
-
 bert.add_command(train)
-bert.add_command(evaluate_parser)
-bert.add_command(evaluate_ner)
+bert.add_command(evaluate)

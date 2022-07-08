@@ -4,7 +4,7 @@ from random import shuffle
 import click
 
 from embur.language_configs import get_wikiann_path, get_formatted_wikiann_path
-from allennlp.data.dataset_readers.dataset_utils.span_utils import bio_tags_to_spans
+from allennlp.data.dataset_readers.dataset_utils.span_utils import bio_tags_to_spans, to_bioul
 
 
 @click.group
@@ -58,8 +58,23 @@ def _parse_ner(path):
 
 
 def _format_conll2003(sentences):
-    formatted_sentences = ["\n".join([f"{form} _ _ {bio_tag}" for form, bio_tag in sentence]) for sentence in sentences]
+    formatted_sentences = [
+        "\n".join([" ".join([form, "O", "O", bio_tag]) for form, bio_tag in sentence]) for sentence in sentences
+    ]
     return "\n\n".join(formatted_sentences)
+
+
+def _bio_to_bioul(sentences):
+    bioul_sentences = []
+    for sentence in sentences:
+        bioul_tags = to_bioul([tag for form, tag in sentence], encoding="BIO")
+        bioul_sentence = list(zip([form for form, _ in sentence], bioul_tags))
+        bioul_sentences.append(bioul_sentence)
+        if len(bioul_sentence) > 100:
+            print(len(bioul_sentence))
+            print(bioul_sentence)
+            print()
+    return bioul_sentences
 
 
 def _split_ner(sentences):
@@ -73,6 +88,7 @@ def _split_ner(sentences):
 def prepare_ner(config):
     ner_path = get_wikiann_path(config.language)
     sentences = _parse_ner(ner_path)
+    sentences = _bio_to_bioul(sentences)
     train, dev, test = _split_ner(sentences)
     with open(get_formatted_wikiann_path(config.language, "train"), "w") as f:
         f.write(_format_conll2003(train))

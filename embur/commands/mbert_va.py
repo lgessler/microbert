@@ -8,9 +8,9 @@ import click
 from allennlp.commands.train import train_model_from_file
 from transformers import BertModel, BertTokenizer
 
-from embur.commands.common import write_to_tsv, default_options
+from embur.commands.common import write_to_tsv, default_options, write_to_tsv2
 from embur.dataset_reader import read_conllu_files
-from embur.eval.allennlp import evaluate_allennlp
+import embur.eval.allennlp as eval
 from embur.language_configs import get_eval_config, get_pretrain_config
 from embur.tokenizers import train_tokenizer
 
@@ -32,6 +32,7 @@ class MbertVaExperimentConfig:
         self.pretrain_jsonnet = combined_kwargs.pop("training_config")
         self.parser_eval_language_config = get_eval_config(self.language, self.bert_dir)
         self.parser_eval_jsonnet = combined_kwargs.pop("parser_eval_config")
+        self.ner_eval_jsonnet = combined_kwargs.pop("ner_eval_config")
 
     @property
     def initial_bert_dir(self):
@@ -85,6 +86,11 @@ class MbertVaExperimentConfig:
     "--parser-eval-config",
     default="configs/parser_eval.jsonnet",
     help="Parser evaluation config. You probably want to leave this as the default.",
+)
+@click.option(
+    "--ner-eval-config",
+    default="configs/ner.jsonnet",
+    help="NER evaluation config. You probably want to leave this as the default.",
 )
 def mbert_va(ctx, **kwargs):
     ctx.obj.experiment_config = MbertVaExperimentConfig(language=ctx.obj.language, **kwargs)
@@ -177,15 +183,25 @@ def train(ctx):
         train_metrics = json.load(f)
 
 
-@click.command(help="Run an mbert_va evaluation.")
+@click.command(help="Evaluate mbert_va on parsing")
 @click.pass_context
-def evaluate(ctx):
+def evaluate_parser(ctx):
     config = ctx.obj
-    _, metrics = evaluate_allennlp(config, config.bert_dir)
+    _, metrics = eval.evaluate_parser(config, config.bert_dir)
     name = config.bert_model_name + "_va"
     name += "_ft" if config.finetune else ""
     write_to_tsv(config, name, metrics)
 
 
+@click.command(help="Evaluate mbert_va on NER")
+@click.pass_obj
+def evaluate_ner(config):
+    train_metrics, eval_metrics = eval.evaluate_ner(config, config.bert_model_name)
+    name = config.bert_model_name + "_va"
+    name += "_ft" if config.finetune else ""
+    write_to_tsv2(config, name, eval_metrics)
+
+
 mbert_va.add_command(train)
-mbert_va.add_command(evaluate)
+mbert_va.add_command(evaluate_parser)
+mbert_va.add_command(evaluate_ner)

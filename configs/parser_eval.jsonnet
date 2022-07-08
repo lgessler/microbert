@@ -3,7 +3,6 @@ local model_name = std.extVar("BERT_PATH");
 local trainable = if std.parseInt(std.extVar("TRAINABLE")) == 1 then true else false;
 local train_data_path = std.extVar("train_data_path");
 local validation_data_path = std.extVar("validation_data_path");
-local dataset_reader = std.parseJson(std.extVar("dataset_reader"));
 local pos_embedding_dim = 0;
 
 local validation_data_loader = {

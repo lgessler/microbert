@@ -41,39 +41,74 @@ def top(ctx, **kwargs):
     ctx.obj = Config(**kwargs)
 
 
-@click.command(help="Run all evals for a given language. Does not allow customization of hyperparams.")
+@click.command(help="Run all parser evals for a given language. Does not allow customization of hyperparams.")
 @click.pass_context
-def evaluate_all(ctx):
+def evaluate_parser_all(ctx):
     config = ctx.obj
 
     # word2vec baseline
     config.experiment_config = word2vec.Word2vecExperimentConfig(language=config.language)
     config.finetune = False
-    ctx.invoke(word2vec.evaluate)
+    ctx.invoke(word2vec.evaluate_parser)
     config.finetune = True
-    ctx.invoke(word2vec.evaluate)
+    ctx.invoke(word2vec.evaluate_parser)
 
     # mBERT baseline
     config.experiment_config = mbert.MbertExperimentConfig(language=config.language)
     config.finetune = False
-    ctx.invoke(mbert.evaluate)
+    ctx.invoke(mbert.evaluate_parser)
     config.finetune = True
-    ctx.invoke(mbert.evaluate)
+    ctx.invoke(mbert.evaluate_parser)
 
     # mBERT VA baseline
     config.experiment_config = mbert_va.MbertVaExperimentConfig(language=config.language)
     config.finetune = False
-    ctx.invoke(mbert_va.evaluate)
+    ctx.invoke(mbert_va.evaluate_parser)
     config.finetune = True
-    ctx.invoke(mbert_va.evaluate)
+    ctx.invoke(mbert_va.evaluate_parser)
 
     config.experiment_config = bert.BertExperimentConfig(language=config.language)
     for task_set in [["mlm"], ["mlm", "xpos"], ["mlm", "xpos", "parser"]]:
         config.experiment_config.set_tasks(task_set)
         config.finetune = False
-        ctx.invoke(bert.evaluate)
+        ctx.invoke(bert.evaluate_parser)
         config.finetune = True
-        ctx.invoke(bert.evaluate)
+        ctx.invoke(bert.evaluate_parser)
+
+
+@click.command(help="Run all NER evals for a given language. Does not allow customization of hyperparams.")
+@click.pass_context
+def evaluate_ner_all(ctx):
+    config = ctx.obj
+
+    # word2vec baseline
+    config.experiment_config = word2vec.Word2vecExperimentConfig(language=config.language)
+    config.finetune = False
+    ctx.invoke(word2vec.evaluate_ner)
+    config.finetune = True
+    ctx.invoke(word2vec.evaluate_ner)
+
+    # mBERT baseline
+    config.experiment_config = mbert.MbertExperimentConfig(language=config.language)
+    config.finetune = False
+    ctx.invoke(mbert.evaluate_ner)
+    config.finetune = True
+    ctx.invoke(mbert.evaluate_ner)
+
+    # mBERT VA baseline
+    config.experiment_config = mbert_va.MbertVaExperimentConfig(language=config.language)
+    config.finetune = False
+    ctx.invoke(mbert_va.evaluate_ner)
+    config.finetune = True
+    ctx.invoke(mbert_va.evaluate_ner)
+
+    config.experiment_config = bert.BertExperimentConfig(language=config.language)
+    for task_set in [["mlm"], ["mlm", "xpos"], ["mlm", "xpos", "parser"]]:
+        config.experiment_config.set_tasks(task_set)
+        config.finetune = False
+        ctx.invoke(bert.evaluate_ner)
+        config.finetune = True
+        ctx.invoke(bert.evaluate_ner)
 
 
 top.add_command(c_word2vec)
@@ -82,7 +117,8 @@ top.add_command(c_mbert_va)
 top.add_command(c_bert)
 top.add_command(stats)
 top.add_command(data)
-top.add_command(evaluate_all)
+top.add_command(evaluate_parser_all)
+top.add_command(evaluate_ner_all)
 
 
 if __name__ == "__main__":
