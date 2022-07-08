@@ -1,5 +1,7 @@
+from pkg_resources import iter_entry_points
 from rich import print
 import click
+from click_plugins import with_plugins
 from allennlp.common.util import import_module_and_submodules
 
 import_module_and_submodules("allennlp_models")
@@ -18,6 +20,7 @@ from embur.config import Config
 from embur.language_configs import LANGUAGES
 
 
+@with_plugins(iter_entry_points("click_command_tree"))
 @click.group()
 @click.option(
     "--language",
