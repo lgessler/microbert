@@ -70,10 +70,10 @@ def _bio_to_bioul(sentences):
         bioul_tags = to_bioul([tag for form, tag in sentence], encoding="BIO")
         bioul_sentence = list(zip([form for form, _ in sentence], bioul_tags))
         bioul_sentences.append(bioul_sentence)
-        if len(bioul_sentence) > 100:
-            print(len(bioul_sentence))
-            print(bioul_sentence)
-            print()
+        # if len(bioul_sentence) > 100:
+        #     print(len(bioul_sentence))
+        #     print(bioul_sentence)
+        #     print()
     return bioul_sentences
 
 
