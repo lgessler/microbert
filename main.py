@@ -12,6 +12,7 @@ import embur.commands.word2vec as word2vec
 from embur.commands.word2vec import word2vec as c_word2vec
 import embur.commands.bert as bert
 from embur.commands.bert import bert as c_bert
+from embur.commands.data import data
 from embur.commands.stats import stats
 from embur.config import Config
 from embur.language_configs import LANGUAGES
@@ -38,26 +39,6 @@ from embur.language_configs import LANGUAGES
 @click.pass_context
 def top(ctx, **kwargs):
     ctx.obj = Config(**kwargs)
-
-
-@click.command(help="Prepare data for a given language")
-@click.pass_obj
-def prepare_data(config):
-    lang = config.language
-    if lang == "coptic":
-        from embur.scripts.coptic_data_prep import main
-
-        main()
-    elif lang == "greek":
-        from embur.scripts.greek_data_prep import main
-
-        main()
-    elif lang in ["wolof", "uyghur", "maltese"]:
-        from embur.scripts.wiki_prep import punct_inner
-
-        punct_inner(f"data/{lang}/corpora", f"data/{lang}/converted_punct")
-    else:
-        raise Exception(f"Unknown language: {lang}")
 
 
 @click.command(help="Run all evals for a given language. Does not allow customization of hyperparams.")
@@ -100,7 +81,7 @@ top.add_command(c_mbert)
 top.add_command(c_mbert_va)
 top.add_command(c_bert)
 top.add_command(stats)
-top.add_command(prepare_data)
+top.add_command(data)
 top.add_command(evaluate_all)
 
 

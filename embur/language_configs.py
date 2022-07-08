@@ -113,3 +113,27 @@ def get_eval_config(language, model_name):
         "uyghur": _std_eval_config(model_name, "uyghur", "UD_Uyghur-UDT", "ug_udt-ud"),
         "greek": _std_eval_config(model_name, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud"),
     }[language]
+
+
+def get_wikiann_path(language):
+    paths = {
+        "maltese": "data/maltese/wikiann-mt.bio",
+        "uyghur": "data/uyghur/wikiann-ug.bio",
+        "wolof": "data/wolof/wikiann-wo.bio",
+    }
+    if language not in paths:
+        raise ValueError(f"Language not available for NER: {language}")
+    return paths[language]
+
+
+def get_formatted_wikiann_path(language, split):
+    if split not in ["train", "dev", "test"]:
+        raise ValueError("Split must be one of train, dev, test")
+    paths = {
+        "maltese": f"data/maltese/wikiann-mt_{split}.bio",
+        "uyghur": f"data/uyghur/wikiann-ug_{split}.bio",
+        "wolof": f"data/wolof/wikiann-wo_{split}.bio",
+    }
+    if language not in paths:
+        raise ValueError(f"Language not available for NER: {language}")
+    return paths[language]
