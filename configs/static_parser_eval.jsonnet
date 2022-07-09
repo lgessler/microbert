@@ -12,7 +12,7 @@ local validation_data_loader = {
     "batch_size": 16
   }
 };
-local data_loader = validation_data_loader;
+local data_loader = validation_data_loader + {"batches_per_epoch": 200};
 
 {
     "dataset_reader": {
@@ -73,9 +73,9 @@ local data_loader = validation_data_loader;
     "data_loader": data_loader,
     "validation_data_loader": validation_data_loader,
     "trainer": {
-      "num_epochs": 300,
+      "num_epochs": 1000,
       "grad_clipping": 5.0,
-      "patience": 50,
+      "patience": 100,
       "validation_metric": "+LAS",
       "optimizer": {
         "type": "adamw",
