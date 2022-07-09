@@ -12,7 +12,7 @@ local validation_data_loader = {
     "batch_size": 16
   }
 };
-local data_loader = validation_data_loader + {"batches_per_epoch": 200};
+local data_loader = validation_data_loader;
 
 {
     "dataset_reader": {
@@ -73,16 +73,16 @@ local data_loader = validation_data_loader + {"batches_per_epoch": 200};
     "data_loader": data_loader,
     "validation_data_loader": validation_data_loader,
     "trainer": {
-      "num_epochs": 1000,
+      "num_epochs": 300,
       "grad_clipping": 5.0,
-      "patience": 100,
+      "patience": 50,
       "validation_metric": "+LAS",
       "optimizer": {
         "type": "adamw",
         "betas": [0.9, 0.999],
         "lr": 1e-3,
         "parameter_groups": [
-          [[".*transformer_model.*"], {"lr": 5e-5}]
+          [[".*transformer_model.*"], {"lr": 1e-5}]
         ]
       }
     }
