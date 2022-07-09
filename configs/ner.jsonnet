@@ -48,7 +48,7 @@ local validation_data_path = std.extVar("validation_data_path");
     }
   },
   "data_loader": {
-    "batch_size": 32
+    "batch_size": 16
   },
   "trainer": {
     "optimizer": {
@@ -57,11 +57,11 @@ local validation_data_path = std.extVar("validation_data_path");
       "betas": [0.9, 0.999]
     },
     "validation_metric": "+f1-measure-overall",
-    "num_epochs": 1000,
+    "num_epochs": 300,
     "grad_norm": 5.0,
-    "patience": 100,
+    "patience": 50,
     "parameter_groups": [
-      [[".*transformer_model.*"], {"lr": 5e-5}]
+      [[".*transformer_model.*"], {"lr": 1e-5}]
     ]
   }
 }
