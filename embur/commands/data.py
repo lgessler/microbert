@@ -25,7 +25,7 @@ def prepare_mlm(config):
         from embur.scripts.greek_data_prep import main
 
         main()
-    elif lang in ["wolof", "uyghur", "maltese"]:
+    elif lang in ["wolof", "uyghur", "maltese", "tamil", "indonesian"]:
         from embur.scripts.wiki_prep import punct_inner
 
         punct_inner(f"data/{lang}/corpora", f"data/{lang}/converted_punct")

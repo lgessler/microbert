@@ -6,7 +6,7 @@ from all dicts). Be smart in this file and do as much as possible to only write
 data, not code!
 """
 
-LANGUAGES = ["coptic", "maltese", "wolof", "uyghur", "greek", "latin"]
+LANGUAGES = ["coptic", "maltese", "wolof", "uyghur", "greek", "indonesian", "tamil"]
 
 
 def _std_pretrain_config(mismatched_reader, language, treebank_name, conllu_name, ssplit_type="_punct"):
@@ -77,6 +77,8 @@ def get_pretrain_config(language, tokenizer_path, tasks):
         "greek": _std_pretrain_config(
             mismatched_reader, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud", ssplit_type=""
         ),
+        "indonesian": _std_pretrain_config(mismatched_reader, "indonesian", "UD_Indonesian-GSD", "id_gsd-ud", ssplit_type="_punct"),
+        "tamil": _std_pretrain_config(mismatched_reader, "tamil", "UD_Tamil-TTB", "ta_ttb-ud", ssplit_type="_punct"),
     }[language]
 
     for subconfig_name, subconfig in language_config.items():
@@ -112,6 +114,8 @@ def get_eval_config(language, model_name):
         "wolof": _std_eval_config(model_name, "wolof", "UD_Wolof-WTB", "wo_wtb-ud"),
         "uyghur": _std_eval_config(model_name, "uyghur", "UD_Uyghur-UDT", "ug_udt-ud"),
         "greek": _std_eval_config(model_name, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud"),
+        "indonesian": _std_eval_config(model_name, "indonesian", "UD_Indonesian-GSD", "id_gsd-ud"),
+        "tamil": _std_eval_config(model_name, "tamil", "UD_Tamil-TTB", "ta_ttb-ud"),
     }[language]
 
 
@@ -120,6 +124,8 @@ def get_wikiann_path(language):
         "maltese": "data/maltese/wikiann-mt.bio",
         "uyghur": "data/uyghur/wikiann-ug.bio",
         "wolof": "data/wolof/wikiann-wo.bio",
+        "tamil": "data/tamil/wikiann-ta.bio",
+        "indonesian": "data/indonesian/wikiann-id.bio",
     }
     if language not in paths:
         raise ValueError(f"Language not available for NER: {language}")
@@ -133,6 +139,8 @@ def get_formatted_wikiann_path(language, split):
         "maltese": f"data/maltese/wikiann-mt_{split}.bio",
         "uyghur": f"data/uyghur/wikiann-ug_{split}.bio",
         "wolof": f"data/wolof/wikiann-wo_{split}.bio",
+        "tamil": f"data/tamil/wikiann-ta_{split}.bio",
+        "indonesian": f"data/indonesian/wikiann-id_{split}.bio",
     }
     if language not in paths:
         raise ValueError(f"Language not available for NER: {language}")

@@ -5,12 +5,45 @@ import click
 from pathlib import Path
 import logging
 
+from embur.dataset_reader import read_conllu_files
+from embur.language_configs import LANGUAGES
+
 logger = logging.getLogger(__name__)
 
 
 @click.group(help="Helpers for calculating stats")
 def stats(**kwargs):
     pass
+
+
+@click.command
+def unlabeled():
+    print("Language\tTrain sentences\tTrain tokens\tUnique train tokens\tDev sentences\tDev tokens\tUnique dev tokens\tUnique total tokens")
+    for language in LANGUAGES:
+        base_path = f"data/{language}/converted_punct"
+        if language in ["coptic", "greek"]:
+            base_path = base_path[:-6]
+        train_sents = [s for d in read_conllu_files(f"{base_path}/train") for s in d]
+        dev_sents = [s for d in read_conllu_files(f"{base_path}/dev") for s in d]
+        train_tokens = [str(t) for s in train_sents for t in s]
+        dev_tokens = [str(t) for s in dev_sents for t in s]
+        print(
+            "\t".join(
+                map(
+                    str,
+                    [
+                        language,
+                        len(train_sents),
+                        len(train_tokens),
+                        len(set(train_tokens)),
+                        len(dev_sents),
+                        len(dev_tokens),
+                        len(set(dev_tokens)),
+                        len(set(train_tokens) | set(dev_tokens))
+                    ],
+                )
+            )
+        )
 
 
 @click.command(help="Format a metrics.tsv and average language-condition pairs")
@@ -55,4 +88,5 @@ def format_metrics(tsv_path, expected_trials):
     print()
 
 
+stats.add_command(unlabeled)
 stats.add_command(format_metrics)
