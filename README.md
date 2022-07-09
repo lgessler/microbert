@@ -65,4 +65,6 @@ For each new language to be added, you'll want to follow these conventions:
 2. Ensure that it will be properly handled by the module `embur.commands.data`. 
    Put a script at `embur/scripts/$NAME_data_prep.py` that will take the dataset's native format and 
    write it out into `data/$NAME/converted`, if appropriate. 
-3. Update `embur.language_configs` with the language's information.   
+3. Update `embur.language_configs` with the language's information.
+
+If you'd like to add a language's Wikipedia dump, see [wiki-thresher](https://github.com/lgessler/wiki-thresher).
