@@ -75,10 +75,13 @@ local heads = (
   + (if std.parseJson(std.extVar("PARSER")) then {"parser": parser_head} else {})
 );
 
+local xpos = std.parseJson(std.extVar("XPOS"));
+local mlm = std.parseJson(std.extVar("MLM"));
+local parser = std.parseJson(std.extVar("PARSER"));
 local weights = (
-  (if std.parseJson(std.extVar("XPOS")) then {"xpos": 0.1} else {})
-  + (if std.parseJson(std.extVar("MLM")) then {"mlm": 0.8} else {})
-  + (if std.parseJson(std.extVar("PARSER")) then {"parser": 0.1} else {})
+  (if mlm then {"mlm": 0.8} else {})
+  + (if xpos then {"xpos": if !parser then 0.2 else 0.1} else {})
+  + (if parser then {"parser": if !xpos then 0.2 else 0.1} else {})
 );
 
 // scheduling
