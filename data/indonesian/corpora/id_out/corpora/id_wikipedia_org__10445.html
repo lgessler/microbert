@@ -1,0 +1,227 @@
+<html><body><text id="wikipedia_id_wikipedia_org__10445.html" ns="0" revid="16757405" sourceurl="https://id.wikipedia.org/wiki/Teorema_sisa_Tiongkok" title="Teorema sisa Tiongkok" type="wikipedia">Teorema sisa Tiongkok<p><hi rend="bold">Teorema sisa Tiongkok</hi> adalah hasil dari <ref target="https://id.wikipedia.org/wiki/Aljabar_abstrak">aljabar abstrak</ref> dan <ref target="https://id.wikipedia.org/wiki/Teori_bilangan">teori bilangan</ref>.</p>
+Kongruensi Simultan dari bilangan bulat
+<p>Bentuk asli dari teorema ini, seperti terdapat dalam buku yang ditulis oleh ahli matematika dari <ref target="https://id.wikipedia.org/wiki/Tiongkok">Tiongkok</ref> <ref target="https://id.wikipedia.org/wiki/Qin_Jiushao">Qin Jiushao</ref> dan diterbitkan pada tahun <ref target="https://id.wikipedia.org/wiki/1247">1247</ref>, adalah suatu pernyataan tentang kongruensi simultan (lihat <ref target="https://id.wikipedia.org/wiki/Aritmetika_modular">aritmetika modular</ref>).
+Misalkan <hi rend="italic">n</hi>1, ..., <hi rend="italic">n</hi><hi rend="italic">k</hi> adalah <ref target="https://id.wikipedia.org/wiki/Bilangan_bulat">bilangan bulat</ref> positif yang setiap pasangnya adalah <ref target="https://id.wikipedia.org/wiki/Koprima">koprima</ref> (yang artinya <ref target="https://id.wikipedia.org/wiki/Faktor_persekutuan_terbesar">FPB</ref>
+(<hi rend="italic">n</hi><hi rend="italic">i</hi>, <hi rend="italic">n</hi><hi rend="italic">j</hi>) = 1 untuk setiap <hi rend="italic">i</hi> ≠ <hi rend="italic">j</hi>). Maka, untuk setiap bilangan bulat <hi rend="italic">a</hi>1, ..., <hi rend="italic">a</hi><hi rend="italic">k</hi>, selalu ada bilangan bulat <hi rend="italic">x</hi> yang merupakan penyelesaian dari sistem kongruensi simultan</p>
+
+
+
+
+x
+≡
+
+a
+
+i
+
+
+
+
+(
+mod
+
+
+n
+
+i
+
+
+)
+
+
+
+f
+o
+r
+
+
+i
+=
+1
+,
+⋯
+,
+k
+
+
+{\displaystyle x\equiv a_{i}{\pmod {n_{i}}}\quad \mathrm {for} \;i=1,\cdots ,k}
+
+
+<p>Pseudocode "subtitle":</p>
+x_solves_it=true;
+for(i= 1; i &lt;= k; i++)
+   if(x% n[i]!= a[i]% n[i])
+      x_solves_it=false;
+<p>Terlebih lagi, semua penyelesaian <hi rend="italic">x</hi> dari sistem ini adalah juga kongruen modulo dari perkalian <hi rend="italic">n</hi> = <hi rend="italic">n</hi>1...<hi rend="italic">n</hi><hi rend="italic">k</hi>.</p>
+<p>Suatu penyelesaian <hi rend="italic">x</hi> dapat ditemukan dengan cara sebagai berikut. Untuk setiap <hi rend="italic">i</hi>, bilangan bulat <hi rend="italic">ni</hi> dan <hi rend="italic">n</hi>/<hi rend="italic">ni</hi> adalah koprima, dan menggunakan ekstensi <ref target="https://id.wikipedia.org/wiki/Algoritme_Euklidean">algoritme Euklidean</ref> kita dapat menemukan bilangan bulat <hi rend="italic">r</hi> dan <hi rend="italic">s</hi> sehingga <hi rend="italic">r ni</hi> + <hi rend="italic">s</hi> <hi rend="italic">n</hi>/<hi rend="italic">ni</hi> = 1. Jika kita menentukan <hi rend="italic">ei</hi> = <hi rend="italic">s</hi> <hi rend="italic">n</hi>/<hi rend="italic">ni</hi>, maka kita dapat</p>
+
+
+
+
+
+e
+
+i
+
+
+≡
+1
+
+
+(
+mod
+
+
+n
+
+i
+
+
+)
+
+
+
+a
+n
+d
+
+
+
+e
+
+i
+
+
+≡
+0
+
+
+(
+mod
+
+
+n
+
+j
+
+
+)
+
+
+
+{\displaystyle e_{i}\equiv 1{\pmod {n_{i}}}\quad \mathrm {and} \quad e_{i}\equiv 0{\pmod {n_{j}}}}
+
+
+<p>untuk <hi rend="italic">j</hi> ≠ <hi rend="italic">i</hi>.</p>
+for (i= 1; i &lt;= k; i++)
+  {r, s}= ExtendedEuclid( n[i], n / n[i] );
+  e[i]= s * n / n[i];
+  for(j= 1; j &lt;= k; j++)
+    if (j!= i)
+      assert( e[i]% n[i] == 1 &amp;&amp; e[i]% n[j] == 0 );
+<p>Penyelesaian dari sistem kongruensi simultan ini adalah</p>
+
+
+
+
+x
+=
+
+∑
+
+i
+=
+1..
+k
+
+
+
+a
+
+i
+
+
+
+e
+
+i
+
+
+
+
+
+{\displaystyle x=\sum _{i=1..k}a_{i}e_{i}\ }
+
+
+for(i= 1; i &lt;= k; i++)
+  x += a[i] * e[i];
+<p>Sebagai contoh, misalkan kita ingin menemukan suatu bilangan bulat <hi rend="italic">x</hi> sehingga</p>
+
+
+
+
+x
+≡
+2
+
+
+(
+mod
+
+3
+)
+
+
+
+{\displaystyle x\equiv 2{\pmod {3}}}
+
+
+
+
+
+
+x
+≡
+3
+
+
+(
+mod
+
+4
+)
+
+
+
+{\displaystyle x\equiv 3{\pmod {4}}}
+
+
+
+
+
+
+x
+≡
+2
+
+
+(
+mod
+
+5
+)
+
+
+
+{\displaystyle x\equiv 2{\pmod {5}}}
+
+
+ x% 3 == 2% 3 &amp;&amp;
+ x% 4 == 3% 4 &amp;&amp;
+ x% 5 == 2% 5
+<p>Menggunakan <ref target="https://id.wikipedia.org/wiki/Ekstensi_algoritme_Euklidean">ekstensi algoritme Euklidean</ref> untuk 3 dan 4×5 = 20, kita memperoleh (-13) × 3 + 2 × 20 = 1, di mana <hi rend="italic">e</hi>1 = 40 <hi rend="italic">(e[1] == 40)</hi>. Menggunakan algoritme Euklidean untuk 4 dan 3×5 = 15, kita memperoleh (-11) × 4 + 3 × 15 = 1. Oleh karena itu, <hi rend="italic">e</hi>2 = 45 <hi rend="italic">(e[2] == 45)</hi>. Akhirnya, menggunakan algoritme Euklidean untukr 5 dan 3×4 = 12, kita memperoleh 5 × 5 + (-2) × 12 = 1, yang berarti <hi rend="italic">e</hi>3 = -24 <hi rend="italic">(e[3] == -24)</hi>. Jadi, penyelesaian <hi rend="italic">x</hi> adalah 2 × 40 + 3 × 45 + 2 × (-24) = 167. Semua penyelesaian yang lain adalah kongruen 167 modulo 60, yang berarti bahwa mereka semua kongruen 47 modulo 60.</p>
+<p>Kadang kala, sistem kongruensi simultan dapat diselesaikan sekalipun <hi rend="italic">ni</hi> (<hi rend="italic">n[i]</hi>) setiap pasangnya tidak selalu koprima. Syarat-syarat yang lebih tepat adalah sebagai berikut: sistem mempunyai penyelesaian <hi rend="italic">x</hi> jika dan hanya jika <hi rend="italic">ai</hi> ≡ <hi rend="italic">aj</hi> (<hi rend="bold">mod</hi> fpb(<hi rend="italic">ni</hi>, <hi rend="italic">nj</hi>)) (a[i] == a[j]% gcd(n[i], n[j])) untuk semua <hi rend="italic">i</hi> dan <hi rend="italic">j</hi>. Semua penyelesaian <hi rend="italic">x</hi> adalah kongruen modulo <ref target="https://id.wikipedia.org/wiki/Kelipatan_persekutuan_terkecil">kelipatan persekutuan terkecil</ref> dari <hi rend="italic">ni</hi> (n[i]).</p>
+<p>Dengan menggunakan <ref target="https://id.wikipedia.org/wiki/Metode_substitusi">metode substitusi</ref>, kita sering kali bisa menemukan penyelesaian dari sistem kongruensi simultan, sekalipun setiap pasang modulusnya tidak selalu koprima.</p>
+Pranala luar
+<list type="unordered"><item><ref target="http://www.cut-the-knot.org/blue/chinese.shtml">Chinese remainder theorem</ref></item></list>
+</text></body></html>

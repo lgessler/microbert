@@ -1,0 +1,1015 @@
+<html><body><text id="wikipedia_id_wikipedia_org__20307.html" ns="0" revid="21245155" sourceurl="https://id.wikipedia.org/wiki/Optimisasi" title="Optimisasi" type="wikipedia">OptimisasiArtikel ini bukan mengenai <ref target="https://id.wikipedia.org/wiki/Optimal">Optimal</ref>.
+<figure><caption>Grafik yang dibentuk dari persamaan <hi rend="italic">z</hi> =  f(<hi rend="italic">x</hi>, <hi rend="italic">y</hi>) = −(<hi rend="italic">x</hi>² + <hi rend="italic">y</hi>²) + 4. Titik <ref target="https://id.wikipedia.org/wiki/Maksimum_dan_minimum">maksimum</ref> global fungsi terletak pada (<hi rend="italic">x, y, z</hi>) = (0, 0, 4), dtandai oleh titik berwarna biru.</caption></figure>
+<figure><caption>Visualisasi pencarian minimum <ref target="https://id.wikipedia.org/wiki/Metode_Nelder-Mead">Nelder-Mead</ref> untuk <ref target="https://id.wikipedia.org/wiki/Fungsi_untuk_mengetes_optimisasi">fungsi Siminescu</ref>. Verteks simplex diurutkan berdasarkan nilai mereka, dengan 1 menjadi nilai terkecil.</caption></figure>
+<p><hi rend="bold">Optimisasi matematika</hi> (terkadang hanya ditulis sebagai <hi rend="bold">optimisasi</hi>) adalah proses memilih sebuah elemen terbaik, menurut suatu atau beberapa kriteria, dari suatu himpunan berisi alternatif elemen yang tersedia.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-1">[1]</ref> Masalah optimisasi muncul dalam banyak bidang ilmu dari <ref target="https://id.wikipedia.org/wiki/Ilmu_komputer">ilmu komputer</ref> dan <ref target="https://id.wikipedia.org/wiki/Teknik">ilmu teknik</ref><ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-edo2021-2">[2]</ref> sampai <ref target="https://id.wikipedia.org/wiki/Riset_operasi">riset operasi</ref> dan <ref target="https://id.wikipedia.org/wiki/Ekonomi">ekonomi</ref>, juga selama bertahun-tahun menarik perhatian <ref target="https://id.wikipedia.org/wiki/Matematika">matematika</ref> dalam mengembangkan metode menemukan solusi.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-3">[3]</ref></p>
+<p>Dalam kasus paling sederhana, sebuah <ref target="https://id.wikipedia.org/wiki/Masalah_optimisasi">masalah optimisasi</ref> berisi tentang cara <ref target="https://id.wikipedia.org/wiki/Maksimum_dan_minimum">memaksimumkan atau meminimumkan</ref> nilai sebuah <ref target="https://id.wikipedia.org/wiki/Fungsi_(matematika)">fungsi real</ref>, dengan secara sistematis memilih nilai <ref target="https://id.wikipedia.org/wiki/Argumen_sebuah_fungsi">input</ref> dari suatu himpunan yang diperbolehkan. Perumuman dari teori-teori optimisasi dan teknik-teknik ke berbagai bentuk formulasi masalah menjadi bahan kajian sebagian besar bidang <ref target="https://id.wikipedia.org/wiki/Matematika_terapan">matematika terapan</ref>.</p>
+Masalah optimisasi
+<p>Sebuah masalah optimisasi dapat dinyatakan dalam bentuk sebagai berikut:</p>
+<hi rend="italic">Diberikan:</hi> sebuah <ref target="https://id.wikipedia.org/wiki/Fungsi_(matematika)">fungsi</ref> 
+
+
+
+f
+:
+A
+→
+
+R
+
+
+
+{\displaystyle f:A\to \mathbb {R} }
+
+ yang memetakan suatu <ref target="https://id.wikipedia.org/wiki/Himpunan_(matematika)">himpunan</ref> 
+
+
+
+A
+
+
+{\displaystyle A}
+
+ ke <ref target="https://id.wikipedia.org/wiki/Bilangan_riil">bilangan real</ref>
+<hi rend="italic">Dicari:</hi> sebuah elemen 
+
+
+
+
+
+x
+
+
+0
+
+
+∈
+A
+
+
+{\displaystyle \mathbf {x} _{0}\in A}
+
+ yang memenuhi 
+
+
+
+f
+(
+
+
+x
+
+
+0
+
+
+)
+≤
+f
+(
+
+x
+
+)
+
+
+{\displaystyle f(\mathbf {x} _{0})\leq f(\mathbf {x} )}
+
+ untuk setiap 
+
+
+
+
+x
+
+∈
+A
+
+
+{\displaystyle \mathbf {x} \in A}
+
+ (masalah minimisasi), atau yang memenuhi 
+
+
+
+f
+(
+
+
+x
+
+
+0
+
+
+)
+≥
+f
+(
+
+x
+
+)
+
+
+{\displaystyle f(\mathbf {x} _{0})\geq f(\mathbf {x} )}
+
+ untuk setiap 
+
+
+
+
+x
+
+∈
+A
+
+
+{\displaystyle \mathbf {x} \in A}
+
+ (masalah maksimisasi)
+<p>Formulasi tersebut juga disebut dengan <hi rend="bold">masalah pemrograman matematika</hi>. Terminologi ini yang tidak berhubungan langsung dengan <ref target="https://id.wikipedia.org/wiki/Pemrograman_Komputer">pemrograman komputer</ref>, namun masih digunakan di beberapa hal seperti <ref target="https://id.wikipedia.org/wiki/Program_linear">pemrograman linear</ref>. Banyak masalah nyata (<hi rend="italic">real-world problem</hi>) maupun masalah teoritis dapat dimodelkan dalam kerangka umum tersebut.</p>
+<p>Perhatikan bahwa hubungan 
+
+
+
+f
+
+(
+
+
+x
+
+
+0
+
+
+)
+
+≥
+f
+
+(
+
+x
+
+)
+
+⇔
+
+
+
+f
+~
+
+
+
+
+(
+
+
+x
+
+
+0
+
+
+)
+
+≤
+
+
+
+f
+~
+
+
+
+
+(
+
+x
+
+)
+
+
+
+{\displaystyle f\left(\mathbf {x} _{0}\right)\geq f\left(\mathbf {x} \right)\Leftrightarrow {\tilde {f}}\left(\mathbf {x} _{0}\right)\leq {\tilde {f}}\left(\mathbf {x} \right)}
+
+ terpenuhi jika kita mendefinisikan 
+
+
+
+
+
+
+f
+~
+
+
+
+
+(
+
+x
+
+)
+
+:=
+−
+f
+
+(
+
+x
+
+)
+
+,
+
+
+
+
+f
+~
+
+
+
+
+:
+
+A
+→
+
+R
+
+
+
+{\displaystyle {\tilde {f}}\left(\mathbf {x} \right):=-f\left(\mathbf {x} \right),\,{\tilde {f}}\,:\,A\rightarrow \mathbb {R} }
+
+. Hal ini yang mengartikan setiap masalah maksimisasi dapat diubah menjadi masalah minimisasi (dan sebaliknya). Dalam matematika, masalah optimisasi umumnya dinyatakan sebagai masalah minimisasi. Di bidang <ref target="https://id.wikipedia.org/wiki/Fisika">fisika</ref>, formulasi seperti ini dapat merujuk pada teknik <hi rend="italic">minimisasi <ref target="https://id.wikipedia.org/wiki/Energi">energi</ref></hi>, dengan nilai fungsi 
+
+
+
+f
+
+
+{\displaystyle f}
+
+ merepresentasikan energi dari <ref target="https://id.wikipedia.org/wiki/Sistem">sistem</ref> yang dimodelkan. Dalam <ref target="https://id.wikipedia.org/wiki/Pemelajaran_mesin">pemelajaran mesin</ref>, penting untuk mengevaluasi kualitas parameter data menggunakan <ref target="https://id.wikipedia.org/wiki/Fungsi_kerugian">fungsi biaya</ref>, dengan nilai fungsi yang minimum mengimplikasikan kemungkinan parameter dengan nilai optimal (terkecil).</p>
+<p>Umumnya 
+
+
+
+A
+
+
+{\displaystyle A}
+
+ adalah <ref target="https://id.wikipedia.org/wiki/Himpunan_bagian">subset</ref> dari <ref target="https://id.wikipedia.org/wiki/Ruang_Euklides">ruang Euklides</ref> 
+
+
+
+
+
+R
+
+
+n
+
+
+
+
+{\displaystyle \mathbb {R} ^{n}}
+
+, umum ditandai oleh sebuah himpunan <ref target="https://id.wikipedia.org/wiki/Konstrain_(matematika)">konstrain</ref>, yakni kumpulan persamaan atau pertidaksamaan yang perlu dipenuhi oleh anggota 
+
+
+
+A
+
+
+{\displaystyle A}
+
+. Domain 
+
+
+
+A
+
+
+{\displaystyle A}
+
+ dari fungsi 
+
+
+
+f
+
+
+{\displaystyle f}
+
+ disebut dengan <hi rend="italic">ruang pencarian</hi> atau <hi rend="italic">ruang pilihan</hi>, sedangkan elemen dari 
+
+
+
+A
+
+
+{\displaystyle A}
+
+ disebut dengan <hi rend="italic">kandidat solusi</hi> atau <hi rend="italic">solusi feasibel</hi> (solusi yang mungkin).</p>
+<p>Terdapat banyak nama bagi fungsi 
+
+
+
+f
+
+
+{\displaystyle f}
+
+, yang secara umum disebut dengan <hi rend="italic">fungsi objektif</hi>. Untuk masalah minimisasi, fungsi ini terkadang disebut dengan <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Fungsi_kerugian">fungsi kerugian</ref></hi> atau <hi rend="italic">fungsi biaya</hi>);<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-4">[4]</ref> sedangkan masalah maksimisasi terkadang menggunakan terminologi <hi rend="italic">fungsi kecocokan</hi> (fitness function) atau <hi rend="italic">fungsi utilitas</hi>. Pada beberapa bidang, fungsi ini juga disebut dengan <hi rend="italic">fungsi energi</hi>. Solusi feasibel yang meminimumkan (atau memaksimumkan jika itu tujuan akhirnya) nilai fungsi objektif dikenal sebagai <hi rend="italic">solusi optimal</hi>.</p><p>
+
+Sebuah [titik] <hi rend="italic">minimum lokal</hi> 
+
+
+
+
+
+x
+
+
+∗
+
+
+
+
+{\displaystyle \mathbf {x} ^{*}}
+
+ didefinisikan sebagai elemen yang memiliki suatu 
+
+
+
+δ
+&gt;
+0
+
+
+{\displaystyle \delta &gt;0}
+
+ dan untuk</p>
+
+
+
+∀
+
+x
+
+∈
+A
+
+
+dengan
+
+
+
+‖
+
+
+x
+
+−
+
+
+x
+
+
+∗
+
+
+
+‖
+
+≤
+δ
+,
+
+
+
+{\displaystyle \forall \mathbf {x} \in A\;{\text{dengan}}\;\left\Vert \mathbf {x} -\mathbf {x} ^{\ast }\right\Vert \leq \delta ,\,}
+
+<p>akan berlaku hubungan 
+
+
+
+f
+(
+
+
+x
+
+
+∗
+
+
+)
+≤
+f
+(
+
+x
+
+)
+
+
+{\displaystyle f(\mathbf {x} ^{*})\leq f(\mathbf {x} )}
+
+. Secara informal definisi ini mengatakan bahwa 
+
+
+
+
+
+x
+
+
+∗
+
+
+
+
+{\displaystyle \mathbf {x} ^{*}}
+
+ menghasilkan nilai fungsi yang terkecil, ketika dibandingkan tetangga-tetangga disekitarnya. [Titik] maksimum lokal didefinisikan dengan cara yang serupa. Jika titik minimum <hi rend="italic">lokal</hi> memberikan solusi yang setidaknya sama baiknya dengan solusi disekitar titik tersebut, titik minimum <hi rend="italic">global</hi> akan memberikan solusi yang setidaknya sama baiknya dengan semua solusi yang mungkin. Secara umum, kecuali fungsi objektif bersifat <ref target="https://id.wikipedia.org/wiki/Fungsi_konveks">konveks</ref>, ada kemungkinan titik [minimum/maksimum] lokal, dan tidak semuanya juga merupakan titik [minimum/maksimum] global.</p>
+<p>Banyak algoritma dikembangkan untuk menyelesaikan masalah non-konveks, namun sebagian besar tidak dapat membedakan solusi optimal lokal dengan solusi optimal global; mereka akan menganggap solusi optimal lokal sebagai solusi sebenarnya bagi masalah optimisasi. <ref target="https://id.wikipedia.org/wiki/Optimisasi_global">Optimisasi global</ref> adalah cabang <ref target="https://id.wikipedia.org/wiki/Matematika_terapan">matematika terapan</ref> dan <ref target="https://id.wikipedia.org/wiki/Analisis_numerik">analisis numerik</ref> yang mengkaji perkembangan algoritma deterministik dan memastikan konvergensi dalam waktu yang terbatas (<hi rend="italic">finite time</hi>), untuk menemukan solusi optimal masalah non-konveks</p>
+Notasi
+<p>Masalah optimisasi sering diekspresikan menggunakan notasi khusus. Berikut beberapa notasi yang digunakan berserta penjelasan singkatnya:</p>
+Nilai minimum dan maksimum sebuah fungsi<p>
+Perhatikan notasi berikut:</p>
+
+
+
+
+min
+
+x
+∈
+
+R
+
+
+
+
+
+(
+
+
+x
+
+2
+
+
++
+1
+
+)
+
+
+
+{\displaystyle \min _{x\in \mathbb {R} }\;\left(x^{2}+1\right)}
+
+<p>Notasi ini menandakan nilai minimum dari fungsi objektif 
+
+
+
+
+x
+
+2
+
+
++
+1
+
+
+{\displaystyle x^{2}+1}
+
+, ketika 
+
+
+
+x
+
+
+{\displaystyle x}
+
+ dipilih dari himpunan <ref target="https://id.wikipedia.org/wiki/Bilangan_riil">bilangan real</ref> 
+
+
+
+
+R
+
+
+
+{\displaystyle \mathbb {R} }
+
+. Nilai minimum dalam kasus ini adalah 1, dan terjadi ketika 
+
+
+
+x
+=
+0
+
+
+{\displaystyle x=0}
+
+ .
+
+Serupa dengan itu, notasi</p>
+
+
+
+
+max
+
+x
+∈
+
+R
+
+
+
+
+2
+x
+
+
+{\displaystyle \max _{x\in \mathbb {R} }\;2x}
+
+<p>menandakan nilai maksimum dari fungsi objektif 
+
+
+
+2
+x
+
+
+{\displaystyle 2x}
+
+, dengan 
+
+
+
+x
+
+
+{\displaystyle x}
+
+ dapat berupa sebarang bilangan real. Fungsi objektif ini tidak memiliki nilai maksimum, karena fungsi tidak terbatas (dari atas). Dalam kasus ini nilai maksimum adalah "<ref target="https://id.wikipedia.org/wiki/Tak_hingga">tak hingga</ref>" atau "tidak terdefinisi", tergantung konteks pembicaraan.</p>
+Argumen input yang optimal
+Artikel utama: <ref target="https://id.wikipedia.org/wiki/Arg_max">Arg max</ref><p>
+Notasi seperti</p>
+
+
+
+
+
+
+a
+r
+g
+
+m
+i
+n
+
+
+x
+∈
+(
+−
+∞
+,
+−
+1
+]
+
+
+
+
+
+x
+
+2
+
+
++
+1
+,
+
+
+{\displaystyle {\underset {x\in (-\infty ,-1]}{\operatorname {arg\,min} }}\;x^{2}+1,}
+
+<p>atau secara ekuivalen juga dapat ditulis sebagai</p>
+
+
+
+
+
+
+a
+r
+g
+
+m
+i
+n
+
+x
+
+
+
+
+x
+
+2
+
+
++
+1
+,
+
+
+dengan kendala:
+
+
+x
+∈
+(
+−
+∞
+,
+−
+1
+]
+.
+
+
+{\displaystyle {\underset {x}{\operatorname {arg\,min} }}\;x^{2}+1,\;{\text{dengan kendala:}}\;x\in (-\infty ,-1].}
+
+<p>menandakan nilai (atau nilai-nilai jika ada lebih dari satu) <ref target="https://id.wikipedia.org/wiki/Argumen_sebuah_fungsi">argumen</ref> 
+
+
+
+x
+
+
+{\displaystyle x}
+
+ pada <ref target="https://id.wikipedia.org/wiki/Selang_(matematika)">selang</ref> 
+
+
+
+(
+−
+∞
+,
+−
+1
+]
+
+
+{\displaystyle (-\infty ,-1]}
+
+ yang meminimumkan fungsi objektif 
+
+
+
+
+x
+
+2
+
+
++
+1
+
+
+{\displaystyle x^{2}+1}
+
+. Perlu diperhatikan notasi ini tidak merujuk pada nilai minimum dari fungsi, namun nilai argumen yang membuat nilai fungsi minimum. Dalam kasus ini, jawabannya adalah 
+
+
+
+x
+=
+−
+1
+
+
+{\displaystyle x=-1}
+
+. Nilai 
+
+
+
+x
+=
+0
+
+
+{\displaystyle x=0}
+
+ bukan solusi karena dia bukan anggota himpunan feasibel 
+
+
+
+
+x
+
+2
+
+
++
+1
+
+
+{\displaystyle x^{2}+1}
+
+.</p>
+<p>Serupa dengan itu, notasi seperti</p>
+
+
+
+
+
+
+
+a
+r
+g
+
+m
+a
+x
+
+
+x
+∈
+[
+−
+5
+,
+5
+]
+,
+
+y
+∈
+
+R
+
+
+
+
+
+x
+cos
+⁡
+y
+,
+
+
+{\displaystyle {\underset {x\in [-5,5],\;y\in \mathbb {R} }{\operatorname {arg\,max} }}\;x\cos y,}
+
+
+<p>atau juga dapat ditulis sebagai</p>
+
+
+
+
+
+
+
+a
+r
+g
+
+m
+a
+x
+
+
+x
+,
+
+y
+
+
+
+
+x
+cos
+⁡
+y
+,
+
+
+dengan kendala:
+
+
+x
+∈
+[
+−
+5
+,
+5
+]
+,
+
+y
+∈
+
+R
+
+,
+
+
+{\displaystyle {\underset {x,\;y}{\operatorname {arg\,max} }}\;x\cos y,\;{\text{dengan kendala:}}\;x\in [-5,5],\;y\in \mathbb {R} ,}
+
+
+<p>merepresentasikan semua himpunan berurut 
+
+
+
+{
+x
+,
+y
+}
+
+
+{\displaystyle \{x,y\}}
+
+ yang memaksimumkan nilai fungsi objektif 
+
+
+
+x
+cos
+⁡
+y
+
+
+{\displaystyle x\cos y}
+
+, dengan batasan nilai 
+
+
+
+x
+
+
+{\displaystyle x}
+
+ perlu terletak di selang 
+
+
+
+[
+−
+5
+,
+5
+]
+
+
+{\displaystyle [-5,5]}
+
+. Dalam kasus ini, solusi dari notasi tersebut adalah semua himpunan berurut yang memiliki bentuk 
+
+
+
+{
+5
+,
+2
+k
+π
+}
+
+
+{\displaystyle \{5,2k\pi \}}
+
+ dan 
+
+
+
+{
+−
+5
+,
+(
+2
+k
++
+1
+)
+π
+}
+
+
+{\displaystyle \{-5,(2k+1)\pi \}}
+
+, dengan 
+
+
+
+k
+
+
+{\displaystyle k}
+
+ merupakan <ref target="https://id.wikipedia.org/wiki/Bilangan_bulat">bilangan bulat</ref>.</p>
+<p>Operators 
+
+
+
+arg
+⁡
+min
+
+
+{\displaystyle \arg \min }
+
+ dan 
+
+
+
+arg
+⁡
+max
+
+
+{\displaystyle \arg \max }
+
+ terkadang juga ditulis sebagai 
+
+
+
+
+argmin
+
+
+
+{\displaystyle {\text{argmin}}}
+
+ dan 
+
+
+
+
+argmax
+
+
+
+{\displaystyle {\text{argmax}}}
+
+; secara berurutan memiliki arti "argumen dari minimum" dan "argumen dari maksimum".</p>
+Sejarah
+<p><ref target="https://id.wikipedia.org/wiki/Pierre_de_Fermat">Fermat</ref> dan <ref target="https://id.wikipedia.org/wiki/Joseph_Louis_Lagrange">Lagrange</ref> menemukan formula untuk mengidentifikasi nilai optimal, yang berdasar pada <ref target="https://id.wikipedia.org/wiki/Kalkulus">kalkulus</ref>. Sementara itu, <ref target="https://id.wikipedia.org/wiki/Isaac_Newton">Newton</ref> dan <ref target="https://id.wikipedia.org/wiki/Carl_Friedrich_Gauss">Gauss</ref> mengusulkan metode iteratif yang mengubah nilai feasibel ke arah nilai optimal. <ref target="https://id.wikipedia.org/wiki/George_Dantzig">George B. Dantzig</ref> mencetuskan istilah "<ref target="https://id.wikipedia.org/wiki/Program_linear">pemrograman linear</ref>" untuk menyelesaikan beberapa kasus optimisasi,walau sebagian teori sudah diperkenalkan oleh <ref target="https://id.wikipedia.org/wiki/Leonid_Kantorovich">Leonid Kantorovich</ref> pada tahun 1939. Kata "pemrograman" dalam konteks ini tidak merujuk pada "<ref target="https://id.wikipedia.org/wiki/Pemrograman">pemrogramam komputer</ref>", namun merujuk pada penggunaan <hi rend="italic">program</hi> oleh pihak militer Amerika Serikat untuk menyebut proposal pelatihan dan jadwal; masalah-masalah yang dipelajari oleh Dantzig pada waktu itu. Pada tahun 1947, Dantzig mempublikasikan <ref target="https://id.wikipedia.org/wiki/Algoritma_simplex">algoritma simplex</ref>, sedangkan <ref target="https://id.wikipedia.org/wiki/John_von_Neumann">John von Neumann</ref> mengembangkan teori <ref target="https://id.wikipedia.org/wiki/Program_linear">dualitas</ref>.
+ Beberapa peneliti lain yang terkenal dalam bidang optimisasi adalah:</p>
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/Richard_Bellman">Richard Bellman</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Roger_Fletcher_(mathematician)">Roger Fletcher</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Ronald_A._Howard">Ronald A. Howard</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Fritz_John">Fritz John</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Narendra_Karmarkar">Narendra Karmarkar</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/William_Karush">William Karush</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Leonid_Khachiyan">Leonid Khachiyan</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Bernard_Koopman">Bernard Koopman</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Harold_Kuhn">Harold Kuhn</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/László_Lovász">László Lovász</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Arkadi_Nemirovski">Arkadi Nemirovski</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Yurii_Nesterov">Yurii Nesterov</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Lev_Pontryagin">Lev Pontryagin</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/R._Tyrrell_Rockafellar">R. Tyrrell Rockafellar</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Naum_Z._Shor">Naum Z. Shor</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Albert_W._Tucker">Albert Tucker</ref></item></list>
+
+
+
+Bacaan lebih lanjut
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/Stephen_P._Boyd">Boyd, Stephen P.</ref>; Vandenberghe, Lieven (2004). <ref target="https://web.stanford.edu/~boyd/cvxbook/"><hi rend="italic">Convex Optimization</hi></ref>. Cambridge: Cambridge University Press. <ref target="https://id.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</ref><ref target="https://id.wikipedia.org/wiki/Istimewa:Sumber_buku/0-521-83378-7">0-521-83378-7</ref>.</item>
+<item>Gill, P. E.; Murray, W.; <ref target="https://id.wikipedia.org/wiki/Margaret_H._Wright">Wright, M. H.</ref> (1982). <hi rend="italic">Practical Optimization</hi>. London: Academic Press. <ref target="https://id.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</ref><ref target="https://id.wikipedia.org/wiki/Istimewa:Sumber_buku/0-12-283952-8">0-12-283952-8</ref>.</item>
+<item><ref target="https://id.wikipedia.org/wiki/Jon_Lee_(mathematician)">Lee, Jon</ref> (2004). <hi rend="italic">A First Course in Combinatorial Optimization</hi>. Cambridge University Press. <ref target="https://id.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</ref><ref target="https://id.wikipedia.org/wiki/Istimewa:Sumber_buku/0-521-01012-8">0-521-01012-8</ref>.</item>
+<item><ref target="https://id.wikipedia.org/wiki/Jorge_Nocedal">Nocedal, Jorge</ref>; Wright, Stephen J. (2006). <ref target="http://www.ece.northwestern.edu/~nocedal/book/num-opt.html"><hi rend="italic">Numerical Optimization</hi></ref> (edisi ke-2nd). Berlin: Springer. <ref target="https://id.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</ref><ref target="https://id.wikipedia.org/wiki/Istimewa:Sumber_buku/0-387-30303-0">0-387-30303-0</ref>.</item>
+<item>Snyman, J. A.; Wilke, D. N. (2018). <hi rend="italic">Practical Mathematical Optimization: Basic Optimization Theory and Gradient-Based Algorithms</hi> (edisi ke-2nd). Berlin: Springer. <ref target="https://id.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</ref><ref target="https://id.wikipedia.org/wiki/Istimewa:Sumber_buku/978-3-319-77585-2">978-3-319-77585-2</ref>.</item></list>
+Pranala luar
+
+<list type="unordered"><item><ref target="http://plato.asu.edu/guide.html">"Decision Tree for Optimization Software"</ref>. Links to optimization source codes</item>
+<item><ref target="https://www.mat.univie.ac.at/~neum/glopt.html">"Global optimization"</ref>.</item>
+<item><ref target="https://see.stanford.edu/Course/EE364A">"EE364a: Convex Optimization I"</ref>. <hi rend="italic">Course from Stanford University</hi>.</item>
+<item>Varoquaux, Gaël. <ref target="https://scipy-lectures.org/advanced/mathematical_optimization/index.html">"Mathematical Optimization: Finding Minima of Functions"</ref>.</item></list>
+</text></body></html>

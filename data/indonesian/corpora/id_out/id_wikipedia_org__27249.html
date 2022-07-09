@@ -1,0 +1,101 @@
+<html><body><text id="wikipedia_id_wikipedia_org__27249.html" ns="0" revid="20813093" sourceurl="https://id.wikipedia.org/wiki/Format_bilangan_komputer" title="Format bilangan komputer" type="wikipedia">Format bilangan komputer
+
+<p>Di dalam dunia komputer, terdapat <hi rend="bold">empat format bilangan</hi>, yaitu bilangan <ref target="https://id.wikipedia.org/wiki/Biner">biner</ref>, <ref target="https://id.wikipedia.org/wiki/Oktal">oktal</ref>, <ref target="https://id.wikipedia.org/wiki/Desimal">desimal</ref> dan <ref target="https://id.wikipedia.org/wiki/Heksadesimal">heksadesimal</ref>.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-1">[1]</ref> Bilangan biner atau binary digit (<ref target="https://id.wikipedia.org/wiki/Bit">bit</ref>) adalah bilangan yang terdiri dari 1 dan 0. Bilangan <ref target="https://id.wikipedia.org/wiki/Oktal">oktal</ref> terdiri dari 0,1,2,3,4,5,6 dan 7. Sedangkan bilangan desimal terdiri dari 0, 1, 2, 3, 4, 5, 6, 7, 8 dan 9. Dan bilangan <ref target="https://id.wikipedia.org/wiki/Heksadesimal">heksadesimal</ref> terdiri dari 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E dan F.</p>
+
+Konversi antarbasis bilangan
+<p>Sudah dikenal, dalam bahasa komputer terdapat empat basis bilangan. Keempat bilangan itu adalah <ref target="https://id.wikipedia.org/wiki/Biner">biner</ref>, <ref target="https://id.wikipedia.org/wiki/Oktal">oktal</ref>, <ref target="https://id.wikipedia.org/wiki/Desimal">desimal</ref> dan <ref target="https://id.wikipedia.org/wiki/Heksadesimal">heksadesimal</ref>. Keempat bilangan itu saling berkaitan satu sama lain. Rumus atau cara mencarinya cukup mudah untuk dipelajari. Konversi dari <ref target="https://id.wikipedia.org/wiki/Desimal">desimal</ref> ke non-desimal, hanya mencari sisa pembagiannya saja. Dan konversi dari non-desimal ke <ref target="https://id.wikipedia.org/wiki/Desimal">desimal</ref> adalah:</p>
+<list type="unordered"><item>Mengalikan bilangan dengan angka basis bilangannya.</item>
+<item>Setiap angka yang bernilai satuan, dihitung dengan pangkat NOL (0). Digit puluhan, dengan pangkat SATU (1), begitu pula dengan digit ratusan, ribuan, dan seterusnya. Nilai pangkat selalu bertambah satu point.</item></list>
+Konversi biner ke oktal
+<p>Metode ini dilakukan dengan cara membagi digit biner tersebut kedalam tiga digit dari kanan (dari digit angka paling belakang). Dengan kata lain pengelompokkannya berdasarkan 3 bit saja.</p>
+<p>contoh soal:
+1010 (2) = ......(8)
+? Solusi:
+Ambil tiga digit terbelakang dahulu.
+010(2) = <hi rend="bold">2</hi>(8)
+Sedangkan sisa satu digit terakhir, tetap bernilai <hi rend="bold">1</hi>.
+Hasil akhirnya adalah: <hi rend="bold">12</hi>. Mengapa hasilnya bukan 21? Karena sisa satu digit terakhir yang harus ditulis dulu.</p>
+Konversi biner ke heksadesimal
+<p>Metode konversinya hampir sama dengan <ref target="https://id.wikipedia.org/wiki/Biner">Biner</ref> ke <ref target="https://id.wikipedia.org/wiki/Oktal">Oktal</ref>. Namun pengelompokkannya sejumlah 4 bit. Empat kelompok bit paling kanan adalah posisi satuan, empat bit kedua dari kanan adalah puluhan, dan seterusnya.
+Contoh:
+11100011(2) = ......(16)</p>
+<p>Solusi:
+kelompok bit paling kanan: 0011 = 3
+kelompok bit berikutnya: 1110 = E
+. Hasil konversinya adalah: <hi rend="bold">E3</hi>(16) . <hi rend="bold">Digit heksadesimal yang ditulis dulu.</hi></p>
+Konversi biner ke desimal
+<p>Cara atau metode ini sedikit berbeda.
+Contoh: 1110(2) = ......(10)
+diuraikan menjadi:
+(1x23)+(1x22)+(1x21)+(0x20) = 8+ 4 + 2 + 0 =14</p>
+<p>Angka <hi rend="bold">2</hi> dalam perkalian adalah basis <hi rend="italic">biner</hi>-nya. Sedangkan pangkat yang berurut, menandakan pangkat <hi rend="bold">0</hi> adalah satuan, pangkat <hi rend="bold">1</hi> adalah puluhan, dan seterusnya.</p>
+<p>
+
+Konversikan bilangan dibawah ini:</p>
+<p>Dari biner ke desimal: </p>
+<p>a. 11000000</p>
+<p>b. 10110001</p>
+<p>Dari oktal ke desimal: </p>
+<p>a. 1325</p>
+<p>b. 275</p>
+Konversi oktal ke biner
+<p>Sebenarnya, untuk konversi basis ini, haruslah sedikit menghafal tabel konversi utama yang berada di halaman atas. Namun dapat dipelajari dengan mudah. Dan ambillah <hi rend="bold">tiga</hi> biner saja.
+Contoh:
+523(8) = ......(2)
+Solusi:
+Dengan melihat tabel utama, didapat hasilnya adalah:
+3 = 011
+2 = 010
+5 = 101
+Pengurutan bilangan masih berdasarkan posisi satuan, puluhan dan ratusan.
+Hasil: <hi rend="bold">101010011</hi>(2)</p>
+Konversi heksadesimal ke biner
+<p>Metode dan caranya hampir serupa dengan konversi Oktal ke Biner. Hanya pengelompokkannya sebanyak dua bit. Seperti pada tabel utama.
+Contoh:
+2A(16) = ......(2)</p>
+<p>Solusi:</p>
+<list type="unordered"><item>A = 1010,</item>
+<item>2 = 0010</item></list>
+<p>caranya:
+<hi rend="bold">A=10</hi></p>
+<list type="unordered"><item>10:2=5(0)--&gt;sisa</item>
+<item>5:2=2(1)</item>
+<item>2:2=1(0)</item>
+<item>1:2=0(1)</item></list>
+<p>ditulis dari hasil akhir
+hasil:1010</p>
+<list type="unordered"><item>2:2=1(0)--&gt;sisa</item>
+<item>1:2=0(1)</item></list>
+<p>ditulis dari hasil akhir
+hasil:010
+jadi hasil dan penulisannya <hi rend="bold">0101010</hi> sebagai catatan angka 0 diawal tidak perlu di tulis.</p>
+Konversi desimal ke heksadesimal
+<p>Ada cara dan metodenya, namun bagi sebagian orang masih terbilang membingungkan. Cara termudah adalah, konversikan dahulu dari <ref target="https://id.wikipedia.org/wiki/Desimal">desimal</ref> ke <ref target="https://id.wikipedia.org/wiki/Biner">biner</ref>, lalu konversikan dari <ref target="https://id.wikipedia.org/wiki/Biner">biner</ref> ke <ref target="https://id.wikipedia.org/wiki/Heksadesimal">heksadesimal</ref>.
+Contoh:
+75(10) = ......(16)
+Solusi:
+75 dibagi 16 = <hi rend="bold">4</hi> sisa <hi rend="bold">11</hi> (11 = B).
+Dan hasil konversinya: 4c(16)</p>
+Konversi heksadesimal ke desimal
+<p>Caranya hampir sama seperti konversi dari biner ke desimal. Namun, bilangan basisnya adalah 16.
+Contoh:
+4B(16) = ......(10)
+Solusi:
+Dengan patokan pada tabel diatas, <hi rend="bold">B</hi> dapat ditulis dengan nilai "<hi rend="bold">11</hi>".
+(4x161)+(11x160) = 64 + 11 = 75(10)</p>
+Konversi desimal ke oktal
+<p>Caranya hampir sama dengan konversi desimal ke heksadesimal.
+Contoh:
+25(10) = ......(8)
+Solusi:
+25 dibagi 8 = <hi rend="bold">3</hi> sisa <hi rend="bold">1</hi>.
+Hasilnya dapat ditulis: 31(8)</p>
+<p>25: 8 sisa 1
+3 -------- 3
+hasilnya adalah 31</p>
+Konversi oktal ke desimal
+<p>Metodenya hampir sama dengan konversi heksadesimal ke desimal. Dapat diikuti dengan contoh di bawah ini:
+31(8) = ......(10)
+Solusi:
+(3x81)+(1x80) = 24 + 1 = 25(10)</p>
+</text></body></html>

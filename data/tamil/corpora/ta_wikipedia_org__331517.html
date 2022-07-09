@@ -1,0 +1,23 @@
+<html><body><text id="wikipedia_ta_wikipedia_org__331517.html" ns="0" revid="2208268" sourceurl="https://ta.wikipedia.org/wiki/%E0%AE%AF%E0%AF%87%E0%AE%9A%E0%AE%A3%E0%AF%8D-%E0%AE%8E%E0%AE%B2%E0%AF%8D%E0%AE%9F%E0%AE%BF" title="யேசண்-எல்டி" type="wikipedia">யேசண்-எல்டி<p><hi rend="bold">யேசண்-எல்டி</hi> (JSON-LD, or JavaScript Object Notation for Linked Data) என்பது <ref target="https://ta.wikipedia.org/wiki/யேசண்">யேசண்</ref> ஐப் பயன்படுத்தி <ref target="https://ta.wikipedia.org/wiki/இணைப்புத்_தரவு">இணைப்புத் தரவுகளைக்</ref> குறியேற்றுவதற்கான ஒரு வழிமுறை ஆகும்.  இது ஒரு <ref target="https://ta.wikipedia.org/wiki/உலகளாவிய_வலைச்_சேர்த்தியம்">உலகளாவிய வலைச் சேர்த்தியத்தின்</ref> ஒரு பரிந்துரை ஆகும்.<ref target="https://ta.wikipedia.org/wiki/முதற்_பக்கம்#cite_note-1">[1]</ref>  கட்டமைப்புள்ள தரவுகளை குறியேற்ற யேசண்-எல்டி ஐ கூகிளும் பரிந்துரை செய்கிறது.<ref target="https://ta.wikipedia.org/wiki/முதற்_பக்கம்#cite_note-2">[2]</ref></p>
+பின்புலம்
+<p>யேசண் நிரலாளர்களால் பரவலாகப் பயன்படுத்தப்படும் ஒரு தரவுக் கட்டமைப்பு, குறியேற்ற, பரிமாற்ற முறை ஆகும்.  இணைப்புத் தரவுகளை இலகுவாக நிரல் மொழிகளில் கையழவும், ஏற்கனவே யேசண் ஆக உள்ள தரவுகள இணைப்புத் தரவாக விபரிக்கவும் உதவும் வண்ணம் யேசண்-எல்டி உருவாக்கப்பட்டது.  </p>
+வடிவமைப்பு
+<p>யேசண்-எல்டி கட்டம் (context) என்ற கருத்துருவை அடிப்படையாகக் கொண்டது.  கட்டத்தைப் பயன்படுத்தி ஒரு யேசண் ஆவணத்தில் உள்ள பண்புகளை (properties) <ref target="https://ta.wikipedia.org/wiki/வள_விபரிப்புச்_சட்டகம்">ஆர்.டி.எப்</ref> அல்லது இணைப்புத் தரவு <ref target="https://ta.wikipedia.org/wiki/மெய்ப்பொருளியம்">மெய்ப்பொருளியத்தோடு</ref> இணைக்க முடியும்.  கட்டம் (context) யேசண் ஆவணத்துக்கு ஒரு schema வை வழங்குகிறது.</p>
+எடுத்துக்காட்டு
+{
+  "@context": {
+    "name": "http://xmlns.com/foaf/0.1/name",
+    "homepage": {
+      "@id": "http://xmlns.com/foaf/0.1/workplaceHomepage",
+      "@type": "@id"
+    },
+    "Person": "http://xmlns.com/foaf/0.1/Person"
+  },
+  "@id": "http://me.example.com",
+  "@type": "Person",
+  "name": "John Smith",
+  "homepage": "http://www.example.com/"
+}
+
+<p>மேலே உள்ல எடுத்துக்காட்டு Friend of a friend - FOAF மெய்ப்பொருளியத்தைப் பயன்படுத்தி ஒரு நபரை விபரிக்கிறது.   </p>
+</text></body></html>

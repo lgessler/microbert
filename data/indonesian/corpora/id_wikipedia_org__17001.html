@@ -1,0 +1,265 @@
+<html><body><text id="wikipedia_id_wikipedia_org__17001.html" ns="0" revid="18926383" sourceurl="https://id.wikipedia.org/wiki/Pengenalan_pola" title="Pengenalan pola" type="wikipedia">Pengenalan pola<p><hi rend="bold">Pengenalan pola</hi> (bahasa Inggris: <hi rend="italic">pattern recognition</hi>) merupakan bidang dalam <ref target="https://id.wikipedia.org/wiki/Pembelajaran_mesin">pembelajaran mesin</ref> dan dapat diartikan sebagai "tindakan mengambil data mentah dan bertindak berdasarkan <ref target="https://id.wikipedia.org/wiki/Klasifikasi">klasifikasi</ref> data".<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-1">[1]</ref><ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-2">[2]</ref> Dengan demikian, ia merupakan himpunan kaidah bagi pembelajaran diselia (<hi rend="italic">supervised learning</hi>).
+
+Ada beberapa definisi lain tentang pengenalan pola, di antaranya:</p>
+<list type="unordered"><item>Penentuan suatu objek fisik atau kejadian ke dalam salah satu atau beberapa kategori.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-3">[3]</ref></item>
+<item>Ilmu pengetahuan yang menitikberatkan pada deskripsi dan klasifikasi (pengenalan) dari suatu pengukuran.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-4">[4]</ref></item>
+<item>Suatu pengenalan secara otomatis suatu bentuk, sifat, keadaan, kondisi, susunan tanpa keikutsertaan manusia secara aktif dalam proses pemutusan.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-5">[5]</ref></item></list>
+<p>
+Berdasar beberapa definisi di atas, pengenalan pola bisa didefinisikan sebagai cabang kecerdasan yang menitik-beratkan pada metode pengklasifikasian objek ke dalam klas - klas tertentu untuk menyelesaikan masalah tertentu.</p>
+<p>Salah satu aplikasinya adalah <ref target="https://id.wikipedia.org/wiki/Pengenalan_suara">pengenalan suara</ref>, klasifikasi teks dokumen dalam kategori (contoh. surat-E spam/bukan-spam), <ref target="https://id.wikipedia.org/wiki/Pengenalan_tulisan_tangan">pengenalan tulisan tangan</ref>, pengenalan kode pos secara otomatis pada sampul surat, atau sistem <ref target="https://id.wikipedia.org/wiki/Pengenalan_wajah_manusia">pengenalan wajah manusia</ref>. Aplikasi ini kebanyakan menggunakan <ref target="https://id.wikipedia.org/wiki/Analisis_citra">analisis citra</ref> bagi pengenalan pola yang berkenaan dengan <ref target="https://id.wikipedia.org/wiki/Citra_digital">citra digital</ref> sebagai input ke dalam sistem pengenalan pola</p>
+Teknik Pengenalan Pola
+<p>Pengenalan pola biasanya merupakan langkah perantaraan bagi proses lebih lanjut. Langkah ini biasanya merupakan dapatan data (gambar, bunyi, teks, dll.) untuk dikelaskan, pre-pemrosesan untuk menghilangkan gangguan atau menormalkan gambar dalam satu cara (<ref target="https://id.wikipedia.org/wiki/Pemrosesan_gambar">pemrosesan gambar (<hi rend="italic">image processing</hi>)</ref>, teks dll.), pengiraan ciri-ciri, pengkelasan dan akhirnya post-pemrosesan berdasarkan kelas pengenalan dan aras keyakinan.</p>
+<p>Pengenalan pola itu sendiri khususnya berkaitan dengan langkah pengkelasan. Dalam kasus tertentu, sebagaimana dalam <ref target="https://id.wikipedia.org/wiki/Jaringan_saraf">jaringan saraf (<hi rend="italic">neural networks</hi></ref><hi rend="italic">), pemilihan ciri-ciri dan pengambilan juga boleh dilaksanakan secara semi otomatis atau otomatis sepenuhnya.</hi></p>
+<p>Sementara terdapat banyak kaidah untuk pengkelasan, ia menyelesaikan satu dari tiga masalah matematis berkaitan.</p>
+<p>Pertama adalah mencari peta ruang ciri (<hi rend="italic">feature space</hi>) (biasanya pelbagai dimensi <ref target="https://id.wikipedia.org/wiki/Ruang_vektor">ruang vektor (<hi rend="italic">vector space</hi>)</ref>) bagi set label. Secara bersamaan ia membagi ruang ciri menjadi kawasan-kawasan, kemudian meletakkan label kepada setiap kawasan. <ref target="https://id.wikipedia.org/wiki/Algoritme">Algoritme</ref> yang demikian ini (contohnya the <ref target="https://id.wikipedia.org/wiki/Nearest_neighbor_(pattern_recognition)">nearest neighbour algorithm</ref>) biasanya belumlah menghasilkan kepercayaan atau <ref target="https://id.wikipedia.org/wiki/Posterior_probability">class probabilities</ref>, sebelum diterapkannya post-processing.</p>
+<p>Masalah kedua adalah untuk menganggap masalah sebagai anggaran, dimana matlamat adalah untuk menganggar fungsi bagi bentuk</p>
+
+
+
+
+P
+(
+
+
+c
+l
+a
+s
+s
+
+
+
+|
+
+
+
+
+x
+→
+
+
+
+)
+=
+f
+
+(
+
+
+
+
+x
+→
+
+
+
+;
+
+
+
+θ
+→
+
+
+
+
+)
+
+
+
+{\displaystyle P({\rm {class}}|{\vec {x}})=f\left({\vec {x}};{\vec {\theta }}\right)}
+
+
+<p>dimana input vektor ciri adalah 
+
+
+
+
+
+
+x
+→
+
+
+
+
+
+{\displaystyle {\vec {x}}}
+
+, dan fungsi <hi rend="italic">f</hi> biasanya diparameter oleh sebagian parameter 
+
+
+
+
+
+
+θ
+→
+
+
+
+
+
+{\displaystyle {\vec {\theta }}}
+
+. Dalam pendekatan <ref target="https://id.wikipedia.org/wiki/Statistik_Bayesian">statistik Bayesian</ref> bagi masalah ini, berlainan dengan memilih satu vektor parameter 
+
+
+
+
+
+
+θ
+→
+
+
+
+
+
+{\displaystyle {\vec {\theta }}}
+
+, hasil dibentuk bagi kesemua thetas yang mungkin, dengan turutan berat bagi ketepatan berdasarkan data latihan <hi rend="italic">D</hi>:</p>
+
+
+
+
+P
+(
+
+
+c
+l
+a
+s
+s
+
+
+
+|
+
+
+
+
+x
+→
+
+
+
+)
+=
+∫
+f
+
+(
+
+
+
+
+x
+→
+
+
+
+;
+
+
+
+θ
+→
+
+
+
+
+)
+
+P
+(
+
+
+
+θ
+→
+
+
+
+
+|
+
+D
+)
+d
+
+
+
+θ
+→
+
+
+
+
+
+{\displaystyle P({\rm {class}}|{\vec {x}})=\int f\left({\vec {x}};{\vec {\theta }}\right)P({\vec {\theta }}|D)d{\vec {\theta }}}
+
+
+<p>Masalah ketiga terkait dengan masalah kedua, tetapi masalahnya adalah untuk menganggar kebangkalian bersyarat (<hi rend="italic">conditional probability</hi>) 
+
+
+
+P
+(
+
+
+
+x
+→
+
+
+
+
+|
+
+
+
+c
+l
+a
+s
+s
+
+
+)
+
+
+{\displaystyle P({\vec {x}}|{\rm {class}})}
+
+ dan kemudian menggunakan <ref target="https://id.wikipedia.org/wiki/Aturan_Bayes">aturan Bayes</ref> untuk menghasilkan kemungkinan kelas sebagaimana dalam masalah kedua.</p>
+<p>Contoh algoritme klasifikasi termasuk:</p>
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/Klasifikasi_linear">Klasifikasi linear</ref>
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/Diskriminan_linier_Fisher">Diskriminan linier Fisher</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Regresi_Logistik">Regresi Logistik</ref></item>
+<item>Naive Bayes classifier</item>
+<item>Perceptron</item></list></item>
+<item><ref target="https://id.wikipedia.org/wiki/Metode_Nearest_neighbor">Metode Nearest neighbor</ref></item>
+<item>Boosting</item>
+<item>Decision tree</item>
+<item><ref target="https://id.wikipedia.org/wiki/Jaringan_Saraf_Tiruan">Jaringan Saraf Tiruan</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Jaringan_Bayesian">Jaringan Bayesian</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Mesin_sokongan_vektor">Mesin sokongan vektor (<hi rend="italic">Support vector machine</hi>)</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Model_Markov_tersembunyi">Model Markov Tersembunyi (<hi rend="italic">Hidden Markov model</hi>)</ref></item></list>
+Domain Aplikasi
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/Komputer_visi">komputer visi</ref>
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/Pengenalan_karakter_medis">pengenalan karakter medis</ref> (<hi rend="italic">Medical image analysis</hi>)]]</item>
+<item><ref target="https://id.wikipedia.org/wiki/Pengenalan_karakter_optis">Pengenalan karakter optis</ref></item></list></item>
+<item><ref target="https://id.wikipedia.org/wiki/Pengenalan_suara">Pengenalan suara</ref> (<hi rend="italic">speech recognition</hi>)</item>
+<item><ref target="https://id.wikipedia.org/wiki/Pengenalan_tulisan_tangan">Pengenalan tulisan tangan</ref> (<hi rend="italic">handwritten recognition</hi>)</item>
+<item>Identifikasi biometrik</item>
+<item><ref target="https://id.wikipedia.org/wiki/Klasifikasi_dokuman">klasifikasi dokuman</ref></item>
+<item>Internet</item>
+<item>Credit scoring</item></list>
+Lihat pula
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/Pembelajaran_mesin">Pembelajaran mesin</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Statistika">Statistika</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Kecerdasan_buatan">Kecerdasan buatan (<hi rend="italic">Artificial intelligence</hi>)</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Sistem_temu_balik_informasi">Sistem Temu Balik Informasi (<hi rend="italic">Information Retrieval Systems</hi>)</ref></item>
+<item>Algoritme Viterbi</item></list>
+</text></body></html>

@@ -1,0 +1,580 @@
+<html><body><text id="wikipedia_id_wikipedia_org__3020.html" ns="0" revid="21255477" sourceurl="https://id.wikipedia.org/wiki/Algoritma" title="Algoritma" type="wikipedia">Algoritma<figure><caption> <ref target="https://id.wikipedia.org/wiki/Diagram_alur">Diagram alur</ref> dari sebuah algoritme (<ref target="https://id.wikipedia.org/wiki/Algoritme_Euclid">Algoritme Euclid</ref>) untuk menghitung faktor persekutuan terbesar (f.p.b.) dari dua angka <hi rend="italic">a</hi> dan <hi rend="italic">b</hi> dalam lokasi bernama A dan B. Algoritme dijalankan dengan pengurangan berturut-turut dalam dua pengulangan: JIKA pengujian B &gt;= A menghasilkan "ya" (atau benar) (lebih akuratnya <hi rend="italic">angka</hi> <hi rend="italic">b</hi> dalam lokasi B lebih besar atau sama dengan <hi rend="italic">angka</hi> <hi rend="italic">a</hi> dalam lokasi A) MAKA, algoritme menentukan B ← B - A (artinya angka <hi rend="italic">b</hi> - <hi rend="italic">a</hi> menggantikan <hi rend="italic">b</hi> sebelumnya). Hal yang sama, JIKA A &gt; B, MAKA A ← A - B. Proses tersebut berhenti saat (isi dari) B adalah 0, menghasilkan f.p.k. dalam A. (Algoritme tersebut diambil dari Scott 2009:13; simbol dan gaya penggambaran dari Tausworthe 1977).</caption></figure>
+<p><hi rend="bold">Algoritma</hi> merupakan sekumpulan instruksi yang terstruktur dan terbatas yang diimplementasikan kedalam bentuk program komputer untuk menyelesaikan suatu masalah komputasi tertentu.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-1">[1]</ref> Dalam <ref target="https://id.wikipedia.org/wiki/Matematika">matematika</ref> dan <ref target="https://id.wikipedia.org/wiki/Ilmu_komputer">ilmu komputer</ref>, algoritme adalah prosedur langkah-demi-langkah untuk penghitungan.
+Algoritme digunakan untuk <ref target="https://id.wikipedia.org/wiki/Penghitungan">penghitungan</ref>, <ref target="https://id.wikipedia.org/wiki/Pemrosesan_data">pemrosesan data</ref>, dan <ref target="https://id.wikipedia.org/wiki/Penalaran_otomatis">penalaran otomatis</ref>.</p>
+<p>Algoritme adalah <ref target="https://id.wikipedia.org/wiki/Metode_efektif">metode efektif</ref> diekspresikan sebagai rangkaian <ref target="https://id.wikipedia.org/wiki/Terbatas">terbatas</ref><ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-2">[2]</ref>
+dari instruksi-instruksi yang telah didefinisikan dengan baik<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-3">[3]</ref>
+untuk menghitung sebuah <ref target="https://id.wikipedia.org/wiki/Fungsi_(matematika)">fungsi</ref>.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-4">[4]</ref>
+Dimulai dari sebuah kondisi awal dan input awal (mungkin <ref target="https://id.wikipedia.org/wiki/Deretan_null">kosong</ref>),<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-5">[5]</ref>
+instruksi-instruksi tersebut menjelaskan sebuah <ref target="https://id.wikipedia.org/wiki/Komputasi">komputasi</ref> yang, bila <ref target="https://id.wikipedia.org/wiki/Eksekusi_(komputasi)">dieksekusi</ref>, diproses lewat sejumlah urutan kondisi terbatas<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-6">[6]</ref>
+yang terdefinisi dengan baik, yang pada akhirnya menghasilkan "keluaran"<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-7">[7]</ref>
+dan berhenti di kondisi akhir.
+Transisi dari satu kondisi ke kondisi selanjutnya tidak harus <ref target="https://id.wikipedia.org/wiki/Deterministik">deterministik</ref>;
+beberapa algoritme, dikenal dengan <ref target="https://id.wikipedia.org/wiki/Algoritme_pengacakan">algoritme pengacakan</ref>, menggunakan masukan acak.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-8">[8]</ref></p>
+<p>Walaupun <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Algorism">algorism</ref></hi>-nya <ref target="https://id.wikipedia.org/wiki/Al-Khawarizmi">al-Khawarizmi</ref> dirujuk sebagai aturan-aturan melakukan aritmetika menggunakan <ref target="https://id.wikipedia.org/wiki/Bilangan_Hindu-Arab">bilangan Hindu-Arab</ref> dan solusi sistematis dan <ref target="https://id.wikipedia.org/wiki/Persamaan_kuadrat">persamaan kuadrat</ref>, sebagian formalisasi yang nantinya menjadi <hi rend="italic">algoritme</hi> modern dimulai dengan usaha untuk memecahkan <ref target="https://id.wikipedia.org/wiki/Permasalahan_keputusan">permasalahan keputusan</ref> (<hi rend="italic">Entscheidungsproblem</hi>) yang diajukan oleh <ref target="https://id.wikipedia.org/wiki/David_Hilbert">David Hilbert</ref> pada tahun 1928.
+Formalisasi selanjutnya dilihat sebagai usaha untuk menentukan "<ref target="https://id.wikipedia.org/wiki/Penghitungan_efektif">penghitungan efektif</ref>"
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-9">[9]</ref>
+atau "metode efektif";
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-10">[10]</ref>
+formalisasi tersebut mengikutkan <ref target="https://id.wikipedia.org/wiki/Kurt_Godel">Godel</ref>-<ref target="https://id.wikipedia.org/wiki/Jacques_Herbrand">Herbrand</ref>-<ref target="https://id.wikipedia.org/wiki/Stephen_Cole_Kleene">Kleene</ref> <ref target="https://id.wikipedia.org/wiki/Rekursi_(ilmu_komputer)">fungsi rekursif</ref>-nya <ref target="https://id.wikipedia.org/wiki/Kurt_Godel">Kurt Godel</ref> - <ref target="https://id.wikipedia.org/wiki/Jacques_Herbrand">Jacques Herbrand</ref> - <ref target="https://id.wikipedia.org/wiki/Stephen_Cole_Kleene">Stephen Cole Kleene</ref> pada tahun 1930, 1934, dan 1935, <ref target="https://id.wikipedia.org/wiki/Kalkulus_lambda">kalkulus lambda</ref>-nya <ref target="https://id.wikipedia.org/wiki/Alonzo_Church">Alonzo Church</ref> pada tahun 1936, "<ref target="https://id.wikipedia.org/wiki/Formulasi_1">Formulasi 1</ref>"-nya <ref target="https://id.wikipedia.org/wiki/Emil_Post">Emil Post</ref> pada tahun 1936, dan <ref target="https://id.wikipedia.org/wiki/Mesin_Turing">Mesin Turing</ref>-nya <ref target="https://id.wikipedia.org/wiki/Alan_Turing">Alan Turing</ref> pada tahun 1936-7 dan 1939.
+Dari definisi formal dari algoritme di atas, berkaitan dengan konsep intuituf, masih tetap ada masalah yang menantang.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-11">[11]</ref>
+apa itu algoritma?</p>
+Asal kata
+<p>'Algoritme' muncul dari 'Algoritmi', bentuk Latin dari <ref target="https://id.wikipedia.org/wiki/Muḥammad_bin_Mūsā_al-Khawārizmī">al-Khawarizmi</ref>, <ref target="https://id.wikipedia.org/wiki/Matematikawan_islam">matematikawan</ref>, <ref target="https://id.wikipedia.org/wiki/Astronomi_islam">ahli astronomi</ref>, dan <ref target="https://id.wikipedia.org/wiki/Ahli_geografi_islam">ahli geografi</ref> dari <ref target="https://id.wikipedia.org/wiki/Orang_Persia">Persia</ref>.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-Hogendijk-12">[12]</ref><ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-Oaks-13">[13]</ref></p>
+Definisi informal
+Untuk penjelasan lebih rinci dari berbagai sudut pandang mengenai definisi "algoritme", lihat <ref target="https://id.wikipedia.org/wiki/Karakterisasi_Algoritme">Karakterisasi Algoritme</ref>.
+<p>Definisi informalnya bisa berarti "sekumpulan aturan yang secara tepat menentukan seurutan operasi".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-14">[14]</ref>
+yang mengikutkan semua program komputer, termasuk program yang tidak melakukan perhitungan numerik.
+Secara umum, sebuah program hanyalah sebuah algoritme jika ia akan berhenti nantinya.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-15">[15]</ref></p>
+<p>Sebuah contoh prototipikal dari suatu algoritme adalah <ref target="https://id.wikipedia.org/wiki/Algoritme_Euclid">algoritme Euclid</ref> untuk menentukan bilangan pembagi terbesar dari dua integer; sebagai contohnya (ada contoh yang lain) dijelaskan dengan <ref target="https://id.wikipedia.org/wiki/Diagram_alur">diagram alur</ref> di atas dan sebagai contoh di bagian lanjut.</p>
+<p>(<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#CITEREFBoolosJeffrey1974,_1999">Boolos &amp; Jeffrey 1974, 1999</ref>) memberikan sebuah makna informal dari kata algoritme dalam persamaan berikut:</p>
+<p>Tidak ada manusia yang dapat menulis begitu cepat, atau begitu lama, atau begitu kecil ("kecil, dan lebih kecil tanpa batas ... anda mungkin mencoba menulis di atas molekul, atom, elektron") untuk mencatat semua anggota dari kumpulan bilangan tak terbatas dengan menuliskan namanya, bergantian, dalam suatu notasi.
+Tapi manusia bisa melakukan sesuatu yang sama bergunanya, pada kasus kumpulan bilangan tak terbatas: Mereka dapat memberikan <hi rend="italic">instruksi jelas untuk menentukan anggota ke-<hi rend="bold">n</hi> dari set</hi>, untuk <hi rend="italic">n</hi> terbatas acak.
+Instruksi tersebut diberikan secara eksplisit, dalam bentuk yang <hi rend="italic">dapat diikuti oleh mesin penghitung</hi>, atau oleh <hi rend="italic">manusia yang mampu melakukan hanya operasi-operasi dasar dengan simbol-simbol.</hi>
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-16">[16]</ref></p>
+<p>Suatu "bilangan tak-terbatas" adalah bilangan yang elemen-elemenya bisa berkorespondensi satu-ke-satu dengan integer.
+Maka, Boolos dan Jeffrey mengatakan bahwa sebuah algoritme berarti instruksi bagi sebuah proses yang "membuat" keluaran integer dari sebuah "masukan" <hi rend="italic">acak</hi> integer yang, secara teori, bisa sangat besar.
+Maka sebuah algoritme dapat berupa persamaan aljabar seperti <hi rend="bold">y = m + n</hi> -- dua variabel masukan <hi rend="bold">m</hi> dan <hi rend="bold">n</hi> yang menghasikan keluaran <hi rend="bold">y</hi>.
+Tapi berbagai penulis yang mencoba mendefinisikan persamaan tersebut mengatakan bahwa kata algoritme mengandung lebih dari itu, sesuatu yang kurang lebih (untuk contoh penjumlahan):</p>
+Instruksi rinci dan tepat (dalam bahasa yang dipahami oleh "komputer")<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-17">[17]</ref> untuk proses yang cepat, efisien, "baik"<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-18">[18]</ref> yang menentukan "pergerakan" dari "komputer" (mesin atau manusia, dibekali dengan informasi dan kemampuan internal yang dibutuhkan)<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-19">[19]</ref> untuk menemukan, dekode, dan kemudian mengolah masukan integer/simbol <hi rend="bold">m</hi> dan <hi rend="bold">n</hi>, simbol <hi rend="bold">+</hi> dan <hi rend="bold">=</hi> ... dan "secara efektif"<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-20">[20]</ref> menghasilkan, dalam waktu yang "masuk akal",<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-21">[21]</ref> keluaran integer <hi rend="bold">y</hi> pada tempat dan format tertentu.
+<p>Konsep dari <hi rend="italic">algoritme</hi> juga digunakan untuk mendefinisikan notasi dari <ref target="https://id.wikipedia.org/wiki/Desidabilitas_(logika)">desidabilitas</ref>.
+Notasi tersebut adalah pusat untuk menjelaskan bagaimana <ref target="https://id.wikipedia.org/wiki/Sistem_formal">sistem formal</ref> berasal dari sejumlah kecil <ref target="https://id.wikipedia.org/wiki/Aksioma">aksioma</ref> dan aturan.
+Dalam <ref target="https://id.wikipedia.org/wiki/Logika">logika</ref>, waktu dari sebuah algoritme untuk selesai tidak dapat dihitung, karena tidak berelasi dengan dimensi fisik kita.
+Dari ketidakpastian tersebut, yang mengkarakteristikan pekerjaan yang sedang berjalan, timbulah ketidak-tersediannya definisi <hi rend="italic">algoritme</hi> yang sesuai dengan konkret (pada tingkat tertentu) dan penggunaan secara abstrak dari istilah tersebut.</p>
+Formalisasi
+<p>Algoritme sangat penting bagi cara komputer mengolah data.
+Banyak <ref target="https://id.wikipedia.org/wiki/Program_komputer">program komputer</ref> mengandung algoritme memberikan rincian pada instruksi khusus yang komputer harus lakukan (dengan urutan tertentu) untuk menjalankan pekerjaan tertentu, seperti menghitung gaji karyawan atau mencetak kartu rapor siswa.
+Maka, sebuah algoritme bisa dianggap sebagai urutan operasi yang bisa disimulasikan oleh sebuah sistem <ref target="https://id.wikipedia.org/wiki/Kelengkapan_Turing">Turing-lengkap</ref>.
+Penulis yang mendukung tesis ini termasuk Minsky (1967), Savage (1987), dan Gurevich (2000):</p>
+<p>Minsky: "Tapi kita juga menjaga, dengan Turing ... bahwa setiap prosedur yang "secara alami" disebut efektif, bisa dinyatakan oleh mesin (sederhana).
+Walaupun tampaknya ekstrem, alasan tersebut ... sukar disanggah".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-Minsky_1967:105-22">[22]</ref></p>
+<p>Gurevich: "... argumen informal Turing untuk menyokong tesis ini membenarkan tesis yang lebih kuat: setiap algoritme bisa disimulasikan oleh sebuah mesin Turing ... menurut Savage [1987], sebuah algoritme adalah sebuah proses penghitungan yang ditentukan oleh sebuah mesin Turing".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-23">[23]</ref></p>
+<p>Biasanya, bila sebuah algoritme dihubungkan dengan pengolahan informasi, data dibaca dari sumber masukan, ditulis ke perangkat keluaran, dan/atau disimpan untuk pengolahan selanjutnya.
+Data simpanan dianggap sebagai bagian dari keadaan internal dari entitas yang melakukan algoritme.
+Pada praktiknya, keadaan tersebut disimpan pada satu atau lebih <ref target="https://id.wikipedia.org/wiki/Struktur_data">struktur data</ref>.</p>
+<p>Untuk beberapa proses komputasi, algoritme harus ditentukan secara teliti: dijabarkan dengan cara ia bakal berlaku untuk semua kemungkinan yang dapat timbul.
+Yaitu, setiap langkah tambahan harus secara sistematis dihadapi, kasus-per-kasus;
+Kriteria bagi setiap kasus harus jelas (dan bisa dihitung).</p>
+<p>Karena sebuah algoritme adalah kumpulan dari langkah-langkah yang tepat, urutan dari komputasi selalu penting bagi berfungsinya algoritme.
+Instruksi biasanya diasumsikan terdaftar secara eksplisit, dan dijelaskan dimulai "dari atas" dan terus "ke bawah", sebuah gambaran yang dijelaskan secara formal oleh <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Alur_kontrol">alur kontrol</ref></hi></p>
+<p>Sejauh ini, diskusi tentang formalisasi algoritme telah mengasumsikan premis dari <ref target="https://id.wikipedia.org/wiki/Pemrograman_imperatif">pemrograman imperatif</ref>.
+Hal ini merupakan konsepsi umum, yang mencoba menjelaskan sebuah pekerjaan dalam makna diskrit dan "mekanis".
+Keunikan dari konsepsi formalisasi algoritme adalah <ref target="https://id.wikipedia.org/wiki/Operasi_penetapan">operasi penetapan</ref>, mengatur nilai dari sebuah variabel.
+Ia berasal dari intuisi "<ref target="https://id.wikipedia.org/wiki/Ingatan">ingatan</ref>" sebagai kertas buram.
+Contoh operasi penetapan tersebut ada di bawah.</p>
+<p>Untuk konsepsi yang lain dari apa yang membentuk sebuah algoritme lihat <ref target="https://id.wikipedia.org/wiki/Pemrograman_fungsional">pemrograman fungsional</ref> dan <ref target="https://id.wikipedia.org/wiki/Pemrograman_logika">pemrograman logika</ref>.</p>
+Menggambarkan algoritme
+<p>Algoritme dapat digambarkan dengan banyak notasi, termasuk <ref target="https://id.wikipedia.org/wiki/Bahasa_alamiah">bahasa alamiah</ref>, <ref target="https://id.wikipedia.org/wiki/Pseudokode">pseudokode</ref>, <ref target="https://id.wikipedia.org/wiki/Diagram_alur">diagram alur</ref>, <ref target="https://id.wikipedia.org/wiki/DRAKON">bagan drakon</ref>, <ref target="https://id.wikipedia.org/wiki/Bahasa_pemrograman">bahasa pemrograman</ref> atau <ref target="https://id.wikipedia.org/wiki/Tabel_kontrol">tabel kontrol</ref> (diproses oleh <ref target="https://id.wikipedia.org/wiki/Penerjemah_(komputasi)">penerjemah</ref>).
+Ekspresi bahasa alamiah terhadap algoritme condong lebih banyak dan rancu, dan jarang digunakan untuk algoritme yang kompleks dan teknis.
+Pseudokode, diagram alur, bagan drakon, dan tabel kontrol adalah cara yang terstruktur untuk menggambarkan algoritme yang mencegah banyaknya kerancuan pada pernyataan-pernyataan bahasa alamiah.
+Bahasa pemrograman ditujukan untuk mengekspresikan algoritme dalam sebuah bentuk yang dapat dieksekusi oleh komputer, tetapi sering kali digunakan sebagai suatu cara untuk menentukan atau mendokumentasikan algoritme.</p>
+<p>Ada banyak macam kemungkinan representasi dan seseorang dapat mengekspresikan sebuah program <ref target="https://id.wikipedia.org/wiki/Mesin_Turing">mesin Turing</ref> sebagai urutan dari tabel-tabel mesin (lihat lebih lanjut di <ref target="https://id.wikipedia.org/wiki/Mesin_kondisi-terbatas">mesin kondisi-terbatas</ref>, <ref target="https://id.wikipedia.org/wiki/Tabel_transisi_kondisi">tabel transisi kondisi</ref> dan <ref target="https://id.wikipedia.org/wiki/Tabel_kontrol">tabel kontrol</ref>), sebagai diagram alur dan bagan drakon (lihat lebih lanjut di <ref target="https://id.wikipedia.org/wiki/Diagram_kondisi">diagram kondisi</ref>), atau sebagai bentuk <ref target="https://id.wikipedia.org/wiki/Kode_mesin">kode mesin</ref> atau <ref target="https://id.wikipedia.org/wiki/Kode_assembly">kode assembly</ref> dasar yang dikenal "kumpulan lipat empat" (lihat lebih lanjut di <ref target="https://id.wikipedia.org/wiki/Mesin_Turing">mesin Turing</ref>).</p>
+<p>Representasi dari algoritme dapat dikelompokan ke dalam tiga tingkatan dari deskripsi mesin Turing:
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-24">[24]</ref></p>
+<hi rend="bold">1 Deskripsi tingkat-tinggi</hi>
+"... ditujukan untuk menjelaskan algoritme, menghiraukan rincian implementasi. Pada tingkat ini kita tidak perlu menyebutkan bagaimana mesin mengatur perangkat pita atau kepala pita rekam."
+<hi rend="bold">2 Deskripsi implementasi</hi>
+"... digunakan untuk menjelaskan cara mesin Turing menggunakan kepalanya dan cara menyimpan data. Pada tingkat ini kita tidak memberikan secara rinci kondisi atau fungsi transisi."
+<hi rend="bold">3 Deskripsi formal</hi>
+Lebih rinci, "tingkat paling rendah", menjelaskan "tabel kondisi" dari mesin Turing.
+<p>Sebagai contoh dari algoritme sederhana "Penjumlahan m+n" dijelaskan dalam tiga tingkatan tersebut lihat <ref target="https://id.wikipedia.org/wiki/Contoh_algoritme">contoh algoritme</ref>.</p>
+Implementasi
+<p>Kebanyakan algoritme ditujukan untuk diimplementasikan sebagai <ref target="https://id.wikipedia.org/wiki/Program_komputer">program komputer</ref>.
+Namun, algoritme juga diimplementasikan dengan tujuan lain, seperti dalam <ref target="https://id.wikipedia.org/wiki/Jaringan_saraf">jaringan saraf</ref> biologis (sebagai contohnya, <ref target="https://id.wikipedia.org/wiki/Otak_manusia">otak manusia</ref> yang mengimplementasikan <ref target="https://id.wikipedia.org/wiki/Aritmetika">aritmetika</ref> atau sebuah serangga yang melihat makanan), dalam <ref target="https://id.wikipedia.org/wiki/Sirkuit_elektris">sirkuit elektris</ref>, atau dalam sebuah perangkat mekanis.</p>
+Algoritme komputer
+<figure><caption>Contoh diagram alur dari <ref target="https://id.wikipedia.org/wiki/Teorema_program_terstruktur">struktur Bohm-Jacopini</ref>: URUTAN (segi empat), WHILE-DO dan IF-THEN-ELSE. Ketiga struktur dibentuk dari kondisi primitif GOTO ( IF <hi rend="italic">test</hi>=true THEN GOTO step xxx ) (wajik), GOTO tak bersyarat (segi empat), berbagai operator penetapan (segi empat), dan HALT (bujursangkar). Memasukan struktur tersebut ke dalam blok-penetapan menghasilkan diagram yang kompleks (cf Tausworthe 1977:100,114).</caption></figure>
+<p>Dalam <ref target="https://id.wikipedia.org/wiki/Sistem_komputer">sistem komputer</ref>, sebuah algoritme pada dasarnya adalah instansi dari <ref target="https://id.wikipedia.org/wiki/Logika">logika</ref> ditulis dalam <ref target="https://id.wikipedia.org/wiki/Perangkat_lunak">perangkat lunak</ref> oleh pengembang perangkat lunak supaya efektif untuk komputer yang "ditargetkan" untuk mesin tertentu untuk menghasilkan <hi rend="italic">keluaran</hi> dari <hi rend="italic">masukan</hi> yang diberikan (kemungkinan nul).</p>
+<p><hi rend="italic">Program yang "elegan" (padat), program yang "baik" (cepat)</hi>: Pernyataan dari "sederhana dan elegan" muncul secara informal dalam buku Knuth dan dalam Chaitin:</p>
+Knuth: "... kita menginginkan algoritme yang <hi rend="italic">baik</hi> dalam definisi estetika sederhana. Salah satu kriterianya ... adalah waktu yang dibutuhkan untuk berjalannya algoritme ... Kriteria yang lain adalah adaptasi dari algoritme ke komputer, kesederhanaan dan elegan, dll"<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-25">[25]</ref>
+Chaitin: "... sebuah program adalah 'elegan<hi rend="italic">, maksud saya adalah ia merupakan program terkecil untuk menghasilkan keluaran."<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-26">[26]</ref></hi>
+<p>Chaitin membuka definisinya dengan: "Saya akan perlihatkan bahwa anda tidak dapat membuktikan sebuah program adalah 'elegan'"—bukti tersebut akan menyelesaikan <ref target="https://id.wikipedia.org/wiki/Permasalahan_perhentian">permasalahan perhentian</ref> (ibid).</p>
+<p><hi rend="italic">Algoritme terhadap fungsi yang dapat dihitung oleh algoritme</hi>: Untuk sebuah fungsi bisa ada beberapa algoritme.
+Hal ini benar, bahkan tanpa mengembangkan kumpulan instruksi yang ada bagi programmer.
+Rogers mengamati bahwa "Sangat ... penting untuk membedakan antara pengertian <hi rend="italic">algoritme</hi>, misalnya prosedur dan pernyataan <hi rend="italic">fungsi yang dihitung oleh algoritme</hi>, misalnya pemetaan hasil dari prosedur.
+Fungsi yang sama bisa memiliki beberapa algoritme berbeda".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-27">[27]</ref></p>
+<p>Sayangnya ada pertukaran antara kebaikan (kecepatan) dan elegan (kepadatan) -- sebuah program yang elegan bisa melakukan lebih banyak langkah untuk menyelesaikan sebuah komputasi daripada yang kurang elegan.
+Sebuah contoh yang menggunakan algoritme Euclid bisa dilihat di bawah.</p>
+<p><hi rend="italic">Komputer (dan komputor), model dari komputasi</hi>: Sebuah komputer (atau manusia "komputor"
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-28">[28]</ref>
+)
+adalah tipe terbatas dari mesin, sebuah "perangkat mekanis deterministik diskrit"
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-29">[29]</ref>
+yang secara buta mengikuti instruksinya.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-30">[30]</ref>
+Model primitif dari Melzak dan Lambek
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-31">[31]</ref>
+mereduksi pemikiran tersebut menjadi empat elemen: (i) diskrit, <hi rend="italic">lokasi</hi> yang bisa dibedakan,
+(ii) diskrit, <hi rend="italic">penghitung</hi> yang tak bisa dibedakan
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-32">[32]</ref>
+(iii) sebuah agen, dan
+(iv) sebuah daftar instruksi yang <hi rend="italic">efektif</hi> relatif terhadap kemampuan dari agen.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-33">[33]</ref></p>
+<p>Minsky menjelaskan variasi yang lebih sesuai dari model "abacus"-nya Lambek dalam "Basis <ref target="https://id.wikipedia.org/wiki/Komputabilitas">Komputabilitas</ref> Paling Sederhana".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-34">[34]</ref>
+<ref target="https://id.wikipedia.org/wiki/Mesin_Minsky">Mesin Minsky</ref> memproses secara berurutan lewat lima (atau enam tergantung bagaimana seseorang menghitungnya) instruksi kecuali baik sebuah kondisi IF-THEN GOTO atau GOTO tak bersyarat mengubah alur program keluar dari urutan.
+Selain HALT, mesin Minsky mengikutkan tiga operasi <hi rend="italic">penetapan</hi> (penggantian, substitusi):
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-35">[35]</ref>
+ZERO (misalnya, isi dari lokasi diganti oleh 0: L ← 0), SUCCESSOR (misalnya, L ← L+1), dan DECREMENT (misalnya, L ← L-1).
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-36">[36]</ref>
+Jarang seorang programer harus menulis "kode" dengan kumpulan instruksi terbatas.
+Tapi Minsky memperlihatkan (sebagaimana Melzak dan Lambek) bahwa mesinnya adalah <ref target="https://id.wikipedia.org/wiki/Turing_komplet">Turing komplet</ref> dengan hanya empat <hi rend="italic">tipe</hi> instruksi utama: GOTO kondisional, GOTO tak bersyarat, penetapan/penggantian/substitusi, dan HALT.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-37">[37]</ref></p>
+<p><hi rend="italic">Simulasi dari sebuah algoritme: bahasa komputer (komputor)</hi>: Knuth menganjurkan pembaca bahwa "cara terbaik untuk belajar algoritme dalah mencobanya ... langsung ambil pulpen dan kertas dan bekerja lewat contoh".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-38">[38]</ref>
+Lalu bagaimana dengan simulasi atau eksekusi yang sebenarnya?
+Programmer harus menerjemahkan algoritme ke dalam bahasa yang mana simulator/komputer/komputor dapat mengeksekusi <hi rend="italic">secara efektif</hi>.
+Stone memberikan contoh dari hal ini: saat menghitung akar dari persamaan kuadrat si komputor harus tahu bagaimana mendapatkan akar kuadrat.
+Jika tidak maka supaya algoritme dapat efektif ia harus menyediakan sejumlah aturan untuk mengekstrak akar kuadrat.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-39">[39]</ref></p>
+<p>Hal ini berarti programer harus tahu sebuah "bahasa" yang efektif relatif terhadap target pada agen komputasi (komputer/komputor).</p>
+<p>Lalu model apa yang seharusnya digunakan untuk simulasi?
+Van Emde Boas mengamati "bahkan bila kita mendasari <ref target="https://id.wikipedia.org/wiki/Teori_kompleksitas_komputasi">teori kompleksitas</ref> dengan mesin abstrak bukannya mesin kongkrit, kesembarangan dari pemilihan model masih tetap ada.
+Pada titik itulah mulainya pemikiran <hi rend="italic">simulasi</hi>".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-40">[40]</ref>
+Bila kecepatan yang dihitung, jumlah instruksi berpengaruh.
+Sebagai contohnya, subprogram dalam algoritme Euclid untuk menghitung sisa akan berjalan lebih cepat jika programmer memiliki instruksi "modulus" (sisa pembagian) bukannya dengan pengurangan (atau lebih parah: hanya "penurunan").</p>
+<p><hi rend="italic">Pemrograman terstuktur, struktur kanonikal</hi>: Menurut <ref target="https://id.wikipedia.org/wiki/Tesis_Church-Turing">Tesis Church-Turing</ref> setiap algoritme bisa dihitung dengan sebuah model yang dikenal <ref target="https://id.wikipedia.org/wiki/Turing_komplet">Turing komplet</ref>, dan menurut demonstrasi Minsky kekomplitan Turing membutuhkan hanya empat tipe instruksi—GOTO bersyarat, GOTO tak bersyarat, penetapan, HALT.
+Kemeny dan Kurtz mengamati bahwa saat penggunaan GOTO tak bersyarat yang "tak disiplin" dan IF-THEN GOTO bersyarat bisa menghasilkan "<ref target="https://id.wikipedia.org/wiki/Kode_spageti">kode spageti</ref>" seorang programer bisa menulis program terstruktur menggunakan instruksi tersebut;
+di lain sisi "juga memungkinkan, dan tidak begitu sulit, untuk menulis sebuah program terstruktur yang buruk dalam sebuah bahasa terstruktur".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-41">[41]</ref>
+Tausworthe menambahkan tiga <ref target="https://id.wikipedia.org/wiki/Teorema_program_terstruktur">struktur kanon Bohm-Jacopini</ref>:
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-42">[42]</ref>
+SEQUENCE, IF-THEN-ELSE, dan WHILE-DO, dengan dua lagi: DO-WHILE dan CASE.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-43">[43]</ref>
+Keuntungan dari program terstruktur adalah ia cocok dengan <ref target="https://id.wikipedia.org/wiki/Pembuktian_kebenaran">pembuktian kebenaran</ref> menggunakan <ref target="https://id.wikipedia.org/wiki/Induksi_matematika">induksi matematika</ref>.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-44">[44]</ref></p>
+<p><hi rend="italic">Simbol diagram alur<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-45">[45]</ref></hi>: Pembantu grafik yang disebut <ref target="https://id.wikipedia.org/wiki/Diagram_alur">diagram alur</ref> memberikan suatu cara untuk menjelaskan dan mendokumentasikan sebuah algoritme (dan program komputer).
+Seperti alur program dari mesin Minsky, sebuah diagram alur selalu mulai dari atas dan terus ke bawah.
+Simbol utamanya hanya 4: arah panah memperlihatkan alur program, segi empat (SEQUENCE, GOTO), wajik (IF-THEN-ELSE), dan titik (OR).
+Struktur kanonikal Bohm-Jacopini dibuat dari bentuk-bentuk primitif tersebut.
+Sub-struktur bisa "bersarang" dalam segi empat hanya jika jalan keluar tunggal terjadi pada super-struktur.
+Simbol dan penggunaannya untuk membangun struktur kanonikal diperlihatkan dalam diagram.</p>
+Contoh
+Info lebih lanjut: <ref target="https://id.wikipedia.org/wiki/Contoh_algoritme">Contoh algoritme</ref>
+Contoh Algoritme
+<figure><caption> Animasi dari <ref target="https://id.wikipedia.org/wiki/Algoritme_quicksort">algoritme quicksort</ref> mengurutkan larik dari nilai acak. Batang merah menandakan elemen pivot; pada awal animasi, elemen paling kanan dipilih sebagai pivot.</caption></figure>
+<p>Salah satu dari algoritme sederhana adalah menemukan bilangan terbesar dalam sebuah deretan angka (tak berurut).
+Solusinya membutuhkan pemeriksaan setiap angka dalam deret, tetapi hanya sekali.
+Dari hal ini munculah algoritme sederhana, yang bisa dinyatakan dalam kalimat bahasa deskripsi tingkat-tinggi, sebagai:</p>
+<p><hi rend="italic">Deskripsi tingkat-tinggi:</hi></p>
+<list type="ordered"><item>Jika tidak ada angka dalam deret makan tidak ada bilangan terbesar.</item>
+<item>Asumsikan item pertama dalam deret adalah yang terbesar.</item>
+<item>Untuk setiap sisa angka dalam deret, jika angka tersebut besar dari angka terbesar sekarang, anggap angka tersebut menjadi yang terbesar dalam deret.</item>
+<item>Bila tidak ada lagi angka yang tersisa pada deret untuk diperiksa, anggap angka terbesar sekarang menjadi angka yang terbesar dalam deret.</item></list>
+<p><hi rend="italic">Deskripsi (Quasi-)formal:</hi>
+Ditulis dalam kalimat yang lebih dekat dengan bahasa tingkat-tinggi dari program komputer, berikut ini adalah kode formal dari algoritme dalam <ref target="https://id.wikipedia.org/wiki/Pseudokode">pseudokode</ref> atau <ref target="https://id.wikipedia.org/wiki/Kode_pijin">kode pijin</ref>:</p>
+<hi rend="bold">Algoritma</hi> LargestNumber
+  Masukan: Deret angka <hi rend="italic">L</hi>.
+  Keluaran: Angka terbesar dalam daftar <hi rend="italic">L</hi>.
+  <hi rend="italic">terbesar</hi> ← <hi rend="italic">L</hi>null
+  <hi rend="bold">untuk setiap</hi> <hi rend="italic">item</hi> <hi rend="bold">dalam</hi> <hi rend="italic">L</hi>, <hi rend="bold">lakukan</hi>
+<hi rend="bold">jika</hi> <hi rend="italic">item</hi> &gt; <hi rend="italic">terbesar</hi>, <hi rend="bold">maka</hi>
+<hi rend="italic">terbesar</hi> ← <hi rend="italic">item</hi>
+<hi rend="bold">kembalikan</hi> <hi rend="italic">terbesar</hi>
+<list type="unordered"><item>"←" adalah singkatan untuk "diubah menjadi". Misalnya, "<hi rend="italic">terbesar</hi> ← <hi rend="italic">item</hi>" artinya nilai dari <hi rend="italic">terbesar</hi> diubah menjadi nilai dari <hi rend="italic">item</hi>.</item>
+<item>"<hi rend="bold">kembalikan</hi>" mengakhiri algoritma dan mengeluarkan nilai kembalian.</item></list>
+
+Algoritme Euclid
+Info lebih lanjut: <ref target="https://id.wikipedia.org/wiki/Algoritme_Euklid">Algoritme Euklid</ref>
+<figure><caption> Contoh diagram dari algoritme Euclid dari T.L. Health 1908 dengan rincian tambahan. Euclid tidak sampai pada penghitungan ketiga dan tidak memberikan contoh numeris. Nocomachus memberikan contoh dari 49 dan 21: "Saya mengurangi yang kecil dari yang besar; 28 adalah yang kiri; kemudian saya kurangi lagi 21 (hal ini memungkinkan); tersisa 7, tetapi 7 tidak bisa dikurangi dari 7." Heath berkomentar bahwa, "Kalimat terakhir terdengar aneh, tetapi maknanya sangat jelas, begitu juga makna dari kalimat tentang mengakhiri 'dengan satu dan angka yang sama'."(Heath 1908:300).</caption></figure>
+<p>Algoritme <ref target="https://id.wikipedia.org/wiki/Euclid">Euclid</ref> muncul sebagai Proposisi II dalam Book VII ("Elementary Number Theory") dari <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Euclid's_Elements">Elements</ref></hi>.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-46">[46]</ref>
+Euclid mengajukan permasalahan: "Ambil dua angka bukan prima, untuk mencari bilangan pembagi terbesar".
+Dia menentukan "Sebuah angka [merupakan] besaran yang terdiri dari unit-unit": angka penghitung, integer positif kecuali 0.
+Dan "mengukur" adalah menempatkan ukuran panjang terkecil <hi rend="italic">s</hi> dengan tepat (<hi rend="italic">q</hi> kali) di antara ukuran terpanjang <hi rend="italic">l</hi> sampai sisa <hi rend="italic">r</hi> lebih kecil dari panjang terkecil <hi rend="italic">s</hi>.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-47">[47]</ref>
+Dalam dunia modern, sisa <hi rend="italic">r = l - q*s</hi>, <hi rend="italic">q</hi> sebagai hasil bagi, atau sisa <hi rend="italic">r</hi> adalah "modulus", bagian sisa-integer yang tersisa setelah pembagian.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-48">[48]</ref></p>
+<p>Supaya metode Euclid berhasil, panjang awalnya harus memenuhi dua kebutuhan:
+(i) panjangnya tidak 0, DAN
+(ii) hasil pengurangan harus "lebih", sebuah pengujian harus menjamin bahwa bilangan terkecil dari dua angka adalah hasil pengurangan dari yang terbesar (cara lain, keduanya bisa sama sehingga pengurangan menghasilkan 0).</p>
+<p>Pembuktian asli Euclid mengikutkan kebutuhan yang ketiga: kedua panjang bukanlah bilangan prima.
+Euclid menentukan hal ini supaya dia bisa membentuk sebuah bukti <ref target="https://id.wikipedia.org/wiki/Reductio_ad_absurdum">reductio ad absurdum</ref> bahwa dua pembagi dua angka adalah yang <hi rend="italic">terbesar</hi>.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-49">[49]</ref>
+Walau algoritme Nicomachus sama dengan Euclid, bila kedua bilangan prima maka menghasilkan angka "1" untuk bilangan pembagi terbesar.
+Jadi untuk lebih jelasnya algoritme berikut adalah algoritme Nicomachus.</p>
+Contoh
+<figure><caption> Ekspresi grafik dari algoritme Euclid menggunakan contoh dengan 1599 dan 650.
+9778 = 650*2 + 299
+650 = 299*2 + 52
+299 = 52*5 + 39
+52 = 39*1 + 13
+39 = 13*3 + 0
+</caption></figure>
+Bahasa komputer untuk algoritme Euclid
+<p>Hanya beberapa <hi rend="italic">tipe</hi> instruksi yang dibutuhkan untuk mengeksekusi algoritme—beberapa tes logika (GOTO bersyarat), GOTO tak bersyarat, penetapan (penggantian), dan pengurangan.</p>
+<list type="unordered"><item>Sebuah <hi rend="italic">lokasi</hi> disimbolkan dengan huruf besar, misalnya, S, A, dll.</item>
+<item>Kuantitas beragam (angka) dalam sebuah lokasi ditulis dengan huruf kecil dan (biasanya) dihubungkan dengan nama lokasi. Sebagai contohnya, lokasi L pada awal bisa mengandung angka <hi rend="italic">l</hi> = 3009.</item></list>
+Program yang kurang elegan (inelegan) untuk algoritme Euclid
+<figure><caption>"Inelegan" adalah terjemahan dari versi Knuth terhadap algoritme berdasarkan pengulangan-sisa mengganti pembagian (atau instruksi "modulus").
+Diambil dari Knuth 1973:2-4.
+Bergantung pada kedua angka "Inelegan" bisa menghitung f.p.k dengan sedikit langkah daripada "elegan".</caption></figure>
+<p>Algoritme berikut disebut sebagai versi Euclid dan Nichomachus 4-langkah-nya Knuth, tetapi bukannya menggunakan pembagi untuk menentukan sisa ia menggunakan pengurangan berturut-turut dari panjang terkecil <hi rend="italic">s</hi> dari sisa panjang <hi rend="italic">r</hi> sampai <hi rend="italic">r</hi> kurang dari <hi rend="italic">s</hi>.
+Deskripsi tingkat-tinggi, diperlihatkan dengan tulisan tebal, diadaptasi dari Knuth 1973:2-4:</p>
+<p><hi rend="bold">INPUT</hi>:</p>
+1 [Kedalam dua lokasi L dan S taruh angka <hi rend="italic">l</hi> dan <hi rend="italic">s</hi> yang merepresentasikan kedua panjang]:
+ INPUT L, S
+2 [Inisialisasi R: buat supaya sisa panjang <hi rend="italic">r</hi> sama dengan panjang awal <hi rend="italic">l</hi>]
+ R ← L
+<p><hi rend="bold">E0: [Pastikan <hi rend="italic">r</hi> ≥ <hi rend="italic">s</hi>.]</hi></p>
+3 [Pastikan angka terkecil dari kedua angka ada dalam S dan yang terbesar di R]:
+  IF R &gt; S THEN
+    isi dari L adalah angka terbesar jadi lewati langkah <ref target="https://id.wikipedia.org/wiki/Halaman_Utama#4">4</ref>, <ref target="https://id.wikipedia.org/wiki/Halaman_Utama#5">5</ref> dan <ref target="https://id.wikipedia.org/wiki/Halaman_Utama#6">6</ref>:
+    GOTO step <ref target="https://id.wikipedia.org/wiki/Halaman_Utama#6">6</ref>
+  ELSE
+    tukar isi R dan S.
+4 L ← R (langkah pertama ini berlebih, tetapi berguna untuk diskusi nanti).
+5 R ← S
+6 S ← L
+<p><hi rend="bold"> E1: [Cari sisa]</hi>: Sampai sisa panjang <hi rend="italic">r</hi> di R kurang dari panjang terkecil <hi rend="italic">s</hi> pada S, kurangi angka <hi rend="italic">s</hi> dalam S berulang kali dari sisa panjang <hi rend="italic">r</hi> dalam R.</p>
+7 IF S &gt; R THEN
+   selesai mengukur jadi
+   GOTO <ref target="https://id.wikipedia.org/wiki/Halaman_Utama#10">10</ref>
+ ELSE
+   ukur lagi,
+8 R ← R - S
+9 [Pengulangan-sisa]:
+   GOTO <ref target="https://id.wikipedia.org/wiki/Halaman_Utama#7">7</ref>.
+<p><hi rend="bold">E2: [Apakah sisa 0?]</hi>: APAKAH (i) pengukuran terakhir adalah sama dan sisa di R adalah 0 program dapat berhenti, ATAU (ii) algoritme harus terus jalan: hasil pengukuran meninggalkan sisa di R kurang dari angka pengukuran dalam S.</p>
+10 IF R = 0 THEN
+   selesai jadi
+   GOTO langkah <ref target="https://id.wikipedia.org/wiki/Halaman_Utama#15">15</ref>
+ ELSE
+   lanjut ke langkah <ref target="https://id.wikipedia.org/wiki/Halaman_Utama#11">11</ref>,
+<p><hi rend="bold">E3: [Interchange <hi rend="italic">s</hi> dan <hi rend="italic">r</hi>]</hi>: Sulitnya algoritme Euclid. Menggunakan sisa <hi rend="italic">r</hi> untuk mengukur angka terkecil sebelumnya <hi rend="italic">s</hi>:; L sebagai lokasi sementara.</p>
+11 L ← S
+12 R ← S
+13 S ← L
+14 [Ulang proses pengukuran]:
+   GOTO <ref target="https://id.wikipedia.org/wiki/Halaman_Utama#7">7</ref>
+<p><hi rend="bold">OUTPUT</hi>:</p>
+15 [Selesai. S berisi faktor persekutuan terbesar]:
+   PRINT S
+<p><hi rend="bold">DONE</hi>:</p>
+16 HALT, END, STOP.
+Program elegan untuk algoritme Euclid
+<p>Versi algoritme Euclid berikut hanya membutuhkan 6 instruksi inti untuk melakukan 13 langkah pada solusi "inelegan"; parahnya, "inelegan" membutuhkan <hi rend="italic">tipe</hi> instruksi lebih banyak.
+Diagram alur dari "elegan" bisa dilihat pada bagian atas artikel ini.
+Dalam bahasa Basic (tak terstruktur) langkahnya diberi nomor, dan instruksi LET [] = [] adalah instruksi penetapan disimbolkan dengan ←.</p>
+  5 REM <ref target="https://id.wikipedia.org/wiki/Algoritme_Euclid">Algoritme Euclid</ref> untuk <ref target="https://id.wikipedia.org/wiki/Faktor_persekuturan_terbesar">faktor persekuturan terbesar</ref>
+  6 PRINT "Masukan dua integer besar dari 0"
+  10 INPUT A,B
+  20 IF B=0 THEN <ref target="https://id.wikipedia.org/wiki/GOTO">GOTO</ref> 80
+  30 IF A &gt; B THEN <ref target="https://id.wikipedia.org/wiki/GOTO">GOTO</ref> 60
+  40 LET B=B-A
+  50 <ref target="https://id.wikipedia.org/wiki/GOTO">GOTO</ref> 20
+  60 LET A=A-B
+  70 <ref target="https://id.wikipedia.org/wiki/GOTO">GOTO</ref> 20
+  80 PRINT A
+  90 END
+<p><hi rend="italic">Bagaimana cara kerja "Elegan"</hi>: Sebagai pengganti "pengulangan Euclid" luar, "Elegan" mengulang antara dua pengulangan, pengulangan A &gt; B yang menghitung A ← A - B, dan pengualang B ≤ A yang menghitung B ← B - A.
+Hal ini bekerja karena, saat yang dikurang M lebih kecil pengurang S ( Selisih = pengurang - yang_di_kurang ), yang_dikurang bisa menjadi <hi rend="italic">s</hi> (panjang pengukuran yang baru) dan pengurang bisa menjadi <hi rend="italic">r</hi> yang baru (panjang yang akan diukur);
+dengan kata lain "arti" dari pengurangan dibalik.</p>
+Menguji algoritme Euclid
+<p>Apakah algoritme berjalan seperti yang penulis inginkan?
+Beberapa kasus uji cukup menentukan fungsi inti.
+Sumber pertama
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-50">[50]</ref>
+menggunakan 3009 dan 884.
+Knuth menyarankan 40902, 24140.
+Kasus menarik lainnya yaitu dua angka <ref target="https://id.wikipedia.org/wiki/Relatif_prima">relatif prima</ref> 14157 dan 5950.</p>
+<p>Tapi kasus pengecualian harus teridentifikasi dan diuji.
+Apakah "inelegan" berjalan benar saat R &gt; S, S &gt; R, R = S?
+Sama juga dengan "Elegan": B &gt; A, A &gt; B, A = B?
+(Semuanya benar).
+Apa yang terjadi bila salah satu bilangan nol, atau keduanya nol?
+("Inelegan" terus berjalan pada kedua kasus; "elegan" terus berjalan saat A = 0.)
+Apa yang terjadi bila angka <hi rend="italic">negatif</hi> dimasukan?
+Angka desimal?
+Bila angka masukan, misalnya <ref target="https://id.wikipedia.org/wiki/Domain_(matematika)">domain</ref> dari fungsi yang dihitung oleh algoritme/program, mengikutkan hanya integer positif termasuk 0, maka kegagalan pada nol mengindikasikan bahwa algoritme (dan program <ref target="https://id.wikipedia.org/wiki/Instansi_(ilmu_komputer)">instansiasinya</ref>) adalah sebuah <ref target="https://id.wikipedia.org/wiki/Fungsi_parsial">fungsi parsial</ref> bukannya <ref target="https://id.wikipedia.org/wiki/Fungsi_total">fungsi total</ref>.
+Kesalahan yang terkenal karena eksepsi adalah kegagalan roket <ref target="https://id.wikipedia.org/wiki/Ariane_V">Ariane V</ref>.</p>
+<p><hi rend="italic">Bukti dari kebenaran program menggunakan induksi matematika</hi>: Knuth mendemonstrasikan penggunaan <ref target="https://id.wikipedia.org/wiki/Induksi_matematika">induksi matematika</ref> untuk versi "pengembangan" dari algoritme Euclid, dan dia mengajukan "metode umum yang digunakan untuk membuktikan validitas dari setiap algoritme."
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-51">[51]</ref>
+Tausworthe mengajukan bahwa sebuah pengukuran dari kompleksitas dari sebuah program adalah panjang dari pembuktian kebenarannya.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-52">[52]</ref></p>
+Menghitung dan meningkatkan algoritme Euclid
+<p><hi rend="italic">Elegan (kepadatan) lawan kebaikan (kecepatan)</hi>: Dengan hanya 6 instruksi dasar, "Elegan" adalah jelas pemenang dibandingkan dengan instruksi "inelegan" dengan 13 instruksi.
+Namun, "inelegan" lebih <hi rend="italic">cepat</hi> (ia sampai pada HALT dengan langkah lebih sedikit).
+<ref target="https://id.wikipedia.org/wiki/Analisis_algoritme">Analisis algoritme</ref>
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-53">[53]</ref>
+mengindikasikan kenapa hal tersebut terjadi: "Elegan" melakukan pengujian kondisi <hi rend="italic">dua</hi> kali disetiap pengulangan pengurangan, sementara "inelegan" hanya sekali.
+Bila algoritme (biasanya) membutuhkan banyak pengulangan, <hi rend="italic">secara rata-rata</hi> lebih banyak waktu yang terbuang saat melakukan tes "B = 0?" yang hanya diperlukan saat sisa sudah dihitung.</p>
+<p><hi rend="italic">Bisakah algoritme ditingkatkan?</hi>: Bila programmer sudah menilai sebuah program "cocok" dan "efektif"—yaitu, ia menghitung fungsi yang ditujukan oleh penulisnya—maka pertanyaannya menjadi, bisakah ditingkatkan?</p>
+<p>Kepadatan dari "inelegan" bisa ditingkatkan dengan menghilangkan 5 langkah.
+Tapi Chaitin membuktikan bahwa memadatkan algoritme tidak bisa diotomatiskan dengan algoritme generalisasi;
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-54">[54]</ref>
+tapi, ia bisa dilakukan secara <ref target="https://id.wikipedia.org/wiki/Heuristik">heuristik</ref>, misalnya dengan pencarian menyeluruh (contohnya bisa ditemukan di <ref target="https://id.wikipedia.org/wiki/Berang_sibuk">Berang sibuk</ref>), coba dan gagal, kecerdasan, kedalaman, penggunaan <ref target="https://id.wikipedia.org/wiki/Penalaran_induktif">penalaran induktif</ref>, dll.
+Bisa diamati bahwa langkah 4, 5, dan 6 diulang pada langkah 11, 12, dan 13.
+Pembandingan dengan "Elegan" menyediakan petunjuk langkah-langkah tersebut dengan langkah 2 dan 3 dapat dihilangkan.
+Hal ini mereduksi jumlah instruksi dasar dari 13 menjadi 8, yang membuatnya "lebih elegan" dari "Elegan" dengan 9 langkah.</p>
+<p>Kecepatan "Elegan" bisa ditingkatkan dengan memindahkan tes B=0? keluar dari pengulangan.
+Perubahan ini memerlukan penambahan 3 instruksi (B=0?, A=0?, GOTO).
+Sekarang "Elegant" menghitung contoh-angka lebih cepat;
+untuk setiap angka pada A, B dan R, S hal ini selalu merupakan kasus yang membutuhkan analisis yang mendalam.</p>
+Analisis Algoritme
+Artikel utama: <ref target="https://id.wikipedia.org/wiki/Analisis_algoritme">Analisis algoritme</ref>
+<p>Sangat penting untuk mengetahui berapa banyak sumber tertentu (seperti waktu dan tempat penyimpanan) secara teoretis diperlukan untuk sebuah algoritme.
+Metode-metode telah dikembangkan untuk <ref target="https://id.wikipedia.org/wiki/Analisis_algoritme">analisis algoritme</ref> untuk mendapatkan jawaban kuantitatif (estimasi);
+sebagai contohnya, algoritme pengurutan di atas memerlukan waktu O(<hi rend="italic">n</hi>), menggunakan <ref target="https://id.wikipedia.org/wiki/Notasi_O_besar">notasi O besar</ref> dengan <hi rend="italic">n</hi> sebagai panjang deret (yang akan diurut).
+Setiap saat algoritme hanya perlu mengingat dua nilai: nilai terbesar yang ditemukan, dan posisinya sekarang dideretan input.
+Oleh karena itu dikatakan memiliki kebutuhan ruang <hi rend="italic">O(1)</hi>, jika ruang yang dibutuhkan untuk menyimpan angka masukan tidak dihitung, atau O(<hi rend="italic">n</hi>) jika dihitung.</p>
+<p>Algoritme berbeda mungkin menyelesaikan pekerjaan yang sama dengan kumpulan instruksi yang berbeda dengan waktu, ruang, atau '<ref target="https://id.wikipedia.org/wiki/Efisiensi_algoritmik">usaha</ref>' lebih sedikit atau banyak dari yang lain.
+Sebagai contohnya, algoritme <ref target="https://id.wikipedia.org/wiki/Pencairan_binari">pencairan binari</ref> biasanya mengungguli pencarian berderet secara <ref target="https://id.wikipedia.org/wiki/Pencarian_paksa">paksa</ref> bila digunakan untuk <ref target="https://id.wikipedia.org/wiki/Tabel_pencarian">tabel pencarian</ref> pada deret terurut.</p>
+Formal lawan empiris
+Artikel utama: <ref target="https://id.wikipedia.org/wiki/Algoritme_empiris">Algoritme empiris</ref>, <ref target="https://id.wikipedia.org/wiki/Profiling_(pemrograman_komputer)">Profiling (pemrograman komputer)</ref>, dan <ref target="https://id.wikipedia.org/wiki/Optimisasi_program">Optimisasi program</ref>
+<p><ref target="https://id.wikipedia.org/wiki/Analisis_algoritme">Analisis dan kajian algoritme</ref> adalah bidang dari ilmu komputer, dan biasanya dilakukan secara abstrak tanpa menggunakan <ref target="https://id.wikipedia.org/wiki/Bahasa_pemrograman">bahasa pemrograman</ref> tertentu atau implementasi.
+Dalam artian, analisis algoritme mirip dengan bidang matematika lainnya yang mana fokus pada properti yang mendasari algoritme dan bukan pada implementasi tertentu.
+Biasanya <ref target="https://id.wikipedia.org/wiki/Pseudokode">pseudokode</ref> digunakan pada analisis karena merupakan representasi paling umum dan sederhana.
+Namun, pada akhirnya, kebanyakan algoritme diimplementasikan di perangkat keras / lunak tertentu dan <ref target="https://id.wikipedia.org/wiki/Efisiensi_algoritmik">efisiensi algoritmik</ref> mereka akhirnya diuji menggunakan kode yang sebenarnya.
+Untuk solusi dari sebuah masalah, efisiensi dari algoritme tertentu mungkin tidak terlalu berpengaruh (kecuali n sangat besar) tetapi bagi algoritme yang dirancang untuk kecepatan interaktif, komersial, atau penggunaan ilmiah jangka panjang ia bisa saja kritikal.
+Meningkatkan n dari kecil ke n yang besar biasanya menunjukan ketak efisienan algoritme yang tidak berbahaya.</p>
+<p>Pengujian empiris berguna karena bisa membuka interaksi tak terduga yang mempengaruhi performa.
+<ref target="https://id.wikipedia.org/wiki/Benchmark_(komputasi)">Benchmark</ref> bisa digunakan untuk membandingkan potensi kenaikan sebelum/sesudah algoritme setelah optimisasi program dilakukan.</p>
+Efisiensi eksekusi
+Artikel utama: <ref target="https://id.wikipedia.org/wiki/Efisiensi_algoritmik">Efisiensi algoritmik</ref>
+<p>Untuk menggambarkan kemungkinan potensi peningkatan bahkan pada algoritme yang sudah teruji, inovasi terbaru, berkaitan dengan algoritme <ref target="https://id.wikipedia.org/wiki/Transformasi_Fourier_Cepat">FFT</ref> (banyak digunakan di bidang pemrosesan gambar), bisa menurunkan waktu pemrosesan dengan faktor sampai 1.000 untuk aplikasi seperti pencitraan medis.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-55">[55]</ref>
+Secara umum, peningkatan kecepatan bergantung pada properti khusus dari permasalahan, yang mana sangat umum pada aplikasi praktis.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-Hassanieh12-56">[56]</ref>
+Percepatan dengan tingkat seperti itu membolehkan perangkat komputasi yang sering menggunakan pemrosesan gambar (seperti kamera digital dan peralatan medis) menghabiskan daya yang lebih sedikit.</p>
+Klasifikasi
+<p>Salah satu cara mengklasifikasikan algoritme yaitu dengan cara implementasi.</p>
+Rekursi atau iterasi
+Sebuah <ref target="https://id.wikipedia.org/wiki/Algoritme_rekursi">algoritme rekursi</ref> yaitu algoritme yang memanggil dirinya sendiri berulang kali sampai kondisi tertentu tercapai, ini merupakan metode umum bagi <ref target="https://id.wikipedia.org/wiki/Pemrograman_fungsional">pemrograman fungsional</ref>. Algoritme <ref target="https://id.wikipedia.org/wiki/Iterasi">iteratif</ref> menggunakan konstruksi berulang seperti <ref target="https://id.wikipedia.org/wiki/Pengulangan_program">pengulangan</ref> dan terkadang struktur data tambahan seperti <ref target="https://id.wikipedia.org/wiki/Tumpukan_(struktur_data)">tumpukan</ref> untuk menyelesaikan permasalahan. Beberapa permasalahan secara alami cocok dengan satu implementasi atau lainnya. Sebagai contoh, <ref target="https://id.wikipedia.org/wiki/Menara_Hanoi">Menara Hanoi</ref> dikenal dengan implementasi rekursif. Setiap versi rekursif memiliki kesamaan (tapi bisa lebih atau kurang kompleks) dengan versi iteratif, dan sebaliknya.
+Logical
+Sebuah algoritme bisa dilihat sebagai <ref target="https://id.wikipedia.org/wiki/Penalaran_deduktif">logika deduksi</ref> terkontrol. Pernyataan ini diekspresikan sebagai: <hi rend="bold">Algoritme = logika + kontrol</hi>.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-57">[57]</ref> Komponen logika mengekspresikan aksioma yang bisa digunakan dalam komputasi dan komponen kontrol menentukan cara deduksi digunakan pada aksioma. Ini merupakan dasar dari paradigma <ref target="https://id.wikipedia.org/wiki/Pemrograman_logika">pemrograman logika</ref>. Dalam bahasa pemrograman logika murni komponen kontrol adalah tetap dan algoritme ditentukan dengan memberikan hanya komponen logikanya. Daya tarik dari pendekatan ini adalah <ref target="https://id.wikipedia.org/wiki/Semantik_formal_dari_bahasa_pemrograman">semantik</ref> elegan: sebuah perubahan dalam aksioma memiliki perubahan dalam algoritme.
+Serial, paralel atau terdistribusi
+Algoritme biasanya dibicarakan dengan asumsi bahwa komputer menjalankan satu instruksi algoritme setiap waktu. Komputer tersebut terkadang disebut dengan komputer serial. <ref target="https://id.wikipedia.org/wiki/Rancang_algoritme">Rancangan algoritme</ref> untuk lingkungan tersebut disebut dengan algoritme serial, terbalik dengan <ref target="https://id.wikipedia.org/wiki/Algoritme_paralel">algoritme paralel</ref> atau <ref target="https://id.wikipedia.org/wiki/Algoritme_terdistribusi">algoritme terdistribusi</ref>. Algoritme paralel memanfaatkan arsitektur komputer yang mana beberapa prosesor bisa mengerjakan masalah pada waktu yang sama, selain itu algoritme terdistribusi memanfaatkan banyak mesin yang terhubung dengan <ref target="https://id.wikipedia.org/wiki/Jaringan_komputer">jaringan</ref>. Algoritme paralel atau terdistribusi membagi permasalahan menjadi banyak sub-masalah simetris atau asimetris dan mengumpulkan hasilnya kembali. Konsumsi sumber pada algoritme tersebut tidak hanya perputaran prosesor disetiap prosesor tetapi juga daya komunikasi antara prosesor. Algoritme pengurutan bisa diparalelkan secara efisien, tetapi biaya komunikasinya sangat mahal. Algoritme iteratif secara umum bisa diparalelkan. Beberapa permasalahan tidak ada algoritme paralelnya, dan disebut dengan permasalahan serial lahiriah.
+Deterministik atau non-deterministik
+<ref target="https://id.wikipedia.org/wiki/Algoritme_deterministik">Algoritme deterministik</ref> menyelesaikan masalah dengan keputusan yang tepat disetiap langkah dari algoritme sedangkan <ref target="https://id.wikipedia.org/wiki/Algoritme_non-deterministik">algoritme non-deterministik</ref> menyelesaikan masalah lewat penerkaan walaupun penerkaan biasanya lebih akurat dengan menggunakan <ref target="https://id.wikipedia.org/wiki/Heuristik">heuristik</ref>.
+Tepat atau perkiraan
+Bila banyak algoritme sampai pada solusi yang tepat, <ref target="https://id.wikipedia.org/wiki/Algoritme_perkiraan">algoritme perkiraan</ref> mencari sebuah perkiraan yang terdekat dengan solusi benarnya. Perkiraan bisa menggunakan baik strategi deterministik atau acak. Algoritme seperti itu memiliki nilai guna untuk banyak permasalahan sulit.
+<ref target="https://id.wikipedia.org/wiki/Algoritme_quantum">Algoritme quantum</ref>
+Berjalan di model realistik dari <ref target="https://id.wikipedia.org/wiki/Komputasi_quantum">komputasi quantum</ref>. Istilah ini biasanya digunakan untuk algoritme yang tampak pada dasarnya quantum, atau menggunakan beberapa fitur penting komputasi quantum seperti <ref target="https://id.wikipedia.org/wiki/Superposisi_quantum">superposisi quantum</ref> atau <ref target="https://id.wikipedia.org/wiki/Belitan_quantum">belitan quantum</ref>.
+Paradigma secara rancangan
+<p>Cara lain mengklasifikasikan algoritme adalah dengan metodologi rancangannya atau paradigma.
+Ada sejumlah paradigma, tiap-tiapnya berbeda dari yang lain.
+Lebih lanjut, setiap kategori tersebut mengikutkan banyak tipe algoritme yang berbeda.
+Beberapa paradigma umum termasuk:</p>
+<ref target="https://id.wikipedia.org/wiki/Pencarian_paksa">Pencarian paksa</ref> atau pencarian mendalam
+Ini merupakan metode naif mencoba setiap kemungkinan solusi untuk melihat yang terbaik.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-58">[58]</ref>
+Membagi dan menaklukan (<hi rend="italic">Divide and conqueror</hi>)
+<ref target="https://id.wikipedia.org/wiki/Algoritme_bagi_dan_takluk">Algoritme bagi dan takluk</ref> secara berulang mereduksi instansi jumlah masalah menjadi satu atau lebih kecil instasi masalah yang sama (biasanya secara <ref target="https://id.wikipedia.org/wiki/Rekursif">rekursif</ref>) sampai instansi cukup kecil diselesaikan dengan mudah. Salah satu contoh bagi dan takluk adalah <ref target="https://id.wikipedia.org/wiki/Mergesort">pengurutan gabung</ref>. Pengurutan dapat dilakukan disetiap segmen data setelah membagi data menjadi segmen-segmen dan urutan seluruh data bisa didapat pada fase takluk dengan menggabungkan segmen-segmen. Variasi sederhana dari bagi-dan-takluk disebut <hi rend="bold">algoritme kurang dan takluk</hi>, yang menyelesaikan sub-masalah yang sama dan menggunakan solusi dari sub-masalah tersebut untuk menyelesaikan masalah yang lebih besar. Bagi dan takluk membagi permasalahan menjadi banyak sub-masalah dan sehingga tahap takluk lebih kompleks daripada algoritme kurang-dan-taklukan. Sebuah contoh dari algoritme kurang-dan-taklukan adalah <ref target="https://id.wikipedia.org/wiki/Algoritme_pencarian_binari">algoritme pencarian binari</ref>.
+Pencarian dan enumerasi
+Banyak masalah (seperti bermain <ref target="https://id.wikipedia.org/wiki/Catur">catur</ref>) bisa dimodelkan sebagai masalah dalam <ref target="https://id.wikipedia.org/wiki/Teori_grafik">grafik</ref>. Sebuah <ref target="https://id.wikipedia.org/wiki/Algoritme_eksplorasi_grafik">algoritme eksplorasi grafik</ref> menentukan aturan-aturan untuk bergerak disekitar grafik dan berguna bagi masalah tersebut. Kategori ini juga mengikutkan <ref target="https://id.wikipedia.org/wiki/Algoritme_pencarian">algoritme pencarian</ref>, enumerasi <ref target="https://id.wikipedia.org/wiki/Batas_dan_cabang">batas dan cabang</ref> dan <ref target="https://id.wikipedia.org/wiki/Backtracking">backtracking</ref>.
+<ref target="https://id.wikipedia.org/wiki/Algoritme_pengacakan">Algoritme pengacakan</ref>
+Algoritme ini membuat pilihan secara acak (atau pseudo-acak). Ia sangat berguna untuk menemukan solusi perkiraan untuk masalah dimana solusi yang pasti tidak praktis (lihat metode heuristik di bawah). Untuk beberapa masalah, diketahui bahwa perkiraan tercepat harus mengikutkan beberapa <ref target="https://id.wikipedia.org/wiki/Pengacakan">pengacakan</ref>.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-59">[59]</ref> Apakah algoritme pengacakan dengan <ref target="https://id.wikipedia.org/wiki/P_(kompleksitas)">kompleksitas waktu polinomial</ref> bisa menjadi algoritme tercepat untuk beberapa masalah masih menjadi pertanyaan terbukan yang dikenal sebagai <ref target="https://id.wikipedia.org/wiki/Masalah_P_versus_NP">Masalah P versus NP</ref>. Ada dua kelas besar dari algoritme ini:
+<list type="ordered"><item><ref target="https://id.wikipedia.org/wiki/Algoritme_Monte_Carlo">Algoritme Monte Carlo</ref> mengembalikan jawaban yang benar dengan probabilitas-tinggi. Misalnya, <ref target="https://id.wikipedia.org/wiki/RP_(kompleksitas)">RP</ref> adalah sub-klas dari algoritme ini yang berjalan dalam <ref target="https://id.wikipedia.org/wiki/Waktu_polinomial">waktu polinomial</ref>)</item>
+<item><ref target="https://id.wikipedia.org/wiki/Algoritme_Las_Vegas">Algoritme Las Vegas</ref> selalu mengembalikan jawaban yang benar, tetapi waktu prosesnya adalah hanya terikat secara probabilistik, misalnya <ref target="https://id.wikipedia.org/wiki/Waktu_Probabilistik_Polinomial_Galat-Nol">ZPP</ref>.</item></list>
+<ref target="https://id.wikipedia.org/wiki/Reduksi_(kompleksitas)">Reduksi</ref>
+Teknik ini menyelesaikan masalah sulit dengan mengubahnya menjadi permasalahan yang lebih diketahui yang mana kita (berharap) memiliki algoritme <ref target="https://id.wikipedia.org/wiki/Asimptotikal_optimal">asimptotikal optimal</ref>. Tujuannya yaitu untuk menemukan sebuah algoritme reduksi yang <ref target="https://id.wikipedia.org/wiki/Teori_kompleksitas_komputasi">kompleksitasnya</ref> tidak didominasi oleh algoritme hasil reduksi. Sebagai contoh, <ref target="https://id.wikipedia.org/wiki/Algoritme_seleksi">algoritme seleksi</ref> untuk menemukan rata-rata dalam daftar tak terurut mengikutkan mengurutkan daftar (bagian yang paling mahal) dan menarik elemen paling tengah dalam daftar terurut (bagian yang paling mudah). Teknik ini juga diketahui dengan <hi rend="italic">ubah dan taklukan</hi>.
+Permasalahan optimisasi
+Pemrograman Linear
+Saat mencari solusi optimal terhadap sebuah fungsi linear yang terikat persamaan linear dan ketidaksamaan konstrain, batasan dari permasalahan bisa digunakan secara langsung untuk menghasilkan solusi optimal. Ada algoritme yang dapat memecahkan setiap permasalahan dalam kategori ini, seperti <ref target="https://id.wikipedia.org/wiki/Algoritme_simpleks">algoritme simpleks</ref> yang terkenal.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-60">[60]</ref> Permasalahan yang dapat diselesaikan dengan pemrograman linear termasuk <ref target="https://id.wikipedia.org/wiki/Permasalahan_alur_maksimum">permasalahan alur maksimum</ref> untuk grafik terarah). Jika sebuah masalah sebagai tambahan membutuhkan satu atau lebih jawaban haruslah <ref target="https://id.wikipedia.org/wiki/Integer">integer</ref> maka ia diklasifikan dalam <ref target="https://id.wikipedia.org/wiki/Pemrograman_integer">pemrograman integer</ref>. Algoritme pemrograman linear dapat menyelesaikan masalah seperti itu jika dapat dibuktikan bahwa semua batasan untuk nilai integer adalah tidak benar, yaitu solusi memenuhi batasan tersebut. Pada kasus umum, algoritme yang dikhususkan atau algoritme yang menemukan solusi perkiraan digunakan, bergantung pada kesulitan dari permasalahan.
+<ref target="https://id.wikipedia.org/wiki/Pemrograman_dinamis">Pemrograman dinamis</ref>
+Bila sebuah masalah memperlihatkan <ref target="https://id.wikipedia.org/wiki/Substruktur_optimal">substruktur optimal</ref>, artinya solusi optimal terhadap sebuah masalah bisa direkonstruksi dari solusi optimal ke sub-masalah, dan <ref target="https://id.wikipedia.org/wiki/Submasalah_tumpang-tindih">submasalah tumpang-tindih</ref>, artinya sub-masalah yang sama digunakan untuk menyelesaikan banyak instasi masalah berbeda, pendekatan tercepat disebut <hi rend="italic">pemrograman dinamis</hi> menghindari penghitungan solusi yang telah dikomputasi. Sebagai contoh, <ref target="https://id.wikipedia.org/wiki/Algoritme_Floyd-Warshall">algoritme Floyd-Warshall</ref>, jalan terpendek ke tujuan dari sebuah vertex dalam <ref target="https://id.wikipedia.org/wiki/Grafik_(matematika)">grafik</ref> berbobot bisa ditemukan dengan menggunakan jalan terpendek ke tujuan dari semua simpul yang berdekatan. Pemrograman dinamis dan <ref target="https://id.wikipedia.org/wiki/Memoisasi">memoisasi</ref> berpadanan. Perbedaan utama antara pemrograman dinamis dan bagi-dan-taklukan adalah submasalah kurang lebih independen dalam bagi-dan-taklukan, sementara submasalah tumpang tindik dalam pemrograman dinamis. Perbedaaan antara pemrograman dinamis dan rekursi langsung adalah dalam 'caching' atau memoisasi dari pemanggialan rekursif. Saat submasalah independen dan tidak ada pengulangan, memoisasi tidak membantu sama sekali; makanya pemrograman dinamis bukalanh solusi untuk semua permasalahan kompleks. Dengan menggunakan memoisasi atau <ref target="https://id.wikipedia.org/wiki/Tabel_matematis">tabel</ref> dari submasalah yang telah diselesaikan, pemrograman dinamis mereduksi eksponensial dari banyak permasalahan menjadi kompleksitas polinomial.
+Metode rakus
+Sebuah <ref target="https://id.wikipedia.org/wiki/Algoritme_rakus">algoritme rakus</ref> mirip dengan <ref target="https://id.wikipedia.org/wiki/Pemrograman_dinamis">algoritme pemrograman dinamis</ref>, tetapi perbedaannya adalah solusi dari submasalah tidak harus diketahui pada setiap tahap; melainkan pilihan yang "rakus" bisa dibuat dengan melihat apa yang terbaik untuk saat tersebut. Metode rakus mengembangkan solusi dengan kemungkinan keputusan yang terbaik (bukan dengan keputusan yang ada) pada tahap algoritmis berdasarkan optimasi lokal yang ada sekarang dan keputusan yang terbaik (bukan semua kemungkinan keputusan) yang dibuat pada langkah sebelumnya. Algoritme ini tidak terlalu mendalam, dan tidak memberikan jawaban yang akurat terhadap banyak permasalahan. Tapi bila ia bekerja, ia menjadi metode yang paling cepat. Algoritme rakus paling terkenal adalah menemukan rentang pohon minimal seperti pada <ref target="https://id.wikipedia.org/wiki/Pengkodean_Huffman">Pohon Huffman</ref>, <ref target="https://id.wikipedia.org/wiki/Algoritme_Kruskal">Kruskal</ref>, <ref target="https://id.wikipedia.org/wiki/Algoritme_Prim">Prim</ref>, <ref target="https://id.wikipedia.org/wiki/Algoritme_Sollin">Sollin</ref>.
+Metode heuristik
+Dalam <ref target="https://id.wikipedia.org/wiki/Masalah_optimisasi">masalah optimisasi</ref>, <ref target="https://id.wikipedia.org/wiki/Algoritme_heuristik">algoritme heuristik</ref> bisa digunakan untuk menemukan suatu solusi yang terdekat dengan solusi optimal jika seandainya menemukan solusi optimal tidak praktis. Algoritme ini bekerja dengan mendekati sedikit demi sedikit ke solusi optimal saat ia berjalan. Secara prinsipnya, jika dijalankan tanpa batas waktu, ia akan menemukan solusi optimal. Kebaikan mereka adalah mereka dapat menemukan suatu solusi sangat dekat dengan solusi optimal dalam waktu yang relatif sangat pendek. Algoritme tersebut termasuk <ref target="https://id.wikipedia.org/wiki/Pencarian_lokal_(optimisasi)">pencarian lokal</ref>, <ref target="https://id.wikipedia.org/wiki/Pencarian_tabu">pencarian tabu</ref>, <ref target="https://id.wikipedia.org/wiki/Simulasi_pelunakan">simulasi pelunakan</ref>, dan <ref target="https://id.wikipedia.org/wiki/Algoritme_genetik">algoritme genetik</ref>. Beberapa dari mereka, seperti simuasi pelunakan, adalah algoritme non-deterministik sementara yang lainnya, seperti pencarian tabu, adalah deterministik. Saat batas dari galat dari solusi non-optimal diketahui, algoritme kemudia dikategorikan sebagai <ref target="https://id.wikipedia.org/wiki/Algoritme_pendekatan">algoritme pendekatan</ref>.
+Berdasarkan bidang kajian
+Lihat pula: <ref target="https://id.wikipedia.org/wiki/Daftar_algoritme">Daftar algoritme</ref>
+<p>Setiap bidang sains memiliki permasalahannya sendiri dan membutuhkan algoritme yang efisien. Masalah yang berkaitan di satu bidang terkadang dipelajari bersama. Beberapa contoh yaitu <ref target="https://id.wikipedia.org/wiki/Algoritme_pencarian">algoritme pencarian</ref>, <ref target="https://id.wikipedia.org/wiki/Algoritme_penggabungan">algoritme penggabungan</ref>, <ref target="https://id.wikipedia.org/wiki/Analisis_numerik">algoritme numerik</ref>, <ref target="https://id.wikipedia.org/wiki/Teori_grafik">algoritme grafik</ref>, <ref target="https://id.wikipedia.org/wiki/Algoritme_deret">algoritme deret</ref>, <ref target="https://id.wikipedia.org/wiki/Geometri_komputasi">algoritme komputasi geometri</ref>, <ref target="https://id.wikipedia.org/wiki/Kombinatorial">algoritme kombinatorial</ref>, <ref target="https://id.wikipedia.org/wiki/Algoritmas_medis">algoritmas medis</ref>, <ref target="https://id.wikipedia.org/wiki/Mesin_belajar">mesin belajar</ref>, <ref target="https://id.wikipedia.org/wiki/Kriptografi">kriptografi</ref>, algoritme <ref target="https://id.wikipedia.org/wiki/Kompresi_data">kompresi data</ref> dan <ref target="https://id.wikipedia.org/wiki/Penguraian">teknik penguraian</ref>.</p>
+<p>Terkadang bidang-bidang tersebut saling tumpang tindih, dan perkembangan algoritme di satu bidang bisa meningkatkan bidang lainnya yang terkadang tidak berkaitan. Sebagai contohnya, pemrograman dinamis ditemukan untuk optimisasi konsumsi sumber daya dalam industri, tetapi sekarang digunakan untuk menyelesaikan sejumlah besar permasalahan dalam banyak bidang.</p>
+Berdasarkan kompleksitas
+Lihat pula: <ref target="https://id.wikipedia.org/wiki/Kelas_kompleksitas">kelas kompleksitas</ref> dan <ref target="https://id.wikipedia.org/wiki/Kompleksitas_parameterisasi">Kompleksitas parameterisasi</ref>
+<p>Algoritme bisa diklasifikasikan berdasarkan jumlah waktu yang dibutuhkan untuk selesai dibandingkan dengan ukuran inputnya. Ada berbagai varietas: beberapa algoritme selesai dalam waktu linear relatif terhadap ukuran input, beberapa selesai dalam jumlah waktu yang eksponensial atau lebih buruh, dan beberapa berhenti. Sebagai tambahan, beberapa masalah bisa memiliki berbagai algoritme dengan kompleksitas yang berbeda, sementara permasalahan yang lain bisa saja tidak memiliki algoritme atau tidak diketahui algoritmanya yang efisien. Ada juga pemetaan dari beberapa algoritme terhadap permasalahan lain. Karena itu, lebih cocok untuk mengklasifikasikan permasalahan itu sendiri bukannya algoritme menjadi kelas-kelas yang sama berdasarkan kompleksitas dari kemungkinan algoritme terbaik baginya.</p>
+<p>Burgin (2005, p.24) menggunakan definisi algoritme secara umum yang melonggarkan kebutuhan bersama yang keluaran dari algoritme yang menjalankan sebuah fungsi harus ditentukan setelah sejumlah langkah. Dia mendefinisikan kelas super-rekursif dari algoritme sebagai "sebuah kelas algoritme yang mana memungkinkan untuk menghitung fungsi yang tidak bisa dihitung oleh mesin Turing manapun" (Burgin 2005, p.107). Hal ini berkaitan dekat dengan kajian dari metode <ref target="https://id.wikipedia.org/wiki/Hiperkomputasi">hiperkomputasi</ref>.</p>
+Berdasarkan tipe evaluatif
+Lihat pula: <ref target="https://id.wikipedia.org/wiki/Keragaman_evaluatif">Keragaman evaluatif</ref>
+<p>Untuk menjaga keseimbangan saat mengintegrasikan mesin ke dalam masyarakat, seseorang bisa mengklasifikasikan algoritme berdasarkan tipe dari evaluasi yang mereka lakukan.
+Sejumlah filsuf telah berhipotesis bahwa masyarakat diuntungkan dari keragaman evaluatif seperti mereka diuntungkan keragaman jender dan tipe darah (misalnya, Dean 2012, Sober &amp; Wilson 1998) Hertzke &amp; McConkey 1998, dan Bellah 1985).
+Teknologi dapat mengancam ekosistem moral tersebut seperi <ref target="https://id.wikipedia.org/wiki/Spesies_invasif">spesies invasif</ref> jika ia mengganggu campuran keragaman.
+Wallach &amp; Allen (2008) mengklasifikasikan algoritme pembuat-keputusan menjadi tiga tipe evaluatif: Algoritme bottom-up membuat penilaian tidak terprediksi bagi pemrogram (misalnya, perangkat lunak yang berevolusi).
+Yang lainnya (top-down) dibagi menjadi <ref target="https://id.wikipedia.org/wiki/Etika_deontologikal">deontologikal</ref> (yang dapat bergantung pada implementasi aturan pemrograman) lawan <ref target="https://id.wikipedia.org/wiki/Konsekuensialism">consequensialis</ref> (yang mengandalkan pada memaksimalkan perkiraan pemrograman).
+Sebagai contohnya, sebuah kalkulator standar termasuk deontologikal, sementara <ref target="https://id.wikipedia.org/wiki/Mesin_pembelajaran">mesin pembelajaran</ref> untuk perdagangan saham termasuk consequensialis.</p>
+<p>Santos-Lang mengganti nama deontologikal dan consequensialis menjadi kelas "institusional" dan "negosiator" dengan tujuan untuk menghindari implikasi bahwa semua teori-teori etika deontologikal dan consequensialis bisa diimplementasikan sebagai algoritme, dan membagi kelas bottom-up menjadi "<ref target="https://id.wikipedia.org/wiki/Etika_pengganggu">pengganggu</ref>" (algoritme yang tidak terprediksi karena menggunakan generator pengacakan) lawan "<ref target="https://id.wikipedia.org/wiki/Etika_peran">relasional</ref>" (algoritme yang tidak terprediksi karena efek jaringan).
+Seorang mutator dalam <ref target="https://id.wikipedia.org/wiki/Komputasi_evolusioner">komputasi evolusioner</ref> bisa menjadi contoh dari pengganggu, sementara kelas 3 atau 4 dari <ref target="https://id.wikipedia.org/wiki/Otomata_sellular">otomata sellular</ref> adalah contoh dari mesin relasional.
+Santos-Lang mencatat bahwa algoritme terkadang memiliki subkomponen dari tipe lainnya.
+Sebagai contohnya, negosiator perdagangan saham bisa mengimplementasikan sebuah algoritme genetik, dan memiliki mutator pengganggu, dan mutator bisa memiliki subkomponen institusional dan relasional, semua komputasi adalah relasional pada tingkat di jajaran kimiawi (Santos-Lang 2014).</p>
+Algoritme berkelanjutan
+<p>Kata sifat "berkelanjutan" bila diterapkan pada kata "algoritme" bisa berarti:</p>
+<list type="unordered"><item>Sebuah algoritme beroperasi pada data yang merepresentasikan kuantitas yang berkelanjutan, walaupun data tersebut direpresentasikan oleh pendekatan diskrit—seperti algoritme yang dipelajari dalam <ref target="https://id.wikipedia.org/wiki/Analisis_numerik">analisis numerik</ref>; atau</item>
+<item>Sebuah algoritme dalam bentuk dari <ref target="https://id.wikipedia.org/wiki/Persamaan_diferensial">persamaan diferensial</ref> yang beroperasi secara berkelanjutan terhadap data, berjalan dalam sebuah <ref target="https://id.wikipedia.org/wiki/Komputer_analog">komputer analog</ref>.</item></list>
+<p><ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-61">[61]</ref></p>
+Isu legalitas
+<hi rend="italic">Lihat pula: <ref target="https://id.wikipedia.org/wiki/Paten_perangkat_lunak">Paten perangkat lunak</ref> untuk pendahuluan umum dari paten pada perangkat lunak, termasuk algoritme untuk diimplementasikan pada komputer.</hi>
+<p>Algoritme biasanya tidak dipatenkan. Di Amerika Serikat, sebuah klaim yang terdiri hanya dari manipulasi sederhana dari konsep abstrak, angka, atau sinyal tidak berarti suatu "process" (SPTO 2006), dan oleh karena itu algoritme tidak bisa dipatenkan (sebagaimana dalam <ref target="https://id.wikipedia.org/wiki/Gottschalk_v._Benson">Gottschalk v. Benson</ref>).
+Namun, penerapan praktis dari algoritme terkadang dipatenkan.
+Sebagai contohnya, dalam <ref target="https://id.wikipedia.org/wiki/Diamond_v._Diehr">Diamond v. Diehr</ref>, aplikasi dari algoritme <ref target="https://id.wikipedia.org/wiki/Umpan-balik">umpan-balik</ref> sederhana untuk membantu dalam menyembuhkan <ref target="https://id.wikipedia.org/wiki/Karet_sintetis">karet sintetis</ref> dianggap dapat dipatenkan.
+<ref target="https://id.wikipedia.org/wiki/Debat_paten_perangkat_lunak">Mematenkan perangkat lunak</ref> sangat kontroversial, dan ada paten yang mengikutkan algoritme yang sangat dikritisi, terutama algoritme <ref target="https://id.wikipedia.org/wiki/Kompresi_data">kompresi data</ref>, seperti <ref target="https://id.wikipedia.org/wiki/Graphics_Interchange_Format">Format Grafiknya</ref> <ref target="https://id.wikipedia.org/wiki/Unisys">Unisys</ref>.</p>
+<p>Sebagai tambahan, beberapa algoritme kriptografi memiliki batasan ekspor (lihat <ref target="https://id.wikipedia.org/wiki/Ekspor_dari_kriptografi">ekspor dari kriptografi</ref>).</p>
+Etimologi
+<p>Kata <hi rend="italic">"Algoritme"</hi>, atau <hi rend="italic">"<ref target="https://id.wikipedia.org/wiki/Algorisma">Algorisma</ref>"</hi> pada versi penulisan lain, datang dari nama <ref target="https://id.wikipedia.org/wiki/Al-Khwarizmi">al-Khwarizmi</ref>. dieja dalam Arab klasik sebagai Al-Khwarithmi. Al-khwarizmi (<ref target="https://id.wikipedia.org/wiki/Bahasa_Persia">bahasa Persia</ref>:<hi rend="italic">خوارزمي</hi>, 780-850) adalah <ref target="https://id.wikipedia.org/wiki/Matematikawan">matematikawan</ref>, <ref target="https://id.wikipedia.org/wiki/Ahli_astronomi">ahli astronomi</ref>, <ref target="https://id.wikipedia.org/wiki/Ahli_geografi">ahli geografi</ref> dari <ref target="https://id.wikipedia.org/wiki/Orang_Persia">Persia</ref> dan sarjana <ref target="https://id.wikipedia.org/wiki/House_of_Wisdom">House of Wisdom</ref> di <ref target="https://id.wikipedia.org/wiki/Baghdad">Baghdad</ref>, yang arti namanya <hi rend="italic">"penduduk asli <ref target="https://id.wikipedia.org/wiki/Khwarezm">Khwarezm</ref>"</hi>, sebuah kota yang merupakan bagian dari <ref target="https://id.wikipedia.org/wiki/Wilayah_Iran">Wilayah Iran</ref> pada masanya dan sekarang <ref target="https://id.wikipedia.org/wiki/Uzbekistan">Uzbekistan</ref>.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-Hogendijk-12">[12]</ref>
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-Oaks-13">[13]</ref>
+Sekitar tahun 825, dia menulis risalah dalam bahasa Arab, yang diterjemahkan dalam <ref target="https://id.wikipedia.org/wiki/Latin">Latin</ref> pada abad ke-12 dengan judul <hi rend="italic">Algoritmi de numero Indorum</hi>.
+Judul ini artinya "Algoritmi pada bilangan India", di mana "Algoritmi" adalah pelatinan penerjemah dari nama Al-Khwarizmi.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-62">[62]</ref>
+Al-Khwarizmi dulunya adalah matematikawan yang paling banyak dibaca di Eropa pada akhir Abad Pertengahan, pada umum lewat bukunya yang lain, <ref target="https://id.wikipedia.org/wiki/Al-Jabr">Aljabar</ref>.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-63">[63]</ref>
+Pada akhir abad pertengahan, <hi rend="italic">algorismus</hi>, perubahan dari namanya, berarti "sistem bilangan desimal" yang masih merupakan arti dari kata Inggris modern <ref target="https://id.wikipedia.org/wiki/Algorism">algorism</ref>.
+Pada abad ke-17 Prancis kata tersebut berubah, tetapi tidak maknanya, menjadi <hi rend="italic">algorithme</hi>.
+Inggris mengadopsi Prancis setelahnya, tetapi tidak pada akhir abad ke-19 lah "Algorithm" mengambil makna dari kata Inggris masa sekarang.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-64">[64]</ref></p>
+<p>Etimologi alternatif mengklaim asal mulanya dari istilah <hi rend="italic">algebra</hi> (aljabar) dari makna abad pertengahan "aritmetika Arab" dan <hi rend="italic">arithmos</hi> istilah Yunani untuk angka (yang secara harfiah berarti "bilangan Arab" atau "perhitungan Arab").
+Karya algoritme Al-Kharizmi bukan berbentuk seperti pada masa modern sekarang tetapi sebagai tipe dari pengulangan kalkulus (disini disebutkan bahwa karya fundamentalnya yang dikenal sebagai <ref target="https://id.wikipedia.org/wiki/Algebra">algebra</ref> pada awalnya berjudul "<ref target="https://id.wikipedia.org/wiki/Buku_Ringkasan_tentang_Kalkulasi_dengan_Penyempurnaan_dan_Pengimbangan">Buku Ringkasan tentang Kalkulasi dengan Penyempurnaan dan Pengimbangan</ref>" menjelaskan tipe-tipe dari pengulangan perhitungan dan <ref target="https://id.wikipedia.org/wiki/Persamaan_kuadrat">persamaan kuadrat</ref>).
+Dalam makna tersebut, algoritima dikenal di Eropa jauh sebelum Al-Kharizmi.
+Algoritme paling tua yang dikenal sekarang adalah <ref target="https://id.wikipedia.org/wiki/Algoritme_Euklid">Algoritme Euklid</ref> (lihat juga <ref target="https://id.wikipedia.org/wiki/Pengembangan_algoritme_Euklid">Pengembangan algoritme Euklid</ref>).
+Sebelum ditemukan istilah <hi rend="italic">algorithm</hi> orang Yunani menyebutnya <hi rend="italic">anthyphairesis</hi> secara harfiah berarti anti-substraksi atau substraksi timbal-balik (untuk bacaan lebih lanjut <ref target="https://id.wikipedia.org/wiki/David_Fowler_(matematikawan)">disini</ref> dan <ref target="http://livetoad.org/Courses/Documents/bb63/Notes/continued_fractions.pdf">ini</ref> <ref target="https://web.archive.org/web/20131103100608/http://livetoad.org/Courses/Documents/bb63/Notes/continued_fractions.pdf">Diarsipkan</ref> 2013-11-03 di <ref target="https://id.wikipedia.org/wiki/Wayback_Machine">Wayback Machine</ref>..
+Algoritme dikenal oleh orang Yunani berabad sebelum
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-65">[65]</ref>
+Euclid.
+Bukannya kata <hi rend="italic">algebra</hi> orang Yunani menggunakan istilah <hi rend="italic">arithmetica</hi>(ἀριθμητική, yaitu dalam karya <ref target="https://id.wikipedia.org/wiki/Diophantus">Diophantus</ref> yang dikenal "<ref target="https://id.wikipedia.org/wiki/Arithmetica">bapak dari Aljabar</ref>" - lihat juga artikel Wikipedia <ref target="https://id.wikipedia.org/wiki/Persamaan_Diophantine">persamaan Diophantine</ref> dan <ref target="https://id.wikipedia.org/wiki/Eudoxus_dari_Cnidus">Eudoxos</ref>).</p>
+Sejarah: Perkembangan dari kata "algoritme"
+Asal mula
+<p>Kata algoritme datang dari nama matematikawan Persia abad ke-9 <ref target="https://id.wikipedia.org/wiki/Al-Khwarizmi">Abu Abdullah Muhammad ibnu Musa Al-Khwarizmi</ref>, yang hasil kerjanya dibangun dari matematikawan India abad ke-7 <ref target="https://id.wikipedia.org/wiki/Brahmagupta">Brahmagupta</ref>.
+Kata algorisma awalnya mengacu hanya pada aturan-aturan dalam melakukan aritmetika menggunakan bilangan Hindu-Arab namun berkembang lewat penerjemahan Latin Eropa dari nama Al-Khwarizmi menjadi algoritme pada abad ke-18.
+Penggunaan kata tersebut berkembang mengikutkan semua prosedur untuk menyelesaikan masalah atau melakukan unit kegiatan.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-66">[66]</ref></p>
+Simbol diskrit dan yang dapat dibedakan
+<p><hi rend="bold">Penanda-penghitung</hi>: Untuk mencatat hewan gembalaan, kumpulan biji dan uang mereka orang dahulu menggunakan penghitung: akumulasi batu atau tanda yang ditoreh pada tongkat, atau membuat simbol diskrit di kerang.
+Sampai orang Babilonia dan Mesir menggunakan tanda dan simbol, pada akhirnya <ref target="https://id.wikipedia.org/wiki/Bilangan_Roma">bilangan Roma</ref> dan <ref target="https://id.wikipedia.org/wiki/Abakus">abakus</ref> berkembang (Dilson, p.16-41).
+Penanda penghitung muncul dalam <ref target="https://id.wikipedia.org/wiki/Sistem_bilangan_operan">sistem bilangan operan</ref> aritmetika digunakan dalam <ref target="https://id.wikipedia.org/wiki/Mesin_Turing">mesin Turing</ref> dan komputasi <ref target="https://id.wikipedia.org/wiki/Mesin_Post-Turing">mesin Post-Turing</ref>.</p>
+Manipulasi simbol sebagai "penampung" bilangan: aljabar
+<p>Karya dari <ref target="https://id.wikipedia.org/wiki/Matematika_Yunani">Geometer Yunani</ref> kuno (<ref target="https://id.wikipedia.org/wiki/Algoritme_Euklid">algoritme Euklid</ref>), <ref target="https://id.wikipedia.org/wiki/Daftar_matematikawan_India">matematikawan India</ref> <ref target="https://id.wikipedia.org/wiki/Brahmagupta">Brahmagupta</ref>, dan <ref target="https://id.wikipedia.org/wiki/Matematika_Islam">matematikawan Persia</ref> <ref target="https://id.wikipedia.org/wiki/Muhammad_ibnu_Musa_al-Khwarizmi">Al-Khwarizmi</ref> (yang darinya isitlah "<ref target="https://id.wikipedia.org/wiki/Algorism">algorism</ref>" dan "algoritme" diturunkan), dan matematikawan Eropa Barat memuncak dalam notasi <ref target="https://id.wikipedia.org/wiki/Gottfried_Leibniz">Leibniz</ref> dari <ref target="https://id.wikipedia.org/wiki/Rasiosinator_kalkulus">rasiosinator kalkulus</ref> (sekitar 1680-an):</p>
+<p>Abad yang baik dan setengah lebih maju dari masanya, Leibniz mengajukan logika aljabar, sebuah aljabar yang akan menentukan aturan-aturan untuk memanipulasi konsep logika dengan cara yang aljabar biasa menentukan aturan untuk manipulasi angka.<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-67">[67]</ref></p>
+Rancangan mekanis dengan tingkat diskrit
+<p><hi rend="italic">Jam</hi>: Bolter memuji penemuan <ref target="https://id.wikipedia.org/wiki/Jam">jam</ref> gaya-berat sebagai "Kunci penemuan <ref target="https://id.wikipedia.org/wiki/Dari_Eropa_pada_Abad_Pertengahan">dari Eropa pada Abad Pertengahan</ref>", khususnya pada <ref target="https://id.wikipedia.org/wiki/Ambang_pelarian">ambang pelarian</ref>
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-68">[68]</ref>
+yang menyediakan kita dengan tik dan tak dari jam mekanis.
+"Mesin otomatis yang akurat"
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-69">[69]</ref>
+mengarah langsung pada "<ref target="https://id.wikipedia.org/wiki/Teori_otomata">otomata</ref> mekanis" dimulai pada abad ke-13 dan terakhir pada "mesin komputasi" -- <ref target="https://id.wikipedia.org/wiki/Motor_berbeda">motor berbeda</ref> dan <ref target="https://id.wikipedia.org/wiki/Motor_analitik">motor analitik</ref> dari <ref target="https://id.wikipedia.org/wiki/Charles_Babbage">Charles Babbage</ref> dan bangsawan <ref target="https://id.wikipedia.org/wiki/Ada_Lovelace">Ada Lovelace</ref>, pertengahan abad ke-19.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-70">[70]</ref>
+Lovelace dikreditkan sebagai yang pertama menciptakan algoritme yang ditujukan untuk diproses di komputer—motor analitis Babbage, perangkat pertama yang dianggap <ref target="https://id.wikipedia.org/wiki/Komputer">komputer</ref> <ref target="https://id.wikipedia.org/wiki/Turing-sempurna">Turing-sempurna</ref> sebenarnya bukan hanya sebuah <ref target="https://id.wikipedia.org/wiki/Kalkulator">kalkulator</ref>—dan terkadang dikenal "programmer pertama dalam sejarah", walaupun implementasi penuh dari perangkat Babbage kedua tidak terealisasi sampai beberapa dekade setelah masanya.</p>
+<p><hi rend="italic">Mesin logika 1870 - <ref target="https://id.wikipedia.org/wiki/Stanley_Jevons">Stanley Jevons</ref> "sempoa logika" dan "mesin logika"</hi>: Masalah teknisnya adalah untuk mereduksi <ref target="https://id.wikipedia.org/wiki/Persamaan_boolean">persamaan boolean</ref> bila ditampilkan dalam sebuah bentuk yang pada masa sekarang dikenal sebagai <ref target="https://id.wikipedia.org/wiki/Pemetaan_Karnaugh">pemetaan Karnaugh</ref>.
+Jevons (1880) pertama menjelaskan "sempoa" sederhana dari "potongan kayu dilengkapi dengan penyemat, dibuat supaya bagian atau kelas kombinasi <ref target="https://id.wikipedia.org/wiki/Logika">logika</ref> manapun dapat dipilih secara mekanis ... Baru-baru ini Saya telah mereduksi sistem menjadi bentuk yang secara sempurna mekanis, dan membuatnya mewujudkan keseluruhan proses inferensi tak langsung dalam apa yang disebut sebuah <hi rend="italic">Mesin Logika</hi>"
+Mesinnya dilengkapi dengan "beberapa tangkai kayu yang bisa dipindahkan" dan "di bawah ada 21 kunci seperti pada piano [dll] ...".
+Dengan mesin ini dia dapat menganalis sebuah "<ref target="https://id.wikipedia.org/wiki/Silogisme">silogisme</ref> atau argumen logika sederhana apapun".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-71">[71]</ref></p>
+<p><hi rend="italic">Mesin tenun Jacquard, kartu berlobangnya Hollerith, telegraf dan telepon -- penyiaran elektromekanis</hi>: Bell dan Newell (1971) mengindikasikan bahwa <ref target="https://id.wikipedia.org/wiki/Mesin_tenun_Jacquard">mesin tenun Jacquard</ref> (1801), pelopor dari <ref target="https://id.wikipedia.org/wiki/Kartu_Hollerith">kartu Hollerith</ref> (kartu berlobang, 1887), dan "teknologi alih telepon" adalah akar dari sebuah pohon yang mengarah pada perkembangan dari komputer pertama.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-72">[72]</ref>
+Pada pertengahan abad ke-19 <ref target="https://id.wikipedia.org/wiki/Telegraf">telegraf</ref>, pelopor dari telepon, digunakan diseluruh dunia, pengkodean diskrit dan pembedaan huruf sebagai "titik dan strip".
+Pada akhir abad ke-19 <ref target="https://id.wikipedia.org/wiki/Pita_telegraf">pita telegraf</ref> (sekitar 1870-an) digunakan, sebagaimana juga kartu Hollerith pada sensus Amerika 1890.
+Kemudian muncullah <ref target="https://id.wikipedia.org/wiki/Teleprinter">teleprinter</ref> (sekitar 1910-an) dengan kerta-berlobang menggunakan <ref target="https://id.wikipedia.org/wiki/Kode_Baudot">kode Baudot</ref> di pita.</p>
+<p><hi rend="italic">Jaringan alih-telepon</hi> dari <ref target="https://id.wikipedia.org/wiki/Penyiaran">penyiaran</ref> elektromekanis (ditemukan 1835) adalah karya dair <ref target="https://id.wikipedia.org/wiki/George_Stibitz">George Stibitz</ref> (1937), penemu dari perangkat penghitungan digital.
+Saat bekerja di laboratorium Bell, dia mengamati "beratnya" penggunaan kalkulator mekanis dengan geligi.
+"Dia pulang ke rumah pada suatu malam 1937 berniat untuk menguji idenya ... Saat mengatik selesai, Stibitz telah membangun perangkat hitung digital".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-73">[73]</ref></p>
+<p>Davis (2000) mengamati pentingnya penyiaran elektromekanis (dengan "keadaan binari"-nya <hi rend="italic">buka</hi> dan <hi rend="italic">tutup</hi>):</p>
+Hanya dengan perkembangan, dimulai sejak 1930-an, dari kalkulator elektromekanis menggunakan penggantian elektris, sehingga mesin yang dibuat memiliki ruang lingkup yang dibayangkan Babbage."<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-74">[74]</ref>
+Matematika selama abad 19 sampai pertengahan abad 20
+<p><hi rend="italic">Simbol dan aturan</hi>: Dengan cepat berkembangnya matematika dari <ref target="https://id.wikipedia.org/wiki/George_Boole">George Boole</ref> (1847, 1854), <ref target="https://id.wikipedia.org/wiki/Gottlob_Frege">Gottlob Frege</ref> (1897), dan <ref target="https://id.wikipedia.org/wiki/Giuseppe_Peano">Giuseppe Peano</ref> (1888-1889) mereduksi aritmetika menjadi serangkaian simbol dimanipulasi oleh aturan-aturan. <hi rend="italic">The Principles of arithmetic, presented by a new method</hi>-nya Peano (1888) adalah "usaha pertama mengaksiomakan matematika dalam sebuah bahasa simbolik".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-75">[75]</ref></p>
+<p>Tapi Heijenoort memberi pujian pada Frege (1879): Frege "merupakan karya tulis paling penting mengenai logika. ... yang mana kita lihat sebuah "'bahasa formula', yaitu sebuah <hi rend="italic">lingua characterica</hi>, sebuah bahasa ditulis dengan simbol-simbol khusus, "untuk berpikir murni", yaiut, bebas dari hiasan retorikal ... dibangun dari simbol-simbol tertentu yang dimanipulasi menurut aturan-aturan terbatas".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-76">[76]</ref>
+Karya dari Frege lebih lanjut disederhanakan dan diperkuat oleh <ref target="https://id.wikipedia.org/wiki/Alfred_North_Whitehead">Alfred North Whitehead</ref> dan <ref target="https://id.wikipedia.org/wiki/Bertrand_Russell">Bertrand Russell</ref> dalam <ref target="https://id.wikipedia.org/wiki/Principia_Mathematical">Principia Mathematical</ref> (1910-1913).</p>
+<p><hi rend="italic">Paradoks</hi>: Pada masa yang sama sejumlah paradoks yang mengganggu muncul dalam literatur, pada khususnya <ref target="https://id.wikipedia.org/wiki/Paradoks_Burali-Forti">paradoks Burali-Forti</ref> (1987), <ref target="https://id.wikipedia.org/wiki/Paradoks_Russell">paradoks Russell</ref> (1902-03), dan <ref target="https://id.wikipedia.org/wiki/Paradoks_Richard">Paradoks Richard</ref>.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-77">[77]</ref>
+Hasilnya mengarah ke makalah <ref target="https://id.wikipedia.org/wiki/Kurt_Godel">Kurt Godel</ref> (1931) -- dia secara khusus merujuk paradoks pembohong—yang mereduksi aturan dari <ref target="https://id.wikipedia.org/wiki/Rekursi">rekursi</ref> pada angka.</p>
+<p><hi rend="italic">Penghitungan Efektif</hi>: Dalam usaha untuk menyelesaikan <ref target="https://id.wikipedia.org/wiki/Permasalahan_keputusan">permasalahan keputusan</ref> yang didefinisikan oleh Hilbert tahun 1928, matematikawan pertama mendefinisikan apa arti dari "metode efektif" atau "kalkulasi efektif" (misalnya, sebuah kalkulasi yang akan sukses).
+Dalam waktu yang cepat hal berikut muncul: <ref target="https://id.wikipedia.org/wiki/Kalkulus-λ">kalkulus-λ</ref> oleh <ref target="https://id.wikipedia.org/wiki/Alonzo_Church">Alonzo Church</ref>, <ref target="https://id.wikipedia.org/wiki/Stephen_Kleene">Stephen Kleene</ref>, dan <ref target="https://id.wikipedia.org/wiki/J.B._Rosser">J.B. Rosser</ref>
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-78">[78]</ref>
+definisi dari "rekursi umum" yang benar-benar diasah dari karya Godel berdasarkan saran dari <ref target="https://id.wikipedia.org/wiki/Jacquard_Herbrand">Jacquard Herbrand</ref> (cf. kuliah Godel di Princeton tahun 1934) dan penyederhaan selanjutnya oleh Kleene.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-79">[79]</ref>
+Church membuktikan
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-80">[80]</ref>
+bahwa permasalahan keputusan tidak terpecahkan, definisi <ref target="https://id.wikipedia.org/wiki/Emil_Post">Emil Post</ref> tentang penghitungan efektif yaitu sebagai pekerja yang tanpa berpikir mengikuti suatu daftar instruksi untuk bergerak ke kiri atau kanan lewat sederetan ruangan dan bersamaan dengan itu bisa menandai atau menghapus kertas atau mengamati kertas dan membuat pilihan ya-tidak tentang instruksi selanjutnya.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-81">[81]</ref>
+Pembuktian Alan Turing bahwa permasalahan keputusan tidak terpecahkan dengan menggunakan "sebuah mesin [otomatis]"-nya
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-82">[82]</ref>
+dengan efek yang mirip dengan "formulasi"-nya Post, definisi <ref target="https://id.wikipedia.org/wiki/J._Barkley_Rosser">J. Barkley Rosser</ref> tentang "metode efektif" dalam makna "sebuah mesin".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-83">[83]</ref>
+Proposal <ref target="https://id.wikipedia.org/wiki/S._C._Kleene">S. C. Kleene</ref> dari pelopor "<ref target="https://id.wikipedia.org/wiki/Tesis_Church">Tesis Church</ref>" yang disebutnya "Thesis I",
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-84">[84]</ref>
+dan beberapa tahun kemudian Kleene menamakan tesisnya "Tesis Church"
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-85">[85]</ref>
+dan mengajukan "Tesis Turing".
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-86">[86]</ref></p>
+Emil Post (1936) dan Alan Turing (1936-37, 1939)
+<p>Berikut adalah kebetulan yang luar biasa dari dua orang yang tidak saling mengenal tetapi mendeskripsikan sebuah proses orang-sebagai-komputer mengerjakan perhitungan—dan mereka menghasilkan definisi yang mirip.</p>
+<p><ref target="https://id.wikipedia.org/wiki/Emil_Post">Emil Post</ref> (1936) mendeskripsikan aksi dari sebuah "komputer" (manusia) sebagai berikut:</p>
+"... dua konsep ikut serta: yaitu sebuah <hi rend="italic">simbol ruang</hi> dimana pekerjaan yang mengarah dari masalah ke jawaban dilakukan, dan <hi rend="italic">sekumpulan arahan</hi> yang baku dan tidak bisa diubah.
+<p>Simbol ruangnya yaitu</p>
+"sederetan dua arah tak terbatas dari ruang atau kotak... penyelesai masalah atau pekerja harus berjalan dan bekerja di simbol ruang ini, dengan bisanya [si pekerja] masuk, dan beroperasi dengan satu kotak dalam satu waktu... sebuah kotak memiliki dua kemungkinan kondisi, yaitu, kosong atau belum ditandai, dan dengan adanya tanda tunggal disana, katakanlah garis vertikal.
+"Satu kotak dibiarkan dan disebut sebagai titik awal. ...sebuah masalah tertentu diberikan dalam bentuk simbolik dengan sejumlah kotak terbatas [yaitu, INPUT] ditandai dengan coretan. Begitu juga jawabannya [yaitu, OUTPUT] diberikan dalam bentuk simbolik dari suatu konfigurasi dari kotak-kotak yang ditandai....
+"Sekumpulan arahan bisa digunakan untuk permasalahan umum menentukan proses determistik saat diterapkan pada setiap masalah tertentu. Proses ini hanya berhenti bila datang arahan dengan tipe (C ) [yaitu, STOP]".<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-87">[87]</ref> Lihat lebih lanjut pada <ref target="https://id.wikipedia.org/wiki/Mesin_post-Turing">mesin post-Turing</ref> <figure><caption>Patung Alan Turing di <ref target="https://id.wikipedia.org/wiki/Taman_Bletchley">Taman Bletchley</ref>.</caption></figure> Karya <ref target="https://id.wikipedia.org/wiki/Alan_Turing">Alan Turing</ref><ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-88">[88]</ref> mendahului karya dari Stibitz (1937); tidak diketahui apakah Stibitz mengetahui karya Turing. Biografinya Turing percaya bahwa Turing menggunakan model seperti-mesin-ketik diturunkan dari ketertarikannya pada masa muda: "Alan memiliki impian menemukan mesin ketik pada saat muda; Ibu Turing memiliki sebuah mesin ketik; dan dia mungkin memulainya dengan menanyakan pada dirinya sendiri apa maksudnya dengan menyebut sebuah mesin ketik dengan 'mekanikal'".<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-89">[89]</ref> Dengan lazimnya kode Morse dan telegraf, mesin pita telegraf, dan mesin-ketik jarak jauh pada waktu itu kita bisa menyimpulkan bahwa semua itu memberikan pengaruh.
+<p>Turing—model dari komputasinya sekarang dikenal dengan <ref target="https://id.wikipedia.org/wiki/Mesin_Turing">mesin Turing</ref>—memulai, sebagaimana Post, dengan analisis dari komputer manusia yang ia sederhanakan menjadi sekumpulan gerakan dasar sederhana dan "keadaan pikiran".
+Tapi dia terus maju selangkah ke depan dan membuat sebuah mesin sebagai model dari komputasi angka.
+<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-90">[90]</ref></p>
+"Menghitung biasanya dilakukan dengan menulis simbol tertentu di atas kertas. Misalkan kertas tersebut dibagi menjadi segi empat seperti buku aritmetika anak-anak.... Saya asumsikan bahwa komputasi dilakukan pada kertas satu dimensi, yaitu, di pita yang dibagi dalam persegi. Juga misalkan bahwa jumlah simbol yang akan dicetak terbatas....
+"Perilaku dari komputer disetiap waktu ditentukan oleh simbol yang diobservasinya, dan "keadaan pikiran"-nya pada waktu tersebut. Juga bisa diasumsikan bahwa ada batas B sebagai jumlah simbol atau persegi yang mana komputer dapat amati dalam satu waktu. Jika ia ingin mengamati lebih, ia harus menggunakan pengamatan beriringan. Kita juga memisalkan bahwa jumlah keadaan pikiran yang diperlukan disini adalah terbatas...
+"Mari kita bayangkan bahwa operasi yang dilakukan oleh komputer akan dipecah menjadi 'operasi-operasi sederhana' yang sangat mendasar sehingga tidak mudah membayangkannya untuk dibagi lebih jauh."<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-Turing_1936-7_in_Davis_1965:136-91">[91]</ref>
+<p>Reduksi Turing menghasilkan hal berikut:</p>
+"Operasi sederhana haruslah mengikutkan:
+"(a) Perubahan dari simbol pada salah satu persegi yang sedang diamati
+"(b) Perubahan dari salah satu persegi diamati terhadap persegi lainnya di antara L persegi dari salah satu yang sebelumnya diamati.
+<p>"Bisa saja beberapa dari perubahan tersebut menyebabkan perubahan keadaan pikiran. Operasi tunggal paling umum oleh karena itu harus diambil jadi salah satu hal berikut:</p>
+"(A) Suatu kemungkinan perubahan (a) dari simbol bersamaan dengan suatu perubahan dari keadaan pikiran.
+"(B) Suatu kemungknian perubahan (b) dari persegi yang diamati, bersama dengan kemungkinan perubahan dari keadaan pikiran"
+"Kita sekarang mungkin sudah bisa membentuk sebuah mesin untuk melakukan pekerjaan dari komputer tersebut."<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-Turing_1936-7_in_Davis_1965:136-91">[91]</ref>
+<p>Beberapa tahun kemudian, Turing mengembangkan analisisnya (tesis, secara definisi) dengan ekspresi kuat berikut:</p>
+"Sebuah fungsi dikatakan "bisa dihitung secara efektif" jika nilainya bisa ditemukan dengan proses yang murni mekanis.
+<p>Walau sangat mudah menangkap ide ini, namun ia membutuhkan beberapa definisi matematikan terbatas yang bisa diekspresikan . . . [dia mendiskusikan sejarah dari definisi seperti di atas dengan menghormati Godel, Herbrand, Kleen, Church, Turing dan Post] ... Kita mungkin gunakan pernyataan tersebut secara harfiah, memahami murni dengan proses mekanis yang mana dapat dilakukan oleh sebuah mesin. Memungkinkan untuk memberikan deskripsi matematis, dalam beberapa bentuk normal, dari struktur mesin tersebut. Perkembangan dari ide ini mengarah pada definisi penulis dari sebuah fungsi yang dapat dihitung, dan untuk mengidentifikasi komputibilitas † dengan penghitungan yang efektif . . . .</p>
+"† Kita boleh menggunakan ekspresi "fungsi hitung" untuk mengartikan sebuah fungsi yang dapat dihitung oleh sebuah mesin, dan kita biarkan "secara efektif dapat dihitung" mengacu pada ide intuitif tanpa definisi tertentu dengan salah satu dari definisi tersebut".<ref target="https://id.wikipedia.org/wiki/Halaman_Utama#cite_note-92">[92]</ref>
+J. B. Rosser (1939) dan S. C. Kleene (1943)
+<p><hi rend="italic"><ref target="https://id.wikipedia.org/wiki/J._Barkley_Rosser">J. Barkley Rosser</ref></hi> mendefinisikan 'metode [matematis] efektif' dengan cara berikut (kemiringan ditambahkan):</p>
+"'Metode efektif' disebut sebagai metode yang spesial yang mana setiap langkahnya secara tepat ditentukan dan pasti menghasilkan jawaban dalam sejumlah langkah yang terbatas. Dengan pengertian khusus ini, tiga definisi berbeda telah diajukan sampai sekarang. [catatan kakinya #5; lihat diskusinya di bawah]. Yang paling sederhana (karena Post dan Turing) menyatakan intinya bahwa <hi rend="italic">sebuah metode efektif menyelesaikan sekumpulan permasalahan hanya ada jika seseorang bisa membuat sebuah mesin yang akan menyelesaikan setiap masalah dari sekumpulan masalah tanpa campur tangan manusia kecuali memasukan pertanyaan dan (nantinya) membaca jawabannya</hi>. Ketiga definisi tersebut sama, jadi tidak masalah yang mana yang digunakan. Lebih lanjut, fakta bahwa ketiganya sama adalah argumen yang sangat kuat untuk kebenaran dari salah satunya." (Rosser 1939:225-6)
+<p>Catatan kaki Rosser #5 merujuk karya dari (1) Church dan Kleene dan definisi dari definabiliti-λ, secara khusus Church menggunakannya dalam <hi rend="italic">An Unsolvable Problem of Elementary Number Theory</hi>-nya (1936);
+(2) Herbrand dan Godel dan penggunaan rekursi mereka terutama Godel menggunakannya dalam makalah terkenalnya <hi rend="italic">On Formally Undecidable Propositions of Principia Mathematica and Related Systems I</hi> (1931);
+dan (3) Post (1936) dan Turing (1936-7) dalam model mekanisme komputasi mereka.</p>
+<p><hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Stephen_C._Kleene">Stephen C. Kleene</ref></hi> didefinisikan sebagai "Thesis I"-nya yang terkenal yang dikenal sebagai <ref target="https://id.wikipedia.org/wiki/Tesis_Church-Turing">tesis Church-Turing</ref>.
+Tapi dia melakukan hal tersebut dalam konteks berikut (penebalan dari aslinya):</p>
+"12. <hi rend="italic">Teori-teori algoritme</hi>... Dalam menyiapkan sebuah teori algoritme yang komplet, apa yang kita lakukan adalah mendeskripsikan sebuah prosedur, yang dapat dilakukan untuk setiap kumpulan nilai dari variabel-variabel tunggal, yang mana prosedur berhenti dan dengan cara tersebut dari hasilnya kita bisa membaca sebuah jawaban tertentu, "ya" atau tidak", untuk pertanyaan "apakah nilai predikat benar?"" (Kleene 1943:273)
+Sejarah setelah 1950
+<p>Sejumlah usaha telah diarahkan untuk memperbaiki lebih lanjut definisi dari "algoritme", dan aktivitas tersebut masih terus berjalan karena isu-isu yang mengelilinginya, terutama, <ref target="https://id.wikipedia.org/wiki/Fondasi_matematika">fondasi matematika</ref> (khususnya <ref target="https://id.wikipedia.org/wiki/Tesis_Church-Turing">tesis Church-Turing</ref>) dan <ref target="https://id.wikipedia.org/wiki/Filsafat_pikiran">filsafat pikiran</ref> (khususnya argumen menyangkut <ref target="https://id.wikipedia.org/wiki/Kecerdasan_buatan">kecerdasan buatan</ref>).
+Lebih lanjut, lihat <ref target="https://id.wikipedia.org/wiki/Karakterisasi_algoritme">karakterisasi algoritme</ref>.</p>
+Lihat juga
+
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/Mesin_abstrak">Mesin abstrak</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Rekayasa_algoritme">Rekayasa algoritme</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Komposisi_algoritmik">Komposisi algoritmik</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Sintesis_algoritmik">Sintesis algoritmik</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Algoritme_trading">Algoritme trading</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Sampah_masuk,_sampah_keluar">Sampah masuk, sampah keluar</ref></item>
+<item><hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Pendahuluan_untuk_Algoritme">Pendahuluan untuk Algoritme</ref></hi></item>
+<item><ref target="https://id.wikipedia.org/wiki/Daftar_topik_algoritme_umum">Daftar topik algoritme umum</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Daftar_publikasi_penting_dalam_ilmu_komputer_teoretis#Algoritme">Daftar publikasi penting dalam ilmu komputer teoretis - Algoritme</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Numerical_Mathematics_Consortium">Numerical Mathematics Consortium</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Teori_komputasi">Teori komputasi</ref>
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/Teori_komputabilitas">Teori komputabilitas</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Teori_kompleksitas_Komputasi">Teori kompleksitas Komputasi</ref></item></list></item></list>
+
+
+
+Bacaan lanjutan
+
+<list type="unordered"><item>Axt, P. (1959) On a Subrecursive Hierarchy and Primitive Recursive Degrees, <hi rend="italic">Transactions of the American Mathematical Society</hi> 92, pp.85–105</item>
+<item>Bell, C. Gordon and Newell, Allen (1971), <hi rend="italic">Computer Structures: Readings and Examples</hi>, McGraw-Hill Book Company, New York. <ref target="https://id.wikipedia.org/wiki/Special:BookSources/0070043574">ISBN 0-07-004357-4</ref>.</item>
+<item><ref target="https://id.wikipedia.org/wiki/Robert_N._Bellah">Bellah, Robert Neelly</ref> (1985). <ref target="http://books.google.com/books?id=XsUojihVZQcC"><hi rend="italic">Habits of the Heart: Individualism and Commitment in American Life</hi></ref>. Berkeley: University of California Press. <ref target="https://id.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</ref><ref target="https://id.wikipedia.org/wiki/Istimewa:Sumber_buku/978-0-520-25419-0">978-0-520-25419-0</ref>.</item>
+<item><ref target="https://id.wikipedia.org/wiki/Andreas_Blass">Blass, Andreas</ref>; <ref target="https://id.wikipedia.org/wiki/Yuri_Gurevich">Gurevich, Yuri</ref> (2003). <ref target="http://research.microsoft.com/~gurevich/Opera/164.pdf">"Algorithms: A Quest for Absolute Definitions"</ref> (PDF). <hi rend="italic">Bulletin of European Association for Theoretical Computer Science</hi>. <hi rend="bold">81</hi>. Includes an excellent bibliography of 56 references.</item>
+<item><ref target="https://id.wikipedia.org/wiki/George_Boolos">Boolos, George</ref>; <ref target="https://id.wikipedia.org/wiki/Richard_Jeffrey">Jeffrey, Richard</ref> (1974, 1999). <hi rend="italic">Computability and Logic</hi> (edisi ke-4th). Cambridge University Press, London. <ref target="https://id.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</ref><ref target="https://id.wikipedia.org/wiki/Istimewa:Sumber_buku/0-521-20402-X">0-521-20402-X</ref>. Periksa nilai tanggal di: |year= (<ref target="https://id.wikipedia.org/wiki/Bantuan:Galat_CS1#bad_date">bantuan</ref>): cf. Chapter 3 <hi rend="italic">Turing machines</hi> where they discuss "certain enumerable sets not effectively (mechanically) enumerable".</item>
+<item>Burgin, Mark (2004). <hi rend="italic">Super-Recursive Algorithms</hi>. Springer. <ref target="https://id.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</ref><ref target="https://id.wikipedia.org/wiki/Istimewa:Sumber_buku/978-0-387-95569-8">978-0-387-95569-8</ref>.</item>
+<item>Campagnolo, M.L., <ref target="https://id.wikipedia.org/wiki/Cris_Moore">Moore, C.</ref>, and Costa, J.F. (2000) An analog characterization of the subrecursive functions. In <hi rend="italic">Proc. of the 4th Conference on Real Numbers and Computers</hi>, Odense University, pp.91–109</item>
+<item><ref target="https://id.wikipedia.org/wiki/Alonzo_Church">Church, Alonzo</ref> (1936a). "An Unsolvable Problem of Elementary Number Theory". <hi rend="italic">The American Journal of Mathematics</hi>. <hi rend="bold">58</hi> (2): 345–363. <ref target="https://id.wikipedia.org/wiki/Digital_object_identifier">doi</ref>:<ref target="//doi.org/10.2307%2F2371045">10.2307/2371045</ref>. <ref target="https://id.wikipedia.org/wiki/JSTOR">JSTOR</ref><ref target="//www.jstor.org/stable/2371045">2371045</ref>. Reprinted in <hi rend="italic">The Undecidable</hi>, p.89ff. The first expression of "Church's Thesis". See in particular page 100 (<hi rend="italic">The Undecidable</hi>) where he defines the notion of "effective calculability" in terms of "an algorithm", and he uses the word "terminates", etc.</item></list>
+
+Pranala luar
+
+
+<list type="unordered"><item>(Indonesia) <ref target="http://www.abstrak.web.id/pengertian_algoritme/">Pengertian Algoritme</ref></item>
+<item>(Inggris) <ref target="https://id.wikipedia.org/wiki/Michiel_Hazewinkel">Hazewinkel, Michiel</ref>, ed. (2001) [1994], <ref target="https://www.encyclopediaofmath.org/index.php?title=p/a011780">"Algorithm"</ref>, <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Encyclopedia_of_Mathematics">Encyclopedia of Mathematics</ref></hi>, Springer Science+Business Media B.V. / Kluwer Academic Publishers, <ref target="https://id.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</ref><ref target="https://id.wikipedia.org/wiki/Istimewa:Sumber_buku/978-1-55608-010-4">978-1-55608-010-4</ref></item>
+<item><ref target="https://curlie.org/Computers/Algorithms/">Algorithms</ref> di Curlie (dari <ref target="https://id.wikipedia.org/wiki/DMOZ">DMOZ</ref>)</item>
+<item>(Inggris)</item></list><p><ref target="https://id.wikipedia.org/wiki/Eric_W._Weisstein">Weisstein, Eric W.</ref> <ref target="https://mathworld.wolfram.com/Algorithm.html">"Algorithm"</ref>. <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/MathWorld">MathWorld</ref></hi>.</p>
+<list type="unordered"><item>(Inggris) <ref target="http://www.nist.gov/dads/">Dictionary of Algorithms and Data Structures</ref>—<ref target="https://id.wikipedia.org/wiki/National_Institute_of_Standards_and_Technology">National Institute of Standards and Technology</ref></item>
+<item>(Inggris) <ref target="http://www.softpanorama.org/Algorithms/index.shtml">Algorithms and Data Structures by Dr Nikolai Bezroukov</ref></item></list>
+</text></body></html>

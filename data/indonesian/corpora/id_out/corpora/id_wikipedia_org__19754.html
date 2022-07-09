@@ -1,0 +1,311 @@
+<html><body><text id="wikipedia_id_wikipedia_org__19754.html" ns="0" revid="20829144" sourceurl="https://id.wikipedia.org/wiki/MD5" title="MD5" type="wikipedia">MD5<p>Dalam <ref target="https://id.wikipedia.org/wiki/Kriptografi">kriptografi</ref>, <hi rend="bold">MD5</hi> (<hi rend="italic">Message-Digest algorithm 5</hi>) adalah <ref target="https://id.wikipedia.org/wiki/Fungsi_hash_kriptografik">fungsi hash kriptografik</ref> yang digunakan secara luas dengan <hi rend="italic">hash value</hi> 128-bit. Pada standart Internet (<ref target="https://tools.ietf.org/html/rfc1321">RFC 1321</ref>), MD5 telah dimanfaatkan secara bermacam-macam pada aplikasi keamanan, dan MD5 juga umum digunakan untuk melakukan pengujian integritas sebuah <ref target="https://id.wikipedia.org/wiki/Berkas">berkas</ref>.</p>
+<p>MD5 di desain oleh <ref target="https://id.wikipedia.org/wiki/Ronald_Rivest">Ronald Rivest</ref> pada tahun <ref target="https://id.wikipedia.org/wiki/1991">1991</ref> untuk menggantikan <hi rend="italic">hash function</hi> sebelumnya, <ref target="https://id.wikipedia.org/wiki/MD4">MD4</ref>. Pada tahun <ref target="https://id.wikipedia.org/wiki/1996">1996</ref>, sebuah kecacatan ditemukan dalam desainnya, walau bukan kelemahan fatal, pengguna kriptografi mulai menganjurkan menggunakan <ref target="https://id.wikipedia.org/wiki/Algoritme">algoritme</ref> lain, seperti <ref target="https://id.wikipedia.org/wiki/SHA-1">SHA-1</ref> (klaim terbaru menyatakan bahwa SHA-1 juga cacat). Pada tahun <ref target="https://id.wikipedia.org/wiki/2004">2004</ref>, kecacatan-kecacatan yang lebih serius ditemukan menyebabkan penggunaan algoritme tersebut dalam tujuan untuk keamanan jadi makin dipertanyakan.</p>
+Sejarah dan kriptoanalisis
+<p>MD5 adalah salah satu dari serangkaian <ref target="https://id.wikipedia.org/wiki/Algortima">algortima</ref> <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Message_digest">message digest</ref></hi> yang didesain oleh Profesor <ref target="https://id.wikipedia.org/wiki/Ronald_Rivest">Ronald Rivest</ref> dari <ref target="https://id.wikipedia.org/wiki/Massachusetts_Institute_of_Technology">MIT</ref> (Rivest, 1994). Saat kerja analitik menunjukkan bahwa pendahulu MD5 — <ref target="https://id.wikipedia.org/wiki/MD4">MD4</ref> — mulai tidak aman, MD5 kemudian didesain pada tahun <ref target="https://id.wikipedia.org/wiki/1991">1991</ref> sebagai pengganti dari MD4 (kelemahan MD4 ditemukan oleh <ref target="https://id.wikipedia.org/wiki/Hans_Dobbertin">Hans Dobbertin</ref>).</p>
+<p>Pada tahun <ref target="https://id.wikipedia.org/wiki/1993">1993</ref>, <ref target="https://id.wikipedia.org/wiki/Den_Boer">den Boer</ref> dan <ref target="https://id.wikipedia.org/wiki/Bosselaers">Bosselaers</ref> memberikan awal, bahkan terbatas, hasil dari penemuan <hi rend="italic">pseudo-collision</hi> dari fungsi <ref target="https://id.wikipedia.org/wiki/Kompresi">kompresi</ref> MD5. Dua <ref target="https://id.wikipedia.org/wiki/Vektor_inisialisasi">vektor inisialisasi</ref> berbeda 
+
+
+
+I
+
+
+{\displaystyle I}
+
+ dan 
+
+
+
+J
+
+
+{\displaystyle J}
+
+ dengan beda 4-bit di antara keduanya.</p>
+
+
+
+
+M
+D
+5
+c
+o
+m
+p
+r
+e
+s
+s
+(
+I
+,
+X
+)
+=
+M
+D
+5
+c
+o
+m
+p
+r
+e
+s
+s
+(
+J
+,
+X
+)
+
+
+{\displaystyle MD5compress(I,X)=MD5compress(J,X)}
+
+
+<p>Pada tahun <ref target="https://id.wikipedia.org/wiki/1996">1996</ref> Dobbertin mengumumkan sebuah kerusakan pada fungsi kompresi MD5. Dikarenakan hal ini bukanlah serangan terhadap fungsi <hi rend="italic">hash</hi> MD5 sepenuhnya, hal ini menyebabkan para pengguna kriptografi menganjurkan pengganti seperti <ref target="https://id.wikipedia.org/wiki/WHIRLPOOL">WHIRLPOOL</ref>, <ref target="https://id.wikipedia.org/wiki/SHA-1">SHA-1</ref> atau <ref target="https://id.wikipedia.org/wiki/RIPEMD-160">RIPEMD-160</ref>.</p>
+<p>Ukuran dari <hi rend="italic">hash</hi> — 128-bit — cukup kecil untuk terjadinya serangan <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Brute_force">brute force</ref> <ref target="https://id.wikipedia.org/wiki/Birthday_attack">birthday attack</ref></hi>. <ref target="https://id.wikipedia.org/wiki/MD5CRK">MD5CRK</ref> adalah proyek distribusi mulai Maret <ref target="https://id.wikipedia.org/wiki/2004">2004</ref> dengan tujuan untuk menunjukka kelemahan dari MD5 dengan menemukan kerusakan kompresi menggunakan <hi rend="italic">brute force attack</hi>.</p>
+<p>Bagaimanapun juga, MD5CRK berhenti pada tanggal <ref target="https://id.wikipedia.org/wiki/17_Agustus">17 Agustus</ref> <ref target="https://id.wikipedia.org/wiki/2004">2004</ref>, saat <ref target="https://id.wikipedia.org/wiki/Kerusakan_''hash''">kerusakan ''hash''</ref> pada MD5 diumumkan oleh <ref target="https://id.wikipedia.org/wiki/Xiaoyun_Wang">Xiaoyun Wang</ref>, <ref target="https://id.wikipedia.org/wiki/Dengguo_Feng">Dengguo Feng</ref>, <ref target="https://id.wikipedia.org/wiki/Xuejia_Lai">Xuejia Lai</ref> dan <ref target="https://id.wikipedia.org/wiki/Hongbo_Yu">Hongbo Yu</ref> . Serangan analitik mereka dikabarkan hanya memerlukan satu jam dengan menggunakan <ref target="https://id.wikipedia.org/wiki/IBM_P690">IBM P690</ref> cluster.</p>
+<p>Pada tanggal <ref target="https://id.wikipedia.org/wiki/1_Maret">1 Maret</ref> <ref target="https://id.wikipedia.org/wiki/2005">2005</ref>, <ref target="https://id.wikipedia.org/wiki/Arjen_Lenstra">Arjen Lenstra</ref>, Xiaoyun Wang, and <ref target="https://id.wikipedia.org/wiki/Benne_de_Weger">Benne de Weger</ref> mendemontrasikan  kunstruksi dari dua buah sertifikat <ref target="https://id.wikipedia.org/wiki/X.509">X.509</ref> dengan <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Public_Key_Infrastructure">public key</ref></hi> yang berbeda dan <hi rend="italic">hash</hi> MD5 yang sama, hasil dari demontrasi menunjukkan adanya kerusakan. Konstruksi tersebut melibatkan <hi rend="italic">private key</hi> untuk kedua <hi rend="italic">public key</hi> tersebut. Dan beberapa hari setelahnya, <ref target="https://id.wikipedia.org/wiki/Vlastimil_Klima">Vlastimil Klima</ref> menjabarkan  dan mengembangkan algortima, mampu membuat kerusakan Md5 dalam beberapa jam dengan menggunakan sebuah komputer <ref target="https://id.wikipedia.org/wiki/Notebook">notebook</ref>. Hal ini menyebabkan MD5 tidak bebas dari kerusakan.</p>
+<p>Dikarenakan MD5 hanya menggunakan satu langkah pada data, jika dua buah awalan dengan <hi rend="italic">hash</hi> yang sama dapat dibangun, sebuah akhiran yang umum dapat ditambahkan pada keduanya untuk membuat kerusakan lebih masuk akal. Dan dikarenakan teknik penemuan kerusakan mengizinkan pendahuluan kondisi <hi rend="italic">hash</hi> menjadi arbitari tertentu, sebuah kerusakan dapat ditemukan dengan awalan apapun. Proses tersebut memerlukan pembangkitan dua buah berkas perusak sebagai berkas templat, dengan menggunakan blok 128-byte dari tatanan data pada 64-byte batasan, berkas-berkas tersebut dapat mengubah dengan bebas dengan menggunakan algoritme penemuan kerusakan.</p>
+Efek nyata dari kriptoanalisis
+<p>Saat ini dapat diketahui, dengan beberapa jam kerja, bagaimana proses pembangkitan kerusakan MD5. Yaitu dengan membangkitkan dua byte <hi rend="italic">string</hi> dengan <hi rend="italic">hash</hi> yang sama. Dikarenakan terdapat bilangan yang terbatas pada keluaran MD5 (2128), tetapi terdapat bilangan yang tak terbatas sebagai masukannya, hal ini harus dipahami sebelum kerusakan dapat ditimbulkan, tapi hal ini telah diyakini benar bahwa menemukannya adalah hal yang sulit.</p>
+<p>Sebagai hasilnya bahwa <hi rend="italic">hash</hi> MD5 dari informasi tertentu tidak dapat lagi mengenalinya secara berbeda. Jika ditunjukkan informasi dari sebuah <hi rend="italic">public key</hi>, <hi rend="italic">hash</hi> MD5 tidak mengenalinya secara berbeda jika terdapat <hi rend="italic">public key</hi> selanjutnya yang mempunyai <hi rend="italic">hash</hi> MD5 yang sama.</p>
+<p>Bagaimanapun juga, penyerangan tersebut memerlukan kemampuan untuk memilih kedua pesan kerusakan. Kedua pesan tersebut tidak dengan mudah untuk memberikan serangan <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Preimage">preimage</ref></hi>, menemukan pesan dengan <hi rend="italic">hash</hi> MD5 yang sudah ditentukan, ataupun <hi rend="italic">serangan preimage kedua</hi>, menemukan pesan dengan <hi rend="italic">hash</hi> MD5 yang sama sebagai pesan yang diinginkan.</p>
+<p><hi rend="italic">Hash</hi> MD5 lama, yang dibuat sebelum serangan-serangan tersebut diungkap, masih dinilai aman untuk saat ini. Khususnya pada <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Digital_signature">digital signature</ref></hi> lama masih dianggap layak pakai.
+Seorang pengguna boleh saja tidak ingin membangkitkan atau mempercayai <hi rend="italic">signature</hi> baru menggunakan MD5 jika masih ada kemungkinan kecil pada teks (kerusakan dilakukan dengan melibatkan pelompatan beberapa bit pada bagian 128-byte pada masukan <hi rend="italic">hash</hi>) akan memberikan perubahan yang berarti.</p>
+<p>Penjaminan ini berdasar pada posisi saat ini dari kriptoanalisis. Situasi bisa saja berubah secara tiba-tiba, tetapi menemukan kerusakan dengan beberapa data yang belum-ada adalah permasalahan yang lebih susah lagi, dan akan selalu butuh waktu untuk terjadinya sebuah transisi.</p>
+Pengujian Integritas
+<p>Ringkasan MD5 digunakan secara luas dalam dunia perangkat lunak untuk menyediakan semacam jaminan bahwa berkas yang diambil (<hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Download">download</ref></hi>) belum terdapat perubahan. Seorang pengguna dapat membandingkan MD5 sum yang dipublikasikan dengan <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Checksum">checksum</ref></hi> dari berkas yang diambil. Dengan asumsi bahwa <hi rend="italic">checksum</hi> yang dipublikasikan dapat dipercaya akan keasliannya, seorang pengguna dapat secara yakin bahwa berkas tersebut adalah berkas yang sama dengan berkas yang dirilis oleh para developer, jaminan perlindungan dari <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Trojan_Horse">Trojan Horse</ref></hi> dan <ref target="https://id.wikipedia.org/wiki/Virus_komputer">virus komputer</ref> yang ditambahkan pada perangkat lunak. Bagaimanapun juga, sering kali kasus yangterjadi bahwa <hi rend="italic">checksum</hi> yang dipublikasikan tidak dapat dipercaya (sebagai contoh, <hi rend="italic">checksum</hi> didapat dari channel atau lokasi yang sama dengan tempat mengambil berkas), dalam hal ini MD5 hanya mampu melakukan <hi rend="italic">error-checking</hi>. MD5 akan mengenali berkas yang didownload tidak sempurna, cacat atau tidak lengkap.</p>
+Algoritme
+<figure><caption>Gambar 1. Satu operasi MD5 — MD5 terdiri atas 64 operasi, dikelompokkan dalam empat putaran dari 16 operasi. <hi rend="italic">F</hi> adalah fungsi nonlinear; satu fungsi digunakan pada tiap-tiap putaran. <hi rend="italic">Mi</hi> menujukkan blok 32-bit dari masukan pesan, dan <hi rend="italic">Ki</hi> menunjukkan konstanta 32-bit, berbeda untuk tiap-tiap operasi.</caption></figure>
+<p>
+<hi rend="italic">s</hi> menunjukkan perputaran bit kiri oleh <hi rend="italic">s</hi>; <hi rend="italic">s</hi> bervariasi untuk tiap-tiap operasi.
+
+menunjukan tambahan modulo 232.
+MD5 memproses variasi panjang pesan kedalam keluaran 128-bit dengan panjang yang tetap. Pesan masukan dipecah menjadi dua gumpalan blok 512-bit; Pesan ditata sehingga panjang pesan dapat dibagi 512. Penataan bekerja sebagai berikut: bit tunggal pertama, 1, diletakkan pada akhir pedan. Proses ini diikuti dengan serangkaian nol (0) yang diperlukan agar panjang pesan lebih dari 64-bit dan kurang dari kelipatan 512. Bit-bit sisa diisi dengan 64-bit integer untuk menunjukkan panjang pesan yang asli. Sebuah pesan selalu ditata setidaknya dengan 1-bit tunggal, seperti jika panjang pesan adalah kelipatan 512 dikurangi 64-bit untuk informasi panjang (panjang mod(512) = 448), sebuah blok baru dari 512-bit ditambahkan dengan 1-bit diikuti dengan 447 bit-bit nol (0) diikuti dengan panjang 64-bit.</p>
+<p>Algoritme MD5 yang utama beroperasi pada kondisi 128-bit, dibagi menjadi empat <hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Word">word</ref></hi> 32-bit, menunjukkan <hi rend="italic">A</hi>, <hi rend="italic">B</hi>, <hi rend="italic">C</hi> dan <hi rend="italic">D</hi>. Operasi tersebut di inisialisasi dijaga untuk tetap konstan. Algoritme utama kemudian beroperasi pada masing-masing blok pesan 512-bit, masing-masing blok melakukan pengubahan terhadap kondisi.Pemrosesan blok pesan terdiri atas empat tahap, batasan <hi rend="italic">putaran</hi>; tiap putasan membuat 16 operasi serupa berdasar pada fungsi non-linear <hi rend="italic">F</hi>, tambahan modular, dan rotasi ke kiri. Gambar satu mengilustrasikan satu operasi dalam putaran.
+Ada empat macam kemungkinan fungsi <hi rend="italic">F</hi>, berbeda dari yang digunakan pada tiap-tiap putaran:</p>
+
+
+
+
+F
+(
+X
+,
+Y
+,
+Z
+)
+=
+(
+X
+∧
+
+Y
+
+)
+∨
+(
+¬
+
+X
+
+∧
+
+Z
+
+)
+
+
+{\displaystyle F(X,Y,Z)=(X\wedge {Y})\vee (\neg {X}\wedge {Z})}
+
+
+
+
+
+
+G
+(
+X
+,
+Y
+,
+Z
+)
+=
+(
+X
+∧
+
+Z
+
+)
+∨
+(
+Y
+∧
+¬
+
+Z
+
+)
+
+
+{\displaystyle G(X,Y,Z)=(X\wedge {Z})\vee (Y\wedge \neg {Z})}
+
+
+
+
+
+
+H
+(
+X
+,
+Y
+,
+Z
+)
+=
+X
+⊕
+Y
+⊕
+Z
+
+
+{\displaystyle H(X,Y,Z)=X\oplus Y\oplus Z}
+
+
+
+
+
+
+I
+(
+X
+,
+Y
+,
+Z
+)
+=
+Y
+⊕
+(
+X
+∨
+¬
+
+Z
+
+)
+
+
+{\displaystyle I(X,Y,Z)=Y\oplus (X\vee \neg {Z})}
+
+
+<p>
+
+
+
+⊕
+,
+∧
+,
+∨
+,
+¬
+
+
+{\displaystyle \oplus ,\wedge ,\vee ,\neg }
+
+ menunjukkan operasi logikan XOR, AND, OR dan NOT.</p>
+<hi rend="italic">Pseudocode</hi>
+<p><hi rend="italic"><ref target="https://id.wikipedia.org/wiki/Pseudocode">Pseudocode</ref></hi> pada algoritme MD5 adalah sebagai berikut.</p>
+//<hi rend="italic">Catatan: Seluruh variable pada unsigned integer 32-bit dan dan wrap modulo 2^32 saat melakukan perhitungan</hi>
+//<hi rend="italic">Mendefinisikan r sebagai berikut</hi>
+<hi rend="bold">var</hi> <hi rend="italic">int</hi>[64] r, k
+r[ 0..15]:= {7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22}
+r[16..31]:= {5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20}
+r[32..47]:= {4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23}
+r[48..63]:= {6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21}
+//<hi rend="italic">Menggunakan bagian fraksional biner dari integral sinus sebagai konstanta:</hi>
+<hi rend="bold">for</hi> i <hi rend="bold">from</hi> 0 <hi rend="bold">to</hi> 63
+    k[i]:= floor(abs(sin(i + 1)) × 2^32)
+//<hi rend="italic">Inisialisasi variabel:</hi>
+<hi rend="bold">var</hi> <hi rend="italic">int</hi> h0:= 0x67452301
+<hi rend="bold">var</hi> <hi rend="italic">int</hi> h1:= 0xEFCDAB89
+<hi rend="bold">var</hi> <hi rend="italic">int</hi> h2:= 0x98BADCFE
+<hi rend="bold">var</hi> <hi rend="italic">int</hi> h3:= 0x10325476
+//<hi rend="italic">Pemrosesan awal:</hi>
+<hi rend="bold">append</hi> "1" bit <hi rend="bold">to</hi> message
+<hi rend="bold">append</hi> "0" bits <hi rend="bold">until</hi> message length in bits ≡ 448 (mod 512)
+<hi rend="bold">append</hi> bit length of message <hi rend="bold">as</hi> <hi rend="italic">64-bit little-endian integer</hi> <hi rend="bold">to</hi> message
+//<hi rend="italic">Pengolahan pesan paada kondisi gumpalan 512-bit:</hi>
+<hi rend="bold">for each</hi> <hi rend="italic">512-bit</hi> chunk <hi rend="bold">of</hi> message
+    break chunk into sixteen 32-bit little-endian words w(i), 0 ≤ i ≤ 15
+    //<hi rend="italic">Inisialisasi nilai hash pada gumpalan ini:</hi>
+<hi rend="bold">var</hi> <hi rend="italic">int</hi> a:= h0
+    <hi rend="bold">var</hi> <hi rend="italic">int</hi> b:= h1
+    <hi rend="bold">var</hi> <hi rend="italic">int</hi> c:= h2
+    <hi rend="bold">var</hi> <hi rend="italic">int</hi> d:= h3
+    //<hi rend="italic">Kalang utama:</hi>
+<hi rend="bold">for</hi> i <hi rend="bold">from</hi> 0 <hi rend="bold">to</hi> 63
+        <hi rend="bold">if</hi> 0 ≤ i ≤ 15 <hi rend="bold">then</hi>
+            f:= (b <hi rend="bold">and</hi> c) <hi rend="bold">or</hi> ((<hi rend="bold">not</hi> b) <hi rend="bold">and</hi> d)
+            g:= i
+        <hi rend="bold">else if</hi> 16 ≤ i ≤ 31
+            f:= (d <hi rend="bold">and</hi> b) <hi rend="bold">or</hi> ((<hi rend="bold">not</hi> d) <hi rend="bold">and</hi> c)
+            g:= (5×i + 1) <hi rend="bold">mod</hi> 16
+        <hi rend="bold">else if</hi> 32 ≤ i ≤ 47
+            f:= b <hi rend="bold">xor</hi> c <hi rend="bold">xor</hi> d
+            g:= (3×i + 5) <hi rend="bold">mod</hi> 16
+        <hi rend="bold">else if</hi> 48 ≤ i ≤ 63
+            f:= c <hi rend="bold">xor</hi> (b <hi rend="bold">or</hi> (<hi rend="bold">not</hi> d))
+            g:= (7×i) <hi rend="bold">mod</hi> 16
+        temp:= d
+        d:= c
+        c:= b
+        b:= ((a + f + k(i) + w(g)) <hi rend="bold">leftrotate</hi> r(i)) + b
+        a:= temp
+    //<hi rend="italic">Tambahkan hash dari gumpalan sebagai hasil:</hi>
+    h0:= h0 + a
+    h1:= h1 + b
+    h2:= h2 + c
+    h3:= h3 + d
+<hi rend="bold">var</hi> <hi rend="italic">int</hi> digest:= h0 <hi rend="bold">append</hi> h1 <hi rend="bold">append</hi> h2 <hi rend="bold">append</hi> h3 //<hi rend="italic">(diwujudkan dalam little-endian)</hi>
+<p><hi rend="italic">Catatan: Meskipun rumusan dari yang tertera pada <ref target="https://tools.ietf.org/html/rfc1321">RFC 1321</ref>, berikut ini sering digunakan untuk meningkatkan efisiensi:</hi></p>
+(0  ≤ i ≤ 15): f:= d <hi rend="bold">xor</hi> (b <hi rend="bold">and</hi> (c <hi rend="bold">xor</hi> d))
+(16 ≤ i ≤ 31): f:= c <hi rend="bold">xor</hi> (d <hi rend="bold">and</hi> (b <hi rend="bold">xor</hi> c))
+<hi rend="italic">Hash-hash</hi> MD5
+<p><hi rend="italic">Hash-hash</hi> MD5 sepanjang 128-bit (16-byte), yang dikenal juga sebagai <hi rend="italic">ringkasan pesan</hi>, secara tipikal ditampilkan dalam bilangan <ref target="https://id.wikipedia.org/wiki/Heksadesimal">heksadesimal</ref> 32-digit.
+Berikut ini merupakan contoh pesan <ref target="https://id.wikipedia.org/wiki/ASCII">ASCII</ref> sepanjang 43-byte sebagai masukan dan <hi rend="italic">hash</hi> MD5 terkait:</p>
+MD5("The quick brown fox jumps over the lazy dog") = 9e107d9d372bb6826bd81d3542a419d6
+<p>Bahkan perubahan yang kecil pada pesan akan (dengan probabilitas lebih) menghasilkan <hi rend="italic">hash</hi> yang benar-benar berbeda, misalnya pada kata "dog", huruf d diganti menjadi c:</p>
+MD5("The quick brown fox jumps over the lazy cog") = 1055d3e698d289f2af8663725127bd4b
+<p><hi rend="italic">Hash</hi> dari panjang-nol ialah:</p>
+MD5("") = d41d8cd98f00b204e9800998ecf8427e
+Lihat pula
+<list type="unordered"><item><ref target="https://id.wikipedia.org/wiki/MD2">MD2</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/SFV">SFV</ref></item>
+<item><ref target="https://id.wikipedia.org/wiki/Cyclic_redundancy_check">Cyclic redundancy check</ref></item></list>
+Pranala luar
+Informasi MD5
+<list type="unordered"><item>(Inggris)<ref target="https://tools.ietf.org/html/rfc1321">RFC 1321</ref> — <hi rend="italic">Algoritme Ringkasan-Pesan MD5</hi></item>
+<item>(Inggris)<ref target="http://www.cert.org/security-improvement/implementations/i002.01.html"><hi rend="italic">Menggunakan MD5 untuk memastikan integritas isi dari file</hi></ref></item>
+<item>(Inggris)<ref target="http://groups.google.com/groups?selm=fgrieu-AE7D15.18300202042004%40news.fu-berlin.de">Catatan Kriptoanalisis MD5</ref></item>
+<item>(Inggris)<ref target="http://www.cryptography.com/cnews/hash.html">Tanya-Jawab tentang Kerusakan <hi rend="italic">Hash</hi></ref></item>
+<item>(Inggris)<ref target="http://md5pass.com/">MD5 Password Decrypter</ref></item></list>
+Implementasi
+<list type="unordered"><item>(Inggris)<ref target="http://userpages.umbc.edu/~mabzug1/cs/md5/md5.html">situs tentang MD5</ref> <ref target="https://web.archive.org/web/20050526005618/http://userpages.umbc.edu/~mabzug1/cs/md5/md5.html">Diarsipkan</ref> 2005-05-26 di <ref target="https://id.wikipedia.org/wiki/Wayback_Machine">Wayback Machine</ref>. — berisi tentang berbagai macam implementasi pada berbagai bahasa pemrogaman</item>
+<item>(Inggris)<ref target="http://pajhome.org.uk/crypt/md5/">Paj's Home: Cryptography</ref> (Javascript MD4 dan MD5, plus SHA-1)</item>
+<item>(Inggris)<ref target="http://www.cs.eku.edu/faculty/styer/460/Encrypt/JS-MD5.html">MD5 kalkulator dengan Javascript memberikan nilai secara langsung dari kalkulasi</ref> <ref target="https://web.archive.org/web/20050410221252/http://www.cs.eku.edu/faculty/styer/460/Encrypt/JS-MD5.html">Diarsipkan</ref> 2005-04-10 di <ref target="https://id.wikipedia.org/wiki/Wayback_Machine">Wayback Machine</ref>.</item>
+<item>(Inggris)<ref target="http://www.jonelo.de/java/jacksum/index.html">Jacksum</ref> (Sebuah program dengan berbagai macam fungsi verifikasi pesan)</item>
+<item><ref target="http://nebotov.ru/p/md5.html">Pascal/Delphi realization</ref></item>
+<item>(Inggris)<ref target="https://codebeautify.org/md5-hash-generator">MD5 HASH Generator</ref></item></list>
+Kerusakan
+<list type="unordered"><item>(Inggris)<ref target="http://cryptography.hyperlink.cz/MD5_collisions.html">Kerusakan cepat yang ditemukan oleh V. Klima</ref></item></list>
+</text></body></html>
