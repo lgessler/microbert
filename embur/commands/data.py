@@ -60,7 +60,10 @@ def _parse_ner(path):
 
 def _format_conll2003(sentences):
     formatted_sentences = [
-        "\n".join([" ".join([form, "O", "O", bio_tag]) for form, bio_tag in sentence]) for sentence in sentences
+        "\n".join(
+            [" ".join([form.replace(" ", "_").replace(" ", "_"), "O", "O", bio_tag]) for form, bio_tag in sentence]
+        )
+        for sentence in sentences
     ]
     return "\n\n".join(formatted_sentences)
 
@@ -98,7 +101,7 @@ def prepare_ner(config):
     ner_path = get_wikiann_path(config.language)
     sentences = _parse_ner(ner_path)
     sentences = _bio_to_bioul(sentences)
-    sentences = _remove_whitespace_tokens(sentences)
+    # sentences = _remove_whitespace_tokens(sentences)
     train, dev, test = _split_ner(sentences)
     with open(get_formatted_wikiann_path(config.language, "train"), "w") as f:
         f.write(_format_conll2003(train))
