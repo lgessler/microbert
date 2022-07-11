@@ -220,7 +220,7 @@ class EmburConllu(DatasetReader):
         if lemmas is not None and not all(l is None or l == "_" for l in lemmas):
             fields["lemmas"] = SequenceLabelField(lemmas, text_field, label_namespace="lemmas")
         if xpos_tags is not None and not all(t is None or t == "_" for t in xpos_tags):
-            fields["xpos_tags"] = SequenceLabelField(xpos_tags, text_field, label_namespace="xpos_tags")
+            fields["xpos_tags"] = SequenceLabelField(["_" if x is None else x for x in xpos_tags], text_field, label_namespace="xpos_tags")
             metadata["xpos"] = xpos_tags
         if upos_tags is not None and not all(t is None or t == "_" for t in upos_tags):
             fields["upos_tags"] = SequenceLabelField(upos_tags, text_field, label_namespace="upos_tags")
