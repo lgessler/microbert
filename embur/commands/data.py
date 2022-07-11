@@ -1,3 +1,4 @@
+import random
 from math import ceil
 from random import shuffle
 
@@ -77,7 +78,15 @@ def _bio_to_bioul(sentences):
     return bioul_sentences
 
 
+def _remove_whitespace_tokens(sentences):
+    new_sentences = []
+    for sentence in sentences:
+        new_sentences.append([(form, tag) for form, tag in sentence if not form.isspace()])
+    return new_sentences
+
+
 def _split_ner(sentences):
+    random.seed(1337)
     shuffle(sentences)
     indexes = [ceil(len(sentences) * 0.8), ceil(len(sentences) * 0.9)]
     return sentences[: indexes[0]], sentences[indexes[0] : indexes[1]], sentences[indexes[1] :]
@@ -89,6 +98,7 @@ def prepare_ner(config):
     ner_path = get_wikiann_path(config.language)
     sentences = _parse_ner(ner_path)
     sentences = _bio_to_bioul(sentences)
+    sentences = _remove_whitespace_tokens(sentences)
     train, dev, test = _split_ner(sentences)
     with open(get_formatted_wikiann_path(config.language, "train"), "w") as f:
         f.write(_format_conll2003(train))
