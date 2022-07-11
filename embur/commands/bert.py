@@ -155,18 +155,20 @@ def train(ctx):
 @click.pass_obj
 def evaluate_parser(config):
     _, eval_metrics = eval.evaluate_parser(config, config.bert_dir)
-    write_to_tsv(
-        config,
-        "-".join(config.tasks) + ("_ft" if config.finetune else ""),
-        eval_metrics,
-    )
+    name = "-".join(config.tasks) + ("_ft" if config.finetune else "")
+    if config.num_layers != 3:
+        name = f"l{config.num_layers}_" + name
+    write_to_tsv(config, name, eval_metrics)
 
 
 @click.command(help="Evaluate BERT on NER")
 @click.pass_obj
 def evaluate_ner(config):
     train_metrics, eval_metrics = eval.evaluate_ner(config, config.bert_dir)
-    write_to_tsv2(config, "-".join(config.tasks) + ("_ft" if config.finetune else ""), eval_metrics)
+    name = "-".join(config.tasks) + ("_ft" if config.finetune else "")
+    if config.num_layers != 3:
+        name = f"l{config.num_layers}_" + name
+    write_to_tsv2(config, name, eval_metrics)
 
 
 bert.add_command(train)
