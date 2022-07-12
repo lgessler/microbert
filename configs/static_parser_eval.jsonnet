@@ -12,7 +12,7 @@ local validation_data_loader = {
     "batch_size": 16
   }
 };
-local data_loader = validation_data_loader;
+local data_loader = validation_data_loader + {"batches_per_epoch": 200};
 
 {
     "dataset_reader": {
