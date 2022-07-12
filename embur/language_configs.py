@@ -77,7 +77,9 @@ def get_pretrain_config(language, tokenizer_path, tasks):
         "greek": _std_pretrain_config(
             mismatched_reader, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud", ssplit_type=""
         ),
-        "indonesian": _std_pretrain_config(mismatched_reader, "indonesian", "UD_Indonesian-GSD", "id_gsd-ud", ssplit_type="_punct"),
+        "indonesian": _std_pretrain_config(
+            mismatched_reader, "indonesian", "UD_Indonesian-GSD", "id_gsd-ud", ssplit_type="_punct"
+        ),
         "tamil": _std_pretrain_config(mismatched_reader, "tamil", "UD_Tamil-TTB", "ta_ttb-ud", ssplit_type="_punct"),
     }[language]
 

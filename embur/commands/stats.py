@@ -18,7 +18,9 @@ def stats(**kwargs):
 
 @click.command
 def unlabeled():
-    print("Language\tTrain sentences\tTrain tokens\tUnique train tokens\tDev sentences\tDev tokens\tUnique dev tokens\tUnique total tokens")
+    print(
+        "Language\tTrain sentences\tTrain tokens\tUnique train tokens\tDev sentences\tDev tokens\tUnique dev tokens\tUnique total tokens"
+    )
     for language in LANGUAGES:
         base_path = f"data/{language}/converted_punct"
         if language in ["coptic", "greek"]:
@@ -39,7 +41,7 @@ def unlabeled():
                         len(dev_sents),
                         len(dev_tokens),
                         len(set(dev_tokens)),
-                        len(set(train_tokens) | set(dev_tokens))
+                        len(set(train_tokens) | set(dev_tokens)),
                     ],
                 )
             )
