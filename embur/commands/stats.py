@@ -6,7 +6,7 @@ from pathlib import Path
 import logging
 
 from embur.dataset_reader import read_conllu_files
-from embur.language_configs import LANGUAGES
+from embur.language_configs import LANGUAGES, get_wikiann_path, get_formatted_wikiann_path
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +46,26 @@ def unlabeled():
                 )
             )
         )
+
+
+@click.command
+@click.pass_obj
+def ner(config):
+    import subprocess
+
+    full_path = get_wikiann_path(config.language)
+    train_path = get_formatted_wikiann_path(config.language, "train")
+    dev_path = get_formatted_wikiann_path(config.language, "dev")
+    test_path = get_formatted_wikiann_path(config.language, "test")
+
+    def get_token_count(path):
+        cmd = f'grep "\\S" {path} | wc -l'
+        ps = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        output = ps.communicate()[0]
+        return output.decode("utf-8").strip()
+
+    for path in [full_path, train_path, dev_path, test_path]:
+        print(f"{path}\t{get_token_count(path)}")
 
 
 @click.command(help="Format a metrics.tsv and average language-condition pairs")
@@ -91,4 +111,5 @@ def format_metrics(tsv_path, expected_trials):
 
 
 stats.add_command(unlabeled)
+stats.add_command(ner)
 stats.add_command(format_metrics)
