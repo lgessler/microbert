@@ -17,7 +17,7 @@ local data_loader = validation_data_loader + {"batches_per_epoch": 200};
 {
     "dataset_reader": {
       "type": "universal_dependencies",
-      "use_language_specific_pos": true,
+      "use_language_specific_pos": false,
       "token_indexers": {
         "tokens": {
           "type": "pretrained_transformer_mismatched",
