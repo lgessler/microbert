@@ -161,7 +161,7 @@ local data_loader = validation_data_loader + {"instances_per_epoch": instances_p
             //]
         },
         "learning_rate_scheduler": plateau, //slanted_triangular,
-        "patience": 80,
+        "patience": 40,
         "num_epochs": num_epochs,
         "validation_metric": "-mlm_perplexity",
         "callbacks": [
