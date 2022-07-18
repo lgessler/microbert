@@ -35,6 +35,8 @@ def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[Toke
     with open(file_path, "r") as file:
         contents = file.read()
     sentences = parse(contents)
+    if "TOY_DATA" in os.environ:
+        sentences = sentences[:200]
     if tokenizer is not None:
         remove_huge_tokens(sentences, tokenizer)
     if len(sentences) == 0:
