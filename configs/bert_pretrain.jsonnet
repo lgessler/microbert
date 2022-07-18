@@ -79,9 +79,9 @@ local xpos = std.parseJson(std.extVar("XPOS"));
 local mlm = std.parseJson(std.extVar("MLM"));
 local parser = std.parseJson(std.extVar("PARSER"));
 local weights = (
-  (if mlm then {"mlm": 0.8} else {})
-  + (if xpos then {"xpos": 0.1} else {})
-  + (if parser then {"parser": 0.1} else {})
+  (if mlm then {"mlm": 8} else {})
+  + (if xpos then {"xpos": 1} else {})
+  + (if parser then {"parser": 1} else {})
 );
 
 // scheduling
@@ -101,25 +101,36 @@ local plateau = {
     "min_lr": 5e-5
 };
 
-local slanted_triangular = {
-    "type": "slanted_triangular",
-    "num_epochs": num_epochs,
-    "num_steps_per_epoch": batches_per_epoch
-};
+local pattern = (
+  (if mlm then ["mlm", "mlm", "mlm", "mlm"] else [])
+  + (if xpos then ["xpos"] else [])
+  + (if mlm then ["mlm", "mlm", "mlm", "mlm"] else [])
+  + (if parser then ["parser"] else [])
+);
 
-local validation_data_loader = {
+local data_loader = {
     "type": "multitask",
     "scheduler": {
-        "type": "homogeneous_roundrobin",
+        "type": "homogeneous_weight_proportional",
         "batch_size": batch_size,
+        "weights": weights,
+        "pattern": pattern
     },
     "shuffle": true,
     "sampler": {
         "type": "weighted",
         "weights": weights
+    },
+    "instances_per_epoch": instances_per_epoch
+};
+local validation_data_loader = {
+    "type": "multitask",
+    "shuffle": true,
+    "scheduler": {
+        "type": "homogeneous_roundrobin",
+        "batch_size": batch_size
     }
 };
-local data_loader = validation_data_loader + {"instances_per_epoch": instances_per_epoch};
 
 
 {
@@ -160,8 +171,8 @@ local data_loader = validation_data_loader + {"instances_per_epoch": instances_p
             //    [[".*biaffine_parser.*"], {"optimizer_name": "biaffine_parser"}]
             //]
         },
-        "learning_rate_scheduler": plateau, //slanted_triangular,
-        "patience": 40,
+        "learning_rate_scheduler": plateau,
+        "patience": 100,
         "num_epochs": num_epochs,
         "validation_metric": "-mlm_perplexity",
         "callbacks": [
