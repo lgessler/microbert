@@ -3,6 +3,7 @@ import json
 import logging
 import os
 from logging import getLogger
+from shutil import rmtree
 from typing import Dict, Any
 
 from torch.serialization import mkdtemp
@@ -99,35 +100,43 @@ def eval_args(serialization_dir, input_file):
     return args
 
 
+def _eval_dir(config, task, model_name):
+    os.makedirs('evals', exist_ok=True)
+    return f"evals/{config.language}/{task}_{model_name.replace('/', '__')}{'_ft' if config.finetune else ''}"
+
+
 def evaluate_parser(config, bert_model_path):
     """
     Given a language and a pretrained BERT model (or something API compatible with it),
     """
-    with mkdtemp() as eval_dir:
-        logger.info("Training for evaluation")
-        bert_model = BertModel.from_pretrained(bert_model_path)
-        language_config = config.parser_eval_language_config
+    eval_dir = _eval_dir(config, "parse", bert_model_path)
+    if os.path.exists(eval_dir):
+        rmtree(eval_dir)
 
-        os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)
-        logger.info(f"Loaded BERT model from '{bert_model_path}': {bert_model}")
-        os.environ["BERT_PATH"] = bert_model_path
-        os.environ["TRAINABLE"] = "1" if config.finetune else "0"
-        for k, v in language_config["training"].items():
-            os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
+    logger.info("Training for evaluation")
+    bert_model = BertModel.from_pretrained(bert_model_path)
+    language_config = config.parser_eval_language_config
 
-        overrides = []
-        if config.debug:
-            overrides.append('"trainer.num_epochs": 1')
-        if len(overrides) > 0:
-            overrides = "{" + ", ".join(overrides) + "}"
-        else:
-            overrides = ""
+    os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)
+    logger.info(f"Loaded BERT model from '{bert_model_path}': {bert_model}")
+    os.environ["BERT_PATH"] = bert_model_path
+    os.environ["TRAINABLE"] = "1" if config.finetune else "0"
+    for k, v in language_config["training"].items():
+        os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
 
-        train_model_from_file(config.parser_eval_jsonnet, eval_dir, overrides=overrides)
+    overrides = []
+    if config.debug:
+        overrides.append('"trainer.num_epochs": 1')
+    if len(overrides) > 0:
+        overrides = "{" + ", ".join(overrides) + "}"
+    else:
+        overrides = ""
 
-        logger.info("Evaluating")
-        args = eval_args(eval_dir, language_config["testing"]["input_file"])
-        metrics = evaluate_from_args(args)
+    train_model_from_file(config.parser_eval_jsonnet, eval_dir, overrides=overrides)
+
+    logger.info("Evaluating")
+    args = eval_args(eval_dir, language_config["testing"]["input_file"])
+    metrics = evaluate_from_args(args)
     logger.info(metrics)
     return None, metrics
 
@@ -136,28 +145,31 @@ def evaluate_parser_static(config):
     """
     Given a language and a pretrained BERT model (or something API compatible with it),
     """
-    with mkdtemp() as eval_dir:
-        logger.info("Training for evaluation")
-        os.environ["EMBEDDING_DIMS"] = str(config.embedding_dim)
-        os.environ["EMBEDDING_PATH"] = config.word2vec_file
-        os.environ["TRAINABLE"] = "1" if config.finetune else "0"
-        language_config = config.parser_eval_language_config
-        for k, v in language_config["training"].items():
-            os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
+    eval_dir = _eval_dir(config, "parse", config.word2vec_file)
+    if os.path.exists(eval_dir):
+        rmtree(eval_dir)
 
-        overrides = []
-        if config.debug:
-            overrides.append('"trainer.num_epochs": 1')
-        if len(overrides) > 0:
-            overrides = "{" + ", ".join(overrides) + "}"
-        else:
-            overrides = ""
+    logger.info("Training for evaluation")
+    os.environ["EMBEDDING_DIMS"] = str(config.embedding_dim)
+    os.environ["EMBEDDING_PATH"] = config.word2vec_file
+    os.environ["TRAINABLE"] = "1" if config.finetune else "0"
+    language_config = config.parser_eval_language_config
+    for k, v in language_config["training"].items():
+        os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
 
-        train_model_from_file(config.parser_eval_jsonnet, eval_dir, overrides=overrides)
+    overrides = []
+    if config.debug:
+        overrides.append('"trainer.num_epochs": 1')
+    if len(overrides) > 0:
+        overrides = "{" + ", ".join(overrides) + "}"
+    else:
+        overrides = ""
 
-        logger.info("Evaluating")
-        args = eval_args(eval_dir, language_config["testing"]["input_file"])
-        metrics = evaluate_from_args(args)
+    train_model_from_file(config.parser_eval_jsonnet, eval_dir, overrides=overrides)
+
+    logger.info("Evaluating")
+    args = eval_args(eval_dir, language_config["testing"]["input_file"])
+    metrics = evaluate_from_args(args)
     logger.info(metrics)
     return None, metrics
 
@@ -166,27 +178,30 @@ def evaluate_ner(config, bert_model_path):
     """
     Given a language and a pretrained BERT model (or something API compatible with it),
     """
-    with mkdtemp() as eval_dir:
-        logger.info("Training for evaluation")
-        os.environ["BERT_DIMS"] = str(config.embedding_dim)
-        os.environ["BERT_PATH"] = bert_model_path
-        os.environ["TRAINABLE"] = "1" if config.finetune else "0"
-        os.environ["train_data_path"] = get_formatted_wikiann_path(config.language, "train")
-        os.environ["validation_data_path"] = get_formatted_wikiann_path(config.language, "dev")
+    eval_dir = _eval_dir(config, "ner", bert_model_path)
+    if os.path.exists(eval_dir):
+        rmtree(eval_dir)
 
-        overrides = []
-        if config.debug:
-            overrides.append('"trainer.num_epochs": 1')
-        if len(overrides) > 0:
-            overrides = "{" + ", ".join(overrides) + "}"
-        else:
-            overrides = ""
+    logger.info("Training for evaluation")
+    os.environ["BERT_DIMS"] = str(config.embedding_dim)
+    os.environ["BERT_PATH"] = bert_model_path
+    os.environ["TRAINABLE"] = "1" if config.finetune else "0"
+    os.environ["train_data_path"] = get_formatted_wikiann_path(config.language, "train")
+    os.environ["validation_data_path"] = get_formatted_wikiann_path(config.language, "dev")
 
-        train_model_from_file(config.ner_eval_jsonnet, eval_dir, overrides=overrides)
+    overrides = []
+    if config.debug:
+        overrides.append('"trainer.num_epochs": 1')
+    if len(overrides) > 0:
+        overrides = "{" + ", ".join(overrides) + "}"
+    else:
+        overrides = ""
 
-        logger.info("Evaluating")
-        args = eval_args(eval_dir, get_formatted_wikiann_path(config.language, "test"))
-        metrics = evaluate_from_args(args)
+    train_model_from_file(config.ner_eval_jsonnet, eval_dir, overrides=overrides)
+
+    logger.info("Evaluating")
+    args = eval_args(eval_dir, get_formatted_wikiann_path(config.language, "test"))
+    metrics = evaluate_from_args(args)
     logger.info(metrics)
     return None, metrics
 
@@ -195,26 +210,29 @@ def evaluate_ner_static(config):
     """
     Given a language and a pretrained BERT model (or something API compatible with it),
     """
-    with mkdtemp() as eval_dir:
-        logger.info("Training for evaluation")
-        os.environ["EMBEDDING_DIMS"] = str(config.embedding_dim)
-        os.environ["EMBEDDING_PATH"] = config.word2vec_file
-        os.environ["TRAINABLE"] = "1" if config.finetune else "0"
-        os.environ["train_data_path"] = get_formatted_wikiann_path(config.language, "train")
-        os.environ["validation_data_path"] = get_formatted_wikiann_path(config.language, "dev")
+    eval_dir = _eval_dir(config, "ner", config.word2vec_file)
+    if os.path.exists(eval_dir):
+        rmtree(eval_dir)
 
-        overrides = []
-        if config.debug:
-            overrides.append('"trainer.num_epochs": 1')
-        if len(overrides) > 0:
-            overrides = "{" + ", ".join(overrides) + "}"
-        else:
-            overrides = ""
+    logger.info("Training for evaluation")
+    os.environ["EMBEDDING_DIMS"] = str(config.embedding_dim)
+    os.environ["EMBEDDING_PATH"] = config.word2vec_file
+    os.environ["TRAINABLE"] = "1" if config.finetune else "0"
+    os.environ["train_data_path"] = get_formatted_wikiann_path(config.language, "train")
+    os.environ["validation_data_path"] = get_formatted_wikiann_path(config.language, "dev")
 
-        train_model_from_file(config.ner_eval_jsonnet, eval_dir, overrides=overrides)
+    overrides = []
+    if config.debug:
+        overrides.append('"trainer.num_epochs": 1')
+    if len(overrides) > 0:
+        overrides = "{" + ", ".join(overrides) + "}"
+    else:
+        overrides = ""
 
-        logger.info("Evaluating")
-        args = eval_args(eval_dir, get_formatted_wikiann_path(config.language, "test"))
-        metrics = evaluate_from_args(args)
+    train_model_from_file(config.ner_eval_jsonnet, eval_dir, overrides=overrides)
+
+    logger.info("Evaluating")
+    args = eval_args(eval_dir, get_formatted_wikiann_path(config.language, "test"))
+    metrics = evaluate_from_args(args)
     logger.info(metrics)
     return None, metrics
