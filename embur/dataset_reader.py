@@ -1,4 +1,3 @@
-import itertools
 import logging
 import os
 from functools import reduce
@@ -13,7 +12,7 @@ from allennlp.data.fields import Field, MetadataField, SequenceLabelField, Tenso
 from allennlp.data.instance import Instance
 from allennlp.data.token_indexers import SingleIdTokenIndexer, TokenIndexer, PretrainedTransformerMismatchedIndexer
 from allennlp.data.tokenizers import Token, Tokenizer, WhitespaceTokenizer, PretrainedTransformerTokenizer
-from conllu import TokenList, parse_incr
+from conllu import TokenList, parse
 from transformers import BertTokenizer
 
 
@@ -29,49 +28,48 @@ def remove_huge_tokens(document, tokenizer):
             if len(tokenizer.tokenize(sentence[i]["form"])) > MAX_PIECES_IN_TOKEN:
                 logger.info(f"[UNK]ing out huge token: `{sentence[i]['form']}`")
                 sentence[i]["form"] = "[UNK]"
-            yield sentence
 
 
 def read_conllu_file(file_path: str, tokenizer: T.Tokenizer = None) -> List[TokenList]:
     document = []
-    sentences = []
     with open(file_path, "r") as file:
-        if "TOY_DATA" in os.environ:
-            sentences = itertools.islice(parse_incr(file), 200)
-        else:
-            sentences = parse_incr(file)
-        if tokenizer is not None:
-            sentences = remove_huge_tokens(sentences, tokenizer)
+        contents = file.read()
+    sentences = parse(contents)
+    if tokenizer is not None:
+        remove_huge_tokens(sentences, tokenizer)
+    if len(sentences) == 0:
+        logger.warning(f"WARNING: {file_path} is empty--likely conversion error.")
+        return []
 
-        vocab = None
-        indexer = None
-        if tokenizer is not None:
-            path = tokenizer.name_or_path
-            indexer = PretrainedTransformerMismatchedIndexer(path, "tokens")
-            vocab = Vocabulary.from_pretrained_transformer(path)
+    vocab = None
+    indexer = None
+    if tokenizer is not None:
+        path = tokenizer.name_or_path
+        indexer = PretrainedTransformerMismatchedIndexer(path, "tokens")
+        vocab = Vocabulary.from_pretrained_transformer(path)
 
-        for sentence in sentences:
-            m = sentence.metadata
+    for sentence in sentences:
+        m = sentence.metadata
 
-            # Need to check that sentences are not too long.
-            # First use a subpiece tokenizer if we have one
-            if indexer is not None and vocab is not None:
-                get_chunks(document, sentence, indexer, vocab)
-            # Fall
-            elif len(sentence) > MAX_TOKEN_LENGTH:
-                subannotation = TokenList(sentence[:MAX_TOKEN_LENGTH])
+        # Need to check that sentences are not too long.
+        # First use a subpiece tokenizer if we have one
+        if indexer is not None and vocab is not None:
+            get_chunks(document, sentence, indexer, vocab)
+        # Fall
+        elif len(sentence) > MAX_TOKEN_LENGTH:
+            subannotation = TokenList(sentence[:MAX_TOKEN_LENGTH])
+            subannotation.metadata = sentence.metadata.copy()
+            logger.info(
+                f"Breaking up huge sentence in {file_path} with length {len(sentence)} "
+                f"into chunks of {MAX_TOKEN_LENGTH} tokens"
+            )
+            while len(subannotation) > 0:
+                document.append(subannotation)
+                subannotation = TokenList(subannotation[MAX_TOKEN_LENGTH:])
                 subannotation.metadata = sentence.metadata.copy()
-                logger.info(
-                    f"Breaking up huge sentence in {file_path} with length {len(sentence)} "
-                    f"into chunks of {MAX_TOKEN_LENGTH} tokens"
-                )
-                while len(subannotation) > 0:
-                    document.append(subannotation)
-                    subannotation = TokenList(subannotation[MAX_TOKEN_LENGTH:])
-                    subannotation.metadata = sentence.metadata.copy()
-            else:
-                document.append(sentence)
-        return document
+        else:
+            document.append(sentence)
+    return document
 
 
 def get_chunks(document, sentence, indexer, vocab):
