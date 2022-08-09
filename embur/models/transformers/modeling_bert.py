@@ -94,7 +94,7 @@ class BiltBertConfig(PretrainedConfig):
     Examples:
 
     ```python
-    >>> from transformers import BiltBertModel, BiltBertConfig
+    >>> from embur.models.transformers.modeling_bert import BiltBertModel, BiltBertConfig
 
     >>> # Initializing a BERT bert-base-uncased style configuration
     >>> configuration = BiltBertConfig()
