@@ -15,7 +15,7 @@ local dev_data_paths = std.parseJson(std.extVar("dev_data_paths"));
 // Head setup
 // --------------------------------------------------------------------------------
 local mlm_head = {
-  "type": "mlm",
+  "type": "bilt_mlm",
   "embedding_dim": embedding_dim
 };
 local heads = {"mlm": mlm_head};

@@ -15,6 +15,7 @@ import embur.models.backbones.pretrained_bert_backbone
 import embur.models.backbones.static_backbone
 import embur.models.entities.entity_crf
 import embur.models.heads.mlm
+import embur.models.heads.bilt_mlm
 import embur.models.heads.ud
 import embur.models.heads.xpos
 import embur.schedulers

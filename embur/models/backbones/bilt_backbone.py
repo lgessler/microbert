@@ -86,6 +86,7 @@ class BiltBertBackbone(Backbone):
         attention_mask = text["tokens"]["wordpiece_mask"]
         token_type_ids = text["tokens"]["type_ids"]
         output = self.bert(input_ids=input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids)
+
         wordpiece_embeddings = output.last_hidden_state
         offsets = text["tokens"]["offsets"]
 
@@ -99,6 +100,8 @@ class BiltBertBackbone(Backbone):
             "wordpiece_embeddings": wordpiece_embeddings,
             "orig_mask": text["tokens"]["mask"],
             "orig_embeddings": orig_embeddings,
+            "hidden_states": output.hidden_states,
+            "attentions": output.attentions
         }
 
     def forward(self, text: TextFieldTensors) -> Dict[str, torch.Tensor]:  # type: ignore
@@ -110,6 +113,8 @@ class BiltBertBackbone(Backbone):
             "wordpiece_encoded_text": bert_output["wordpiece_embeddings"],
             "wordpiece_encoded_text_mask": bert_output["wordpiece_mask"],
             "token_ids": util.get_token_ids_from_text_field_tensors(text),
+            "hidden_states": torch.stack(bert_output["hidden_states"], dim=0),
+            "attentions": torch.stack(bert_output["attentions"], dim=0),
         }
 
         self._extend_with_masked_text(outputs, text)
