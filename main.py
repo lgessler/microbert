@@ -14,6 +14,8 @@ import embur.commands.word2vec as word2vec
 from embur.commands.word2vec import word2vec as c_word2vec
 import embur.commands.bert as bert
 from embur.commands.bert import bert as c_bert
+import embur.commands.bilt as bilt
+from embur.commands.bilt import bilt as c_bilt
 from embur.commands.data import data
 from embur.commands.stats import stats
 from embur.config import Config
@@ -118,6 +120,7 @@ top.add_command(c_word2vec)
 top.add_command(c_mbert)
 top.add_command(c_mbert_va)
 top.add_command(c_bert)
+top.add_command(c_bilt)
 top.add_command(stats)
 top.add_command(data)
 top.add_command(evaluate_parser_all)
