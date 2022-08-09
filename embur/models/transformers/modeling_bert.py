@@ -127,6 +127,8 @@ class BiltBertConfig(PretrainedConfig):
         classifier_dropout=None,
         **kwargs
     ):
+        kwargs["output_hidden_states"] = True
+        kwargs["output_attentions"] = True
         super().__init__(pad_token_id=pad_token_id, **kwargs)
 
         self.vocab_size = vocab_size
