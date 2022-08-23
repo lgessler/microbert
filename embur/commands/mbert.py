@@ -1,5 +1,5 @@
 import click
-from transformers import BertModel
+from transformers import AutoModel
 
 from embur.commands.common import write_to_tsv, default_options, write_to_tsv2
 import embur.eval.allennlp as eval
@@ -13,7 +13,7 @@ class MbertExperimentConfig:
         combined_kwargs.update(kwargs)
 
         self.bert_model_name = combined_kwargs.pop("bert_model_name")
-        self.embedding_dim = BertModel.from_pretrained(self.bert_model_name).config.hidden_size
+        self.embedding_dim = AutoModel.from_pretrained(self.bert_model_name).config.hidden_size
         self.parser_eval_language_config = get_eval_config(self.language, self.bert_model_name)
         self.parser_eval_jsonnet = combined_kwargs.pop("parser_eval_config")
         self.ner_eval_jsonnet = combined_kwargs.pop("ner_eval_config")
