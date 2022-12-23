@@ -12,7 +12,7 @@ If you'd like to cite our work, please use the following citation:
     title = "MicroBERT: Effective Training of Low-resource Monolingual BERTs through Parameter Reduction and Multitask Learning",
     author = "Gessler, Luke  and
       Zeldes, Amir",
-    booktitle = "Proceedings of the 2st Workshop on Multilingual Representation Learning",
+    booktitle = "Proceedings of the 2nd Workshop on Multilingual Representation Learning",
     month = dec,
     year = "2022",
     address = "Abu Dhabi, United Arab Emirates",
