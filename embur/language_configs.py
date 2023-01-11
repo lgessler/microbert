@@ -6,7 +6,7 @@ from all dicts). Be smart in this file and do as much as possible to only write
 data, not code!
 """
 
-LANGUAGES = ["coptic", "maltese", "wolof", "uyghur", "greek", "indonesian", "tamil"]
+LANGUAGES = ["coptic", "maltese", "wolof", "uyghur", "greek", "indonesian", "tamil", "english"]
 
 
 def _std_pretrain_config(mismatched_reader, language, treebank_name, conllu_name, ssplit_type="_punct"):
@@ -69,6 +69,9 @@ def get_pretrain_config(language, tokenizer_path, tasks):
             "readers": {"xpos": mismatched_reader, "mlm": mismatched_reader, "parser": mismatched_reader},
             "tokenizer_conllu_path": "data/coptic/converted/train",
         },
+        "english": _std_pretrain_config(
+          mismatched_reader, "english", "UD_English-GUM", "en_ewt-ud", ssplit_type=""
+        ),
         "maltese": _std_pretrain_config(
             mismatched_reader, "maltese", "UD_Maltese-MUDT", "mt_mudt-ud", ssplit_type="_punct"
         ),
@@ -112,6 +115,7 @@ def get_eval_config(language, model_name):
             },
             "testing": {"input_file": "data/coptic/UD_Coptic-Scriptorium/cop_scriptorium-ud-dev.conllu"},
         },
+        "english": _std_eval_config(model_name, "english", "UD_English-EWT", "en_ewt-ud"),
         "maltese": _std_eval_config(model_name, "maltese", "UD_Maltese-MUDT", "mt_mudt-ud"),
         "wolof": _std_eval_config(model_name, "wolof", "UD_Wolof-WTB", "wo_wtb-ud"),
         "uyghur": _std_eval_config(model_name, "uyghur", "UD_Uyghur-UDT", "ug_udt-ud"),

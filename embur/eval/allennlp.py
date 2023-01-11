@@ -15,7 +15,7 @@ from allennlp.data import DataLoader
 from allennlp.models import load_archive
 from allennlp.training.util import evaluate
 
-from transformers import BertModel
+from transformers import AutoModel
 
 from embur.language_configs import get_formatted_wikiann_path
 
@@ -114,7 +114,7 @@ def evaluate_parser(config, bert_model_path):
         rmtree(eval_dir)
 
     logger.info("Training for evaluation")
-    bert_model = BertModel.from_pretrained(bert_model_path)
+    bert_model = AutoModel.from_pretrained(bert_model_path)
     language_config = config.parser_eval_language_config
 
     os.environ["BERT_DIMS"] = str(bert_model.config.hidden_size)

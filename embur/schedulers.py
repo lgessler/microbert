@@ -46,7 +46,6 @@ class HomogeneousWeightProportionalScheduler(MultiTaskScheduler):
                 pattern += [dataset_id] * weight
             self.pattern = itertools.cycle(iter(pattern))
 
-
     def batch_instances(
         self, epoch_instances: Dict[str, Iterable[Instance]]
     ) -> Iterable[List[Instance]]:
@@ -66,7 +65,6 @@ class HomogeneousWeightProportionalScheduler(MultiTaskScheduler):
                 if done[dataset_id]:
                     continue
                 try:
-                    print("\n",dataset_id)
                     val = next(iterables[dataset_id])
                     counts[dataset_id] += len(val)
                     batches[dataset_id] += 1
@@ -74,7 +72,7 @@ class HomogeneousWeightProportionalScheduler(MultiTaskScheduler):
                 except StopIteration:
                     done[dataset_id] = True
             print("counts", counts)
-            print("batchs", batches)
+            print("batches", batches)
 
         return weighted_iteration(chunked_iterators, self.weights)
 
