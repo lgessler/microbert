@@ -17,6 +17,7 @@ class MbertExperimentConfig:
         self.parser_eval_language_config = get_eval_config(self.language, self.bert_model_name)
         self.parser_eval_jsonnet = combined_kwargs.pop("parser_eval_config")
         self.ner_eval_jsonnet = combined_kwargs.pop("ner_eval_config")
+        self.preset = kwargs.pop("preset")
 
 
 @click.group(help="Use a pretrained BERT")
@@ -32,6 +33,7 @@ class MbertExperimentConfig:
     default="configs/ner.jsonnet",
     help="NER evaluation config. You probably want to leave this as the default.",
 )
+@click.option("--preset", default=None, type=click.Choice(list(eval.PRESETS.keys())), help="hyperparam override sets")
 def mbert(ctx, **kwargs):
     ctx.obj.experiment_config = MbertExperimentConfig(language=ctx.obj.language, **kwargs)
 

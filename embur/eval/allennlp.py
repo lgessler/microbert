@@ -21,6 +21,16 @@ from embur.language_configs import get_formatted_wikiann_path
 
 logger = getLogger(__name__)
 
+
+PRESETS = {
+    '1': [],
+    '2': ['"trainer.optimizer.betas": [0.91311, 0.99994]', '"numpy_seed": 2439', '"pytorch_seed": 94328', '"random_seed": 56914', '"trainer.grad_norm": 1.60410'],
+    '3': ['"trainer.optimizer.betas": [0.93648, 0.99172]', '"numpy_seed": 41155', '"pytorch_seed": 34401', '"random_seed": 44962', '"trainer.grad_norm": 5.43538'],
+    '4': ['"trainer.optimizer.betas": [0.96915, 0.94367]', '"numpy_seed": 86102', '"pytorch_seed": 10104', '"random_seed": 88816', '"trainer.grad_norm": 1.00748'],
+    '5': ['"trainer.optimizer.betas": [0.91311, 0.99994]', '"numpy_seed": 37552', '"pytorch_seed": 38213', '"random_seed": 93061', '"trainer.grad_norm": 4.72098']
+}
+
+
 # This is an older version of the function that'll tolerate dicts for input files
 # function is from (from https://github.com/allenai/allennlp/commits/main/allennlp/commands/evaluate.py)
 def evaluate_from_args(args: argparse.Namespace) -> Dict[str, Any]:
@@ -125,12 +135,16 @@ def evaluate_parser(config, bert_model_path):
         os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
 
     overrides = []
+    if hasattr(config, "preset") and config.preset is not None:
+        overrides.extend(PRESETS[config.preset])
     if config.debug:
         overrides.append('"trainer.num_epochs": 1')
     if len(overrides) > 0:
         overrides = "{" + ", ".join(overrides) + "}"
     else:
         overrides = ""
+    if len(overrides) > 0:
+        logger.info(f"Parser overrides: {overrides}")
 
     train_model_from_file(config.parser_eval_jsonnet, eval_dir, overrides=overrides)
 
@@ -190,12 +204,16 @@ def evaluate_ner(config, bert_model_path):
     os.environ["validation_data_path"] = get_formatted_wikiann_path(config.language, "dev")
 
     overrides = []
+    if hasattr(config, "preset") and config.preset is not None:
+        overrides.extend(PRESETS[config.preset])
     if config.debug:
         overrides.append('"trainer.num_epochs": 1')
     if len(overrides) > 0:
         overrides = "{" + ", ".join(overrides) + "}"
     else:
         overrides = ""
+    if len(overrides) > 0:
+        logger.info(f"Parser overrides: {overrides}")
 
     train_model_from_file(config.ner_eval_jsonnet, eval_dir, overrides=overrides)
 
