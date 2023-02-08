@@ -1,22 +1,24 @@
 # Introduction
 
-[MicroBERT](./MicroBERT__MRL_2022_.pdf) is a BERT variant intended for training **monolingual** models for **low-resource** languages by 
+[MicroBERT](https://aclanthology.org/2022.mrl-1.9/) is a BERT variant intended for training **monolingual** models for **low-resource** languages by 
 **reducing model sizes** and using **multitask learning** on part of speech tagging and dependency parsing 
 in addition to the usual masked language modeling.
 
-For more information, please see [our paper](./MicroBERT__MRL_2022_.pdf).
+For more information, please see [our paper](https://aclanthology.org/2022.mrl-1.9/).
 If you'd like to cite our work, please use the following citation:
 
 ```
-@inproceedings{gessler_microbert_2022,
-    title = "MicroBERT: Effective Training of Low-resource Monolingual BERTs through Parameter Reduction and Multitask Learning",
+@inproceedings{gessler-zeldes-2022-microbert,
+    title = "{M}icro{BERT}: Effective Training of Low-resource Monolingual {BERT}s through Parameter Reduction and Multitask Learning",
     author = "Gessler, Luke  and
       Zeldes, Amir",
-    booktitle = "Proceedings of the 2nd Workshop on Multilingual Representation Learning",
+    booktitle = "Proceedings of the The 2nd Workshop on Multi-lingual Representation Learning (MRL)",
     month = dec,
     year = "2022",
-    address = "Abu Dhabi, United Arab Emirates",
+    address = "Abu Dhabi, United Arab Emirates (Hybrid)",
     publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.mrl-1.9",
+    pages = "86--99",
 }
 ```
 
