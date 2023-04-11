@@ -1,3 +1,4 @@
+local language = std.extVar("LANGUAGE");
 local embedding_dim = std.parseInt(std.extVar("BERT_DIMS"));
 local model_name = std.extVar("BERT_PATH");
 local trainable = if std.parseInt(std.extVar("TRAINABLE")) == 1 then true else false;
@@ -13,6 +14,10 @@ local validation_data_loader = {
   }
 };
 local data_loader = validation_data_loader + {"batches_per_epoch": 200};
+local language_code_index = import 'lib/language_code.libsonnet';
+local stanza_do_not_retokenize = import 'lib/stanza_do_not_retokenize.libsonnet';
+local stanza_no_mwt = import 'lib/stanza_no_mwt.libsonnet';
+
 
 {
     "dataset_reader": {
@@ -20,8 +25,12 @@ local data_loader = validation_data_loader + {"batches_per_epoch": 200};
       "use_language_specific_pos": false,
       "token_indexers": {
         "tokens": {
-          "type": "pretrained_transformer_mismatched",
+          "type": "pretrained_transformer_mismatched_with_dep_att_mask",
+          "stanza_language": language_code_index[language],
+          "stanza_use_mwt": if std.member(stanza_no_mwt, language) then false else true,
+          "allow_retokenization": false,
           "model_name": model_name,
+          "max_distance": 5,
         }
       }
     },
@@ -32,7 +41,7 @@ local data_loader = validation_data_loader + {"batches_per_epoch": 200};
       "text_field_embedder": {
         "token_embedders": {
           "tokens": {
-            "type": "pretrained_transformer_mismatched",
+            "type": "pretrained_transformer_mismatched_with_dep_att_mask",
             "model_name": model_name,
             "train_parameters": trainable,
             "last_layer_only": false

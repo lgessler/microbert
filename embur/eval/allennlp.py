@@ -131,6 +131,7 @@ def evaluate_parser(config, bert_model_path):
     logger.info(f"Loaded BERT model from '{bert_model_path}': {bert_model}")
     os.environ["BERT_PATH"] = bert_model_path
     os.environ["TRAINABLE"] = "1" if config.finetune else "0"
+    os.environ["LANGUAGE"] = config.language
     for k, v in language_config["training"].items():
         os.environ[k] = json.dumps(v) if isinstance(v, dict) else v
 
@@ -200,6 +201,7 @@ def evaluate_ner(config, bert_model_path):
     os.environ["BERT_DIMS"] = str(config.embedding_dim)
     os.environ["BERT_PATH"] = bert_model_path
     os.environ["TRAINABLE"] = "1" if config.finetune else "0"
+    os.environ["LANGUAGE"] = config.language
     os.environ["train_data_path"] = get_formatted_wikiann_path(config.language, "train")
     os.environ["validation_data_path"] = get_formatted_wikiann_path(config.language, "dev")
 
