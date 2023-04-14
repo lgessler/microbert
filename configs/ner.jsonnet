@@ -20,7 +20,7 @@ local indexer = if do_sla then {
           "max_length": 512,
           "tokenizer_kwargs": {"max_length": 512}
         } else {
-          "type": "pretrained_transformer_mismatched_with_dep_att_mask",
+          "type": "pretrained_transformer_mismatched",
           "model_name": model_name,
           "max_length": 512,
           "tokenizer_kwargs": {"max_length": 512}
