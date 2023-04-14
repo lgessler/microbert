@@ -8,6 +8,24 @@ local language_code_index = import 'lib/language_code.libsonnet';
 local stanza_do_not_retokenize = import 'lib/stanza_do_not_retokenize.libsonnet';
 local stanza_no_mwt = import 'lib/stanza_no_mwt.libsonnet';
 
+local do_sla = if std.parseInt(std.extVar("SLA")) == 1 then true else false;
+local embedder_type = if do_sla then "pretrained_transformer_mismatched_with_dep_att_mask" else "pretrained_transformer_mismatched";
+local indexer = if do_sla then {
+          "type": "pretrained_transformer_mismatched_with_dep_att_mask",
+          "stanza_language": language_code_index[language],
+          "stanza_use_mwt": if std.member(stanza_no_mwt, language) then false else true,
+          "allow_retokenization": false,
+          "model_name": model_name,
+          "max_distance": 5,
+          "max_length": 512,
+          "tokenizer_kwargs": {"max_length": 512}
+        } else {
+          "type": "pretrained_transformer_mismatched_with_dep_att_mask",
+          "model_name": model_name,
+          "max_length": 512,
+          "tokenizer_kwargs": {"max_length": 512}
+        };
+
 
 // Adapted from https://github.com/allenai/allennlp-models/blob/main/training_config/tagging/ner.jsonnet
 {
@@ -16,16 +34,7 @@ local stanza_no_mwt = import 'lib/stanza_no_mwt.libsonnet';
     "tag_label": "ner",
     "convert_to_coding_scheme": null,
     "token_indexers": {
-      "tokens": {
-        "type": "pretrained_transformer_mismatched_with_dep_att_mask",
-        "model_name": model_name,
-        "stanza_language": language_code_index[language],
-        "stanza_use_mwt": if std.member(stanza_no_mwt, language) then false else true,
-        "allow_retokenization": false,
-        "max_distance": 5,
-        "max_length": 512,
-        "tokenizer_kwargs": {"max_length": 512}
-      }
+      "tokens": indexer,
     }
   },
   "train_data_path": train_data_path,
@@ -40,7 +49,7 @@ local stanza_no_mwt = import 'lib/stanza_no_mwt.libsonnet';
     "text_field_embedder": {
       "token_embedders": {
         "tokens": {
-          "type": "pretrained_transformer_mismatched_with_dep_att_mask",
+          "type": embedder_type,
           "model_name": model_name,
           "train_parameters": trainable,
           "last_layer_only": false

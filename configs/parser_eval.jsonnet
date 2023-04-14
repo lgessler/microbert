@@ -18,20 +18,27 @@ local language_code_index = import 'lib/language_code.libsonnet';
 local stanza_do_not_retokenize = import 'lib/stanza_do_not_retokenize.libsonnet';
 local stanza_no_mwt = import 'lib/stanza_no_mwt.libsonnet';
 
-
-{
-    "dataset_reader": {
-      "type": "universal_dependencies",
-      "use_language_specific_pos": false,
-      "token_indexers": {
-        "tokens": {
+local do_sla = if std.parseInt(std.extVar("SLA")) == 1 then true else false;
+local embedder_type = if do_sla then "pretrained_transformer_mismatched_with_dep_att_mask" else "pretrained_transformer_mismatched";
+local indexer = if do_sla then {
           "type": "pretrained_transformer_mismatched_with_dep_att_mask",
           "stanza_language": language_code_index[language],
           "stanza_use_mwt": if std.member(stanza_no_mwt, language) then false else true,
           "allow_retokenization": false,
           "model_name": model_name,
           "max_distance": 5,
-        }
+        } else {
+          "type": "pretrained_transformer_mismatched_with_dep_att_mask",
+          "model_name": model_name,
+        };
+
+
+{
+    "dataset_reader": {
+      "type": "universal_dependencies",
+      "use_language_specific_pos": false,
+      "token_indexers": {
+        "tokens": indexer,
       }
     },
     "train_data_path": train_data_path,
@@ -41,7 +48,7 @@ local stanza_no_mwt = import 'lib/stanza_no_mwt.libsonnet';
       "text_field_embedder": {
         "token_embedders": {
           "tokens": {
-            "type": "pretrained_transformer_mismatched_with_dep_att_mask",
+            "type": embedder_type,
             "model_name": model_name,
             "train_parameters": trainable,
             "last_layer_only": false
