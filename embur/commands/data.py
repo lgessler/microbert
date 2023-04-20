@@ -40,6 +40,7 @@ def _parse_ner(path):
     with open(path, "r") as f:
         s = f.read()
     all_sentence_lines = [sentence.split("\n") for sentence in s.strip().split("\n\n")]
+    del s
     sentences = []
 
     i = 0
@@ -72,13 +73,17 @@ def _format_conll2003(sentences):
 
 def _bio_to_bioul(sentences):
     bioul_sentences = []
-    for sentence in sentences:
+    malformed = 0
+    
+    for i, sentence in enumerate(sentences):
         try:
             bioul_tags = to_bioul([tag for form, tag in sentence], encoding="BIO")
             bioul_sentence = list(zip([form for form, _ in sentence], bioul_tags))
             bioul_sentences.append(bioul_sentence)
         except InvalidTagSequence:
+            malformed += 1
             print(f"Warning: discarded sentence due to invalid sequence: \"{sentence}\"", file=sys.stderr)
+            print(f"Number malformed: {malformed} / {i + 1}", file=sys.stderr)
         # if len(bioul_sentence) > 100:
         #     print(len(bioul_sentence))
         #     print(bioul_sentence)

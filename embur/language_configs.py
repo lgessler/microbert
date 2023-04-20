@@ -148,6 +148,7 @@ def get_formatted_wikiann_path(language, split):
         "wolof": f"data/wolof/wikiann-wo_{split}.bio",
         "tamil": f"data/tamil/wikiann-ta_{split}.bio",
         "indonesian": f"data/indonesian/wikiann-id_{split}.bio",
+        "english": f"data/english/wikiann-en_{split}.bio",
     }
     if language not in paths:
         raise ValueError(f"Language not available for NER: {language}")
