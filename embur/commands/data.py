@@ -1,3 +1,4 @@
+import sys
 import random
 from math import ceil
 from random import shuffle
@@ -5,7 +6,8 @@ from random import shuffle
 import click
 
 from embur.language_configs import get_wikiann_path, get_formatted_wikiann_path
-from allennlp.data.dataset_readers.dataset_utils.span_utils import bio_tags_to_spans, to_bioul
+from allennlp.data.dataset_readers.dataset_utils.span_utils import bio_tags_to_spans, to_bioul, InvalidTagSequence
+
 
 
 @click.group
@@ -71,9 +73,12 @@ def _format_conll2003(sentences):
 def _bio_to_bioul(sentences):
     bioul_sentences = []
     for sentence in sentences:
-        bioul_tags = to_bioul([tag for form, tag in sentence], encoding="BIO")
-        bioul_sentence = list(zip([form for form, _ in sentence], bioul_tags))
-        bioul_sentences.append(bioul_sentence)
+        try:
+            bioul_tags = to_bioul([tag for form, tag in sentence], encoding="BIO")
+            bioul_sentence = list(zip([form for form, _ in sentence], bioul_tags))
+            bioul_sentences.append(bioul_sentence)
+        except InvalidTagSequence:
+            print("Warning: discarded sentence due to invalid sequence: \"{sentence}\"", file=sys.stderr)
         # if len(bioul_sentence) > 100:
         #     print(len(bioul_sentence))
         #     print(bioul_sentence)
