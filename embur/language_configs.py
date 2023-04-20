@@ -132,6 +132,7 @@ def get_wikiann_path(language):
         "wolof": "data/wolof/wikiann-wo.bio",
         "tamil": "data/tamil/wikiann-ta.bio",
         "indonesian": "data/indonesian/wikiann-id.bio",
+        "english": "data/english/wikiann-en.bio",
     }
     if language not in paths:
         raise ValueError(f"Language not available for NER: {language}")
