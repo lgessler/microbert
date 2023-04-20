@@ -78,7 +78,7 @@ def _bio_to_bioul(sentences):
             bioul_sentence = list(zip([form for form, _ in sentence], bioul_tags))
             bioul_sentences.append(bioul_sentence)
         except InvalidTagSequence:
-            print("Warning: discarded sentence due to invalid sequence: \"{sentence}\"", file=sys.stderr)
+            print(f"Warning: discarded sentence due to invalid sequence: \"{sentence}\"", file=sys.stderr)
         # if len(bioul_sentence) > 100:
         #     print(len(bioul_sentence))
         #     print(bioul_sentence)
