@@ -368,7 +368,7 @@ class PretrainedTransformerMismatchedWithDepAttMaskIndexer(TokenIndexer):
         max_length: int = None,
         tokenizer_kwargs: Optional[Dict[str, Any]] = None,
         allow_retokenization: bool = False,
-        max_distance: int = 5,
+        max_distance: int = 4,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
@@ -418,7 +418,7 @@ class PretrainedTransformerMismatchedWithDepAttMaskIndexer(TokenIndexer):
         tokens = [t for t in sentence if isinstance(t["id"], int)]
         head = [t["head"] for t in tokens]
         expanded_heads = extend_tree_with_subword_edges(offsets, head)
-        dep_att_mask = generate_sla_mask_list(expanded_heads, max_distance=self.max_distance)
+        dep_att_mask = generate_sla_mask_list(expanded_heads, len(expanded_heads), self.max_distance)
 
         output: IndexedTokenList = {
             "token_ids": [t.text_id for t in wordpieces],

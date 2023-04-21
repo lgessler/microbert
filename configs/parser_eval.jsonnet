@@ -26,7 +26,7 @@ local indexer = if do_sla then {
           "stanza_use_mwt": if std.member(stanza_no_mwt, language) then false else true,
           "allow_retokenization": false,
           "model_name": model_name,
-          "max_distance": 5,
+          "max_distance": 4,
         } else {
           "type": "pretrained_transformer_mismatched",
           "model_name": model_name,
