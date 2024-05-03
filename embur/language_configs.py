@@ -6,7 +6,7 @@ from all dicts). Be smart in this file and do as much as possible to only write
 data, not code!
 """
 
-LANGUAGES = ["coptic", "maltese", "wolof", "uyghur", "greek", "indonesian", "tamil", "english"]
+LANGUAGES = ["coptic", "maltese", "wolof", "uyghur", "greek", "indonesian", "tamil", "english", "nahuatl"]
 
 
 def _std_pretrain_config(mismatched_reader, language, treebank_name, conllu_name, ssplit_type="_punct"):
@@ -84,6 +84,7 @@ def get_pretrain_config(language, tokenizer_path, tasks):
             mismatched_reader, "indonesian", "UD_Indonesian-GSD", "id_gsd-ud", ssplit_type="_punct"
         ),
         "tamil": _std_pretrain_config(mismatched_reader, "tamil", "UD_Tamil-TTB", "ta_ttb-ud", ssplit_type="_punct"),
+        "nahuatl": None,
     }[language]
 
     for subconfig_name, subconfig in language_config.items():
@@ -122,6 +123,18 @@ def get_eval_config(language, model_name):
         "greek": _std_eval_config(model_name, "greek", "UD_Ancient_Greek-PROIEL", "grc_proiel-ud"),
         "indonesian": _std_eval_config(model_name, "indonesian", "UD_Indonesian-GSD", "id_gsd-ud"),
         "tamil": _std_eval_config(model_name, "tamil", "UD_Tamil-TTB", "ta_ttb-ud"),
+        "nahuatl": {
+            "training": {
+                "dataset_reader": {
+                    "type": "embur_conllu",
+                    "token_indexers": {"tokens": {"type": "pretrained_transformer_mismatched", "model_name": model_name}},
+                },
+                "train_data_path": f"data/nahuatl/nhi_itml-ud-test.conllu",
+                "validation_data_path": f"data/nahuatl/nhi_itml-ud-test.conllu",
+            },
+            "testing": {"input_file": f"data/nahuatl/Book_05_-_The_Omens.conllu"},
+        }
+
     }[language]
 
 
