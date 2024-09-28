@@ -1,4 +1,4 @@
-ℹ️ **NOTE**: If you want to train a MicroBERT for your language, please see [lgessler/microbert2](https://github.com/lgessler/microbert2).
+⚠️ **NOTE**: If you want to train a MicroBERT for your language, please see [lgessler/microbert2](https://github.com/lgessler/microbert2).
 
 # Introduction
 
