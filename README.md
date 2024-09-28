@@ -1,3 +1,5 @@
+ℹ️ **NOTE**: If you want to train a MicroBERT for your language, please see [lgessler/microbert2](https://github.com/lgessler/microbert2).
+
 # Introduction
 
 [MicroBERT](https://aclanthology.org/2022.mrl-1.9/) is a BERT variant intended for training **monolingual** models for **low-resource** languages by 
