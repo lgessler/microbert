@@ -44,15 +44,16 @@ def encode_entities(sentence, scheme="BIO"):
             sentence[tid]["misc"] = {"Entity": tag}
 
 
-def conllize(ttsgml):
+def conllize(ttsgml, tsv_files=None, split_map=None):
     sentences = []
     sentence = []
     entity_open = []
     meta = None
     tcount = 0
+    current_translation = None
 
     def finalize_sentence(sentence):
-        nonlocal tcount
+        nonlocal tcount, current_translation
         encode_entities(sentence)
         sent_meta = {
             "sent_id": meta["document_cts_urn"][18:] + "-" + str(len(sentences) + 1),
@@ -65,6 +66,21 @@ def conllize(ttsgml):
         tl = conllu.TokenList(sentence, sent_meta)
         tcount += len(tl)
         sentences.append(tl.serialize())
+
+        # Write to TSV if available
+        if tsv_files and split_map and current_translation:
+            coptic_text = " ".join(token["form"] for token in sentence)
+            document_name = meta["document_cts_urn"][18:] + ".conllu"
+
+            # Determine which split this document belongs to
+            if document_name in split_map["test"]:
+                tsv_file = tsv_files["test"]
+            elif document_name in split_map["dev"]:
+                tsv_file = tsv_files["dev"]
+            else:
+                tsv_file = tsv_files["train"]
+
+            tsv_file.write(f"{coptic_text}\t{current_translation}\n")
 
     for line_num, line in enumerate(ttsgml.replace("\r", "").split("\n")):
         # Read the <meta> element at the beginning of the document
@@ -87,10 +103,12 @@ def conllize(ttsgml):
         # If we're at an opening tag...
         elif esc.ttline_is_open_tag(line):
             elt, attrs = esc.ttline_parse_open_tag(line)
-            # TODO: extract entities
-            if " translation=" in line and len(sentence) > 0:
-                finalize_sentence(sentence)
-                sentence = []
+            # Capture translation text
+            if elt == "translation":
+                if len(sentence) > 0:
+                    finalize_sentence(sentence)
+                    sentence = []
+                current_translation = attrs.get("translation", "")
             elif elt == "norm":
                 token = esc.token()
                 token["id"] = len(sentence) + 1
@@ -206,27 +224,39 @@ def main():
                 # with open(conllu_filepath, 'r') as f:
                 #     conllu_data.append((f"{conllu_dir}/{conllu_filepath}", f.read()))
 
-    with Progress() as progress:
-        task = progress.add_task("[cyan]Converting...", total=len(tt_data))
-        tc = 0
+    # Open TSV files for machine translation output
+    tsv_files = {
+        "train": open(os.path.join(OUTPUT_DIR, "train.tsv"), "w", encoding="utf-8"),
+        "dev": open(os.path.join(OUTPUT_DIR, "dev.tsv"), "w", encoding="utf-8"),
+        "test": open(os.path.join(OUTPUT_DIR, "test.tsv"), "w", encoding="utf-8"),
+    }
 
-        for filepath, tt_str in tt_data:
-            meta, conllu_string, tcount = conllize(tt_str)
-            tc += tcount
-            document_name = meta["document_cts_urn"][18:] + ".conllu"
-            if document_name in SPLIT_MAP["test"]:
-                path = os.path.join(OUTPUT_DIR, "test", document_name)
-            elif document_name in SPLIT_MAP["dev"]:
-                path = os.path.join(OUTPUT_DIR, "dev", document_name)
-            else:
-                path = os.path.join(OUTPUT_DIR, "train", document_name)
-            path = path.replace(":", "__COLON__")
-            with open(path, "w") as f:
-                f.write(conllu_string)
+    try:
+        with Progress() as progress:
+            task = progress.add_task("[cyan]Converting...", total=len(tt_data))
+            tc = 0
 
-            progress.update(task, advance=1)
+            for filepath, tt_str in tt_data:
+                meta, conllu_string, tcount = conllize(tt_str, tsv_files, SPLIT_MAP)
+                tc += tcount
+                document_name = meta["document_cts_urn"][18:] + ".conllu"
+                if document_name in SPLIT_MAP["test"]:
+                    path = os.path.join(OUTPUT_DIR, "test", document_name)
+                elif document_name in SPLIT_MAP["dev"]:
+                    path = os.path.join(OUTPUT_DIR, "dev", document_name)
+                else:
+                    path = os.path.join(OUTPUT_DIR, "train", document_name)
+                path = path.replace(":", "__COLON__")
+                with open(path, "w") as f:
+                    f.write(conllu_string)
 
-        print("Total tokens:", tc)
+                progress.update(task, advance=1)
+
+            print("Total tokens:", tc)
+    finally:
+        # Close TSV files
+        for tsv_file in tsv_files.values():
+            tsv_file.close()
 
 
 if __name__ == "__main__":
