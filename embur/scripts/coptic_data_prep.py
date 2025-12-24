@@ -66,8 +66,6 @@ def conllize(ttsgml, tsv_files=None, split_map=None):
         tl = conllu.TokenList(sentence, sent_meta)
         tcount += len(tl)
         sentences.append(tl.serialize())
-        # Add the current translation (or empty string if none was found)
-        translations.append(current_translation or "")
 
         # Write to TSV if available
         if tsv_files and split_map and current_translation:
@@ -79,8 +77,12 @@ def conllize(ttsgml, tsv_files=None, split_map=None):
                 print(f"Discarding line with {coptic_text.count('.')} periods: {coptic_text[:100]}...")
                 return
 
+            if re.fullmatch(r"-+", coptic_text.strip()):
+                print(f"Discarding line: {coptic_text}")
+                return
+
             # Skip sentences where the translation is "..."
-            if current_translation == "...":
+            if current_translation in ["...", "…"]:
                 print(f"Discarding line with '...' translation: {coptic_text[:100]}...")
                 return
 
@@ -143,7 +145,7 @@ def conllize(ttsgml, tsv_files=None, split_map=None):
         finalize_sentence(sentence)
 
     print(f"Found {tcount} tokens in {meta['document_cts_urn']}")
-    return meta, "\n".join(sentences), tcount, translations
+    return meta, "\n".join(sentences), tcount
 
 
 def format_tt(tt_dir):
@@ -170,12 +172,6 @@ def main():
     os.makedirs(OUTPUT_DIR + "/dev", exist_ok=True)
     os.makedirs(OUTPUT_DIR + "/test", exist_ok=True)
     os.makedirs(SYNTAX_DIR, exist_ok=True)
-
-    # Initialize files for sentences and translations
-    train_coptic_file = open(OUTPUT_DIR + "/train_coptic.txt", "w", encoding="utf-8")
-    train_english_file = open(OUTPUT_DIR + "/train_english.txt", "w", encoding="utf-8")
-    dev_coptic_file = open(OUTPUT_DIR + "/dev_coptic.txt", "w", encoding="utf-8")
-    dev_english_file = open(OUTPUT_DIR + "/dev_english.txt", "w", encoding="utf-8")
 
     SPLIT_MAP = {
         "test": [
@@ -275,11 +271,6 @@ def main():
         # Close TSV files
         for tsv_file in tsv_files.values():
             tsv_file.close()
-        # Close the other files
-        train_coptic_file.close()
-        train_english_file.close()
-        dev_coptic_file.close()
-        dev_english_file.close()
 
 
 if __name__ == "__main__":
